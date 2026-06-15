@@ -138,3 +138,62 @@ if (contactForm) {
     window.location.href = `mailto:edisontaimu9@gmail.com?subject=${subject}&body=${body}`;
   });
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Typewriter hero — rotates phrases with a type / delete / pause cycle
+───────────────────────────────────────────────────────────────────────────── */
+(function () {
+  const phrases = [
+    'Evidence-based nutrition care — and the software I build to support it.',
+    'Bridging clinical dietetics and digital health in low-resource settings.',
+    'Building offline-first tools for nutrition care where it matters most.',
+    'Aspiring clinical dietitian · self-taught developer · Zomba, Malawi.',
+  ];
+
+  const el = document.getElementById('typewriter-text');
+  if (!el) return;
+
+  // Respect prefers-reduced-motion: just show the first phrase statically
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = phrases[0];
+    return;
+  }
+
+  let phraseIdx  = 0;
+  let charIdx    = 0;
+  let deleting   = false;
+  const TYPE_MS  = 38;   // ms per character typed
+  const DEL_MS   = 18;   // ms per character deleted
+  const PAUSE_MS = 2400; // pause at full phrase
+
+  function tick() {
+    const current = phrases[phraseIdx];
+
+    if (!deleting) {
+      // Typing forward
+      charIdx++;
+      el.textContent = current.slice(0, charIdx);
+      if (charIdx === current.length) {
+        // Finished typing — pause then start deleting
+        deleting = true;
+        setTimeout(tick, PAUSE_MS);
+        return;
+      }
+      setTimeout(tick, TYPE_MS);
+    } else {
+      // Deleting
+      charIdx--;
+      el.textContent = current.slice(0, charIdx);
+      if (charIdx === 0) {
+        // Finished deleting — move to next phrase
+        deleting   = false;
+        phraseIdx  = (phraseIdx + 1) % phrases.length;
+        setTimeout(tick, 300); // tiny pause before typing starts
+        return;
+      }
+      setTimeout(tick, DEL_MS);
+    }
+  }
+
+  tick();
+}());

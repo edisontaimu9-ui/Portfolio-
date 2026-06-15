@@ -1342,3 +1342,23 @@ h2.display {
     animation: none !important;
   }
 }
+
+/* ── Typewriter hero ─────────────────────────────────────────────────────── */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  margin-left: 2px;
+  color: var(--accent);
+  animation: tw-blink 0.75s step-end infinite;
+  font-weight: 300;
+  vertical-align: baseline;
+}
+
+@keyframes tw-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor { animation: none; }
+}
