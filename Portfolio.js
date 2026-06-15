@@ -16,8 +16,6 @@
 /* ─────────────────────────────────────────────────────────────────────────────
    Config
 ───────────────────────────────────────────────────────────────────────────── */
-const OASIS_URL = 'https://oasiscnst.app/support';
-
 /* ─────────────────────────────────────────────────────────────────────────────
    Nav — scroll shadow
 ───────────────────────────────────────────────────────────────────────────── */
@@ -33,7 +31,7 @@ onScroll(); // run once on load so state is correct without scrolling
    Nav — active link highlight
 ───────────────────────────────────────────────────────────────────────────── */
 const navLinks   = document.querySelectorAll('.nav-link');
-const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'oasis-cnst', 'contact'];
+const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
 const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
 const activeObs = new IntersectionObserver((entries) => {
@@ -63,26 +61,6 @@ closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
 mobileMenu.querySelectorAll('a.mobile-link').forEach(a => {
   a.addEventListener('click', () => mobileMenu.classList.remove('open'));
 });
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   Oasis CNST CTA buttons
-   All open the support URL in a new tab; the mobile button also closes the menu
-───────────────────────────────────────────────────────────────────────────── */
-const oasisButtonIds = ['btn-oasis-nav', 'btn-oasis-mobile', 'btn-oasis-section', 'btn-oasis-footer'];
-
-oasisButtonIds.forEach(id => {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.addEventListener('click', () => {
-    window.open(OASIS_URL, '_blank', 'noreferrer,noopener');
-  });
-});
-
-// Also close the mobile menu when the in-menu Oasis button is tapped
-const mobileOasisBtn = document.getElementById('btn-oasis-mobile');
-if (mobileOasisBtn) {
-  mobileOasisBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
-}
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Scroll-reveal animation
