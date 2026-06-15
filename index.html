@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edison Taimu — Clinical Software Developer</title>
+  <meta name="description" content="Edison Taimu — self-taught developer and BSc Nutrition & Dietetics graduate from KUHeS, Malawi. Building clinical software for low-resource healthcare settings." />
+  <meta name="author" content="Edison Taimu" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Edison Taimu — Clinical Software Developer" />
+  <meta property="og:description" content="Building clinical software for healthcare settings in Malawi. Creator of Oasis CNST." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://edisontaimu9-ui.github.io/" />
+
+  <!-- Preconnect for font performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- ── Dependencies ──────────────────────────────────────────────────── -->
+
+  <!-- 1. React 18 (production UMD — exposes window.React) -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.production.min.js"
+  ></script>
+
+  <!-- 2. ReactDOM 18 (production UMD — exposes window.ReactDOM) -->
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  ></script>
+
+  <!-- 3. Lucide React icons (UMD — exposes window.lucideReact) -->
+  <script src="https://unpkg.com/lucide-react@0.469.0/dist/umd/lucide-react.js"></script>
+
+  <!-- 4. Babel Standalone — transforms JSX in the browser at load time.
+          For a production site with a build step (Vite/webpack) you can
+          remove this script and run `vite build` or `babel portfolio.js`
+          instead, then change the script tag below to type="text/javascript". -->
+  <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+
+  <!-- ── Minimal pre-render style ─────────────────────────────────────── -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #fbfbfd; }
+    #root { min-height: 100vh; }
+  </style>
+</head>
+<body>
+
+  <!-- React mounts here -->
+  <div id="root"></div>
+
+  <!--
+    type="text/babel"  — tells Babel Standalone to compile this file.
+    data-presets="react" — enables the JSX → React.createElement transform.
+
+    To pre-compile instead (removes the Babel runtime overhead):
+      npx babel portfolio.js --presets @babel/preset-react -o portfolio.compiled.js
+    Then change this to:
+      <script src="portfolio.compiled.js"></script>
+  -->
+  <script type="text/babel" src="portfolio.js" data-presets="react"></script>
+
+</body>
+</html>
