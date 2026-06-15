@@ -4,957 +4,484 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Edison Taimu — Clinical Software Developer</title>
-  <meta name="description" content="Edison Taimu — self-taught developer and BSc Nutrition & Dietetics graduate from KUHeS, Malawi. Building clinical software for low-resource healthcare settings." />
+  <meta name="description" content="Edison Taimu — self-taught developer and BSc Nutrition &amp; Dietetics graduate from KUHeS, Malawi. Building clinical software for low-resource healthcare settings." />
   <meta name="author" content="Edison Taimu" />
-
-  <!-- Open Graph -->
   <meta property="og:title" content="Edison Taimu — Clinical Software Developer" />
   <meta property="og:description" content="Building clinical software for healthcare settings in Malawi. Creator of Oasis CNST." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://edisontaimu9-ui.github.io/" />
-
-  <!-- Preconnect for Google Fonts (loaded in styles.css) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Pre-render baseline (body/root before styles.css paints) -->
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #fbfbfd; }
-    #root { min-height: 100vh; }
-  </style>
-
-  <!-- React 18 -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <!-- ReactDOM 18 -->
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <!-- Lucide React icons (UMD → window.lucideReact) -->
-  <script src="https://unpkg.com/lucide-react@0.469.0/dist/umd/lucide-react.js"></script>
-  <!-- Babel Standalone — inline script avoids the XHR fetch that fails on GitHub Pages -->
-  <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
 </head>
-<body>
-  <div id="root"></div>
+<body class="portfolio">
 
-  <script type="text/babel" data-presets="react">
-// ─── Globals from CDN ────────────────────────────────────────────────────────
-const { useState, useEffect, useRef } = React;
-const {
-  Twitter, Linkedin, Facebook, Phone, Mail,
-  ArrowRight, ArrowUpRight, ExternalLink,
-  Menu, X, Code2, Stethoscope, Wrench,
-  Layers, WifiOff, Brain, Heart, Sparkles,
-} = lucideReact;
-// ─────────────────────────────────────────────────────────────────────────────
 
-/* ---------------------------------------------------------------------- */
-/* Analytics helper                                                         */
-/* ---------------------------------------------------------------------- */
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">
+      <span class="logo-mark">ET</span>
+      Edison Taimu
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#projects" class="nav-link" data-section="projects">Work</a></li>
+      <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+      <li><a href="#support" class="nav-link" data-section="support">Support</a></li>
+      <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+    </ul>
+    <button class="btn-oasis nav-oasis" id="btn-oasis-nav" aria-label="Support Oasis CNST — opens in new tab">
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Support Oasis CNST
+    </button>
+    <a href="#contact" class="btn btn-primary btn-sm nav-cta">Get in touch</a>
+    <button class="menu-toggle" id="menu-open" aria-label="Open menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
+  </div>
+</nav>
 
-function trackEvent(eventName, params) {
-  try {
-    var p = Object.assign({ event_category: "oasis_cnst" }, params || {});
-    if (typeof window !== "undefined") {
-      if (typeof window.gtag === "function") {
-        window.gtag("event", eventName, p);
-      } else if (typeof window.plausible === "function") {
-        window.plausible(eventName, { props: p });
-      }
-    }
-  } catch (e) {}
-}
+<div class="mobile-menu" id="mobile-menu">
+  <button class="close-btn" id="menu-close" aria-label="Close menu"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#skills" class="mobile-link">Skills</a>
+  <a href="#projects" class="mobile-link">Work</a>
+  <a href="#experience" class="mobile-link">Experience</a>
+  <a href="#support" class="mobile-link">Support</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <button class="mobile-menu-oasis" id="btn-oasis-mobile" aria-label="Support Oasis CNST">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Support Oasis
+  </button>
+  <a href="#contact" class="mobile-link">Get in touch</a>
+</div>
 
-/* ---------------------------------------------------------------------- */
-/* Scroll-reveal hook + wrapper                                             */
-/* ---------------------------------------------------------------------- */
-
-function useReveal(threshold = 0.15) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  return [ref, visible];
-}
-
-function Reveal({ children, delay = 0, className = "" }) {
-  const [ref, visible] = useReveal();
-  return (
-    <div
-      ref={ref}
-      className={`reveal ${visible ? "is-visible" : ""} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-}
-
-/* ---------------------------------------------------------------------- */
-/* Data                                                                     */
-/* ---------------------------------------------------------------------- */
-
-const NAV_ITEMS = [
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Work" },
-  { id: "experience", label: "Experience" },
-  { id: "support", label: "Support" },
-  { id: "contact", label: "Contact" },
-];
-
-const DEV_SKILLS = [
-  "JavaScript (ES6+)",
-  "React",
-  "Firebase",
-  "Appwrite",
-  "Progressive Web Apps",
-  "Service Workers",
-  "Chart.js",
-  "REST APIs",
-];
-
-const CLINICAL_SKILLS = [
-  "Nutrition Care Process",
-  "ADIME Documentation",
-  "Nutrition Screening",
-  "Anthropometry & NFPE",
-  "Enteral & Parenteral Nutrition",
-  "Drug–Nutrient Interactions",
-  "Evidence-Based Practice",
-];
-
-const TOOLS = [
-  "Git & GitHub",
-  "VS Code",
-  "Firebase Console",
-  "Appwrite Console",
-  "Vite",
-  "Figma (basics)",
-];
-
-const TIMELINE = [
-  {
-    year: "2021",
-    title: "BSc Nutrition & Dietetics (Honours) begins",
-    desc: "Joined the pioneer cohort at Kamuzu University of Health Sciences (KUHeS) in Blantyre, Malawi.",
-  },
-  {
-    year: "2025",
-    title: "Started building software",
-    desc: "Taught myself JavaScript and web development, building tools to solve real problems in clinical settings.",
-  },
-  {
-    year: "2024–2026",
-    title: "Designed and built Oasis CNST",
-    desc: "Built a full offline-first clinical nutrition system over roughly three months and have continued developing it since — covering 11+ clinical modules, a localised Malawian food database, and AI-assisted documentation.",
-  },
-];
-
-/* ---------------------------------------------------------------------- */
-/* Components                                                               */
-/* ---------------------------------------------------------------------- */
-
-function Nav({ active, scrolled, menuOpen, setMenuOpen }) {
-  function handleOasisNav(location) {
-    trackEvent("oasis_support_click", { location: location });
-    window.open(OASIS_SUPPORT_URL, "_blank", "noreferrer,noopener");
-  }
-
-  return (
-    <>
-      <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-        <div className="container nav-inner">
-          <a href="#home" className="logo">
-            <span className="logo-mark">ET</span>
-            Edison Taimu
-          </a>
-
-          <ul className="nav-links">
-            {NAV_ITEMS.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className={`nav-link ${active === item.id ? "active" : ""}`}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <button
-            className="btn-oasis nav-oasis"
-            onClick={function() { handleOasisNav("nav"); }}
-            aria-label="Support Oasis CNST — opens in new tab"
-          >
-            <Heart size={13} />
-            Support Oasis CNST
-          </button>
-
-          <a href="#contact" className="btn btn-primary btn-sm nav-cta">
-            Get in touch
-          </a>
-
-          <button
-            className="menu-toggle"
-            aria-label="Open menu"
-            onClick={() => setMenuOpen(true)}
-          >
-            <Menu size={24} />
-          </button>
-        </div>
-      </nav>
-
-      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        <button
-          className="close-btn"
-          aria-label="Close menu"
-          onClick={() => setMenuOpen(false)}
-        >
-          <X size={28} />
-        </button>
-        {NAV_ITEMS.map((item) => (
-          <a key={item.id} href={`#${item.id}`} onClick={() => setMenuOpen(false)}>
-            {item.label}
-          </a>
-        ))}
-        <button
-          className="mobile-menu-oasis"
-          onClick={function() {
-            setMenuOpen(false);
-            handleOasisNav("mobile_nav");
-          }}
-          aria-label="Support Oasis CNST — opens in new tab"
-        >
-          <Heart size={22} />
-          Support Oasis
-        </button>
-        <a href="#contact" onClick={() => setMenuOpen(false)}>
-          Get in touch
-        </a>
+<section id="home" class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-top">
+        <span class="avatar" aria-hidden="true">ET</span>
+        <span class="eyebrow">Software Developer · Zomba, Malawi</span>
       </div>
-    </>
-  );
-}
-
-function Hero() {
-  return (
-    <section id="home" className="hero">
-      <div className="container hero-grid">
+      <h1 class="display">
+        I build software that helps clinicians do their jobs better.
+      </h1>
+      <p class="lead">
+        I'm Edison Taimu — a self-taught developer and BSc Nutrition &amp; Dietetics
+        graduate from Kamuzu University of Health Sciences. I design and build
+        clinical software for healthcare settings where dependable tools are hard
+        to come by.
+      </p>
+      <div class="cta-row">
+        <a href="#contact" class="btn btn-primary">Get in touch <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a href="#projects" class="btn btn-secondary">View my work</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="stat-card">
+        <span class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></span>
         <div>
-          <div className="hero-top">
-            <span className="avatar" aria-hidden="true">ET</span>
-            <span className="eyebrow">Software Developer · Zomba, Malawi</span>
-          </div>
-
-          <h1 className="display">
-            I build software that helps clinicians do their jobs better.
-          </h1>
-
-          <p className="lead">
-            I'm Edison Taimu — a self-taught developer and BSc Nutrition &amp; Dietetics
-            graduate from Kamuzu University of Health Sciences. I design and build
-            clinical software for healthcare settings where dependable tools are hard
-            to come by.
-          </p>
-
-          <div className="cta-row">
-            <a href="#contact" className="btn btn-primary">
-              Get in touch <ArrowRight size={16} />
-            </a>
-            <a href="#projects" className="btn btn-secondary">
-              View my work
-            </a>
-          </div>
-        </div>
-
-        <div className="hero-visual" aria-hidden="true">
-          <div className="stat-card">
-            <span className="stat-icon"><Layers size={20} /></span>
-            <div>
-              <div className="stat-value">11+ clinical modules</div>
-              <div className="stat-label">OASIS CNST</div>
-            </div>
-          </div>
-          <div className="stat-card">
-            <span className="stat-icon"><WifiOff size={20} /></span>
-            <div>
-              <div className="stat-value">Offline-first</div>
-              <div className="stat-label">LOW-RESOURCE READY</div>
-            </div>
-          </div>
-          <div className="stat-card">
-            <span className="stat-icon"><Brain size={20} /></span>
-            <div>
-              <div className="stat-value">AI-assisted NCP</div>
-              <div className="stat-label">DOCUMENTATION</div>
-            </div>
-          </div>
+          <div class="stat-value">11+ clinical modules</div>
+          <div class="stat-label">OASIS CNST</div>
         </div>
       </div>
-    </section>
-  );
-}
-
-function About() {
-  return (
-    <section id="about" className="section">
-      <div className="container">
-        <Reveal className="section-head">
-          <span className="eyebrow">About</span>
-          <h2 className="display">From clinical practice to clinical software.</h2>
-        </Reveal>
-
-        <div className="about-grid">
-          <Reveal className="about-text">
-            <p>
-              My path started in clinical nutrition, not computer science. During my
-              dietetics training at KUHeS, I kept running into the same problem: the
-              tools clinicians need — for nutrition screening, documentation, and care
-              planning — either didn't exist for our setting, or assumed a level of
-              connectivity most facilities don't have.
-            </p>
-            <p>
-              So I taught myself to build them. Over roughly three months, learning
-              JavaScript, Firebase, and Appwrite from scratch, I built{" "}
-              <strong>Oasis CNST</strong> — a clinical nutrition system designed to
-              work offline, in the places that need it most.
-            </p>
-            <p>
-              I'm finishing my BSc in Nutrition &amp; Dietetics (graduating August 2026)
-              while continuing to develop Oasis CNST. Long-term, I want to keep working
-              at the intersection of clinical practice and health technology — building
-              tools that make good care easier to deliver, not harder.
-            </p>
-          </Reveal>
-
-          <Reveal delay={150}>
-            <div className="fact-card">
-              <div className="fact-row">
-                <span className="fact-label">Location</span>
-                <span className="fact-value">Zomba, Malawi</span>
-              </div>
-              <div className="fact-row">
-                <span className="fact-label">Education</span>
-                <span className="fact-value">BSc Nutrition &amp; Dietetics (Hons), KUHeS</span>
-              </div>
-              <div className="fact-row">
-                <span className="fact-label">Focus</span>
-                <span className="fact-value">Clinical Nutrition × Health Tech</span>
-              </div>
-              <div className="fact-row">
-                <span className="fact-label">Currently</span>
-                <span className="fact-value">Building Oasis CNST</span>
-              </div>
-
-            </div>
-          </Reveal>
+      <div class="stat-card">
+        <span class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="2" x2="22" y1="2" y2="22"/><path d="M8.5 16.5a5 5 0 0 1 7 0"/><path d="M2 8.82a15 15 0 0 1 4.17-2.65"/><path d="M10.66 5c4.01-.36 8.14.9 11.34 3.76"/><path d="M16.85 11.25a10 10 0 0 1 2.22 1.68"/><path d="M5 12.85A10 10 0 0 1 9.56 11"/><path d="M12 20h.01"/></svg></span>
+        <div>
+          <div class="stat-value">Offline-first</div>
+          <div class="stat-label">LOW-RESOURCE READY</div>
         </div>
       </div>
-    </section>
-  );
-}
-
-function Skills() {
-  return (
-    <section id="skills" className="section">
-      <div className="container">
-        <Reveal className="section-head">
-          <span className="eyebrow">Skills</span>
-          <h2 className="display">What I work with.</h2>
-        </Reveal>
-
-        <div className="skills-grid">
-          <Reveal>
-            <div className="skill-card">
-              <span className="skill-card-icon"><Code2 size={22} /></span>
-              <h3>Development</h3>
-              <p>
-                Building fast, offline-capable web apps with vanilla JS and React,
-                backed by Firebase and Appwrite.
-              </p>
-              <div className="chip-row">
-                {DEV_SKILLS.map((skill) => (
-                  <span key={skill} className="chip">{skill}</span>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div className="skill-card">
-              <span className="skill-card-icon"><Stethoscope size={22} /></span>
-              <h3>Clinical &amp; Healthcare</h3>
-              <p>
-                Grounded in evidence-based dietetic practice, from screening through
-                to documentation and care planning.
-              </p>
-              <div className="chip-row">
-                {CLINICAL_SKILLS.map((skill) => (
-                  <span key={skill} className="chip">{skill}</span>
-                ))}
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={240}>
-            <div className="skill-card">
-              <span className="skill-card-icon"><Wrench size={22} /></span>
-              <h3>Tools</h3>
-              <p>
-                The everyday toolkit I use to plan, build, and ship.
-              </p>
-              <div className="chip-row">
-                {TOOLS.map((tool) => (
-                  <span key={tool} className="chip">{tool}</span>
-                ))}
-              </div>
-            </div>
-          </Reveal>
+      <div class="stat-card">
+        <span class="stat-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/></svg></span>
+        <div>
+          <div class="stat-value">AI-assisted NCP</div>
+          <div class="stat-label">DOCUMENTATION</div>
         </div>
       </div>
-    </section>
-  );
-}
-
-function Projects() {
-  return (
-    <section id="projects" className="section">
-      <div className="container">
-        <Reveal className="section-head">
-          <span className="eyebrow">Featured Work</span>
-          <h2 className="display">Things I've built.</h2>
-        </Reveal>
-
-        <Reveal>
-          <div className="project-card">
-            <div className="project-visual" aria-hidden="true">
-              <span>oasiscnst.app</span>
-            </div>
-            <div>
-              <span className="status">
-                <span className="status-dot live"></span> Live
-              </span>
-              <h3 className="project-title">Oasis CNST</h3>
-              <p className="project-desc">
-                A clinical nutrition system that works offline. Oasis covers 11+
-                modules — adult and pediatric nutrition, burns, enteral and
-                parenteral support, validated screening tools, and AI-assisted
-                Nutrition Care Process documentation — built for clinical settings
-                in Malawi with a localised food composition database and
-                offline-first architecture from the ground up.
-              </p>
-              <div className="chip-row">
-                <span className="chip">JavaScript</span>
-                <span className="chip">Firebase</span>
-                <span className="chip">Appwrite</span>
-                <span className="chip">Service Workers</span>
-                <span className="chip">Chart.js</span>
-              </div>
-              <div className="project-links">
-                <a
-                  href="https://oasiscnst.app/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-link"
-                >
-                  Visit live site <ArrowUpRight size={15} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal>
-          <div className="project-cta">
-            <div>
-              <h3>More on GitHub</h3>
-              <p>Smaller experiments, in-progress work, and code samples.</p>
-            </div>
-            <a
-              href="https://github.com/edisontaimu9-ui"
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-secondary btn-sm"
-            >
-              Visit profile <ArrowUpRight size={15} />
-            </a>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function Experience() {
-  return (
-    <section id="experience" className="section">
-      <div className="container">
-        <Reveal className="section-head">
-          <span className="eyebrow">Experience</span>
-          <h2 className="display">Where I've been.</h2>
-        </Reveal>
-
-        <div className="timeline">
-          {TIMELINE.map((item, i) => (
-            <Reveal key={item.year} delay={i * 100}>
-              <div className="timeline-item">
-                <span className="timeline-dot"></span>
-                <div className="timeline-year">{item.year}</div>
-                <div className="timeline-title">{item.title}</div>
-                <p className="timeline-desc">{item.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const OASIS_FEATURES = [
-  "Nutrition Calculators",
-  "Screening Tools",
-  "Clinical Decision Support",
-  "Drug–Nutrient Interactions",
-  "Nutrition Resources",
-  "AI-Assisted NCP",
-];
-
-const OASIS_SUPPORT_URL = "https://oasiscnst.app/support";
-
-function OasisSupportSection() {
-  function handleClick(location) {
-    trackEvent("oasis_support_click", { location: location });
-    window.open(OASIS_SUPPORT_URL, "_blank", "noreferrer,noopener");
-  }
-
-  return (
-    <section id="oasis-cnst" className="oasis-support-section">
-      <div className="container">
-        <Reveal>
-          <div className="oasis-support-card">
-            <div className="oasis-support-text">
-              <span className="eyebrow">Clinical Nutrition Tool</span>
-              <h2 className="oasis-support-heading">Support Oasis CNST</h2>
-              <p className="oasis-support-desc">
-                Support the continued development of Oasis CNST, a platform
-                designed to simplify clinical nutrition practice through
-                calculators, screening tools, clinical decision support, and
-                nutrition resources.
-              </p>
-              <div className="oasis-support-actions">
-                <button
-                  className="btn-oasis-cta"
-                  onClick={function() { handleClick("section"); }}
-                  aria-label="Support Oasis CNST — opens in new tab"
-                >
-                  <Heart size={16} />
-                  Support Oasis CNST
-                  <ExternalLink size={15} />
-                </button>
-                <a
-                  href="https://oasiscnst.app"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="text-link"
-                >
-                  Visit the app <ArrowUpRight size={15} />
-                </a>
-              </div>
-            </div>
-
-            <div className="oasis-feature-pills" aria-hidden="true">
-              {OASIS_FEATURES.map(function(feature) {
-                return (
-                  <span key={feature} className="oasis-feature-pill">
-                    {feature}
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-const PRESET_AMOUNTS = [
-  { value: 2000,  label: "Coffee ☕" },
-  { value: 5000,  label: "Snack 🥪" },
-  { value: 10000, label: "Meal 🍱" },
-  { value: 20000, label: "Legend 🏆" },
-];
-
-function Support() {
-  const [selected, setSelected] = useState(2000);
-  const [custom, setCustom] = useState("");
-
-  var effectiveAmount = custom !== "" ? parseInt(custom, 10) || 0 : selected;
-
-  function handleCustomChange(e) {
-    var val = e.target.value.replace(/\D/g, "");
-    setCustom(val);
-    if (val) setSelected(null);
-  }
-
-  function handlePreset(value) {
-    setSelected(value);
-    setCustom("");
-  }
-
-  function handleSupport(e) {
-    e.preventDefault();
-    if (!effectiveAmount || effectiveAmount < 100) return;
-
-    // ─── TODO: Paychangu integration ──────────────────────────────────────
-    // Replace this block with your Paychangu checkout call, e.g.:
-    //
-    // fetch("https://api.paychangu.com/payment", {
-    //   method: "POST",
-    //   headers: { "Authorization": "Bearer YOUR_SECRET_KEY", "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     amount: effectiveAmount,
-    //     currency: "MWK",
-    //     email: "donor@example.com",      // collect via a field if needed
-    //     first_name: "Supporter",
-    //     last_name: "",
-    //     callback_url: "https://yoursite.com/support/thanks",
-    //     return_url:   "https://yoursite.com/support/thanks",
-    //     tx_ref: "support-" + Date.now(),
-    //     title: "Support Edison Taimu",
-    //     description: "Supporting Oasis CNST development",
-    //   }),
-    // })
-    // .then(r => r.json())
-    // .then(data => { window.location.href = data.data.checkout_url; });
-    // ─────────────────────────────────────────────────────────────────────
-
-    alert("Paychangu checkout coming soon! Amount selected: MK " + effectiveAmount.toLocaleString());
-  }
-
-  return (
-    <section id="support" className="support-section">
-      <div className="container">
-        <Reveal className="support-inner">
-          <span className="eyebrow">Support</span>
-          <h2 className="display">Buy me a gift card.</h2>
-          <p className="section-sub">
-            Oasis CNST is free for clinicians in Malawi. If my work has been useful to you
-            — or you just want to help keep it going — a small contribution goes a long way.
-          </p>
-
-          <div className="gift-card">
-            <div className="gift-card-header">
-              <span className="gift-icon">
-                <Heart size={24} />
-              </span>
-              <div>
-                <div className="gift-card-title">One-time support</div>
-                <div className="gift-card-sub">Secure checkout via Paychangu</div>
-              </div>
-            </div>
-
-            <form onSubmit={handleSupport}>
-              <div className="amount-grid">
-                {PRESET_AMOUNTS.map(function(preset) {
-                  return (
-                    <button
-                      key={preset.value}
-                      type="button"
-                      className={"amount-btn" + (selected === preset.value && custom === "" ? " selected" : "")}
-                      onClick={function() { handlePreset(preset.value); }}
-                    >
-                      MK {preset.value.toLocaleString()}
-                      <span className="amount-label">{preset.label}</span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="custom-amount-wrap">
-                <span className="custom-amount-prefix">MK</span>
-                <input
-                  className="custom-amount-input"
-                  type="text"
-                  inputMode="numeric"
-                  placeholder="Enter custom amount"
-                  value={custom}
-                  onChange={handleCustomChange}
-                  aria-label="Custom amount in Malawian Kwacha"
-                />
-              </div>
-
-              <button type="submit" className="btn-support">
-                <Sparkles size={18} />
-                Support with MK {effectiveAmount > 0 ? effectiveAmount.toLocaleString() : "—"}
-                <Heart size={16} />
-              </button>
-            </form>
-
-            <p className="support-note">
-              🔒 &nbsp;Payments processed securely via Paychangu · MWK only
-            </p>
-          </div>
-
-          <div className="support-perks">
-            <span className="support-perk">
-              <span className="support-perk-dot"></span>
-              Keeps Oasis CNST free for clinicians
-            </span>
-            <span className="support-perk">
-              <span className="support-perk-dot"></span>
-              Funds server &amp; API costs
-            </span>
-            <span className="support-perk">
-              <span className="support-perk-dot"></span>
-              One-time, no subscription
-            </span>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio inquiry from ${form.name || "a visitor"}`);
-    const body = encodeURIComponent(
-      `${form.message}\n\n— ${form.name}${form.email ? ` (${form.email})` : ""}`
-    );
-    window.location.href = `mailto:edisontaimu9@gmail.com?subject=${subject}&body=${body}`;
-  };
-
-  return (
-    <section id="contact" className="section">
-      <div className="container">
-        <Reveal className="section-head">
-          <span className="eyebrow">Get In Touch</span>
-          <h2 className="display">Let's build something.</h2>
-        </Reveal>
-
-        <div className="contact-grid">
-          <Reveal className="contact-text">
-            <p>
-              Open to roles and collaborations in clinical nutrition, digital health,
-              and software development — or just a conversation about building
-              software for healthcare in low-resource settings.
-            </p>
-            <a href="mailto:edisontaimu9@gmail.com" className="contact-email">
-              <Mail size={20} /> edisontaimu9@gmail.com
-            </a>
-            <div className="contact-links">
-              <a
-                href="https://x.com/edisontaimu"
-                target="_blank"
-                rel="noreferrer"
-                className="icon-link"
-                aria-label="X / Twitter"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/edison-taimu-a37415367"
-                target="_blank"
-                rel="noreferrer"
-                className="icon-link"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} />
-              </a>
-              <a
-                href="https://www.facebook.com/Edison.Taimu"
-                target="_blank"
-                rel="noreferrer"
-                className="icon-link"
-                aria-label="Facebook"
-              >
-                <Facebook size={20} />
-              </a>
-              <a
-                href="https://wa.me/265998706971"
-                target="_blank"
-                rel="noreferrer"
-                className="icon-link"
-                aria-label="WhatsApp"
-              >
-                <Phone size={20} />
-              </a>
-            </div>
-          </Reveal>
-
-          <Reveal delay={150}>
-            <form onSubmit={handleSubmit}>
-              <div className="field">
-                <label htmlFor="name">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Your name"
-                />
-              </div>
-              <div className="field">
-                <label htmlFor="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="you@example.com"
-                />
-              </div>
-              <div className="field">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="What would you like to build?"
-                />
-              </div>
-              <div className="form-foot">
-                <button type="submit" className="btn btn-primary">
-                  Send message <ArrowRight size={16} />
-                </button>
-                <span className="form-note">Opens your email client</span>
-              </div>
-            </form>
-          </Reveal>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Footer() {
-  function handleOasisFooter() {
-    trackEvent("oasis_support_click", { location: "footer" });
-    window.open(OASIS_SUPPORT_URL, "_blank", "noreferrer,noopener");
-  }
-
-  return (
-    <footer className="footer container">
-      <span className="footer-copy">© 2026 Edison Taimu. Built with React.</span>
-
-      <button
-        className="footer-oasis-btn"
-        onClick={handleOasisFooter}
-        aria-label="Support Oasis CNST — opens in new tab"
-      >
-        <Heart size={13} />
-        Support Oasis CNST
-        <ExternalLink size={12} />
-      </button>
-
-      <div className="footer-socials">
-        <a href="https://x.com/edisontaimu" target="_blank" rel="noreferrer" aria-label="X / Twitter">
-          <Twitter size={18} />
-        </a>
-        <a href="https://www.linkedin.com/in/edison-taimu-a37415367" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-          <Linkedin size={18} />
-        </a>
-        <a href="https://www.facebook.com/Edison.Taimu" target="_blank" rel="noreferrer" aria-label="Facebook">
-          <Facebook size={18} />
-        </a>
-        <a href="https://wa.me/265998706971" target="_blank" rel="noreferrer" aria-label="WhatsApp">
-          <Phone size={18} />
-        </a>
-        <a href="mailto:edisontaimu9@gmail.com" aria-label="Email">
-          <Mail size={18} />
-        </a>
-      </div>
-    </footer>
-  );
-}
-
-/* ---------------------------------------------------------------------- */
-/* App                                                                      */
-/* ---------------------------------------------------------------------- */
-
-function Portfolio() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState("home");
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const ids = ["home", "about", "skills", "projects", "experience", "oasis-cnst", "support", "contact"];
-    const observers = [];
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActive(id);
-        },
-        { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach((o) => o.disconnect());
-  }, []);
-
-  return (
-    <div className="portfolio">
-      <Nav active={active} scrolled={scrolled} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <OasisSupportSection />
-      <Support />
-      <Contact />
-      <Footer />
     </div>
-  );
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="container">
+    <div class="reveal section-head" ><span class="eyebrow">About</span>
+      <h2 class="display">From clinical practice to clinical software.</h2></div>
+    <div class="about-grid">
+      <div class="reveal" ><div class="about-text">
+        <p>My path started in clinical nutrition, not computer science. During my
+        dietetics training at KUHeS, I kept running into the same problem: the
+        tools clinicians need — for nutrition screening, documentation, and care
+        planning — either didn't exist for our setting, or assumed a level of
+        connectivity most facilities don't have.</p>
+        <p>So I taught myself to build them. Over roughly three months, learning
+        JavaScript, Firebase, and Appwrite from scratch, I built
+        <strong>Oasis CNST</strong> — a clinical nutrition system designed to
+        work offline, in the places that need it most.</p>
+        <p>I'm finishing my BSc in Nutrition &amp; Dietetics (graduating August 2026)
+        while continuing to develop Oasis CNST. Long-term, I want to keep working
+        at the intersection of clinical practice and health technology — building
+        tools that make good care easier to deliver, not harder.</p>
+      </div></div>
+      <div class="reveal" style="transition-delay:150ms"><div class="fact-card">
+        <div class="fact-row"><span class="fact-label">Location</span><span class="fact-value">Zomba, Malawi</span></div>
+        <div class="fact-row"><span class="fact-label">Education</span><span class="fact-value">BSc Nutrition &amp; Dietetics (Hons), KUHeS</span></div>
+        <div class="fact-row"><span class="fact-label">Focus</span><span class="fact-value">Clinical Nutrition × Health Tech</span></div>
+        <div class="fact-row"><span class="fact-label">Currently</span><span class="fact-value">Building Oasis CNST</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <div class="container">
+    <div class="reveal section-head" ><span class="eyebrow">Skills</span><h2 class="display">What I work with.</h2></div>
+    <div class="skills-grid">
+      <div class="reveal" ><div class="skill-card">
+        <span class="skill-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span>
+        <h3>Development</h3>
+        <p>Building fast, offline-capable web apps with vanilla JS and React, backed by Firebase and Appwrite.</p>
+        <div class="chip-row"><span class="chip">JavaScript (ES6+)</span><span class="chip">React</span><span class="chip">Firebase</span><span class="chip">Appwrite</span><span class="chip">Progressive Web Apps</span><span class="chip">Service Workers</span><span class="chip">Chart.js</span><span class="chip">REST APIs</span></div>
+      </div></div>
+      <div class="reveal" style="transition-delay:120ms"><div class="skill-card">
+        <span class="skill-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg></span>
+        <h3>Clinical &amp; Healthcare</h3>
+        <p>Grounded in evidence-based dietetic practice, from screening through to documentation and care planning.</p>
+        <div class="chip-row"><span class="chip">Nutrition Care Process</span><span class="chip">ADIME Documentation</span><span class="chip">Nutrition Screening</span><span class="chip">Anthropometry & NFPE</span><span class="chip">Enteral & Parenteral Nutrition</span><span class="chip">Drug–Nutrient Interactions</span><span class="chip">Evidence-Based Practice</span></div>
+      </div></div>
+      <div class="reveal" style="transition-delay:240ms"><div class="skill-card">
+        <span class="skill-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+        <h3>Tools</h3>
+        <p>The everyday toolkit I use to plan, build, and ship.</p>
+        <div class="chip-row"><span class="chip">Git & GitHub</span><span class="chip">VS Code</span><span class="chip">Firebase Console</span><span class="chip">Appwrite Console</span><span class="chip">Vite</span><span class="chip">Figma (basics)</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="container">
+    <div class="reveal section-head" ><span class="eyebrow">Featured Work</span><h2 class="display">Things I've built.</h2></div>
+    <div class="reveal" ><div class="project-card">
+      <div class="project-visual" aria-hidden="true"><span>oasiscnst.app</span></div>
+      <div>
+        <span class="status"><span class="status-dot live"></span> Live</span>
+        <h3 class="project-title">Oasis CNST</h3>
+        <p class="project-desc">A clinical nutrition system that works offline. Oasis covers 11+
+        modules — adult and pediatric nutrition, burns, enteral and parenteral support, validated
+        screening tools, and AI-assisted Nutrition Care Process documentation — built for clinical
+        settings in Malawi with a localised food composition database and offline-first architecture
+        from the ground up.</p>
+        <div class="chip-row">
+          <span class="chip">JavaScript</span><span class="chip">Firebase</span><span class="chip">Appwrite</span><span class="chip">Service Workers</span><span class="chip">Chart.js</span>
+        </div>
+        <div class="project-links">
+          <a href="https://oasiscnst.app/" target="_blank" rel="noreferrer" class="text-link">
+            Visit live site <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div></div>
+    <div class="reveal" ><div class="project-cta">
+      <div>
+        <h3>More on GitHub</h3>
+        <p>Smaller experiments, in-progress work, and code samples.</p>
+      </div>
+      <a href="https://github.com/edisontaimu9-ui" target="_blank" rel="noreferrer" class="btn btn-secondary btn-sm">
+        Visit profile <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
+    </div></div>
+  </div>
+</section>
+
+<section id="experience" class="section">
+  <div class="container">
+    <div class="reveal section-head" ><span class="eyebrow">Experience</span><h2 class="display">Where I've been.</h2></div>
+    <div class="timeline">
+      <div class="reveal" >
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-year">2021</div>
+          <div class="timeline-title">BSc Nutrition & Dietetics (Honours) begins</div>
+          <p class="timeline-desc">Joined the pioneer cohort at Kamuzu University of Health Sciences (KUHeS) in Zomba, Malawi.</p>
+        </div></div>
+      <div class="reveal" style="transition-delay:100ms">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-year">2025</div>
+          <div class="timeline-title">Started building software</div>
+          <p class="timeline-desc">Taught myself JavaScript and web development, building tools to solve real problems in clinical settings.</p>
+        </div></div>
+      <div class="reveal" style="transition-delay:200ms">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-year">2024–2026</div>
+          <div class="timeline-title">Designed and built Oasis CNST</div>
+          <p class="timeline-desc">Built a full offline-first clinical nutrition system over roughly three months and have continued developing it since — covering 11+ clinical modules, a localised Malawian food database, and AI-assisted documentation.</p>
+        </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="oasis-cnst" class="oasis-support-section">
+  <div class="container">
+    <div class="reveal" ><div class="oasis-support-card">
+      <div class="oasis-support-text">
+        <span class="eyebrow">Clinical Nutrition Tool</span>
+        <h2 class="oasis-support-heading">Support Oasis CNST</h2>
+        <p class="oasis-support-desc">Support the continued development of Oasis CNST, a platform
+        designed to simplify clinical nutrition practice through calculators, screening tools,
+        clinical decision support, and nutrition resources.</p>
+        <div class="oasis-support-actions">
+          <button class="btn-oasis-cta" id="btn-oasis-section" aria-label="Support Oasis CNST — opens in new tab">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Support Oasis CNST <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          </button>
+          <a href="https://oasiscnst.app" target="_blank" rel="noreferrer noopener" class="text-link">
+            Visit the app <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="oasis-feature-pills" aria-hidden="true">
+        <span class="oasis-feature-pill">Nutrition Calculators</span>
+        <span class="oasis-feature-pill">Screening Tools</span>
+        <span class="oasis-feature-pill">Clinical Decision Support</span>
+        <span class="oasis-feature-pill">Drug–Nutrient Interactions</span>
+        <span class="oasis-feature-pill">Nutrition Resources</span>
+        <span class="oasis-feature-pill">AI-Assisted NCP</span>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<section id="support" class="support-section">
+  <div class="container">
+    <div class="reveal" ><div class="support-inner">
+      <span class="eyebrow">Support</span>
+      <h2 class="display">Buy me a gift card.</h2>
+      <p class="section-sub">Oasis CNST is free for clinicians in Malawi. If my work has been
+      useful to you — or you just want to help keep it going — a small contribution goes a long way.</p>
+
+      <div class="gift-card">
+        <div class="gift-card-header">
+          <span class="gift-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
+          <div>
+            <div class="gift-card-title">One-time support</div>
+            <div class="gift-card-sub">Secure checkout via Paychangu</div>
+          </div>
+        </div>
+
+        <form id="support-form">
+          <div class="amount-grid">
+            <button type="button" class="amount-btn selected"
+                data-amount="2000">
+                MK 2,000
+                <span class="amount-label">Coffee ☕</span>
+              </button>
+            <button type="button" class="amount-btn"
+                data-amount="5000">
+                MK 5,000
+                <span class="amount-label">Snack 🥪</span>
+              </button>
+            <button type="button" class="amount-btn"
+                data-amount="10000">
+                MK 10,000
+                <span class="amount-label">Meal 🍱</span>
+              </button>
+            <button type="button" class="amount-btn"
+                data-amount="20000">
+                MK 20,000
+                <span class="amount-label">Legend 🏆</span>
+              </button>
+          </div>
+          <div class="custom-amount-wrap">
+            <span class="custom-amount-prefix">MK</span>
+            <input class="custom-amount-input" type="text" inputmode="numeric"
+              id="custom-amount" placeholder="Enter custom amount"
+              aria-label="Custom amount in Malawian Kwacha" />
+          </div>
+          <button type="submit" class="btn-support" id="btn-support-submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+            <span id="support-btn-label">Support with MK 2,000</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </button>
+        </form>
+
+        <p class="support-note">🔒 &nbsp;Payments processed securely via Paychangu · MWK only</p>
+      </div>
+
+      <div class="support-perks">
+        <span class="support-perk"><span class="support-perk-dot"></span>Keeps Oasis CNST free for clinicians</span>
+        <span class="support-perk"><span class="support-perk-dot"></span>Funds server &amp; API costs</span>
+        <span class="support-perk"><span class="support-perk-dot"></span>One-time, no subscription</span>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="reveal section-head" ><span class="eyebrow">Get In Touch</span><h2 class="display">Let's build something.</h2></div>
+    <div class="contact-grid">
+      <div class="reveal" ><div class="contact-text">
+        <p>Open to roles and collaborations in clinical nutrition, digital health,
+        and software development — or just a conversation about building software
+        for healthcare in low-resource settings.</p>
+        <a href="mailto:edisontaimu9@gmail.com" class="contact-email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> edisontaimu9@gmail.com
+        </a>
+        <div class="contact-links">
+          <a href="https://x.com/edisontaimu" target="_blank" rel="noreferrer" class="icon-link" aria-label="X / Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+          <a href="https://www.linkedin.com/in/edison-taimu-a37415367" target="_blank" rel="noreferrer" class="icon-link" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.facebook.com/Edison.Taimu" target="_blank" rel="noreferrer" class="icon-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://wa.me/265998706971" target="_blank" rel="noreferrer" class="icon-link" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.68 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+        </div>
+      </div></div>
+      <div class="reveal" style="transition-delay:150ms"><form id="contact-form">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required placeholder="Your name" />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="What would you like to build?"></textarea>
+        </div>
+        <div class="form-foot">
+          <button type="submit" class="btn btn-primary">Send message <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+          <span class="form-note">Opens your email client</span>
+        </div>
+      </form></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer container">
+  <span class="footer-copy">© 2026 Edison Taimu. Built with vanilla HTML.</span>
+  <button class="footer-oasis-btn" id="btn-oasis-footer" aria-label="Support Oasis CNST — opens in new tab">
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Support Oasis CNST <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </button>
+  <div class="footer-socials">
+    <a href="https://x.com/edisontaimu" target="_blank" rel="noreferrer" aria-label="X / Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+    <a href="https://www.linkedin.com/in/edison-taimu-a37415367" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <a href="https://www.facebook.com/Edison.Taimu" target="_blank" rel="noreferrer" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    <a href="https://wa.me/265998706971" target="_blank" rel="noreferrer" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.68 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+    <a href="mailto:edisontaimu9@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+  </div>
+</footer>
+
+<script>
+
+const OASIS_URL = 'https://oasiscnst.app/support';
+
+// ── Nav scroll ───────────────────────────────────────────────────────────────
+const nav = document.getElementById('nav');
+function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// ── Active nav link ──────────────────────────────────────────────────────────
+const navLinks = document.querySelectorAll('.nav-link');
+const sectionIds = ['home','about','skills','projects','experience','oasis-cnst','support','contact'];
+const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+const activeObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.dataset.section === id);
+      });
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+sectionEls.forEach(el => activeObs.observe(el));
+
+// ── Mobile menu ──────────────────────────────────────────────────────────────
+const mobileMenu  = document.getElementById('mobile-menu');
+const openBtn     = document.getElementById('menu-open');
+const closeBtn    = document.getElementById('menu-close');
+
+openBtn.addEventListener('click',  () => mobileMenu.classList.add('open'));
+closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a.mobile-link').forEach(a => {
+  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+});
+
+// ── Oasis buttons ────────────────────────────────────────────────────────────
+['btn-oasis-nav','btn-oasis-mobile','btn-oasis-section','btn-oasis-footer'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('click', () => window.open(OASIS_URL, '_blank', 'noreferrer,noopener'));
+});
+document.getElementById('btn-oasis-mobile').addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+});
+
+// ── Scroll reveal ────────────────────────────────────────────────────────────
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ── Support form ─────────────────────────────────────────────────────────────
+let selectedAmount = 2000;
+
+const amountBtns   = document.querySelectorAll('.amount-btn');
+const customInput  = document.getElementById('custom-amount');
+const supportLabel = document.getElementById('support-btn-label');
+
+function formatMK(n) { return 'Support with MK ' + Number(n).toLocaleString(); }
+function updateLabel() {
+  const val = customInput.value ? parseInt(customInput.value) || 0 : selectedAmount;
+  supportLabel.textContent = val > 0 ? formatMK(val) : 'Support with MK —';
 }
 
-// ─── Mount ───────────────────────────────────────────────────────────────────
-ReactDOM.createRoot(document.getElementById("root")).render(<Portfolio />);
-  </script>
+amountBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    amountBtns.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedAmount = parseInt(btn.dataset.amount);
+    customInput.value = '';
+    updateLabel();
+  });
+});
+
+customInput.addEventListener('input', () => {
+  customInput.value = customInput.value.replace(/\D/g, '');
+  if (customInput.value) {
+    amountBtns.forEach(b => b.classList.remove('selected'));
+    selectedAmount = null;
+  } else {
+    selectedAmount = 2000;
+    amountBtns[0].classList.add('selected');
+  }
+  updateLabel();
+});
+
+document.getElementById('support-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const amount = customInput.value ? parseInt(customInput.value) || 0 : selectedAmount;
+  if (!amount || amount < 100) return;
+  // TODO: replace with Paychangu checkout call
+  alert('Paychangu checkout coming soon! Amount: MK ' + amount.toLocaleString());
+});
+
+// ── Contact form ─────────────────────────────────────────────────────────────
+document.getElementById('contact-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const name    = document.getElementById('name').value;
+  const email   = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+  const subject = encodeURIComponent('Portfolio inquiry from ' + (name || 'a visitor'));
+  const body    = encodeURIComponent(message + '\n\n— ' + name + (email ? ' (' + email + ')' : ''));
+  window.location.href = 'mailto:edisontaimu9@gmail.com?subject=' + subject + '&body=' + body;
+});
+
+</script>
 </body>
 </html>
