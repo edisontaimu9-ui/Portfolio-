@@ -835,20 +835,37 @@ h2.display {
 
 .footer {
   border-top: 1px solid var(--line);
-  padding: var(--space-6) 0;
+  padding: var(--space-7) 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.footer-copy { font-size: var(--text-xs); color: var(--ink-tertiary); }
+.footer-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 560px;
+  text-align: center;
+}
 
-.footer-socials { display: flex; gap: var(--space-5); }
+.footer-line {
+  font-size: var(--text-sm);
+  color: var(--ink-secondary);
+  line-height: 1.6;
+}
 
-.footer-socials a { color: var(--ink-tertiary); transition: color 0.3s var(--ease); display: flex; }
-.footer-socials a:hover { color: var(--ink); }
+.footer-line-lead {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.footer-copy {
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--ink-tertiary);
+}
 
 /* ---------------------------------------------------------------------- */
 /* Oasis CNST Support — nav pill, section, footer                          */
