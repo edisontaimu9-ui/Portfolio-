@@ -195,5 +195,166 @@ if (contactForm) {
     }
   }
 
-  tick();
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Custom cursor — dot + trailing ring
+───────────────────────────────────────────────────────────────────────────── */
+(function () {
+  // Only run on fine pointer (mouse) devices
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  const dot  = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+
+  let mouseX = -100, mouseY = -100;
+  let ringX  = -100, ringY  = -100;
+  let raf;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    // Dot snaps instantly
+    dot.style.left = mouseX + 'px';
+    dot.style.top  = mouseY + 'px';
+  });
+
+  // Ring lags behind — lerp each frame
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function animateRing() {
+    ringX = lerp(ringX, mouseX, 0.14);
+    ringY = lerp(ringY, mouseY, 0.14);
+    ring.style.left = ringX + 'px';
+    ring.style.top  = ringY + 'px';
+    raf = requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Grow on interactive elements
+  const hoverTargets = 'a, button, [role="button"], label, .interest-card, .skill-card, .stat-card, .btn';
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest(hoverTargets)) {
+      dot.classList.add('hovering');
+      ring.classList.add('hovering');
+    }
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest(hoverTargets)) {
+      dot.classList.remove('hovering');
+      ring.classList.remove('hovering');
+    }
+  });
+}());
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Floating particles — subtle dots drifting behind the hero
+───────────────────────────────────────────────────────────────────────────── */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const canvas = document.getElementById('particles-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const COUNT = 38;
+  let W, H, particles = [];
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  // Detect accent color from CSS variable
+  function getAccent() {
+    const v = getComputedStyle(document.documentElement)
+      .getPropertyValue('--accent').trim();
+    return v || '#0f7a6e';
+  }
+
+  function makeParticle() {
+    return {
+      x:    Math.random() * W,
+      y:    Math.random() * H,
+      r:    Math.random() * 2.2 + 0.6,
+      vx:   (Math.random() - 0.5) * 0.28,
+      vy:   (Math.random() - 0.5) * 0.28,
+      a:    Math.random() * 0.55 + 0.15,
+    };
+  }
+
+  for (let i = 0; i < COUNT; i++) particles.push(makeParticle());
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const accent = getAccent();
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = accent;
+      ctx.globalAlpha = p.a;
+      ctx.fill();
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around edges
+      if (p.x < -4) p.x = W + 4;
+      if (p.x > W + 4) p.x = -4;
+      if (p.y < -4) p.y = H + 4;
+      if (p.y > H + 4) p.y = -4;
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}());
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Animated number counters — count up when element enters viewport
+───────────────────────────────────────────────────────────────────────────── */
+(function () {
+  const counterEls = document.querySelectorAll('.counter-value[data-target]');
+  if (!counterEls.length) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1600; // ms
+    const start = performance.now();
+
+    if (reducedMotion) {
+      el.textContent = target + suffix;
+      return;
+    }
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = Math.round(easeOutCubic(progress) * target);
+      el.textContent = value + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  counterEls.forEach(el => {
+    el.textContent = '0' + (el.dataset.suffix || '');
+    obs.observe(el);
+  });
 }());

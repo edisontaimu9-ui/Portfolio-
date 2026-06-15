@@ -16,6 +16,13 @@
 </head>
 <body class="portfolio">
 
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+<!-- Hero particles canvas -->
+<canvas class="particles-canvas" id="particles-canvas" aria-hidden="true"></canvas>
+
 
 <nav class="nav" id="nav">
   <div class="container nav-inner">
@@ -52,6 +59,7 @@
 </div>
 
 <section id="home" class="hero">
+  <div class="hero-gradient-mesh" aria-hidden="true"></div>
   <div class="container hero-grid">
     <div>
       <div class="hero-top">
@@ -62,7 +70,7 @@
         <span id="typewriter-text"></span><span class="typewriter-cursor" aria-hidden="true">|</span>
       </h1>
       <p class="lead">
-        I'm Edison Taimu — a BSc Nutrition &amp; Dietetics graduate from Kamuzu
+        I'm <span class="accent-text name-gradient">Edison Taimu</span> — a BSc Nutrition &amp; Dietetics graduate from Kamuzu
         University of Health Sciences (KUHeS), focused on clinical, community,
         and food-service nutrition with a commitment to evidence-based practice.
         I'm also a self-taught developer, and I channel that skill into building
@@ -157,6 +165,28 @@
         <p>The everyday toolkit I use to plan, build, and ship.</p>
         <div class="chip-row"><span class="chip">Git & GitHub</span><span class="chip">VS Code</span><span class="chip">Firebase Console</span><span class="chip">Appwrite Console</span><span class="chip">Vite</span><span class="chip">Figma (basics)</span><span class="chip">GitHub Copilot</span><span class="chip">GitHub Pages</span><span class="chip">GitHub Codespaces</span><span class="chip">Scrimba</span></div>
       </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Animated counters strip ─────────────────────────────────────── -->
+<section class="counters-strip" aria-label="Quick stats">
+  <div class="container counters-grid">
+    <div class="counter-item reveal">
+      <span class="counter-value" data-target="11" data-suffix="+">0</span>
+      <span class="counter-label">Clinical modules in Oasis CNST</span>
+    </div>
+    <div class="counter-item reveal" style="transition-delay:120ms">
+      <span class="counter-value" data-target="3" data-suffix="+">0</span>
+      <span class="counter-label">Years of self-taught development</span>
+    </div>
+    <div class="counter-item reveal" style="transition-delay:240ms">
+      <span class="counter-value" data-target="500" data-suffix="+">0</span>
+      <span class="counter-label">Users reached by Oasis tools</span>
+    </div>
+    <div class="counter-item reveal" style="transition-delay:360ms">
+      <span class="counter-value" data-target="100" data-suffix="%" data-prefix="">0</span>
+      <span class="counter-label">Offline-first architecture</span>
     </div>
   </div>
 </section>
