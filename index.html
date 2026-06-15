@@ -13,9 +13,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://edisontaimu9-ui.github.io/" />
 
-  <!-- Preconnect for font performance -->
+  <!-- Preconnect for Google Fonts (used in styles.css @import) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
 
   <!-- ── Dependencies ──────────────────────────────────────────────────── -->
 
@@ -34,13 +37,13 @@
   <!-- 3. Lucide React icons (UMD — exposes window.lucideReact) -->
   <script src="https://unpkg.com/lucide-react@0.469.0/dist/umd/lucide-react.js"></script>
 
-  <!-- 4. Babel Standalone — transforms JSX in the browser at load time.
-          For a production site with a build step (Vite/webpack) you can
-          remove this script and run `vite build` or `babel portfolio.js`
-          instead, then change the script tag below to type="text/javascript". -->
+  <!-- 4. Babel Standalone — transforms JSX at load time.
+          To pre-compile instead (removes runtime overhead):
+            npx babel portfolio.js --presets @babel/preset-react -o portfolio.compiled.js
+          Then swap to: <script src="portfolio.compiled.js"></script> -->
   <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
 
-  <!-- ── Minimal pre-render style ─────────────────────────────────────── -->
+  <!-- ── Pre-render baseline ───────────────────────────────────────────── -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #fbfbfd; }
@@ -52,15 +55,6 @@
   <!-- React mounts here -->
   <div id="root"></div>
 
-  <!--
-    type="text/babel"  — tells Babel Standalone to compile this file.
-    data-presets="react" — enables the JSX → React.createElement transform.
-
-    To pre-compile instead (removes the Babel runtime overhead):
-      npx babel portfolio.js --presets @babel/preset-react -o portfolio.compiled.js
-    Then change this to:
-      <script src="portfolio.compiled.js"></script>
-  -->
   <script type="text/babel" src="portfolio.js" data-presets="react"></script>
 
 </body>
