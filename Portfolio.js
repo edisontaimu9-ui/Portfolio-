@@ -197,3 +197,277 @@ if (contactForm) {
 
   tick();
 }());
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   PREMIUM ENHANCEMENTS
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Scroll progress bar ─────────────────────────────────── */
+(function () {
+  const bar = document.createElement('div');
+  bar.id = 'scroll-progress';
+  document.body.prepend(bar);
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+}());
+
+/* ── Custom magnetic cursor ──────────────────────────────── */
+(function () {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  const dot  = document.createElement('div');
+  const ring = document.createElement('div');
+  dot.className  = 'cursor-dot';
+  ring.className = 'cursor-ring';
+  document.body.append(dot, ring);
+
+  let mx = -100, my = -100;
+  let rx = -100, ry = -100;
+  let raf;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX;
+    my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+
+  // Ring follows with lag
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function tick() {
+    rx = lerp(rx, mx, 0.14);
+    ry = lerp(ry, my, 0.14);
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    raf = requestAnimationFrame(tick);
+  }
+  tick();
+
+  // Hover state on interactive elements
+  const hoverSelectors = 'a, button, .skill-card, .stat-card, .interest-card, .project-visual, .chip, .oasis-feature-pill';
+  const textSelectors  = 'p, h1, h2, h3, .lead, .about-text, .timeline-desc';
+
+  document.querySelectorAll(hoverSelectors).forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  document.querySelectorAll(textSelectors).forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-text'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-text'));
+  });
+
+  document.addEventListener('mouseleave', () => document.body.classList.add('cursor-hidden'));
+  document.addEventListener('mouseenter', () => document.body.classList.remove('cursor-hidden'));
+}());
+
+/* ── Skill card spotlight (mouse-tracking glow) ──────────── */
+(function () {
+  document.querySelectorAll('.skill-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top)  / rect.height) * 100;
+      card.style.setProperty('--mouse-x', x + '%');
+      card.style.setProperty('--mouse-y', y + '%');
+    });
+  });
+}());
+
+/* ── Reveal — directional variants ──────────────────────── */
+(function () {
+  // Tag about-grid children for directional reveal
+  const aboutGrid = document.querySelector('.about-grid');
+  if (aboutGrid) {
+    const children = aboutGrid.children;
+    if (children[0]) { children[0].classList.add('reveal-left');  children[0].classList.remove('reveal'); }
+    if (children[1]) { children[1].classList.add('reveal-right'); children[1].classList.remove('reveal'); }
+  }
+
+  const dirEls  = document.querySelectorAll('.reveal-left, .reveal-right');
+  const dirObs  = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        dirObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  dirEls.forEach(el => dirObs.observe(el));
+}());
+
+/* ── Skill bars animated fill ───────────────────────────── */
+(function () {
+  // skill bar widths keyed by heading text content
+  const barWidths = {
+    'clinical nutrition'    : 92,
+    'dietetics'             : 88,
+    'nutrition assessment'  : 90,
+    'critical care'         : 78,
+    'community nutrition'   : 85,
+    'software development'  : 80,
+    'javascript'            : 75,
+    'python'                : 68,
+    'html / css'            : 82,
+    'offline-first apps'    : 76,
+    'ai-assisted tools'     : 72,
+  };
+
+  document.querySelectorAll('.skill-card').forEach(card => {
+    const h3 = card.querySelector('h3');
+    if (!h3) return;
+
+    const track = document.createElement('div');
+    track.className = 'skill-bar-track';
+    const fill  = document.createElement('div');
+    fill.className = 'skill-bar-fill';
+
+    // Find the closest matching key
+    const cardText = (h3.textContent + ' ' + (card.querySelector('p') || {textContent:''}).textContent).toLowerCase();
+    let bestKey = '', bestScore = 0;
+    Object.keys(barWidths).forEach(key => {
+      if (cardText.includes(key) && key.length > bestScore) {
+        bestScore = key.length;
+        bestKey   = key;
+      }
+    });
+
+    const pct = barWidths[bestKey] || 80;
+    fill.style.setProperty('--bar-width', pct + '%');
+    track.append(fill);
+    card.append(track);
+
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        // Slight delay so reveal animation finishes first
+        setTimeout(() => fill.classList.add('is-animated'), 300);
+        obs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    obs.observe(card);
+  });
+}());
+
+/* ── Footer observe ─────────────────────────────────────── */
+(function () {
+  const footer = document.querySelector('.footer-message');
+  if (!footer) return;
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      footer.classList.add('is-visible');
+      obs.disconnect();
+    }
+  }, { threshold: 0.2 });
+  obs.observe(footer);
+}());
+
+/* ── Project card — subtle tilt on hover ────────────────── */
+(function () {
+  document.querySelectorAll('.project-visual').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const rect = el.getBoundingClientRect();
+      const cx   = rect.left + rect.width / 2;
+      const cy   = rect.top  + rect.height / 2;
+      const dx   = (e.clientX - cx) / (rect.width  / 2);
+      const dy   = (e.clientY - cy) / (rect.height / 2);
+      el.style.transform = `perspective(800px) rotateY(${dx * 4}deg) rotateX(${-dy * 3}deg) translateY(-4px) scale(1.01)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
+}());
+
+/* ── Stat card — magnetic hover ─────────────────────────── */
+(function () {
+  document.querySelectorAll('.stat-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top  + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width  / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      card.style.transform = `translate(${dx * 5}px, ${dy * 5 - 6}px) scale(1.02)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}());
+
+/* ── Button ripple on click ─────────────────────────────── */
+(function () {
+  document.querySelectorAll('.btn, .btn-oasis-cta, .btn-oasis').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      // Only for pointer events (not keyboard)
+      if (e.detail === 0) return;
+
+      const rect   = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      const size   = Math.max(rect.width, rect.height) * 2;
+      const x      = e.clientX - rect.left - size / 2;
+      const y      = e.clientY - rect.top  - size / 2;
+
+      ripple.style.cssText = `
+        position: absolute;
+        width: ${size}px; height: ${size}px;
+        left: ${x}px; top: ${y}px;
+        background: rgba(255,255,255,0.18);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: scale(0);
+        animation: ripple-out 0.55s var(--ease) forwards;
+      `;
+
+      // Ensure btn is relative
+      const pos = getComputedStyle(btn).position;
+      if (pos === 'static') btn.style.position = 'relative';
+      btn.style.overflow = 'hidden';
+      btn.append(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
+
+  // Inject ripple keyframe if not already present
+  if (!document.getElementById('ripple-style')) {
+    const s = document.createElement('style');
+    s.id = 'ripple-style';
+    s.textContent = `@keyframes ripple-out { to { transform: scale(1); opacity: 0; } }`;
+    document.head.append(s);
+  }
+}());
+
+/* ── Stagger interest cards on reveal ────────────────────── */
+(function () {
+  const grid = document.querySelector('.interest-grid');
+  if (!grid) return;
+  const cards = grid.querySelectorAll('.interest-card');
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      cards.forEach((card, i) => {
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'none';
+        }, i * 70);
+      });
+      obs.disconnect();
+    }
+  }, { threshold: 0.1 });
+  // Start hidden
+  cards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(16px)';
+    card.style.transition = 'opacity 0.5s var(--ease), transform 0.5s var(--ease)';
+  });
+  obs.observe(grid);
+}());
