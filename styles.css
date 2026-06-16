@@ -398,11 +398,12 @@ button { font-family: inherit; }
 
 .eyebrow::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--accent);
   display: inline-block;
+  animation: dot-blink 1.6s ease-in-out infinite;
 }
 
 .hero-top {
@@ -702,15 +703,17 @@ h2.display {
 }
 
 .status-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--ink-tertiary);
 }
 
 .status-dot.live {
   background: var(--accent);
-  animation: pulse 2.4s infinite;
+  width: 13px;
+  height: 13px;
+  animation: pulse 2.4s infinite, dot-blink 1.6s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -1233,19 +1236,24 @@ h2.display {
 }
 
 .avail-dot {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--accent);
   flex-shrink: 0;
   margin-top: 5px;
   box-shadow: 0 0 0 3px var(--accent-soft);
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 2s ease-in-out infinite, dot-blink 1.6s ease-in-out infinite;
 }
 
 @keyframes pulse {
   0%, 100% { box-shadow: 0 0 0 3px var(--accent-soft); }
   50% { box-shadow: 0 0 0 6px rgba(15,122,110,0.08); }
+}
+
+@keyframes dot-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
 }
 
 .avail-label {
@@ -1338,7 +1346,7 @@ h2.display {
     transform: none !important;
     transition: none !important;
   }
-  .stat-card, .status-dot.live {
+  .stat-card, .status-dot.live, .avail-dot, .eyebrow::before {
     animation: none !important;
   }
 }
