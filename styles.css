@@ -552,12 +552,10 @@ h2.display {
 
 .fact-row {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--space-4);
+  flex-direction: column;
+  gap: 5px;
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--line);
-  font-size: var(--text-sm);
 }
 
 .fact-row:first-child { padding-top: 0; }
@@ -568,11 +566,16 @@ h2.display {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
+  letter-spacing: 0.1em;
 }
 
-.fact-value { font-weight: 600; text-align: right; }
+.fact-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.5;
+}
 
 /* ---------------------------------------------------------------------- */
 /* Skills                                                                   */
