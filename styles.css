@@ -726,10 +726,10 @@ h2.display {
   background: var(--accent);
   width: 13px;
   height: 13px;
-  animation: pulse 2.4s infinite, dot-blink 1.6s ease-in-out infinite;
+  animation: pulse-ring 2.4s infinite, dot-blink 1.6s ease-in-out infinite;
 }
 
-@keyframes pulse {
+@keyframes pulse-ring {
   0% { box-shadow: 0 0 0 0 rgba(15,122,110,0.45); }
   70% { box-shadow: 0 0 0 8px rgba(15,122,110,0); }
   100% { box-shadow: 0 0 0 0 rgba(15,122,110,0); }

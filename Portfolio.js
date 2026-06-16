@@ -6,9 +6,9 @@
  *  - Nav scroll shadow
  *  - Active nav-link highlight (IntersectionObserver)
  *  - Mobile menu open / close
- *  - Oasis CNST CTA buttons (nav, mobile, section, footer)
  *  - Scroll-reveal animation
  *  - Contact form → mailto handler
+ *  - Typewriter hero
  */
 
 'use strict';
@@ -51,9 +51,6 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
   }
 });
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   Config
-───────────────────────────────────────────────────────────────────────────── */
 /* ─────────────────────────────────────────────────────────────────────────────
    Nav — scroll shadow
 ───────────────────────────────────────────────────────────────────────────── */
