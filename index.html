@@ -58,9 +58,23 @@
         <span class="avatar" aria-hidden="true">ET</span>
         <span class="eyebrow">Aspiring Clinical Dietitian · Zomba, Malawi</span>
       </div>
-      <h1 class="display">
-        <span id="typewriter-text"></span><span class="typewriter-cursor" aria-hidden="true">|</span>
+      <h1 class="display tw-host">
+        <!-- Invisible sizer: always renders the longest phrase so the h1
+             height is permanently locked to its maximum. aria-hidden keeps
+             it out of the a11y tree; visibility:hidden keeps it out of paint. -->
+        <span class="tw-sizer" aria-hidden="true">Evidence-based nutrition care — and the software I build to support it.</span>
+        <!-- Live text is lifted out of flow (position:absolute) so it
+             never influences the h1's height. -->
+        <span class="tw-live" aria-live="polite"><span id="typewriter-text"></span><span class="typewriter-cursor" aria-hidden="true">|</span></span>
       </h1>
+      <p class="lead">
+        I'm Edison Taimu — a BSc Nutrition &amp; Dietetics graduate from Kamuzu
+        University of Health Sciences (KUHeS), focused on clinical, community,
+        and food-service nutrition with a commitment to evidence-based practice.
+        I'm also a self-taught developer, and I channel that skill into building
+        clinical nutrition software for settings where dependable tools are hard
+        to come by.
+      </p>
       <div class="cta-row">
         <a href="#contact" class="btn btn-primary">Get in touch <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         <a href="#projects" class="btn btn-secondary">View my work</a>
@@ -89,19 +103,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="intro-band">
-  <div class="container">
-    <p class="intro-statement reveal">
-      I'm <strong>Edison Taimu</strong> — a BSc Nutrition &amp; Dietetics graduate from Kamuzu
-      University of Health Sciences (KUHeS), focused on clinical, community,
-      and food-service nutrition with a commitment to evidence-based practice.
-      I'm also a self-taught developer, and I channel that skill into building
-      clinical nutrition software for settings where dependable tools are hard
-      to come by.
-    </p>
   </div>
 </section>
 

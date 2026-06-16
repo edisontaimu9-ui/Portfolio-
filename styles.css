@@ -444,33 +444,6 @@ h1.display .accent-text { color: var(--accent); }
   margin-top: var(--space-5);
 }
 
-/* ---------------------------------------------------------------------- */
-/* Intro band (bio statement — isolated from hero motion)                   */
-/* ---------------------------------------------------------------------- */
-
-.intro-band {
-  padding: var(--space-9) 0;
-  background: var(--surface);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.intro-statement {
-  font-size: clamp(1.0625rem, 1.8vw, 1.3125rem);
-  font-weight: 500;
-  color: var(--ink-secondary);
-  line-height: 1.78;
-  max-width: 780px;
-  padding-left: var(--space-7);
-  border-left: 3px solid var(--accent);
-  position: relative;
-}
-
-.intro-statement strong {
-  color: var(--ink);
-  font-weight: 700;
-}
-
 .cta-row {
   display: flex;
   flex-wrap: wrap;
@@ -1370,7 +1343,53 @@ h2.display {
   }
 }
 
-/* ── Typewriter hero ─────────────────────────────────────────────────────── */
+/* ── Typewriter hero — layout-shift fix ─────────────────────────────────── */
+/*
+ * Problem: as the typewriter types/deletes characters the h1 wraps between
+ * different numbers of lines, changing its height and reflowing everything
+ * below (lead paragraph, CTA buttons, stat cards).
+ *
+ * Solution: a ghost `.tw-sizer` span always holds the *longest* phrase with
+ * `visibility:hidden`.  It is a block-level child of the h1, so the h1
+ * height is permanently anchored to the sizer's full rendered height.
+ * The actual live text sits in `.tw-live` which is `position:absolute`,
+ * meaning it is completely removed from flow and cannot affect height.
+ * The h1 itself gets `position:relative` so the absolute child stays
+ * anchored to it.
+ */
+
+/* 1. Positioning context for the absolute overlay */
+.tw-host {
+  position: relative;
+}
+
+/* 2. Invisible height-anchor — renders the longest phrase but is never
+      seen or read (visibility:hidden + aria-hidden on the element).
+      `display:block` is required so it behaves like a block inside the h1
+      and sets the h1's intrinsic height. */
+.tw-sizer {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+  /* Force identical text metrics to the live span */
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* 3. Live typewriter text — floats above the sizer without contributing
+      to document flow height. left/right:0 gives it the same line-wrap
+      width as the sizer so text breaks at the same column. */
+.tw-live {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Prevent the blinking cursor from painting outside the h1 box */
+  overflow: hidden;
+}
+
+/* 4. Blinking cursor */
 .typewriter-cursor {
   display: inline-block;
   width: 3px;
