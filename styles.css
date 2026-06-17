@@ -451,14 +451,16 @@ h1.display .accent-text { color: var(--accent); }
 /* Sections (generic)                                                       */
 /* ---------------------------------------------------------------------- */
 
-.section { padding: 72px 0; }
+.section { padding: clamp(40px, 6vw, 56px) 0; }
 
 .section-head { max-width: 640px; margin-bottom: var(--space-7); }
 
 h2.display {
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-size: clamp(2.35rem, 5.2vw, 3.75rem);
   font-weight: 800;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: var(--ink);
   margin-top: var(--space-3);
 }
 
@@ -541,6 +543,12 @@ h2.display {
 /* ---------------------------------------------------------------------- */
 /* Skills                                                                   */
 /* ---------------------------------------------------------------------- */
+
+.skills-section {
+  background: var(--surface-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
 
 .skills-grid {
   display: grid;
@@ -698,12 +706,12 @@ h2.display {
 
 .marquee-fade-left {
   left: 0;
-  background: linear-gradient(to right, var(--canvas) 0%, var(--canvas) 15%, transparent 100%);
+  background: linear-gradient(to right, var(--surface-2) 0%, var(--surface-2) 15%, transparent 100%);
 }
 
 .marquee-fade-right {
   right: 0;
-  background: linear-gradient(to left, var(--canvas) 0%, var(--canvas) 15%, transparent 100%);
+  background: linear-gradient(to left, var(--surface-2) 0%, var(--surface-2) 15%, transparent 100%);
 }
 
 @media (max-width: 900px) {
