@@ -161,3 +161,34 @@ if (contactForm) {
 
   tick();
 }());
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Nutrition & Dietetics Slideshow — auto-advances every 3.5 s
+───────────────────────────────────────────────────────────────────────────── */
+(function () {
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.slideshow-dots .dot');
+  if (!slides.length) return;
+
+  let current = 0;
+  const INTERVAL_MS = 3500;
+
+  function goTo(index) {
+    slides[current].classList.remove('slide--active');
+    dots[current].classList.remove('dot--active');
+    current = index % slides.length;
+    slides[current].classList.add('slide--active');
+    dots[current].classList.add('dot--active');
+  }
+
+  // Pause when tab is not visible to avoid background cycling
+  let timer = setInterval(() => goTo(current + 1), INTERVAL_MS);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearInterval(timer);
+    } else {
+      timer = setInterval(() => goTo(current + 1), INTERVAL_MS);
+    }
+  });
+}());
