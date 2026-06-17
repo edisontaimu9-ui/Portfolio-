@@ -652,6 +652,126 @@ h2.display {
 }
 
 /* ---------------------------------------------------------------------- */
+/* Tools & Technologies — scrolling marquee                                 */
+/* ---------------------------------------------------------------------- */
+
+.marquee-head {
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-5);
+}
+
+.marquee-wrap {
+  position: relative;
+  /* Bleed past the centered container to the viewport edges so the
+     fade-out gradients reach all the way to the screen edge. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: var(--space-2) 0;
+}
+
+.marquee-track {
+  overflow: hidden;
+  display: flex;
+  width: 100%;
+  /* Soft top/bottom breathing room independent of the edge fades */
+  -webkit-mask-image: none;
+}
+
+.marquee-list {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-5);
+  list-style: none;
+  flex-shrink: 0;
+  min-width: 100%;
+  /* Each full list is one loop unit; animate two copies side by side. */
+  animation: marquee-scroll 36s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* Pause the whole strip (both copies move in lockstep) on hover or focus */
+.marquee-wrap:hover .marquee-list,
+.marquee-wrap:focus-within .marquee-list {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 14px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-secondary);
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+              border-color 0.35s var(--ease), color 0.35s var(--ease);
+}
+
+.marquee-item svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.marquee-item:hover {
+  transform: translateY(-3px) scale(1.045);
+  border-color: var(--accent);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px var(--accent-soft), 0 14px 28px -10px rgba(15,122,110,0.30);
+}
+
+/* Edge fade + blur, anchored to the viewport edges of the bled-out track */
+.marquee-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(18vw, 180px);
+  z-index: 2;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+}
+
+.marquee-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--canvas) 0%, var(--canvas) 15%, transparent 100%);
+}
+
+.marquee-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--canvas) 0%, var(--canvas) 15%, transparent 100%);
+}
+
+@media (max-width: 900px) {
+  .marquee-fade { width: 12vw; }
+  .marquee-item { padding: 12px 18px; gap: 8px; }
+}
+
+@media (max-width: 500px) {
+  .marquee-list { gap: var(--space-4); }
+  .marquee-item { padding: 10px 14px; font-size: var(--text-xs); }
+  .marquee-item svg { width: 19px; height: 19px; }
+  .marquee-fade { width: 10vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-list { animation: none; }
+  .marquee-track { overflow-x: auto; }
+}
+
+/* ---------------------------------------------------------------------- */
 /* Projects                                                                 */
 /* ---------------------------------------------------------------------- */
 
