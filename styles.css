@@ -320,12 +320,41 @@ button { font-family: inherit; }
 
 .eyebrow::before {
   content: '';
-  width: 9px;
-  height: 9px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background: var(--accent);
   display: inline-block;
-  animation: dot-blink 1.6s ease-in-out infinite;
+  flex-shrink: 0;
+  /* Dual-ring ripple that expands and fades, with a gentle opacity breathe */
+  animation: eyebrow-ripple 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes eyebrow-ripple {
+  0% {
+    box-shadow:
+      0 0 0 0   rgba(15,122,110,0.60),
+      0 0 0 0   rgba(15,122,110,0.25);
+    opacity: 1;
+  }
+  45% {
+    box-shadow:
+      0 0 0 5px  rgba(15,122,110,0.14),
+      0 0 0 10px rgba(15,122,110,0.05);
+    opacity: 0.80;
+  }
+  80% {
+    box-shadow:
+      0 0 0 9px  rgba(15,122,110,0),
+      0 0 0 16px rgba(15,122,110,0);
+    opacity: 0.55;
+  }
+  100% {
+    box-shadow:
+      0 0 0 0   rgba(15,122,110,0),
+      0 0 0 0   rgba(15,122,110,0);
+    opacity: 1;
+  }
 }
 
 .hero-top {
