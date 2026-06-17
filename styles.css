@@ -1520,19 +1520,6 @@ h2.display {
   border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 
-.slide-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: var(--space-3) var(--space-4);
-  background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 100%);
-  color: #fff;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
 
 .slideshow-dots {
   display: flex;
