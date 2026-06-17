@@ -422,9 +422,9 @@ h1.display .accent-text { color: var(--accent); }
 /* Sections (generic)                                                       */
 /* ---------------------------------------------------------------------- */
 
-.section { padding: var(--space-10) 0; }
+.section { padding: 72px 0; }
 
-.section-head { max-width: 640px; margin-bottom: var(--space-8); }
+.section-head { max-width: 640px; margin-bottom: var(--space-7); }
 
 h2.display {
   font-size: clamp(2rem, 4.5vw, 3.25rem);
