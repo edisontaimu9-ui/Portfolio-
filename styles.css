@@ -1274,7 +1274,7 @@ h2.display {
 .internship-lead {
   font-family: 'Times New Roman', Times, Georgia, serif;
   font-size: var(--text-lg);
-  font-weight: 600;
+  font-weight: 400;
   color: var(--ink);
   line-height: 1.6;
   margin-bottom: var(--space-5);
