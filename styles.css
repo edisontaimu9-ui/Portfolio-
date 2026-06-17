@@ -693,6 +693,22 @@ h2.display {
   .marquee-track { overflow-x: auto; }
 }
 
+/* Second strip (Clinical, Academic & Research Tools) — scrolls the
+   opposite direction at a slightly different speed for visual rhythm. */
+.marquee-wrap--alt {
+  margin-top: var(--space-2);
+}
+
+.marquee-wrap--alt .marquee-list {
+  animation-name: marquee-scroll-reverse;
+  animation-duration: 42s;
+}
+
+@keyframes marquee-scroll-reverse {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
 /* ---------------------------------------------------------------------- */
 /* Projects                                                                 */
 /* ---------------------------------------------------------------------- */
