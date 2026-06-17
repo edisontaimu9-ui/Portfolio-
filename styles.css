@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Cutive+Mono&display=swap');
 
 /* ---------------------------------------------------------------------- */
 /* Bio text — Times New Roman                                               */
@@ -1031,7 +1031,8 @@ h2.display {
 
 .footer-line-lead {
   font-size: var(--text-base);
-  font-weight: 600;
+  font-family: 'Cutive Mono', monospace;
+  font-weight: 400;
   color: var(--ink);
 }
 
