@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Cutive+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ---------------------------------------------------------------------- */
-/* Bio text — Times New Roman                                               */
+/* Bio text                                                                 */
 /* ---------------------------------------------------------------------- */
 .bio-text {
-  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-family: var(--font-sans);
   font-size: var(--text-base);
   color: var(--ink-secondary);
   line-height: 1.75;
@@ -1068,8 +1068,8 @@ h2.display {
 
 .footer-line-lead {
   font-size: var(--text-base);
-  font-family: 'Cutive Mono', monospace;
-  font-weight: 400;
+  font-family: var(--font-sans);
+  font-weight: 500;
   color: var(--ink);
 }
 
@@ -1328,7 +1328,7 @@ h2.display {
 }
 
 .internship-lead {
-  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-family: var(--font-sans);
   font-size: var(--text-lg);
   font-weight: 400;
   color: var(--ink);
