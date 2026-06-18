@@ -219,11 +219,11 @@ button { font-family: inherit; }
 }
 
 .mobile-menu a {
-  font-size: var(--text-2xl);
-  font-weight: 700;
+  font-size: 2.625rem;
+  font-weight: 800;
   text-decoration: none;
-  color: var(--ink);
-  letter-spacing: -0.01em;
+  color: #000000;
+  letter-spacing: -0.02em;
 }
 
 .mobile-menu .close-btn {
