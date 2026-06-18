@@ -1602,3 +1602,314 @@ h2.display {
 @media (max-width: 600px) {
   .slideshow-track { min-height: 200px; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ENHANCED EFFECTS & ANIMATIONS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Scroll progress bar ─────────────────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #14b8a6);
+  z-index: 100;
+  transition: width 0.1s linear;
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+  box-shadow: 0 0 8px rgba(15,122,110,0.5);
+}
+
+/* ── Hero entrance: staggered fade-up ────────────────────────────────────── */
+.hero-enter {
+  opacity: 0;
+  transform: translateY(32px);
+  animation: hero-in 0.9s var(--ease) forwards;
+}
+
+@keyframes hero-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-enter-1 { animation-delay: 0.05s; }
+.hero-enter-2 { animation-delay: 0.20s; }
+.hero-enter-3 { animation-delay: 0.38s; }
+.hero-enter-4 { animation-delay: 0.54s; }
+.hero-enter-5 { animation-delay: 0.68s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter { opacity: 1; transform: none; animation: none; }
+}
+
+/* ── Reveal: directional slide (left side comes from left) ───────────────── */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-left { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ── Stat card: glow on hover ────────────────────────────────────────────── */
+.stat-card {
+  transition: box-shadow 0.45s var(--ease), border-color 0.45s var(--ease), transform 0.45s var(--ease);
+}
+
+.stat-card:hover {
+  border-color: rgba(15,122,110,0.35);
+  box-shadow: 0 0 0 1px rgba(15,122,110,0.12), 0 16px 40px -10px rgba(15,122,110,0.22), var(--shadow-md);
+}
+
+/* ── Button: shine sweep on hover ────────────────────────────────────────── */
+.btn {
+  overflow: hidden;
+  position: relative;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255,255,255,0.22) 50%,
+    transparent 70%
+  );
+  transition: left 0.55s var(--ease);
+  pointer-events: none;
+}
+
+.btn:hover::after { left: 160%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::after { display: none; }
+}
+
+/* ── Skill card: accent glow border on hover ─────────────────────────────── */
+.skill-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(ellipse at top left, rgba(15,122,110,0.08) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  pointer-events: none;
+}
+
+.skill-card:hover::before { opacity: 1; }
+
+.skill-card:hover {
+  border-color: rgba(15,122,110,0.28);
+  box-shadow: 0 0 0 1px rgba(15,122,110,0.1), var(--shadow-md);
+}
+
+/* ── Skill card icon: subtle bounce on card hover ────────────────────────── */
+.skill-card:hover .skill-card-icon {
+  background: var(--accent-soft);
+  transform: scale(1.1) rotate(-4deg);
+  transition: transform 0.4s var(--ease), background 0.4s var(--ease);
+}
+
+.skill-card-icon {
+  transition: transform 0.4s var(--ease), background 0.4s var(--ease);
+}
+
+/* ── Project / experience cards: lift + glow ─────────────────────────────── */
+.project-card {
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(15,122,110,0.3);
+  box-shadow: 0 0 0 1px rgba(15,122,110,0.1), 0 24px 48px -12px rgba(15,122,110,0.18);
+}
+
+/* ── Contact form: animated focus ring ───────────────────────────────────── */
+.field {
+  position: relative;
+}
+
+.field input,
+.field textarea {
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(15,122,110,0.15);
+  background: rgba(15,122,110,0.015);
+}
+
+/* ── Mobile menu: staggered link entrance ────────────────────────────────── */
+.mobile-menu.open .mobile-link {
+  animation: menu-link-in 0.5s var(--ease) both;
+}
+
+.mobile-menu.open .mobile-link:nth-child(2)  { animation-delay: 0.05s; }
+.mobile-menu.open .mobile-link:nth-child(3)  { animation-delay: 0.12s; }
+.mobile-menu.open .mobile-link:nth-child(4)  { animation-delay: 0.19s; }
+.mobile-menu.open .mobile-link:nth-child(5)  { animation-delay: 0.26s; }
+.mobile-menu.open .mobile-link:nth-child(6)  { animation-delay: 0.33s; }
+.mobile-menu.open .mobile-link:nth-child(7)  { animation-delay: 0.40s; }
+
+@keyframes menu-link-in {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu.open .mobile-link { animation: none; }
+}
+
+/* ── Nav sliding underline: smooth transition ────────────────────────────── */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ── Logo mark: subtle shimmer on hover ─────────────────────────────────── */
+.logo:hover .logo-mark {
+  box-shadow: 0 0 0 3px rgba(15,122,110,0.2), 0 8px 20px rgba(15,122,110,0.25);
+  transition: box-shadow 0.4s var(--ease);
+}
+
+.logo-mark {
+  transition: box-shadow 0.4s var(--ease);
+}
+
+/* ── Avatar: gentle rotate on hover ─────────────────────────────────────── */
+.avatar {
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.hero-top:hover .avatar {
+  transform: rotate(-6deg) scale(1.08);
+  box-shadow: 0 8px 24px rgba(15,122,110,0.3);
+}
+
+/* ── Fact card rows: hover highlight ─────────────────────────────────────── */
+.fact-row {
+  transition: background 0.25s var(--ease), padding-left 0.25s var(--ease);
+  border-radius: var(--radius-sm);
+  padding-left: 0;
+}
+
+.fact-row:hover {
+  background: rgba(15,122,110,0.04);
+  padding-left: 8px;
+}
+
+/* ── Interest cards: icon spin on hover ──────────────────────────────────── */
+.interest-card:hover .interest-icon {
+  transform: rotate(8deg) scale(1.15);
+  transition: transform 0.4s var(--ease);
+}
+
+.interest-icon {
+  transition: transform 0.4s var(--ease);
+}
+
+/* ── Chip: pop on hover ───────────────────────────────────────────────────── */
+.chip {
+  transition: background 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease);
+  cursor: default;
+}
+
+.chip:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* ── Contact email link: underline grow ──────────────────────────────────── */
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.contact-email::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1.5px;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.35s var(--ease);
+}
+
+.contact-email:hover::after { width: 100%; }
+.contact-email:hover { color: var(--accent); transition: color 0.3s var(--ease); }
+
+/* ── Icon links: scale + color ───────────────────────────────────────────── */
+.icon-link {
+  display: inline-flex;
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+  color: var(--ink-secondary);
+}
+
+.icon-link:hover {
+  transform: translateY(-3px) scale(1.1);
+  color: var(--accent);
+}
+
+/* ── Section headings: accent underline fade-in on reveal ────────────────── */
+.section-head h2.display {
+  position: relative;
+  display: inline-block;
+}
+
+.section-head.is-visible h2.display::after {
+  width: 48px;
+}
+
+.section-head h2.display::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 0;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-3);
+  transition: width 0.7s 0.4s var(--ease);
+}
+

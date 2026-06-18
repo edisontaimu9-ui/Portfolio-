@@ -19,6 +19,46 @@
 document.documentElement.setAttribute('data-theme', 'light');
 
 /* ─────────────────────────────────────────────────────────────────────────────
+   Scroll progress bar
+───────────────────────────────────────────────────────────────────────────── */
+(function () {
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.prepend(bar);
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+}());
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Hero entrance — staggered fade-up on load
+───────────────────────────────────────────────────────────────────────────── */
+(function () {
+  const hero = document.getElementById('home');
+  if (!hero) return;
+
+  // Map selectors → delay classes
+  const targets = [
+    ['.hero-top',  'hero-enter hero-enter-1'],
+    ['.tw-host',   'hero-enter hero-enter-2'],
+    ['.lead',      'hero-enter hero-enter-3'],
+    ['.cta-row',   'hero-enter hero-enter-4'],
+    ['.hero-visual','hero-enter hero-enter-5'],
+  ];
+
+  targets.forEach(([sel, classes]) => {
+    const el = hero.querySelector(sel);
+    if (el) classes.split(' ').forEach(c => el.classList.add(c));
+  });
+}());
+
+/* ─────────────────────────────────────────────────────────────────────────────
    Nav — scroll shadow
 ───────────────────────────────────────────────────────────────────────────── */
 const nav = document.getElementById('nav');
