@@ -852,6 +852,15 @@ h2.display {
   font-size: var(--text-base);
 }
 
+.project-desc code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--surface-2);
+  color: var(--ink);
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+
 .project-links {
   display: flex;
   flex-wrap: wrap;
