@@ -15,7 +15,7 @@ export default function Footer() {
         </a>
       </div>
       <p className="footer-copy">
-        © {year} · Built with React + Vite · Deployed from Termux, Zomba 🇲🇼
+        © {2026} · Edison Taimu · All rights reserved
       </p>
     </footer>
   )
