@@ -7,7 +7,7 @@ import Reveal from './Reveal'
  * 2. Enter your email → they send you an Access Key
  * 3. Paste it below. That's it.
  */
-const WEB3FORMS_KEY = 'YOUR_ACCESS_KEY_HERE'
+const WEB3FORMS_KEY = 'd0a1993e-a0ab-4592-ab0e-b1bca7b7f7e7'
 
 function GitHubIcon() {
   return (
