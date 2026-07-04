@@ -27,12 +27,8 @@ export default function About() {
                 cross-referencing Malawian food composition tables, and writing nutrition care
                 plans by hand. I automated the tedious parts first, then kept going. What started
                 as a 24-hour recall calculator is now <strong>Oasis CNST</strong> — a full clinical
-                nutrition software suite with 11+ modules running offline-first in resource-limited
-                healthcare settings.
-              </p>
-              <p>
-                I work from <strong>Termux on Android</strong>, push to GitHub, and deploy to the
-                web. No laptop. No office. Just the problem and the tools to solve it.
+                nutrition software suite running offline-first in resource-limited healthcare
+                settings.
               </p>
             </div>
           </Reveal>
@@ -56,8 +52,8 @@ export default function About() {
               </div>
               <div className="fact-row">
                 <span className="fact-label">Dev stack</span>
-                <span className="fact-value">Vanilla JS · React · Vite · Firebase · Appwrite</span>
-                <span className="fact-sub">Termux on Android · GitHub Pages · Cloudflare</span>
+                <span className="fact-value">Full-Stack Development</span>
+                <span className="fact-sub">React, Node.js & cloud infrastructure</span>
               </div>
               <div className="fact-row">
                 <span className="fact-label">Currently</span>
