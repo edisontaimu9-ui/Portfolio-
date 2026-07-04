@@ -2,34 +2,30 @@ import Reveal from './Reveal'
 
 const entries = [
   {
-    year:  '2024 – Present',
+    year:  '2025 – Present',
     title: 'Self-taught Software Developer',
     org:   'Independent',
-    desc: `Built Oasis CNST from scratch during clinical training — starting as a 24-hour dietary 
-    recall tool, growing into a full clinical nutrition PWA with 11+ modules. Developed entirely 
-    on Termux (Android), deploying to GitHub Pages and minutriq.me via Namecheap + Cloudflare. 
-    Integrated Firebase, Appwrite, Groq LLM, multiple food APIs, and a Python Scrapy web crawler. 
-    Also built Thanzi (consumer PWA) and Chakudya API (Malawi's first open food nutrients API).`,
+    desc: `Building Oasis CNST, a clinical nutrition PWA with 11+ modules, evolved from an 
+    initial dietary recall tool into a comprehensive clinical decision support platform. Also 
+    developed Thanzi, a consumer nutrition tracking application, and Chakudya API, Malawi's 
+    first open food composition database.`,
   },
   {
-    year:  '2023 – 2024',
+    year:  '2025 – 2026',
     title: 'Clinical Nutrition Student',
-    org:   'Kamuzu University of Health Sciences (KUHeS)',
-    desc: `Clinical rotations across critical care, paediatrics, renal, diabetes, and general 
-    medicine wards. Conducted nutrition assessments using NRS-2002, MUST, MNA, and PG-SGA. 
-    Wrote nutrition care plans in ADIME format with IDNT codes. Applied ASPEN, ESPEN, ESPGHAN, 
-    KDIGO, WHO, and Malawi-specific nutrition protocols. The software I built was born directly 
-    from the gaps I encountered here.`,
+    org:   'Queen Elizabeth Central Hospital',
+    desc: `Clinical rotations spanning critical care, paediatrics, renal, diabetes, and general 
+    medicine, alongside food service management and community nutrition. Conducted nutrition 
+    assessments and developed structured care plans, applying international and Malawi-specific 
+    nutrition protocols.`,
   },
   {
-    year:  '2021 – 2024',
+    year:  '2021 – 2026',
     title: 'BSc Nutrition & Dietetics (Pioneer Cohort)',
-    org:   'Kamuzu University of Health Sciences (KUHeS) · Zomba, Malawi',
-    desc: `Member of the inaugural BSc Nutrition & Dietetics cohort at KUHeS — the first 
-    degree-level dietetics programme in Malawi. Curriculum spanning food science, 
-    medical nutrition therapy, community nutrition, research methods, and clinical 
-    placement. Graduated with both the clinical foundation and the hunger to fix 
-    what the system couldn't give us.`,
+    org:   'Kamuzu University of Health Sciences (KUHeS) · Blantyre, Malawi',
+    desc: `Member of the inaugural BSc Nutrition & Dietetics cohort at KUHeS, Malawi's first 
+    degree-level dietetics programme. Curriculum covered food science, medical nutrition 
+    therapy, community nutrition, and research methods, complemented by clinical placement.`,
   },
 ]
 
