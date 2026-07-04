@@ -69,21 +69,6 @@ export default function Hero() {
             <span className="stat-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/>
-                <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/>
-                <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>
-              </svg>
-            </span>
-            <div>
-              <div className="stat-value">11+ Clinical Modules</div>
-              <div className="stat-label">Oasis CNST</div>
-            </div>
-          </div>
-
-          <div className="stat-card">
-            <span className="stat-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
                 <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
                 <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
@@ -113,19 +98,6 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="stat-card">
-            <span className="stat-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
-            </span>
-            <div>
-              <div className="stat-value">Termux-built</div>
-              <div className="stat-label">Android · deployed from mobile</div>
-            </div>
-          </div>
         </aside>
       </div>
     </section>
