@@ -1,21 +1,22 @@
 import Reveal from './Reveal'
+import {
+  SiFirebase, SiAppwrite, SiReact, SiVite, SiCloudflare,
+  SiNodedotjs, SiPython, SiGithub, SiPostgresql,
+} from 'react-icons/si'
+import { HiOutlineSparkles, HiOutlineGlobeAlt } from 'react-icons/hi2'
 
 const tools = [
-  { label: 'Firebase',    icon: '🔥' },
-  { label: 'Appwrite',    icon: '⚡' },
-  { label: 'React',       icon: '⚛️'  },
-  { label: 'Vite',        icon: '⚡' },
-  { label: 'Cloudflare',  icon: '🌐' },
-  { label: 'Groq LLM',   icon: '🤖' },
-  { label: 'USDA FDC',   icon: '🥦' },
-  { label: 'PubMed API',  icon: '📚' },
-  { label: 'FatSecret',   icon: '🍎' },
-  { label: 'Scrapy',      icon: '🕷️'  },
-  { label: 'Paychangu',   icon: '💳' },
-  { label: 'GitHub',      icon: '🐙' },
-  { label: 'Termux',      icon: '📱' },
-  { label: 'Node.js',     icon: '🟩' },
-  { label: 'Python',      icon: '🐍' },
+  { label: 'Firebase',    Icon: SiFirebase,   color: '#FFCA28' },
+  { label: 'Appwrite',    Icon: SiAppwrite,   color: '#FD366E' },
+  { label: 'React',       Icon: SiReact,      color: '#61DAFB' },
+  { label: 'Vite',        Icon: SiVite,       color: '#646CFF' },
+  { label: 'Cloudflare',  Icon: SiCloudflare, color: '#F38020' },
+  { label: 'Node.js',     Icon: SiNodedotjs,  color: '#339933' },
+  { label: 'Python',      Icon: SiPython,     color: '#3776AB' },
+  { label: 'PostgreSQL',  Icon: SiPostgresql, color: '#4169E1' },
+  { label: 'GitHub',      Icon: SiGithub,     color: '#FFFFFF' },
+  { label: 'REST APIs',   Icon: HiOutlineGlobeAlt, color: '#8B8B8B' },
+  { label: 'AI / LLMs',   Icon: HiOutlineSparkles,  color: '#A78BFA' },
 ]
 
 const doubled = [...tools, ...tools] // infinite scroll
@@ -47,14 +48,14 @@ export default function Skills() {
                   </span>
                   <h3>Clinical Nutrition</h3>
                   <p>
-                    Nutrition assessment, NRS-2002, MUST, MNA, PG-SGA. Enteral and parenteral
-                    nutrition support. ADIME documentation using IDNT codes. Paediatric NCP
-                    with ESPGHAN, ASPEN, and WHO growth references. Renal, diabetes, and
-                    burn nutrition management. Drug–nutrient interactions.
+                    Comprehensive nutrition assessment and screening, enteral and parenteral
+                    nutrition support, and structured care plan documentation. Experienced across
+                    paediatric, renal, diabetes, and critical care settings, applying international
+                    and national clinical guidelines.
                   </p>
                   <div className="chip-row">
-                    {['ADIME / NCP','PES statements','Enteral support','Parenteral nutrition',
-                      'Paediatric NCP','Malnutrition screening','NFPE'].map(c => (
+                    {['Nutrition Assessment','Care Plan Documentation','Enteral Support',
+                      'Parenteral Nutrition','Paediatric Nutrition','Malnutrition Screening'].map(c => (
                       <span className="chip" key={c}>{c}</span>
                     ))}
                   </div>
@@ -69,14 +70,13 @@ export default function Skills() {
                   </span>
                   <h3>Software Development</h3>
                   <p>
-                    Self-taught full-stack developer building clinical PWAs from scratch.
-                    Vanilla JS, React, Vite. Firebase Auth, Firestore, RTDB, Remote Config.
-                    Appwrite collections, Realtime, Functions. Python Scrapy web crawlers.
-                    REST API integration, Cloudflare Workers, GitHub Actions CI/CD.
+                    Full-stack developer building clinical progressive web applications from the
+                    ground up, with experience across frontend frameworks, cloud backends, API
+                    integration, and automated deployment pipelines.
                   </p>
                   <div className="chip-row">
-                    {['React / Vite','Firebase','Appwrite','Cloudflare Workers',
-                      'REST APIs','PWA / offline-first','GitHub Actions'].map(c => (
+                    {['React','Cloud Infrastructure','REST APIs',
+                      'Progressive Web Apps','CI/CD'].map(c => (
                       <span className="chip" key={c}>{c}</span>
                     ))}
                   </div>
@@ -96,13 +96,12 @@ export default function Skills() {
               </span>
               <h3>Guidelines & References</h3>
               <p>
-                Evidence-based practice grounded in ASPEN, ESPEN, ESPGHAN, KDIGO, WHO, FAO,
-                and Malawi-specific nutrition protocols. Malawi FCT 2019 as primary food
-                composition reference; UCT Exchange Lists, USDA FDC, and Open Food Facts
-                as layered fallbacks.
+                Evidence-based practice grounded in leading international nutrition guidelines
+                and the Malawi National Food Composition Table as the primary reference for
+                local dietary assessment.
               </p>
               <div className="chip-row">
-                {['ASPEN','ESPEN','ESPGHAN','KDIGO','WHO / FAO','Malawi FCT 2019','PubMed'].map(c => (
+                {['International Guidelines','WHO / FAO Standards','Malawi FCT 2019','Clinical Research'].map(c => (
                   <span className="chip" key={c}>{c}</span>
                 ))}
               </div>
@@ -121,12 +120,12 @@ export default function Skills() {
               </span>
               <h3>AI & Data Integration</h3>
               <p>
-                Groq LLaMA 3.3 70B for clinical NCP generation, PES statements, and enteral
-                plan analysis. FatSecret Premier API food search. pgvector / Supabase vector
-                embeddings for semantic search over clinical guidelines.
+                Applied machine learning and large language models for clinical documentation
+                support and care plan generation, alongside structured food data search and
+                semantic retrieval over clinical reference material.
               </p>
               <div className="chip-row">
-                {['Groq LLaMA 3.3','FatSecret API','PubMed E-utilities','pgvector','Scrapy crawler'].map(c => (
+                {['Machine Learning','LLM Integration','Semantic Search','Food Data Systems'].map(c => (
                   <span className="chip" key={c}>{c}</span>
                 ))}
               </div>
@@ -140,9 +139,9 @@ export default function Skills() {
           <div className="marquee-section">
             <p className="marquee-label">Tools &amp; technologies</p>
             <div className="marquee-track" aria-hidden="true">
-              {doubled.map(({ label, icon }, i) => (
+              {doubled.map(({ label, Icon, color }, i) => (
                 <span className="marquee-item" key={`${label}-${i}`}>
-                  <span>{icon}</span> {label}
+                  <Icon size={16} color={color} /> {label}
                 </span>
               ))}
             </div>
