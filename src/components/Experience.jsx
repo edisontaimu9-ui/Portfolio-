@@ -2,13 +2,12 @@ import Reveal from './Reveal'
 
 const entries = [
   {
-    year:  '2025 – Present',
-    title: 'Self-taught Software Developer',
-    org:   'Independent',
-    desc: `Building Oasis CNST, a clinical nutrition PWA with 11+ modules, evolved from an 
-    initial dietary recall tool into a comprehensive clinical decision support platform. Also 
-    developed Thanzi, a consumer nutrition tracking application, and Chakudya API, Malawi's 
-    first open food composition database.`,
+    year:  '2021 – 2026',
+    title: 'BSc Nutrition & Dietetics (Pioneer Cohort)',
+    org:   'Kamuzu University of Health Sciences (KUHeS) · Blantyre, Malawi',
+    desc: `Member of the inaugural BSc Nutrition & Dietetics cohort at KUHeS, Malawi's first 
+    degree-level dietetics programme. Curriculum covered food science, medical nutrition 
+    therapy, community nutrition, and research methods, complemented by clinical placement.`,
   },
   {
     year:  '2025 – 2026',
@@ -20,12 +19,13 @@ const entries = [
     nutrition protocols.`,
   },
   {
-    year:  '2021 – 2026',
-    title: 'BSc Nutrition & Dietetics (Pioneer Cohort)',
-    org:   'Kamuzu University of Health Sciences (KUHeS) · Blantyre, Malawi',
-    desc: `Member of the inaugural BSc Nutrition & Dietetics cohort at KUHeS, Malawi's first 
-    degree-level dietetics programme. Curriculum covered food science, medical nutrition 
-    therapy, community nutrition, and research methods, complemented by clinical placement.`,
+    year:  '2025 – Present',
+    title: 'Self-taught Software Developer',
+    org:   'Independent',
+    desc: `Building Oasis CNST, a clinical nutrition PWA with 11+ modules, evolved from an 
+    initial dietary recall tool into a comprehensive clinical decision support platform. Also 
+    developed Thanzi, a consumer nutrition tracking application, and Chakudya API, Malawi's 
+    first open food composition database.`,
   },
 ]
 
