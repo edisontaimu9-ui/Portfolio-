@@ -1,4 +1,9 @@
+import { useEffect, useState } from 'react'
 import Reveal from './Reveal'
+import oasisHome from '../assets/oasis-home.jpg'
+import oasisFoodSearch from '../assets/oasis-food-search.jpg'
+import oasisNutritionNews from '../assets/oasis-nutrition-news.jpg'
+import oasisAiAssistant from '../assets/oasis-ai-assistant.jpg'
 
 function ArrowRight() {
   return (
@@ -18,49 +23,39 @@ function ExtLink() {
   )
 }
 
-/* ── Inline SVG illustrations ─────────────────────────────────── */
+/* ── Oasis CNST screenshot carousel ───────────────────────────── */
+const oasisShots = [oasisHome, oasisFoodSearch, oasisNutritionNews, oasisAiAssistant]
+
 function OasisVisual() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex(i => (i + 1) % oasisShots.length)
+    }, 3000)
+    return () => clearInterval(id)
+  }, [])
+
   return (
-    <svg viewBox="0 0 340 240" fill="none" xmlns="http://www.w3.org/2000/svg"
-      style={{ width: '100%', height: '100%' }}>
-      <rect width="340" height="240" fill="#0f1117"/>
-      {/* sidebar */}
-      <rect x="8" y="8" width="72" height="224" rx="6" fill="#18181c" stroke="#1e1e24" strokeWidth="1"/>
-      {/* nav dots */}
-      {[32,56,80,104,128,152].map((y,i) => (
-        <rect key={i} x="18" y={y} width="52" height="10" rx="3"
-          fill={i === 1 ? '#2fbfa4' : '#222228'}/>
+    <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', background: '#0f1117' }}>
+      {oasisShots.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={`Oasis CNST screenshot ${i + 1}`}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'top',
+            opacity: i === index ? 1 : 0,
+            transition: 'opacity 0.6s ease',
+          }}
+        />
       ))}
-      {/* main pane */}
-      <rect x="88" y="8" width="244" height="224" rx="6" fill="#111115" stroke="#1e1e24" strokeWidth="1"/>
-      {/* header bar */}
-      <rect x="96" y="16" width="228" height="28" rx="4" fill="#18181c"/>
-      <rect x="104" y="24" width="60" height="12" rx="3" fill="#222228"/>
-      <rect x="284" y="22" width="32" height="16" rx="4" fill="#2fbfa4"/>
-      {/* kpi row */}
-      {[96,162,228].map((x,i) => (
-        <rect key={i} x={x} y="56" width="56" height="40" rx="4" fill="#18181c" stroke="#1e1e24" strokeWidth="1"/>
-      ))}
-      <rect x="104" y="64" width="32" height="8" rx="2" fill="#2fbfa4" opacity=".7"/>
-      <rect x="104" y="76" width="20" height="6" rx="2" fill="#222228"/>
-      <rect x="170" y="64" width="24" height="8" rx="2" fill="#c9933a" opacity=".7"/>
-      <rect x="170" y="76" width="32" height="6" rx="2" fill="#222228"/>
-      <rect x="236" y="64" width="28" height="8" rx="2" fill="#2fbfa4" opacity=".5"/>
-      <rect x="236" y="76" width="18" height="6" rx="2" fill="#222228"/>
-      {/* ECG chart area */}
-      <rect x="96" y="108" width="228" height="72" rx="4" fill="#0f1117" stroke="#1e1e24" strokeWidth="1"/>
-      <polyline
-        points="104,142 125,142 132,120 140,164 148,112 156,168 164,142 172,142 200,142 208,120 216,164 224,112 232,168 240,142 248,142 276,142 284,120 292,164 300,112 308,168 316,142"
-        stroke="#2fbfa4" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"
-      />
-      {/* table */}
-      {[0,1,2].map(r => (
-        [0,1,2,3].map(c => (
-          <rect key={`${r}-${c}`} x={96 + c*58} y={192 + r*12} width="50" height="8" rx="2"
-            fill={r===0 ? '#18181c' : '#111115'} stroke="#1e1e24" strokeWidth=".5"/>
-        ))
-      ))}
-    </svg>
+    </div>
   )
 }
 
@@ -151,7 +146,7 @@ const projects = [
   {
     id:     'oasis',
     title:  'Oasis CNST',
-    status: 'Live · minutriq.me',
+    status: 'Live · oasiscnst.app',
     live:   true,
     desc: `A comprehensive offline-first clinical nutrition software suite for resource-limited 
     healthcare settings. Built during clinical rotations to automate what was being done by 
@@ -160,7 +155,7 @@ const projects = [
     drug–nutrient interactions, NFPE, growth charts, food database 
     (Malawi FCT 2019 + USDA FDC + Open Food Facts barcode), and AI-assisted NCP generation.`,
     tech:   ['Firebase','Appwrite','Groq LLaMA 3.3','FatSecret API','USDA FDC','Cloudflare Workers','Scrapy'],
-    demo:   'https://minutriq.me',
+    demo:   'https://oasiscnst.app',
     repo:   'https://github.com/edisontaimu9-ui/MiNutriQ-',
     visual: <OasisVisual />,
   },
