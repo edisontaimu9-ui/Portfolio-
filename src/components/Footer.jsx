@@ -15,7 +15,7 @@ export default function Footer() {
         </a>
       </div>
       <p className="footer-copy">
-        © {2026} · Edison Taimu · All rights reserved
+        © {year} · All rights reserved
       </p>
     </footer>
   )
