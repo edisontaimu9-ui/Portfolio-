@@ -48,8 +48,8 @@ function OasisVisual() {
             inset: 0,
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'top',
+            objectFit: 'contain',
+            objectPosition: 'center',
             opacity: i === index ? 1 : 0,
             transition: 'opacity 0.6s ease',
           }}
