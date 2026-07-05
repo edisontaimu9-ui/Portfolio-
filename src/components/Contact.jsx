@@ -95,7 +95,7 @@ export default function Contact() {
         <Reveal>
           <div className="section-head">
             <span className="eyebrow">Contact</span>
-            <h2 className="display">Let's build something <br />that matters.</h2>
+            <h2 className="display">Seeking opportunities in <br />public health &amp; clinical nutrition.</h2>
           </div>
         </Reveal>
 
@@ -105,14 +105,21 @@ export default function Contact() {
           <Reveal delay={80}>
             <div className="contact-text">
               <p>
-                Whether you're running a global health innovation programme, building
-                health tech for underserved populations, or just curious about what
-                I'm making — reach out. I respond to every message.
+                I am actively seeking internships and fellowships in public health nutrition,
+                clinical nutrition, and food service. I am particularly interested in global
+                health innovation programmes, research roles, and clinical positions that
+                deliver direct patient or population level impact in diverse settings.
               </p>
               <p>
-                For internship enquiries, collaboration proposals, or if you're a
-                researcher or clinician who sees a gap Oasis CNST could fill, I'd
-                especially love to hear from you.
+                I bring strong clinical dietetics training grounded in Malawi specific
+                protocols and real world experience in Malawian food systems and patient care.
+              </p>
+              <p>
+                I am open to all forms of engagement — in person, hybrid, or remote. I am
+                especially eager to join teams working to improve nutrition outcomes for
+                underserved populations in Malawi and beyond. If you need someone with deep
+                contextual understanding and practical clinical experience, I would love to
+                hear from you.
               </p>
 
               <a href="mailto:edisontaimu@gmail.com" className="contact-email">
