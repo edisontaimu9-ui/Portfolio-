@@ -552,7 +552,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   align-items: center;
   justify-content: center;
   align-self: start;
-  height: 340px;
+  height: 420px;
 }
 .project-visual img {
   width: 100%;
