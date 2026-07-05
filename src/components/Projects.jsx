@@ -35,11 +35,11 @@ function ExtLink() {
 function PhoneFrame({ children }) {
   return (
     <div style={{
-      width: '148px',
+      width: '128px',
       aspectRatio: '9 / 19.5',
       background: '#0a0a0c',
-      borderRadius: '26px',
-      padding: '8px',
+      borderRadius: '24px',
+      padding: '7px',
       boxShadow: '0 0 0 1.5px #333338, 0 24px 48px rgba(0,0,0,.5)',
       position: 'relative',
       flexShrink: 0,
@@ -109,26 +109,44 @@ function ScreenshotCarousel({ shots, label }) {
   )
 }
 
-const oasisShots  = [oasisHome, oasisFoodSearch, oasisNutritionNews, oasisAiAssistant]
-const thanziShots = [thanziHome, thanziDiary, thanziProgress, thanziAiAssistant]
-
-function OasisVisual() {
+function TwoPhones({ shotsLeft, shotsRight, label }) {
   return (
-    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface-2)' }}>
+    <div style={{
+      width: '100%', height: '100%',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      gap: '14px',
+      background: 'var(--surface-2)',
+    }}>
       <PhoneFrame>
-        <ScreenshotCarousel shots={oasisShots} label="Oasis CNST" />
+        <ScreenshotCarousel shots={shotsLeft} label={label} />
+      </PhoneFrame>
+      <PhoneFrame>
+        <ScreenshotCarousel shots={shotsRight} label={label} />
       </PhoneFrame>
     </div>
   )
 }
 
+const oasisShots  = [oasisHome, oasisFoodSearch, oasisNutritionNews, oasisAiAssistant]
+const thanziShots = [thanziHome, thanziDiary, thanziProgress, thanziAiAssistant]
+
+function OasisVisual() {
+  return (
+    <TwoPhones
+      label="Oasis CNST"
+      shotsLeft={[oasisHome, oasisNutritionNews]}
+      shotsRight={[oasisFoodSearch, oasisAiAssistant]}
+    />
+  )
+}
+
 function ThanziVisual() {
   return (
-    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface-2)' }}>
-      <PhoneFrame>
-        <ScreenshotCarousel shots={thanziShots} label="Thanzi" />
-      </PhoneFrame>
-    </div>
+    <TwoPhones
+      label="Thanzi"
+      shotsLeft={[thanziHome, thanziProgress]}
+      shotsRight={[thanziDiary, thanziAiAssistant]}
+    />
   )
 }
 

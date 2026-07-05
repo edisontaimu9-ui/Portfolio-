@@ -94,10 +94,9 @@ export default function Opportunities() {
                 both. I apply ASPEN and write Firebase rules in the same afternoon.
               </p>
               <p className="internship-lead">
-                I recently applied to the <strong style={{ color: 'var(--text)' }}>SIHI Malawi / Rice University Global Health
-                Innovation Internship</strong>. If you're building health tools for
-                underserved populations and need someone who understands the problem
-                from the inside, I'd like to hear from you.
+                If you're building health tools for underserved populations and need
+                someone who understands the problem from the inside, I'd like to hear
+                from you.
               </p>
 
               <div className="internship-availability">
@@ -106,7 +105,7 @@ export default function Opportunities() {
                   <span className="avail-label">Availability</span>
                   <span className="avail-value">
                     Open to internships, fellowships, and collaborative projects.
-                    Remote-first; based in Zomba, Malawi.
+                    In-person, hybrid, or remote; based in Zomba, Malawi.
                   </span>
                 </div>
               </div>
