@@ -11,6 +11,7 @@ import thanziHome from '../assets/thanzi-home.jpg'
 import thanziDiary from '../assets/thanzi-diary.jpg'
 import thanziProgress from '../assets/thanzi-progress.jpg'
 import thanziAiAssistant from '../assets/thanzi-ai-assistant.jpg'
+import chakudyaIllustration from '../assets/chakudya-illustration.png'
 
 function ArrowRight() {
   return (
@@ -72,41 +73,17 @@ function ThanziVisual() { return <ScreenshotCarousel shots={thanziShots} label="
 
 function ChakudyaVisual() {
   return (
-    <svg viewBox="0 0 340 240" fill="none" xmlns="http://www.w3.org/2000/svg"
-      style={{ width: '100%', height: '100%' }}>
-      <rect width="340" height="240" fill="#0f1117"/>
-      {/* terminal window */}
-      <rect x="16" y="16" width="308" height="208" rx="8" fill="#111115" stroke="#1e1e24" strokeWidth="1.5"/>
-      {/* titlebar */}
-      <rect x="16" y="16" width="308" height="28" rx="8" fill="#18181c"/>
-      <rect x="16" y="32" width="308" height="12" fill="#18181c"/>
-      <circle cx="32" cy="30" r="5" fill="#ff5f57"/>
-      <circle cx="48" cy="30" r="5" fill="#febc2e"/>
-      <circle cx="64" cy="30" r="5" fill="#28c840"/>
-      <rect x="120" y="25" width="100" height="10" rx="3" fill="#222228"/>
-      {/* terminal content */}
-      <rect x="28" y="56" width="80" height="7" rx="2" fill="#3f3f46"/>
-      <rect x="28" y="70" width="16" height="7" rx="2" fill="#2fbfa4"/>
-      <rect x="48" y="70" width="120" height="7" rx="2" fill="#f0f0f2"/>
-      <rect x="28" y="84" width="16" height="7" rx="2" fill="#2fbfa4"/>
-      <rect x="48" y="84" width="90" height="7" rx="2" fill="#f0f0f2"/>
-      {/* JSON block */}
-      <rect x="28" y="104" width="284" height="84" rx="6" fill="#0a0a0e" stroke="#1e1e24" strokeWidth="1"/>
-      <rect x="40" y="114" width="20" height="6" rx="2" fill="#c9933a"/>
-      <rect x="64" y="114" width="40" height="6" rx="2" fill="#2fbfa4"/>
-      <rect x="40" y="126" width="30" height="6" rx="2" fill="#c9933a"/>
-      <rect x="74" y="126" width="60" height="6" rx="2" fill="#f0f0f2"/>
-      <rect x="40" y="138" width="24" height="6" rx="2" fill="#c9933a"/>
-      <rect x="68" y="138" width="44" height="6" rx="2" fill="#f0f0f2"/>
-      <rect x="40" y="150" width="36" height="6" rx="2" fill="#c9933a"/>
-      <rect x="80" y="150" width="80" height="6" rx="2" fill="#f0f0f2"/>
-      <rect x="40" y="162" width="20" height="6" rx="2" fill="#c9933a"/>
-      <rect x="64" y="162" width="32" height="6" rx="2" fill="#f0f0f2"/>
-      {/* status */}
-      <rect x="28" y="200" width="48" height="14" rx="4" fill="#2fbfa41a" stroke="#2fbfa433" strokeWidth="1"/>
-      <rect x="34" y="206" width="36" height="6" rx="2" fill="#2fbfa4"/>
-      <rect x="86" y="203" width="120" height="8" rx="2" fill="#3f3f46"/>
-    </svg>
+    <div style={{
+      width: '100%', height: '100%',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      background: '#f4f4f5',
+    }}>
+      <img
+        src={chakudyaIllustration}
+        alt="Chakudya API — open food and nutrition data infrastructure"
+        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+      />
+    </div>
   )
 }
 
@@ -152,11 +129,14 @@ const projects = [
     title:  'Chakudya API',
     status: 'In development',
     live:   false,
-    desc: `Malawi's first open food nutrients API. Built on the Malawi Food Composition 
-    Table 2019, extended with UCT Exchange Lists and USDA FDC for global fallback. 
-    Designed as infrastructure — a shared resource for any nutrition application 
-    targeting Malawian food systems. Powers Thanzi with zero hardcoded food data 
-    and is a key portfolio piece demonstrating data infrastructure depth.`,
+    desc: `Chakudya API is an open food and nutrition data service built on the authoritative 
+    Malawi Food Composition Table (2019). It extends this national resource with exchange 
+    lists, renal diet classifications, and commonly consumed packaged supermarket foods. 
+    Designed as shared public infrastructure, Chakudya enables standardized, extensible, 
+    and reliable nutrient data access for nutrition applications across clinical, community, 
+    and consumer contexts. By bridging local Malawian food systems with international needs, 
+    it empowers developers, researchers, clinicians, and organizations to build 
+    better-informed tools for nutrition improvement in Malawi and beyond.`,
     tech:   ['Malawi FCT 2019','USDA FDC','REST API','Appwrite','Node.js'],
     repo:   'https://github.com/edisontaimu9-ui',
     visual: <ChakudyaVisual />,
