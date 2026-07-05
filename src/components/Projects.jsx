@@ -31,6 +31,50 @@ function ExtLink() {
   )
 }
 
+/* ── Phone device frame ────────────────────────────────────────── */
+function PhoneFrame({ children }) {
+  return (
+    <div style={{
+      width: '148px',
+      aspectRatio: '9 / 19.5',
+      background: '#0a0a0c',
+      borderRadius: '26px',
+      padding: '8px',
+      boxShadow: '0 0 0 1.5px #333338, 0 24px 48px rgba(0,0,0,.5)',
+      position: 'relative',
+      flexShrink: 0,
+    }}>
+      {/* notch */}
+      <div style={{
+        position: 'absolute',
+        top: '8px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '46px',
+        height: '14px',
+        background: '#0a0a0c',
+        borderRadius: '0 0 10px 10px',
+        zIndex: 2,
+      }}/>
+      {/* side buttons */}
+      <div style={{ position: 'absolute', left: '-2px', top: '70px', width: '2px', height: '24px', background: '#333338', borderRadius: '2px' }}/>
+      <div style={{ position: 'absolute', left: '-2px', top: '104px', width: '2px', height: '40px', background: '#333338', borderRadius: '2px' }}/>
+      <div style={{ position: 'absolute', right: '-2px', top: '90px', width: '2px', height: '52px', background: '#333338', borderRadius: '2px' }}/>
+      {/* screen */}
+      <div style={{
+        width: '100%',
+        height: '100%',
+        borderRadius: '18px',
+        overflow: 'hidden',
+        position: 'relative',
+        background: '#000',
+      }}>
+        {children}
+      </div>
+    </div>
+  )
+}
+
 /* ── Reusable screenshot carousel ─────────────────────────────── */
 function ScreenshotCarousel({ shots, label }) {
   const [index, setIndex] = useState(0)
@@ -54,8 +98,8 @@ function ScreenshotCarousel({ shots, label }) {
             inset: 0,
             width: '100%',
             height: '100%',
-            objectFit: 'contain',
-            objectPosition: 'center',
+            objectFit: 'cover',
+            objectPosition: 'top',
             opacity: i === index ? 1 : 0,
             transition: 'opacity 0.6s ease',
           }}
@@ -68,8 +112,25 @@ function ScreenshotCarousel({ shots, label }) {
 const oasisShots  = [oasisHome, oasisFoodSearch, oasisNutritionNews, oasisAiAssistant]
 const thanziShots = [thanziHome, thanziDiary, thanziProgress, thanziAiAssistant]
 
-function OasisVisual()  { return <ScreenshotCarousel shots={oasisShots}  label="Oasis CNST" /> }
-function ThanziVisual() { return <ScreenshotCarousel shots={thanziShots} label="Thanzi" /> }
+function OasisVisual() {
+  return (
+    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface-2)' }}>
+      <PhoneFrame>
+        <ScreenshotCarousel shots={oasisShots} label="Oasis CNST" />
+      </PhoneFrame>
+    </div>
+  )
+}
+
+function ThanziVisual() {
+  return (
+    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface-2)' }}>
+      <PhoneFrame>
+        <ScreenshotCarousel shots={thanziShots} label="Thanzi" />
+      </PhoneFrame>
+    </div>
+  )
+}
 
 function ChakudyaVisual() {
   return (
