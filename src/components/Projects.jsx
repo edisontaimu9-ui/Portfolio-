@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react'
 import Reveal from './Reveal'
+import { SiJavascript, SiAppwrite, SiGithubpages } from 'react-icons/si'
+import { TbApi } from 'react-icons/tb'
+import { HiOutlineDevicePhoneMobile } from 'react-icons/hi2'
 import oasisHome from '../assets/oasis-home.jpg'
 import oasisFoodSearch from '../assets/oasis-food-search.jpg'
 import oasisNutritionNews from '../assets/oasis-nutrition-news.jpg'
 import oasisAiAssistant from '../assets/oasis-ai-assistant.jpg'
+import thanziHome from '../assets/thanzi-home.jpg'
+import thanziDiary from '../assets/thanzi-diary.jpg'
+import thanziProgress from '../assets/thanzi-progress.jpg'
+import thanziAiAssistant from '../assets/thanzi-ai-assistant.jpg'
 
 function ArrowRight() {
   return (
@@ -23,26 +30,24 @@ function ExtLink() {
   )
 }
 
-/* ── Oasis CNST screenshot carousel ───────────────────────────── */
-const oasisShots = [oasisHome, oasisFoodSearch, oasisNutritionNews, oasisAiAssistant]
-
-function OasisVisual() {
+/* ── Reusable screenshot carousel ─────────────────────────────── */
+function ScreenshotCarousel({ shots, label }) {
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
     const id = setInterval(() => {
-      setIndex(i => (i + 1) % oasisShots.length)
+      setIndex(i => (i + 1) % shots.length)
     }, 3000)
     return () => clearInterval(id)
-  }, [])
+  }, [shots.length])
 
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative', overflow: 'hidden', background: '#0f1117' }}>
-      {oasisShots.map((src, i) => (
+      {shots.map((src, i) => (
         <img
           key={src}
           src={src}
-          alt={`Oasis CNST screenshot ${i + 1}`}
+          alt={`${label} screenshot ${i + 1}`}
           style={{
             position: 'absolute',
             inset: 0,
@@ -59,48 +64,11 @@ function OasisVisual() {
   )
 }
 
-function ThanziVisual() {
-  return (
-    <svg viewBox="0 0 340 240" fill="none" xmlns="http://www.w3.org/2000/svg"
-      style={{ width: '100%', height: '100%' }}>
-      <rect width="340" height="240" fill="#0f1117"/>
-      {/* phone frame */}
-      <rect x="110" y="12" width="120" height="216" rx="16" fill="#18181c" stroke="#2a2a34" strokeWidth="2"/>
-      {/* status bar */}
-      <rect x="118" y="20" width="104" height="8" rx="2" fill="#111115"/>
-      <circle cx="170" cy="24" r="3" fill="#2fbfa4" opacity=".8"/>
-      {/* hero card */}
-      <rect x="118" y="36" width="104" height="50" rx="6" fill="#111115" stroke="#1e1e24" strokeWidth="1"/>
-      <rect x="126" y="44" width="40" height="7" rx="2" fill="#2fbfa4" opacity=".6"/>
-      <rect x="126" y="55" width="28" height="14" rx="3" fill="#2fbfa4"/>
-      <rect x="126" y="72" width="50" height="6" rx="2" fill="#222228"/>
-      {/* ring chart placeholder */}
-      <circle cx="210" cy="61" r="18" stroke="#1e1e24" strokeWidth="2" fill="none"/>
-      <circle cx="210" cy="61" r="18" stroke="#2fbfa4" strokeWidth="2"
-        strokeDasharray="70 43" strokeDashoffset="22" fill="none"/>
-      {/* meal log */}
-      {[0,1,2,3].map(i => (
-        <rect key={i} x="118" y={96 + i*24} width="104" height="18" rx="4"
-          fill="#111115" stroke="#1e1e24" strokeWidth="1"/>
-      ))}
-      {/* meal labels */}
-      <rect x="126" y="100" width="30" height="6" rx="2" fill="#222228"/>
-      <rect x="126" y="124" width="44" height="6" rx="2" fill="#222228"/>
-      <rect x="126" y="148" width="36" height="6" rx="2" fill="#222228"/>
-      <rect x="126" y="172" width="28" height="6" rx="2" fill="#222228"/>
-      {/* kcal chips */}
-      <rect x="194" y="100" width="22" height="6" rx="2" fill="#2fbfa4" opacity=".5"/>
-      <rect x="194" y="124" width="22" height="6" rx="2" fill="#c9933a" opacity=".5"/>
-      <rect x="194" y="148" width="22" height="6" rx="2" fill="#2fbfa4" opacity=".5"/>
-      <rect x="194" y="172" width="22" height="6" rx="2" fill="#2fbfa4" opacity=".3"/>
-      {/* bottom nav */}
-      <rect x="118" y="204" width="104" height="16" rx="4" fill="#111115" stroke="#1e1e24" strokeWidth="1"/>
-      {[134, 162, 190, 210].map((x,i) => (
-        <circle key={i} cx={x} cy="212" r="3" fill={i===0 ? '#2fbfa4' : '#222228'}/>
-      ))}
-    </svg>
-  )
-}
+const oasisShots  = [oasisHome, oasisFoodSearch, oasisNutritionNews, oasisAiAssistant]
+const thanziShots = [thanziHome, thanziDiary, thanziProgress, thanziAiAssistant]
+
+function OasisVisual()  { return <ScreenshotCarousel shots={oasisShots}  label="Oasis CNST" /> }
+function ThanziVisual() { return <ScreenshotCarousel shots={thanziShots} label="Thanzi" /> }
 
 function ChakudyaVisual() {
   return (
@@ -164,12 +132,18 @@ const projects = [
     title:  'Thanzi',
     status: 'In development',
     live:   false,
-    desc: `A consumer nutrition tracking PWA powered entirely by the Chakudya API — no 
-    hardcoded food data. Daily meal logging, macronutrient tracking, BMI/BMR/TDEE stat 
-    cards, recipe calculator, dark/light theme system, and avatar upload. 
-    Vanilla JS, Appwrite backend, hosted on GitHub Pages. Serves as the applied product 
-    proof of Chakudya's infrastructure.`,
-    tech:   ['Vanilla JS','Appwrite','Chakudya API','GitHub Pages','PWA'],
+    desc: `A consumer nutrition tracking progressive web application (PWA) built on the 
+    Chakudya API. It enables daily meal logging, nutrient and macronutrient tracking, BMI, 
+    BMR, and TDEE assessments, recipe nutrition analysis, personalized dashboards, user 
+    profiles, and a responsive light/dark interface. The application serves as a 
+    production-ready demonstration of the Chakudya nutrition data infrastructure.`,
+    tech:   [
+      { label: 'Vanilla JS',    Icon: SiJavascript,             color: '#F7DF1E' },
+      { label: 'Appwrite',      Icon: SiAppwrite,                color: '#FD366E' },
+      { label: 'Chakudya API',  Icon: TbApi,                     color: '#2fbfa4' },
+      { label: 'GitHub Pages',  Icon: SiGithubpages,             color: '#FFFFFF' },
+      { label: 'PWA',           Icon: HiOutlineDevicePhoneMobile, color: '#8B8B8B' },
+    ],
     repo:   'https://github.com/edisontaimu9-ui',
     visual: <ThanziVisual />,
   },
@@ -214,7 +188,20 @@ export default function Projects() {
                   <h3 className="project-title">{title}</h3>
                   <p className="project-desc">{desc}</p>
                   <div className="chip-row">
-                    {tech.map(t => <span className="chip" key={t}>{t}</span>)}
+                    {tech.map(t => {
+                      const label = typeof t === 'string' ? t : t.label
+                      const Icon  = typeof t === 'string' ? null : t.Icon
+                      const color = typeof t === 'string' ? undefined : t.color
+                      return (
+                        <span className="chip" key={label}>
+                          {Icon && (
+                            <Icon size={14} color={color}
+                              style={{ marginRight: 6, verticalAlign: '-2px' }} />
+                          )}
+                          {label}
+                        </span>
+                      )
+                    })}
                   </div>
                   <div className="project-links">
                     {demo && (
