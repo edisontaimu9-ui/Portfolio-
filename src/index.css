@@ -551,6 +551,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: start;
+  height: 260px;
 }
 .project-visual img {
   width: 100%;
