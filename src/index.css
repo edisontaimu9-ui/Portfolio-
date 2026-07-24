@@ -700,6 +700,150 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   grid-column: 2;
 }
 
+/* ── Nutrition snapshot ──────────────────────────────────────── */
+.snapshot-lead { margin-bottom: 32px; }
+
+.compare-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin-bottom: 36px;
+}
+.compare-row + .compare-row { padding-top: 20px; border-top: 1px solid var(--border); }
+.compare-label {
+  display: block;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.compare-bars { display: flex; flex-direction: column; gap: 8px; }
+.compare-bar-track {
+  position: relative;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.compare-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width .6s ease;
+}
+.compare-bar-fill.malawi { background: var(--accent); }
+.compare-bar-fill.africa { background: var(--surface-3); border-right: 1px dashed var(--border-hi); }
+.compare-bar-tag {
+  position: absolute;
+  left: 10px; top: 50%;
+  transform: translateY(-50%);
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--bg);
+  white-space: nowrap;
+}
+.compare-bar-track:has(.africa) .compare-bar-tag { color: var(--text-muted); }
+
+.metric-group-label {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 16px;
+}
+.metric-group-label--spaced { margin-top: 40px; }
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.metric-grid--four { grid-template-columns: repeat(4, 1fr); }
+
+.metric-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 20px 18px;
+  transition: border-color .2s;
+}
+.metric-card:hover { border-color: var(--border-hi); }
+.metric-card--sm { padding: 16px 18px; }
+
+.metric-tag {
+  display: inline-block;
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.metric-tag--ontrack { background: var(--accent-dim); color: var(--accent); }
+.metric-tag--progress { background: rgba(201,147,58,.12); color: var(--gold); }
+.metric-tag--off { background: rgba(220,90,90,.12); color: #d97070; }
+
+.metric-value {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.metric-card--sm .metric-value { font-size: 1.35rem; }
+
+.metric-label {
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.metric-note {
+  font-size: .74rem;
+  color: var(--text-subtle);
+}
+
+.snapshot-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  padding: 28px 32px;
+  background: linear-gradient(135deg, var(--accent-dim), transparent);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius);
+}
+.snapshot-cta-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.snapshot-cta-text {
+  font-size: .85rem;
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+
+@media (max-width: 860px) {
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .metric-grid--four { grid-template-columns: repeat(2, 1fr); }
+  .snapshot-cta { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 520px) {
+  .metric-grid, .metric-grid--four { grid-template-columns: 1fr; }
+}
+
 /* ── Opportunities ───────────────────────────────────────────── */
 .internship-layout {
   display: grid;
