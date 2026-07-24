@@ -32,10 +32,10 @@ function ExtLink() {
 }
 
 /* ── Phone device frame ────────────────────────────────────────── */
-function PhoneFrame({ children }) {
+function PhoneFrame({ children, width = '128px' }) {
   return (
     <div style={{
-      width: '128px',
+      width,
       aspectRatio: '9 / 19.5',
       background: '#0a0a0c',
       borderRadius: '24px',
@@ -109,19 +109,15 @@ function ScreenshotCarousel({ shots, label }) {
   )
 }
 
-function TwoPhones({ shotsLeft, shotsRight, label }) {
+function OnePhone({ shots, label }) {
   return (
     <div style={{
       width: '100%', height: '100%',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      gap: '14px',
       background: 'var(--surface-2)',
     }}>
-      <PhoneFrame>
-        <ScreenshotCarousel shots={shotsLeft} label={label} />
-      </PhoneFrame>
-      <PhoneFrame>
-        <ScreenshotCarousel shots={shotsRight} label={label} />
+      <PhoneFrame width="180px">
+        <ScreenshotCarousel shots={shots} label={label} />
       </PhoneFrame>
     </div>
   )
@@ -131,23 +127,11 @@ const oasisShots  = [oasisHome, oasisFoodSearch, oasisNutritionNews, oasisAiAssi
 const thanziShots = [thanziHome, thanziDiary, thanziProgress, thanziAiAssistant]
 
 function OasisVisual() {
-  return (
-    <TwoPhones
-      label="Oasis CNST"
-      shotsLeft={[oasisHome, oasisNutritionNews]}
-      shotsRight={[oasisFoodSearch, oasisAiAssistant]}
-    />
-  )
+  return <OnePhone label="Oasis CNST" shots={oasisShots} />
 }
 
 function ThanziVisual() {
-  return (
-    <TwoPhones
-      label="Thanzi"
-      shotsLeft={[thanziHome, thanziProgress]}
-      shotsRight={[thanziDiary, thanziAiAssistant]}
-    />
-  )
+  return <OnePhone label="Thanzi" shots={thanziShots} />
 }
 
 function ChakudyaVisual() {
