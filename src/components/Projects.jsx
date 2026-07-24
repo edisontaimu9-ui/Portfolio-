@@ -32,10 +32,10 @@ function ExtLink() {
 }
 
 /* ── Phone device frame ────────────────────────────────────────── */
-function PhoneFrame({ children, width = '128px' }) {
+function PhoneFrame({ children, width, height }) {
   return (
     <div style={{
-      width,
+      ...(height ? { height } : { width: width || '128px' }),
       aspectRatio: '9 / 19.5',
       background: '#0a0a0c',
       borderRadius: '24px',
@@ -116,7 +116,7 @@ function OnePhone({ shots, label }) {
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       background: 'var(--surface-2)',
     }}>
-      <PhoneFrame width="180px">
+      <PhoneFrame height="92%">
         <ScreenshotCarousel shots={shots} label={label} />
       </PhoneFrame>
     </div>
