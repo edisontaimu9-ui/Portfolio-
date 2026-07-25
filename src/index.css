@@ -571,13 +571,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 /* ── About: "what does a dietitian do" explainer ────────────────── */
 .ncp-explainer {
-  margin-top: 40px;
-  padding-top: 40px;
+  margin: 20px 0 24px;
+  padding-top: 24px;
   border-top: 1px solid var(--border);
 }
 .ncp-explainer-title {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 10px;
@@ -585,56 +585,58 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .ncp-explainer-lead {
   color: var(--text-muted);
   line-height: 1.75;
-  max-width: 680px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 .ncp-steps {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
 }
 .ncp-step {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 20px;
+  padding: 16px;
 }
 .ncp-step-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: var(--surface-3);
   color: var(--accent);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: .85rem;
-  margin-bottom: 14px;
+  font-size: .8rem;
+  margin-bottom: 12px;
 }
 .ncp-step h4 {
   font-family: var(--font-display);
-  font-size: .95rem;
+  font-size: .9rem;
   font-weight: 600;
   color: var(--text);
   margin-bottom: 6px;
 }
 .ncp-step p {
-  font-size: .82rem;
+  font-size: .8rem;
   color: var(--text-muted);
-  line-height: 1.65;
+  line-height: 1.6;
 }
 .ncp-explainer-foot {
-  font-size: .85rem;
+  font-size: .82rem;
   color: var(--text-subtle);
   line-height: 1.7;
-  max-width: 680px;
 }
 
-@media (max-width: 720px) {
-  .ncp-steps { grid-template-columns: 1fr 1fr; }
+.read-more-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 4px;
 }
 
 /* ── Skills ──────────────────────────────────────────────────── */

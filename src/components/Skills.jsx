@@ -47,16 +47,17 @@ export default function Skills() {
                       <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
                     </svg>
                   </span>
-                  <h3>Clinical Nutrition</h3>
+                  <h3>Clinical & Public Health Nutrition</h3>
                   <p>
                     Comprehensive nutrition assessment and screening, enteral and parenteral
-                    nutrition support, and structured care plan documentation. Experienced across
-                    paediatric, renal, diabetes, and critical care settings, applying international
-                    and national clinical guidelines.
+                    nutrition support, and structured care plan documentation at the bedside —
+                    plus community nutrition programming and population-level screening.
+                    Experienced across paediatric, renal, diabetes, and critical care settings,
+                    applying international and national clinical guidelines.
                   </p>
                   <div className="chip-row">
                     {['Nutrition Assessment','Care Plan Documentation','Enteral Support',
-                      'Parenteral Nutrition','Paediatric Nutrition','Malnutrition Screening'].map(c => (
+                      'Parenteral Nutrition','Community Nutrition','Malnutrition Screening'].map(c => (
                       <span className="chip" key={c}>{c}</span>
                     ))}
                   </div>

@@ -22,7 +22,7 @@ export default function Hero() {
         <div className="hero-content">
           <div className="hero-top hero-enter hero-enter-1">
             <span className="avatar" aria-hidden="true">ET</span>
-            <span className="eyebrow">Aspiring Clinical Dietitian &bull; Zomba, Malawi</span>
+            <span className="eyebrow">Aspiring Clinical & Public Health Dietitian &bull; Zomba, Malawi</span>
           </div>
 
           <h1 className="hero-heading hero-enter hero-enter-2">

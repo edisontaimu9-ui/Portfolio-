@@ -51,7 +51,7 @@ const interests = [
         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
     ),
-    label: 'Capacity building & training',
+    label: 'Public health & community nutrition',
   },
   {
     icon: (
@@ -83,9 +83,10 @@ export default function Opportunities() {
             <div>
               <p className="internship-lead">
                 I'm actively seeking internships and fellowships at the intersection of
-                clinical nutrition and health technology — global health innovation programmes,
-                digital health research roles, and clinical informatics positions where the
-                work has direct patient impact in low-resource settings.
+                clinical and public health nutrition and health technology — global health
+                innovation programmes, digital health research roles, and clinical informatics
+                positions where the work has direct patient and population impact in
+                low-resource settings.
               </p>
               <p className="internship-lead">
                 I bring a rare dual profile: clinical dietetics training grounded in

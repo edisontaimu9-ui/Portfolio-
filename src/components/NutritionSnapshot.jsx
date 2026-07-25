@@ -67,8 +67,9 @@ export default function NutritionSnapshot() {
 
         <Reveal delay={100}>
           <p className="internship-lead snapshot-lead">
-            I didn't start building clinical software because I liked code — I started
-            because these numbers kept showing up in my caseload. Malawi is currently
+            This is the public health side of the work. I didn't start building clinical
+            software because I liked code — I started because these numbers kept showing up
+            in my caseload. Malawi is currently
             <strong> 'on course' to meet only two</strong> of the global nutrition targets
             with enough data to be assessed. This is the gap my clinical training and my
             software both exist to close.
