@@ -151,22 +151,26 @@ function ChakudyaVisual() {
   )
 }
 
-function AppVisual({ title, subtitle, mark }) {
+function AppVisual({ title, subtitle, icon, accent }) {
   return (
     <div style={{
       width: '100%', height: '100%',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      gap: '16px',
+      gap: '20px',
       background: 'var(--surface-2)',
+      backgroundImage: 'radial-gradient(var(--border) 1px, transparent 1px)',
+      backgroundSize: '18px 18px',
       padding: '32px',
       textAlign: 'center',
     }}>
       <span style={{
-        width: 56, height: 56, borderRadius: 14,
+        width: 72, height: 72, borderRadius: 20,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        background: 'var(--accent)', color: '#fff',
-        fontFamily: 'var(--font-display)', fontSize: '1.3rem', fontWeight: 700,
-      }}>{mark}</span>
+        background: accent || 'var(--accent)',
+        boxShadow: '0 12px 28px -10px rgba(0,0,0,.35)',
+      }}>
+        {icon}
+      </span>
       <div>
         <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.15rem', color: 'var(--text)' }}>
           {title}
@@ -179,12 +183,50 @@ function AppVisual({ title, subtitle, mark }) {
   )
 }
 
+/* Clipboard + checklist: practice management, patient records, appointments */
+function ClipboardIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+      stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="3" width="14" height="18" rx="2"/>
+      <path d="M9 3h6a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/>
+      <path d="m8.5 12 2 2 4-4"/>
+      <path d="M8.5 17h7"/>
+    </svg>
+  )
+}
+
+/* Folder + pulse line: a registry tracking patient records over time */
+function RegistryIcon() {
+  return (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+      stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+      <path d="M6 14h2.5l1.5-3 2 5 1.5-3H18"/>
+    </svg>
+  )
+}
+
 function DietitianOsVisual() {
-  return <AppVisual title="DietitianOS" subtitle="Practice management for dietitians" mark="D" />
+  return (
+    <AppVisual
+      title="DietitianOS"
+      subtitle="Practice management for dietitians"
+      icon={<ClipboardIcon />}
+      accent="#2f6fbf"
+    />
+  )
 }
 
 function NcrsVisual() {
-  return <AppVisual title="NCRS" subtitle="Nutrition Care Registry System" mark="N" />
+  return (
+    <AppVisual
+      title="NCRS"
+      subtitle="Nutrition Care Registry System"
+      icon={<RegistryIcon />}
+      accent="#178a75"
+    />
+  )
 }
 
 const projects = [
