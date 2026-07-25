@@ -8,7 +8,7 @@ export default function About() {
         <Reveal>
           <div className="section-head">
             <span className="eyebrow">About me</span>
-            <h2 className="display">Nutrition science meets <br />handwritten code.</h2>
+            <h2 className="display">Nutrition science meets <br />code.</h2>
           </div>
         </Reveal>
 
@@ -27,8 +27,7 @@ export default function About() {
                 cross-referencing Malawian food composition tables, and writing nutrition care
                 plans by hand. I automated the tedious parts first, then kept going. What started
                 as a 24-hour recall calculator is now <strong>Oasis CNST</strong> — a full clinical
-                nutrition software suite running offline-first in resource-limited healthcare
-                settings.
+                nutrition software suite.
               </p>
             </div>
           </Reveal>

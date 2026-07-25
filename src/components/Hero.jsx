@@ -30,8 +30,7 @@ export default function Hero() {
           </h1>
 
           <p className="lead hero-enter hero-enter-3">
-            I'm Edison Taimu, an aspiring clinical dietitian from Malawi. I believe
-            good nutrition should be practical, affordable, and easy to understand.
+            Good nutrition should be practical, affordable, and easy to understand.
           </p>
 
           <p className="lead hero-enter hero-enter-3">
