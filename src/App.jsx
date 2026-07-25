@@ -1,6 +1,7 @@
 import './index.css'
 import Nav          from './components/Nav'
 import Hero         from './components/Hero'
+import NutritionFoundations from './components/NutritionFoundations'
 import About        from './components/About'
 import NutritionSnapshot from './components/NutritionSnapshot'
 import Skills       from './components/Skills'
@@ -16,6 +17,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
+        <NutritionFoundations />
         <About />
         <NutritionSnapshot />
         <Skills />
