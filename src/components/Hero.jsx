@@ -30,7 +30,8 @@ export default function Hero() {
           </h1>
 
           <p className="lead hero-enter hero-enter-3">
-            Good nutrition should be practical, affordable, and easy to understand.
+            I'm Edison Taimu. Good nutrition should be practical, affordable,
+            and easy to understand.
           </p>
 
           <p className="lead hero-enter hero-enter-3">
