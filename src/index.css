@@ -674,7 +674,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   align-items: center;
   justify-content: center;
   align-self: start;
-  height: 420px;
+  height: 500px;
 }
 .project-visual img {
   width: 100%;
@@ -1133,7 +1133,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .skill-card:first-child { grid-column: 1; }
 
   .project-card { grid-template-columns: 1fr; }
-  .project-visual { height: 220px; }
+  .project-visual { height: 380px; }
 
   .internship-layout { grid-template-columns: 1fr; gap: 40px; }
   .contact-grid { grid-template-columns: 1fr; }
