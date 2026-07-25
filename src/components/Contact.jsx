@@ -116,13 +116,13 @@ export default function Contact() {
                 form or email me directly below.
               </p>
 
-              <a href="mailto:edisontaimu@gmail.com" className="contact-email">
+              <a href="mailto:edisontaimu9@gmail.com" className="contact-email">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect width="20" height="16" x="2" y="4" rx="2"/>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                 </svg>
-                edisontaimu@gmail.com
+                edisontaimu9@gmail.com
               </a>
 
               <div className="contact-links">
@@ -175,9 +175,9 @@ export default function Contact() {
                       color: '#f87171',
                     }}>
                       Something went wrong. Try emailing me directly at{' '}
-                      <a href="mailto:edisontaimu@gmail.com"
+                      <a href="mailto:edisontaimu9@gmail.com"
                         style={{ color: 'inherit', textDecoration: 'underline' }}>
-                        edisontaimu@gmail.com
+                        edisontaimu9@gmail.com
                       </a>
                     </div>
                   )}
