@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Reveal from './Reveal'
-import { SiJavascript, SiAppwrite, SiGithubpages } from 'react-icons/si'
+import { SiJavascript, SiAppwrite, SiGithubpages, SiReact } from 'react-icons/si'
 import { TbApi } from 'react-icons/tb'
 import { HiOutlineDevicePhoneMobile } from 'react-icons/hi2'
 import oasisHome from '../assets/oasis-home.jpg'
@@ -151,6 +151,42 @@ function ChakudyaVisual() {
   )
 }
 
+function AppVisual({ title, subtitle, mark }) {
+  return (
+    <div style={{
+      width: '100%', height: '100%',
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      gap: '16px',
+      background: 'var(--surface-2)',
+      padding: '32px',
+      textAlign: 'center',
+    }}>
+      <span style={{
+        width: 56, height: 56, borderRadius: 14,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: 'var(--accent)', color: '#fff',
+        fontFamily: 'var(--font-display)', fontSize: '1.3rem', fontWeight: 700,
+      }}>{mark}</span>
+      <div>
+        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.15rem', color: 'var(--text)' }}>
+          {title}
+        </div>
+        <div style={{ fontSize: '.8rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+          {subtitle}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function DietitianOsVisual() {
+  return <AppVisual title="DietitianOS" subtitle="Practice management for dietitians" mark="D" />
+}
+
+function NcrsVisual() {
+  return <AppVisual title="NCRS" subtitle="Nutrition Care Registry System" mark="N" />
+}
+
 const projects = [
   {
     id:     'oasis',
@@ -208,6 +244,37 @@ const projects = [
       img: nutritionLabelImg,
       text: 'Every entry resolves down to label-level detail: serving size, macros and micronutrients.',
     },
+  },
+  {
+    id:     'dietitianos',
+    title:  'DietitianOS',
+    status: 'Live · dietitianos',
+    live:   true,
+    desc: `A practice management web app built for dietitians running their own caseload.
+    Covers patient records, appointment scheduling, a food database, and reporting from a
+    single dashboard, with dark mode for long shifts.`,
+    tech:   [
+      { label: 'React', Icon: SiReact, color: '#61DAFB' },
+      'REST APIs',
+    ],
+    demo:   'https://edisontaimu9-ui.github.io/dietitianos/',
+    repo:   'https://github.com/edisontaimu9-ui/dietitianos',
+    visual: <DietitianOsVisual />,
+  },
+  {
+    id:     'ncrs',
+    title:  'NCRS · Nutrition Care Registry System',
+    status: 'Live · ncrs-frontend',
+    live:   true,
+    desc: `A facility-side nutrition registry for tracking patient admissions, discharges,
+    and active caseloads, with structured ADIME note documentation built in for clinical
+    record-keeping.`,
+    tech:   [
+      { label: 'React', Icon: SiReact, color: '#61DAFB' },
+      'REST APIs',
+    ],
+    repo:   'https://github.com/edisontaimu9-ui/ncrs-frontend',
+    visual: <NcrsVisual />,
   },
 ]
 
