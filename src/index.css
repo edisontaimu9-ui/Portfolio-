@@ -150,6 +150,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--on-accent);
 }
 .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 0 20px var(--accent-glow); }
+.btn-primary:disabled { opacity: .85; cursor: default; }
+
+.btn-spinner {
+  animation: btn-spin .7s linear infinite;
+}
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
 
 .btn-ghost {
   background: transparent;
@@ -242,6 +250,62 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--text-muted);
   margin-left: auto;
 }
+
+/* Nav icon toggle */
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: color .2s, background .2s;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  background: var(--surface-2);
+}
+.theme-toggle svg {
+  position: absolute;
+  transition: opacity .2s ease, transform .3s ease;
+}
+.theme-toggle .icon-sun  { opacity: 0; transform: rotate(-90deg) scale(.6); }
+.theme-toggle .icon-moon { opacity: 1; transform: rotate(0)        scale(1); }
+:root[data-theme="light"] .theme-toggle .icon-sun  { opacity: 1; transform: rotate(0)       scale(1); }
+:root[data-theme="light"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg)   scale(.6); }
+
+.nav-theme-toggle { margin-left: 4px; }
+
+/* Mobile drawer toggle row */
+.theme-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color .2s;
+}
+.theme-toggle-row:hover { color: var(--accent); }
+
+.theme-toggle-mobile {
+  position: relative;
+  display: inline-flex;
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+}
+.theme-toggle-mobile svg {
+  position: absolute;
+  top: 0; left: 0;
+  transition: opacity .2s ease, transform .3s ease;
+}
+.theme-toggle-mobile .icon-sun  { opacity: 0; transform: rotate(-90deg) scale(.6); }
+.theme-toggle-mobile .icon-moon { opacity: 1; transform: rotate(0)        scale(1); }
+:root[data-theme="light"] .theme-toggle-mobile .icon-sun  { opacity: 1; transform: rotate(0)       scale(1); }
+:root[data-theme="light"] .theme-toggle-mobile .icon-moon { opacity: 0; transform: rotate(90deg)   scale(.6); }
 
 .theme-toggle-float {
   position: fixed;
@@ -1094,4 +1158,5 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .ecg-path { animation: none; stroke-dashoffset: 0; }
   .marquee-track { animation: none; }
   .hero-enter { opacity: 1; transform: none; animation: none; }
+  .btn-spinner { animation: none; }
 }

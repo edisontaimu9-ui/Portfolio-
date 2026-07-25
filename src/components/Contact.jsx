@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Reveal from './Reveal'
 
 /*
@@ -48,10 +48,17 @@ function XIcon() {
 export default function Contact() {
   const [form, setForm]     = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const confirmRef = useRef(null)
 
   function handleChange(e) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
+
+  useEffect(() => {
+    if (status === 'sent' && confirmRef.current) {
+      confirmRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+  }, [status])
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -66,7 +73,7 @@ export default function Contact() {
           name:         form.name,
           email:        form.email,
           message:      form.message,
-          subject:      `Portfolio message from ${form.name}`,
+          subject:      `Portfolio message from ${form.name} (${form.email})`,
           from_name:    'Edison Taimu Portfolio',
           /* Redirect spam to a honeypot so you don't get bot mail */
           botcheck:     '',
@@ -146,7 +153,7 @@ export default function Contact() {
           <Reveal delay={160}>
             <form onSubmit={handleSubmit} noValidate>
               {status === 'sent' ? (
-                <div style={{
+                <div ref={confirmRef} style={{
                   padding: '32px',
                   background: 'var(--surface)',
                   border: '1px solid var(--border)',
@@ -210,6 +217,12 @@ export default function Contact() {
                   </div>
                   <div className="form-foot">
                     <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
+                      {status === 'sending' && (
+                        <svg className="btn-spinner" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+                          <path d="M21 12a9 9 0 1 1-9-9" />
+                        </svg>
+                      )}
                       {status === 'sending' ? 'Sending…' : status === 'error' ? 'Try again' : 'Send message'}
                     </button>
                     <span className="form-note">Usually responds within 48 hours.</span>
