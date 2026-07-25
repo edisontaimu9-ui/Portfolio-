@@ -7,7 +7,7 @@ export default function Footer() {
         <a href="#home" className="logo" style={{ display: 'inline-flex', gap: '10px', alignItems: 'center' }}>
           <span className="logo-mark" style={{
             width: '26px', height: '26px', borderRadius: '6px',
-            background: 'var(--accent)', color: '#09090b',
+            background: 'var(--accent)', color: 'var(--on-accent)',
             fontSize: '.65rem', fontWeight: 700,
             display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>ET</span>
