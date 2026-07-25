@@ -237,7 +237,9 @@ export default function Projects() {
                   <p className="project-desc">{desc}</p>
                   {highlight && (
                     <div className="media-highlight">
-                      <img src={highlight.img} alt="" />
+                      <div className="media-highlight-img">
+                        <img src={highlight.img} alt="" />
+                      </div>
                       <span>{highlight.text}</span>
                     </div>
                   )}

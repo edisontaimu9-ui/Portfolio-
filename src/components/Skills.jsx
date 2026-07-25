@@ -62,7 +62,9 @@ export default function Skills() {
                     ))}
                   </div>
                   <div className="media-highlight">
-                    <img src={parenteralImg} alt="Parenteral nutrition infusion bag on a drip stand" />
+                    <div className="media-highlight-img">
+                      <img src={parenteralImg} alt="Parenteral nutrition infusion bag on a drip stand" />
+                    </div>
                     <span>Hands-on with enteral & parenteral nutrition delivery during critical-care rotations.</span>
                   </div>
                 </div>

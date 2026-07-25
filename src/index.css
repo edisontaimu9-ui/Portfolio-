@@ -715,12 +715,17 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px;
-  transition: border-color .2s;
+  transition: border-color .25s, box-shadow .25s, transform .25s;
 }
-.pillar-card:hover { border-color: var(--border-hi); }
+.pillar-card:hover {
+  border-color: var(--border-hi);
+  box-shadow: 0 16px 32px -12px rgba(0,0,0,.25);
+  transform: translateY(-3px);
+}
 
 .pillar-card-img {
-  width: 52px; height: 52px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius-sm);
   overflow: hidden;
   margin-bottom: 16px;
@@ -731,6 +736,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform .5s ease;
+}
+.pillar-card:hover .pillar-card-img img {
+  transform: scale(1.08);
 }
 
 .pillar-card h3 {
@@ -794,14 +803,28 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
+  transition: box-shadow .25s;
 }
-.media-highlight img {
+.media-highlight:hover {
+  box-shadow: 0 12px 24px -10px rgba(0,0,0,.25);
+}
+.media-highlight-img {
   width: 92px;
   height: 92px;
   border-radius: calc(var(--radius-sm) - 2px);
-  object-fit: cover;
+  overflow: hidden;
   flex-shrink: 0;
   border: 1px solid var(--border);
+}
+.media-highlight img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.media-highlight:hover img {
+  transform: scale(1.08);
 }
 .media-highlight span {
   font-size: .8rem;
