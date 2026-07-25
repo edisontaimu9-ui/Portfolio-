@@ -18,11 +18,11 @@ export default function App() {
       <main>
         <Hero />
         <About />
-        <Experience />
-        <Skills />
-        <Projects />
         <NutritionFoundations />
         <NutritionSnapshot />
+        <Projects />
+        <Skills />
+        <Experience />
         <Opportunities />
         <Contact />
       </main>

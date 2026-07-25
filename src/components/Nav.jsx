@@ -3,9 +3,9 @@ import ThemeToggle from './ThemeToggle'
 
 const links = [
   { href: '#about',      label: 'About',       id: 'about'      },
-  { href: '#experience', label: 'Experience',   id: 'experience' },
-  { href: '#skills',     label: 'Skills',       id: 'skills'     },
   { href: '#projects',   label: 'Work',         id: 'projects'   },
+  { href: '#skills',     label: 'Skills',       id: 'skills'     },
+  { href: '#experience', label: 'Experience',   id: 'experience' },
   { href: '#internship', label: 'Opportunities',id: 'internship' },
 ]
 

@@ -91,6 +91,33 @@ export default function Skills() {
             </div>
           </Reveal>
 
+          {/* Food service management card */}
+          <Reveal delay={120}>
+            <div className="skill-card">
+              <span className="skill-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                  <path d="M7 2v20"/>
+                  <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                </svg>
+              </span>
+              <h3>Food Service Management</h3>
+              <p>
+                Menu planning and costing, quantity food production, and procurement &amp;
+                inventory control learned across hospital food service rotations — turning
+                clinical nutrition requirements into meals that are safe, cost-effective, and
+                deliverable at scale.
+              </p>
+              <div className="chip-row">
+                {['Menu Costing','Quantity Food Production','Procurement & Inventory',
+                  'Food Safety (HACCP)','Portion Control'].map(c => (
+                  <span className="chip" key={c}>{c}</span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
           {/* Protocols card */}
           <Reveal delay={160}>
             <div className="skill-card">
