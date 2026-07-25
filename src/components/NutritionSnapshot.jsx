@@ -68,7 +68,7 @@ export default function NutritionSnapshot() {
         <Reveal delay={100}>
           <p className="internship-lead snapshot-lead">
             This is the public health side of the work. I didn't start building clinical
-            software because I liked code — I started because these numbers kept showing up
+            software because I liked code. I started because these numbers kept showing up
             in my caseload. Malawi is currently
             <strong> 'on course' to meet only two</strong> of the global nutrition targets
             with enough data to be assessed. This is the gap my clinical training and my
@@ -116,14 +116,16 @@ export default function NutritionSnapshot() {
         <Reveal delay={150}>
           <div className="snapshot-cta">
             <div>
-              <p className="snapshot-cta-title">This is the gap I work in — clinically and in code.</p>
+              <p className="snapshot-cta-title">This is the gap I work in, clinically and in code.</p>
               <p className="snapshot-cta-text">
-                I offer nutrition consultations, clinical dietetics support, screening &amp;
-                NCP audits, and food-data reviews for teams building health tools of their own.
+                If any of that overlaps with what you're working on, nutrition
+                consultations, clinical dietetics support, screening and NCP audits,
+                or food-data reviews for a health tool of your own, I'd like to hear
+                about it.
               </p>
             </div>
             <a href="#contact" className="btn btn-primary">
-              Book my services
+              Let's talk
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>

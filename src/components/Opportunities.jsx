@@ -83,7 +83,7 @@ export default function Opportunities() {
             <div>
               <p className="internship-lead">
                 I'm actively seeking internships and fellowships at the intersection of
-                clinical and public health nutrition and health technology — global health
+                clinical and public health nutrition and health technology: global health
                 innovation programmes, digital health research roles, and clinical informatics
                 positions where the work has direct patient and population impact in
                 low-resource settings.
@@ -91,7 +91,7 @@ export default function Opportunities() {
               <p className="internship-lead">
                 I bring a rare dual profile: clinical dietetics training grounded in
                 Malawi-specific protocols, and a working software portfolio built entirely
-                from that clinical need. I'm not transitioning into tech — I'm already in
+                from that clinical need. I'm not transitioning into tech. I'm already in
                 both. I apply ASPEN and write Firebase rules in the same afternoon.
               </p>
               <p className="internship-lead">

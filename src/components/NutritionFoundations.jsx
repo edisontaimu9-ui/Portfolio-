@@ -9,7 +9,7 @@ const pillars = [
   {
     img: wholeFoodsImg,
     title: 'Growth & repair',
-    text: 'Protein, calcium and vitamin D are the raw materials the body uses to build muscle, bone and tissue — a need that never really stops, from childhood through adulthood.',
+    text: 'Protein, calcium and vitamin D are the raw materials the body uses to build muscle, bone and tissue, a need that never really stops, from childhood through adulthood.',
   },
   {
     img: heartImg,
@@ -19,7 +19,7 @@ const pillars = [
   {
     img: brainImg,
     title: 'Mental & emotional health',
-    text: 'Nutrients like omega-3s and key vitamins shape mood and cognitive function. Nutrition care is rarely just physical — it touches how people think and feel too.',
+    text: 'Nutrients like omega-3s and key vitamins shape mood and cognitive function. Nutrition care is rarely just physical. It touches how people think and feel too.',
   },
   {
     img: habitsImg,
@@ -44,7 +44,7 @@ export default function NutritionFoundations() {
           <Reveal delay={80}>
             <p className="internship-lead">
               Food is more than fuel. What someone eats shapes their energy, their immune
-              system, their long-term risk of disease, and even their mental clarity — which
+              system, their long-term risk of disease, and even their mental clarity, which
               is exactly why nutrition sits at the center of preventive healthcare, not the
               edges of it. Good nutrition should be practical enough for real budgets and real
               schedules, or it doesn't hold up outside a textbook.

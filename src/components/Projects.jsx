@@ -144,7 +144,7 @@ function ChakudyaVisual() {
     }}>
       <img
         src={chakudyaIllustration}
-        alt="Chakudya Nutrition Registry (CNR) — open food and nutrition data infrastructure"
+        alt="Chakudya Nutrition Registry (CNR): open food and nutrition data infrastructure"
         style={{ width: '100%', height: '100%', objectFit: 'contain' }}
       />
     </div>
@@ -206,7 +206,7 @@ const projects = [
     visual: <ChakudyaVisual />,
     highlight: {
       img: nutritionLabelImg,
-      text: 'Every entry resolves down to label-level detail — serving size, macros and micronutrients.',
+      text: 'Every entry resolves down to label-level detail: serving size, macros and micronutrients.',
     },
   },
 ]

@@ -50,7 +50,7 @@ export default function Skills() {
                   <h3>Clinical & Public Health Nutrition</h3>
                   <p>
                     Comprehensive nutrition assessment and screening, enteral and parenteral
-                    nutrition support, and structured care plan documentation at the bedside —
+                    nutrition support, and structured care plan documentation at the bedside,
                     plus community nutrition programming and population-level screening.
                     Experienced across paediatric, renal, diabetes, and critical care settings,
                     applying international and national clinical guidelines.
@@ -105,7 +105,7 @@ export default function Skills() {
               <h3>Food Service Management</h3>
               <p>
                 Menu planning and costing, quantity food production, and procurement &amp;
-                inventory control learned across hospital food service rotations — turning
+                inventory control learned across hospital food service rotations, turning
                 clinical nutrition requirements into meals that are safe, cost-effective, and
                 deliverable at scale.
               </p>

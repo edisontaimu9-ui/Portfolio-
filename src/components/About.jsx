@@ -21,16 +21,16 @@ export default function About() {
                 A BSc Nutrition & Dietetics graduate (Pioneer Cohort) from
                 <strong> Kamuzu University of Health Sciences (KUHeS)</strong> in Blantyre,
                 Malawi, I work across both <strong>clinical dietetics</strong> and
-                <strong> public health nutrition</strong> — from bedside care plans to
+                <strong> public health nutrition</strong>, from bedside care plans to
                 population-level nutrition data. I built clinical nutrition software out of a
-                need that existed long before I knew how to write a line of code — the gap
+                need that existed long before I knew how to write a line of code: the gap
                 between what evidence-based nutrition care demands and what the ward actually has.
               </p>
               <p>
                 During clinical rotations I found myself manually computing dietary recalls,
                 cross-referencing Malawian food composition tables, and writing nutrition care
                 plans by hand. I automated the tedious parts first, then kept going. What started
-                as a 24-hour recall calculator is now <strong>Oasis CNST</strong> — a full clinical
+                as a 24-hour recall calculator is now <strong>Oasis CNST</strong>, a full clinical
                 nutrition software suite.
               </p>
 
@@ -39,19 +39,19 @@ export default function About() {
                   <h3 className="ncp-explainer-title">What does a dietitian actually do?</h3>
                   <p className="ncp-explainer-lead">
                     If you're not from a health background, "dietitian" can sound like it just means
-                    meal plans. In practice, it's a structured process — the same one I follow for every
+                    meal plans. In practice, it's a structured process, the same one I follow for every
                     patient, and the same thinking behind the software I build:
                   </p>
                   <div className="ncp-steps">
                     <div className="ncp-step">
                       <span className="ncp-step-num">1</span>
                       <h4>Get to know the patient</h4>
-                      <p>Understand their health history, lifestyle, budget and what actually matters to them — not just what's on their plate.</p>
+                      <p>Understand their health history, lifestyle, budget and what actually matters to them, not just what's on their plate.</p>
                     </div>
                     <div className="ncp-step">
                       <span className="ncp-step-num">2</span>
                       <h4>Find the real issue</h4>
-                      <p>Turn that information into a clear nutrition diagnosis — the specific problem to solve, not just a symptom.</p>
+                      <p>Turn that information into a clear nutrition diagnosis: the specific problem to solve, not just a symptom.</p>
                     </div>
                     <div className="ncp-step">
                       <span className="ncp-step-num">3</span>
@@ -65,7 +65,7 @@ export default function About() {
                     </div>
                   </div>
                   <p className="ncp-explainer-foot">
-                    That loop — assess, diagnose, plan, monitor — is what dietitians call the Nutrition
+                    That loop (assess, diagnose, plan, monitor) is what dietitians call the Nutrition
                     Care Process. It's also, more or less, what I'm trying to digitize in Oasis CNST.
                   </p>
                 </div>
