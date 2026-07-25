@@ -63,6 +63,43 @@ export default function About() {
           </Reveal>
         </div>
 
+        <Reveal delay={140}>
+          <div className="ncp-explainer">
+            <h3 className="ncp-explainer-title">What does a dietitian actually do?</h3>
+            <p className="ncp-explainer-lead">
+              If you're not from a health background, "dietitian" can sound like it just means
+              meal plans. In practice, it's a structured process — the same one I follow for every
+              patient, and the same thinking behind the software I build:
+            </p>
+            <div className="ncp-steps">
+              <div className="ncp-step">
+                <span className="ncp-step-num">1</span>
+                <h4>Get to know the patient</h4>
+                <p>Understand their health history, lifestyle, budget and what actually matters to them — not just what's on their plate.</p>
+              </div>
+              <div className="ncp-step">
+                <span className="ncp-step-num">2</span>
+                <h4>Find the real issue</h4>
+                <p>Turn that information into a clear nutrition diagnosis — the specific problem to solve, not just a symptom.</p>
+              </div>
+              <div className="ncp-step">
+                <span className="ncp-step-num">3</span>
+                <h4>Build a plan together</h4>
+                <p>Set goals with the patient, not for them, and choose an intervention that fits their real life.</p>
+              </div>
+              <div className="ncp-step">
+                <span className="ncp-step-num">4</span>
+                <h4>Follow up & adjust</h4>
+                <p>Track progress, monitor outcomes, and change course when something isn't working.</p>
+              </div>
+            </div>
+            <p className="ncp-explainer-foot">
+              That loop — assess, diagnose, plan, monitor — is what dietitians call the Nutrition
+              Care Process. It's also, more or less, what I'm trying to digitize in Oasis CNST.
+            </p>
+          </div>
+        </Reveal>
+
       </div>
     </section>
   )

@@ -12,6 +12,7 @@ import thanziDiary from '../assets/thanzi-diary.jpg'
 import thanziProgress from '../assets/thanzi-progress.jpg'
 import thanziAiAssistant from '../assets/thanzi-ai-assistant.jpg'
 import chakudyaIllustration from '../assets/chakudya-illustration.png'
+import nutritionLabelImg from '../assets/nutrition-facts-label.jpg'
 
 function ArrowRight() {
   return (
@@ -203,6 +204,10 @@ const projects = [
     tech:   ['Malawi FCT 2019','USDA FDC','REST API','Appwrite','Node.js'],
     repo:   'https://github.com/edisontaimu9-ui',
     visual: <ChakudyaVisual />,
+    highlight: {
+      img: nutritionLabelImg,
+      text: 'Every entry resolves down to label-level detail — serving size, macros and micronutrients.',
+    },
   },
 ]
 
@@ -219,7 +224,7 @@ export default function Projects() {
         </Reveal>
 
         <div className="projects-list">
-          {projects.map(({ id, title, status, live, desc, tech, demo, repo, visual }) => (
+          {projects.map(({ id, title, status, live, desc, tech, demo, repo, visual, highlight }) => (
             <Reveal key={id} delay={100}>
               <div className="project-card">
                 <div className="project-visual">{visual}</div>
@@ -230,6 +235,12 @@ export default function Projects() {
                   </span>
                   <h3 className="project-title">{title}</h3>
                   <p className="project-desc">{desc}</p>
+                  {highlight && (
+                    <div className="media-highlight">
+                      <img src={highlight.img} alt="" />
+                      <span>{highlight.text}</span>
+                    </div>
+                  )}
                   <div className="chip-row">
                     {tech.map(t => {
                       const label = typeof t === 'string' ? t : t.label

@@ -569,6 +569,74 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--text-muted);
 }
 
+/* ── About: "what does a dietitian do" explainer ────────────────── */
+.ncp-explainer {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.ncp-explainer-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.ncp-explainer-lead {
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 680px;
+  margin-bottom: 28px;
+}
+.ncp-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.ncp-step {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.ncp-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface-3);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .85rem;
+  margin-bottom: 14px;
+}
+.ncp-step h4 {
+  font-family: var(--font-display);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.ncp-step p {
+  font-size: .82rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.ncp-explainer-foot {
+  font-size: .85rem;
+  color: var(--text-subtle);
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+@media (max-width: 720px) {
+  .ncp-steps { grid-template-columns: 1fr 1fr; }
+}
+
 /* ── Skills ──────────────────────────────────────────────────── */
 .skills-grid {
   display: grid;
@@ -713,6 +781,31 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   flex-shrink: 0;
 }
 .marquee-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+/* ── Media highlight (small photo + caption, used in Skills & Projects) ── */
+.media-highlight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 10px 12px 10px 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.media-highlight img {
+  width: 52px;
+  height: 52px;
+  border-radius: calc(var(--radius-sm) - 2px);
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.media-highlight span {
+  font-size: .78rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
 
 /* ── Projects ────────────────────────────────────────────────── */
 .projects-list {
