@@ -1,8 +1,4 @@
-import { useTypewriter } from '../hooks/useTypewriter'
-
 export default function Hero() {
-  const text = useTypewriter()
-
   return (
     <section id="home" className="hero">
 
@@ -26,29 +22,30 @@ export default function Hero() {
         <div className="hero-content">
           <div className="hero-top hero-enter hero-enter-1">
             <span className="avatar" aria-hidden="true">ET</span>
-            <span className="eyebrow">Aspiring Clinical Dietitian · Zomba, Malawi</span>
+            <span className="eyebrow">Aspiring Clinical Dietitian &bull; Zomba, Malawi</span>
           </div>
 
-          {/* Typewriter */}
-          <h1 className="display tw-host hero-enter hero-enter-2" aria-label={text}>
-            <span className="tw-sizer" aria-hidden="true">
-              Evidence-based nutrition care — and the software I build to support it.
-            </span>
-            <span className="tw-live" aria-live="polite" aria-atomic="true">
-              {text}
-              <span className="typewriter-cursor" aria-hidden="true">|</span>
-            </span>
+          <h1 className="hero-heading hero-enter hero-enter-2">
+            Why is eating healthy so difficult for so many people?
           </h1>
 
           <p className="lead hero-enter hero-enter-3">
-            I design diets for people who can't afford the ones in the textbooks.
-            I calculate tube feeds with whatever formula is actually on the shelf
-            that morning. I counsel patients through diabetes and renal disease
-            while mentally recalculating their meal plan because the recommended
-            food costs three times their daily budget. That's the job. The part
-            they don't warn you about is the paperwork — so I taught myself to
-            code out of pure survival instinct. Now I design diets and write code.
-            Let's build something helpful. My patients are waiting.
+            I'm Edison Taimu, an aspiring clinical dietitian from Malawi. I believe
+            good nutrition should be practical, affordable, and easy to understand.
+          </p>
+
+          <p className="lead hero-enter hero-enter-3">
+            I help people make healthier food choices that fit their health, their
+            budget, and their everyday lives. Along the way, I discovered that many
+            healthcare challenges could be solved with better digital tools. So I
+            taught myself software development and now build applications that make
+            nutrition care simpler for patients and healthcare professionals.
+          </p>
+
+          <p className="lead hero-enter hero-enter-3">
+            Whether I'm working with people in a clinic or building technology, my
+            goal is the same: to make healthy living more accessible, one solution
+            at a time.
           </p>
 
           <div className="cta-row hero-enter hero-enter-4">

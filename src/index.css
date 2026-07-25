@@ -349,15 +349,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   grid-template-columns: 1fr 360px;
   gap: 64px;
   align-items: center;
-  padding-top: 48px;
-  padding-bottom: 80px;
+  padding-top: 64px;
+  padding-bottom: 96px;
+}
+
+.hero-content {
+  max-width: 650px;
 }
 
 .hero-top {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 .avatar {
@@ -374,31 +378,26 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   flex-shrink: 0;
 }
 
-/* Typewriter */
-.tw-host {
-  position: relative;
+/* Hero heading */
+.hero-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5.4vw, 4rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text);
   margin-bottom: 28px;
 }
-.tw-sizer {
-  visibility: hidden;
-  display: block;
+
+.hero-content .lead + .lead {
+  margin-top: 18px;
 }
-.tw-live {
-  position: absolute;
-  top: 0; left: 0;
-}
-.typewriter-cursor {
-  display: inline-block;
-  color: var(--accent);
-  animation: blink .8s step-start infinite;
-}
-@keyframes blink { 50% { opacity: 0; } }
 
 .cta-row {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 36px;
+  margin-top: 40px;
 }
 
 /* Hero stat cards */
@@ -1061,8 +1060,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; }
+  .hero-grid { grid-template-columns: 1fr; padding-top: 40px; padding-bottom: 64px; }
   .hero-visual { display: none; }
+  .hero-content { max-width: 100%; }
 
   .about-grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
@@ -1081,6 +1081,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 @media (max-width: 600px) {
   .section { padding: 64px 0; }
   .display { font-size: clamp(1.65rem, 7vw, 2rem); }
+  .hero-heading { font-size: clamp(1.85rem, 8vw, 2.25rem); margin-bottom: 20px; }
+  .hero-top { margin-bottom: 24px; }
+  .cta-row { margin-top: 32px; }
   .interest-grid { grid-template-columns: 1fr; }
   .timeline-item { grid-template-columns: 80px 1fr; }
   .footer { flex-direction: column; align-items: flex-start; }
@@ -1090,5 +1093,5 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .ecg-path { animation: none; stroke-dashoffset: 0; }
   .marquee-track { animation: none; }
-  .typewriter-cursor { animation: none; }
+  .hero-enter { opacity: 1; transform: none; animation: none; }
 }
