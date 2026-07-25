@@ -116,7 +116,7 @@ function OnePhone({ shots, label }) {
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       background: 'var(--surface-2)',
     }}>
-      <PhoneFrame height="92%">
+      <PhoneFrame height="98%">
         <ScreenshotCarousel shots={shots} label={label} />
       </PhoneFrame>
     </div>
@@ -143,7 +143,7 @@ function ChakudyaVisual() {
     }}>
       <img
         src={chakudyaIllustration}
-        alt="Chakudya API — open food and nutrition data infrastructure"
+        alt="Chakudya Nutrition Registry (CNR) — open food and nutrition data infrastructure"
         style={{ width: '100%', height: '100%', objectFit: 'contain' }}
       />
     </div>
@@ -173,14 +173,14 @@ const projects = [
     status: 'In development',
     live:   false,
     desc: `A consumer nutrition tracking progressive web application (PWA) built on the 
-    Chakudya API. It enables daily meal logging, nutrient and macronutrient tracking, BMI, 
+    Chakudya Nutrition Registry (CNR). It enables daily meal logging, nutrient and macronutrient tracking, BMI, 
     BMR, and TDEE assessments, recipe nutrition analysis, personalized dashboards, user 
     profiles, and a responsive light/dark interface. The application serves as a 
     production-ready demonstration of the Chakudya nutrition data infrastructure.`,
     tech:   [
       { label: 'Vanilla JS',    Icon: SiJavascript,             color: '#F7DF1E' },
       { label: 'Appwrite',      Icon: SiAppwrite,                color: '#FD366E' },
-      { label: 'Chakudya API',  Icon: TbApi,                     color: '#2fbfa4' },
+      { label: 'Chakudya CNR',  Icon: TbApi,                     color: '#2fbfa4' },
       { label: 'GitHub Pages',  Icon: SiGithubpages,             color: '#FFFFFF' },
       { label: 'PWA',           Icon: HiOutlineDevicePhoneMobile, color: '#8B8B8B' },
     ],
@@ -189,10 +189,10 @@ const projects = [
   },
   {
     id:     'chakudya',
-    title:  'Chakudya API',
+    title:  'Chakudya Nutrition Registry (CNR)',
     status: 'In development',
     live:   false,
-    desc: `Chakudya API is an open food and nutrition data service built on the authoritative 
+    desc: `Chakudya Nutrition Registry (CNR) is an open food and nutrition data service built on the authoritative 
     Malawi Food Composition Table (2019). It extends this national resource with exchange 
     lists, renal diet classifications, and commonly consumed packaged supermarket foods. 
     Designed as shared public infrastructure, Chakudya enables standardized, extensible, 

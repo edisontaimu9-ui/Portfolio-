@@ -24,7 +24,7 @@ const entries = [
     org:   'Independent',
     desc: `Building Oasis CNST, a clinical nutrition PWA with 11+ modules, evolved from an 
     initial dietary recall tool into a comprehensive clinical decision support platform. Also 
-    developed Thanzi, a consumer nutrition tracking application, and Chakudya API, Malawi's 
+    developed Thanzi, a consumer nutrition tracking application, and Chakudya Nutrition Registry (CNR), Malawi's 
     first open food composition database.`,
   },
 ]

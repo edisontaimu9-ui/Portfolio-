@@ -18,7 +18,7 @@ export default function About() {
               <p>
                 I'm <strong>Edison Taimu</strong>, a BSc Nutrition & Dietetics graduate
                 (Pioneer Cohort) from <strong>Kamuzu University of Health Sciences (KUHeS)</strong>
-                in Zomba, Malawi. I built clinical nutrition software out of a need that existed
+                in Blantyre, Malawi. I built clinical nutrition software out of a need that existed
                 long before I knew how to write a line of code — the gap between what evidence-based
                 nutrition care demands and what the ward actually has.
               </p>
@@ -42,7 +42,7 @@ export default function About() {
               <div className="fact-row">
                 <span className="fact-label">Education</span>
                 <span className="fact-value">BSc Nutrition & Dietetics — KUHeS</span>
-                <span className="fact-sub">Pioneer Cohort · Zomba, Malawi</span>
+                <span className="fact-sub">Pioneer Cohort · Blantyre, Malawi</span>
               </div>
               <div className="fact-row">
                 <span className="fact-label">Clinical focus</span>
@@ -56,7 +56,7 @@ export default function About() {
               </div>
               <div className="fact-row">
                 <span className="fact-label">Currently</span>
-                <span className="fact-value">Building Oasis CNST & Chakudya API</span>
+                <span className="fact-value">Building Oasis CNST & Chakudya Nutrition Registry (CNR)</span>
                 <span className="fact-sub">Seeking global health innovation internship</span>
               </div>
             </div>
