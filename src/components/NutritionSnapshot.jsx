@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import NutritionChart from './NutritionChart'
 
 const miycn = [
   {
@@ -52,11 +53,6 @@ const ncd = [
   { value: '7.9%',  label: 'Diabetes — men',   note: 'adults 18 and over' },
 ]
 
-const compare = [
-  { label: 'Stunting, under-5s', malawi: 35.5, africa: 30.7, max: 40 },
-  { label: 'Wasting, under-5s',  malawi: 2.6,  africa: 6.0,  max: 40 },
-]
-
 export default function NutritionSnapshot() {
   return (
     <section id="nutrition-landscape" className="section">
@@ -79,31 +75,9 @@ export default function NutritionSnapshot() {
           </p>
         </Reveal>
 
-        {/* Compare bars: Malawi vs Africa region */}
+        {/* Malawi vs Africa region — Chart.js */}
         <Reveal delay={150}>
-          <div className="compare-block">
-            {compare.map(({ label, malawi, africa, max }) => (
-              <div className="compare-row" key={label}>
-                <span className="compare-label">{label}</span>
-                <div className="compare-bars">
-                  <div className="compare-bar-track">
-                    <div
-                      className="compare-bar-fill malawi"
-                      style={{ width: `${(malawi / max) * 100}%` }}
-                    />
-                    <span className="compare-bar-tag">Malawi {malawi}%</span>
-                  </div>
-                  <div className="compare-bar-track">
-                    <div
-                      className="compare-bar-fill africa"
-                      style={{ width: `${(africa / max) * 100}%` }}
-                    />
-                    <span className="compare-bar-tag">Africa avg {africa}%</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <NutritionChart />
         </Reveal>
 
         <Reveal delay={200}>

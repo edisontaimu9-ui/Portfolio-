@@ -703,49 +703,18 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 /* ── Nutrition snapshot ──────────────────────────────────────── */
 .snapshot-lead { margin-bottom: 32px; }
 
-.compare-block {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.chart-card {
+  position: relative;
+  height: 280px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 24px 28px;
+  padding: 24px 24px 12px;
   margin-bottom: 36px;
 }
-.compare-row + .compare-row { padding-top: 20px; border-top: 1px solid var(--border); }
-.compare-label {
-  display: block;
-  font-size: .8rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 12px;
+@media (max-width: 640px) {
+  .chart-card { height: 320px; padding: 20px 14px 10px; }
 }
-.compare-bars { display: flex; flex-direction: column; gap: 8px; }
-.compare-bar-track {
-  position: relative;
-  height: 26px;
-  border-radius: 6px;
-  background: var(--surface-2);
-  overflow: hidden;
-}
-.compare-bar-fill {
-  height: 100%;
-  border-radius: 6px;
-  transition: width .6s ease;
-}
-.compare-bar-fill.malawi { background: var(--accent); }
-.compare-bar-fill.africa { background: var(--surface-3); border-right: 1px dashed var(--border-hi); }
-.compare-bar-tag {
-  position: absolute;
-  left: 10px; top: 50%;
-  transform: translateY(-50%);
-  font-size: .72rem;
-  font-weight: 600;
-  color: var(--bg);
-  white-space: nowrap;
-}
-.compare-bar-track:has(.africa) .compare-bar-tag { color: var(--text-muted); }
 
 .metric-group-label {
   font-size: .78rem;
