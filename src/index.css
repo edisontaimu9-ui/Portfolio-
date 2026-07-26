@@ -351,8 +351,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 48px 32px;
-  gap: 8px;
+  padding: 88px 32px 32px;
+  gap: 4px;
+  overflow-y: auto;
   transform: translateX(100%);
   transition: transform .3s cubic-bezier(.4,0,.2,1);
 }
@@ -367,13 +368,48 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 .mobile-link {
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.55rem;
   font-weight: 600;
   color: var(--text-muted);
-  padding: 8px 0;
+  padding: 7px 0;
   transition: color .2s;
 }
 .mobile-link:hover { color: var(--accent); }
+
+.menu-section-label {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 10px;
+}
+.menu-section-label-spaced { margin-top: 32px; }
+
+.menu-elsewhere {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.menu-elsewhere a {
+  font-size: .95rem;
+  color: var(--text-muted);
+  padding: 5px 0;
+  transition: color .2s;
+}
+.menu-elsewhere a:hover { color: var(--accent); }
+
+.menu-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: .78rem;
+  color: var(--text-subtle);
+}
 
 /* ── Hero ────────────────────────────────────────────────────── */
 .hero {
@@ -408,11 +444,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   to { stroke-dashoffset: 0; }
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 64px;
-  align-items: center;
+.hero-inner {
   padding-top: 64px;
   padding-bottom: 96px;
 }
@@ -464,52 +496,30 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin-top: 40px;
 }
 
-/* Hero stat cards */
-.hero-visual {
+/* Hero stat counters — real, specific numbers instead of generic claims */
+.hero-stats {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 56px 0 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
 }
-
-.stat-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 20px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: border-color .2s, box-shadow .2s;
-}
-.stat-card:hover {
-  border-color: var(--border-hi);
-  box-shadow: 0 0 0 1px var(--border-hi);
-}
-
-.stat-icon {
-  width: 40px; height: 40px;
-  border-radius: var(--radius-sm);
-  background: var(--accent-dim);
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.stat-value {
+.hero-stat { margin: 0; }
+.hero-stat-value {
   font-family: var(--font-display);
-  font-size: .95rem;
-  font-weight: 600;
+  font-size: 2.1rem;
+  font-weight: 700;
   color: var(--text);
+  line-height: 1;
 }
-.stat-label {
-  font-size: .7rem;
+.hero-stat-label {
+  margin: 8px 0 0;
+  font-size: .74rem;
   font-weight: 600;
-  letter-spacing: .1em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--text-subtle);
-  margin-top: 2px;
 }
 
 /* Hero entrance */
@@ -1555,9 +1565,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; padding-top: 40px; padding-bottom: 64px; }
-  .hero-visual { display: none; }
+  .hero-inner { padding-top: 40px; padding-bottom: 64px; }
   .hero-content { max-width: 100%; }
+  .hero-stats { gap: 28px; margin-top: 40px; padding-top: 24px; }
 
   .about-grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }

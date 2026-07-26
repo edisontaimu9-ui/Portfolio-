@@ -115,6 +115,7 @@ export default function Nav() {
           </svg>
         </button>
 
+        <span className="menu-section-label">Navigate</span>
         {links.map(({ href, label }) => (
           <a
             key={href}
@@ -134,7 +135,19 @@ export default function Nav() {
           Get in touch →
         </a>
 
+        <span className="menu-section-label menu-section-label-spaced">Elsewhere</span>
+        <div className="menu-elsewhere">
+          <a href="https://github.com/edisontaimu9-ui" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://linkedin.com/in/edison-taimu" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://x.com/edisontaimu" target="_blank" rel="noopener noreferrer">X</a>
+        </div>
+
         <ThemeToggle variant="mobile" />
+
+        <div className="menu-footer">
+          <span>&copy; {new Date().getFullYear()} Edison Taimu</span>
+          <span>Zomba, Malawi</span>
+        </div>
       </div>
     </>
   )

@@ -16,9 +16,7 @@ export default function Hero() {
         </svg>
       </div>
 
-      <div className="container hero-grid">
-
-        {/* Left: copy */}
+      <div className="container hero-inner">
         <div className="hero-content">
           <div className="hero-top hero-enter hero-enter-1">
             <span className="avatar" aria-hidden="true">ET</span>
@@ -30,22 +28,9 @@ export default function Hero() {
           </h1>
 
           <p className="lead hero-enter hero-enter-3">
-            I'm Edison Taimu. Good nutrition should be practical, affordable,
-            and easy to understand.
-          </p>
-
-          <p className="lead hero-enter hero-enter-3">
-            I help people make healthier food choices that fit their health, their
-            budget, and their everyday lives. Along the way, I discovered that many
-            healthcare challenges could be solved with better digital tools. So I
-            taught myself software development and now build applications that make
-            nutrition care simpler for patients and healthcare professionals.
-          </p>
-
-          <p className="lead hero-enter hero-enter-3">
-            Whether I'm working with people in a clinic or building technology, my
-            goal is the same: to make healthy living more accessible, one solution
-            at a time.
+            I'm Edison Taimu. I build clinical nutrition software that makes
+            good nutrition practical, affordable, and easier to access, for
+            patients and the people who care for them.
           </p>
 
           <div className="cta-row hero-enter hero-enter-4">
@@ -58,44 +43,22 @@ export default function Hero() {
             </a>
             <a href="#projects" className="btn btn-ghost">View my work</a>
           </div>
+
+          <dl className="hero-stats hero-enter hero-enter-5">
+            <div className="hero-stat">
+              <dt className="hero-stat-value">4</dt>
+              <dd className="hero-stat-label">Projects shipped</dd>
+            </div>
+            <div className="hero-stat">
+              <dt className="hero-stat-value">57+</dt>
+              <dd className="hero-stat-label">Clinical docs ingested</dd>
+            </div>
+            <div className="hero-stat">
+              <dt className="hero-stat-value">0</dt>
+              <dd className="hero-stat-label">Laptops used</dd>
+            </div>
+          </dl>
         </div>
-
-        {/* Right: stat cards */}
-        <aside className="hero-visual hero-enter hero-enter-5" aria-label="Portfolio highlights">
-          <div className="stat-card">
-            <span className="stat-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
-                <path d="M12 20h.01"/>
-              </svg>
-            </span>
-            <div>
-              <div className="stat-value">Offline-first</div>
-              <div className="stat-label">Low-resource ready</div>
-            </div>
-          </div>
-
-          <div className="stat-card">
-            <span className="stat-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
-                <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
-                <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/>
-                <path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/>
-                <path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/>
-              </svg>
-            </span>
-            <div>
-              <div className="stat-value">AI-assisted NCP</div>
-              <div className="stat-label">ADIME / IDNT documentation</div>
-            </div>
-          </div>
-
-        </aside>
       </div>
     </section>
   )
