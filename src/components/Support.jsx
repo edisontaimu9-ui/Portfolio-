@@ -12,11 +12,29 @@ import Reveal from './Reveal'
 const WORKER_URL = 'https://paychangu-payment-gateway.edisontaimu9.workers.dev'
 
 const MIN_AMOUNT = 500
-const MAX_AMOUNT = 20000
+const MAX_AMOUNT = 100000        // slider ceiling — typed amounts below have no hard cap
 const STOPS = [2000, 5000, 10000]
+const RANGE_STEPS = 1000          // internal slider resolution, log-mapped to amount
 
+const MIN_LOG = Math.log(MIN_AMOUNT)
+const MAX_LOG = Math.log(MAX_AMOUNT)
+
+// 0–100 position along the (log-scaled) dosage line for a given amount.
 function pct(value) {
-  return ((value - MIN_AMOUNT) / (MAX_AMOUNT - MIN_AMOUNT)) * 100
+  const clamped = Math.min(Math.max(value, MIN_AMOUNT), MAX_AMOUNT)
+  return ((Math.log(clamped) - MIN_LOG) / (MAX_LOG - MIN_LOG)) * 100
+}
+
+// Amount -> the range input's own linear 0..RANGE_STEPS value.
+function amountToRange(value) {
+  return Math.round((pct(value) / 100) * RANGE_STEPS)
+}
+
+// The range input's linear value -> a real MWK amount, rounded to the nearest 100.
+function rangeToAmount(raw) {
+  const ratio = raw / RANGE_STEPS
+  const value = Math.exp(MIN_LOG + ratio * (MAX_LOG - MIN_LOG))
+  return Math.round(value / 100) * 100
 }
 
 export default function Support() {
@@ -145,7 +163,6 @@ export default function Support() {
                   type="number"
                   className="support-amount-input"
                   min={MIN_AMOUNT}
-                  max={MAX_AMOUNT}
                   step={100}
                   value={amount}
                   onChange={e => setAmount(Number(e.target.value) || 0)}
@@ -157,11 +174,11 @@ export default function Support() {
                 <input
                   type="range"
                   className="support-scale"
-                  min={MIN_AMOUNT}
-                  max={MAX_AMOUNT}
-                  step={100}
-                  value={Math.min(Math.max(amount, MIN_AMOUNT), MAX_AMOUNT)}
-                  onChange={e => setAmount(Number(e.target.value))}
+                  min={0}
+                  max={RANGE_STEPS}
+                  step={1}
+                  value={amountToRange(amount)}
+                  onChange={e => setAmount(rangeToAmount(Number(e.target.value)))}
                   style={{ '--support-fill': `${fillPct}%` }}
                 />
                 <div className="support-scale-stops">
