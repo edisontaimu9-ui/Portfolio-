@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
+import logo from '../assets/logo.png'
 
 const links = [
   { to: '/about',         label: 'About'        },
@@ -55,7 +56,7 @@ export default function Nav() {
       <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
         <div className="container nav-inner">
           <Link to="/" className="logo">
-            <span className="logo-mark">ET</span>
+            <img src={logo} alt="Edison Taimu" className="logo-mark" />
             Edison Taimu
           </Link>
 

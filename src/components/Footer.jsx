@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import logo from '../assets/logo.png'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -7,12 +8,9 @@ export default function Footer() {
     <footer className="footer container">
       <div className="footer-lead">
         <Link to="/" className="logo" style={{ display: 'inline-flex', gap: '10px', alignItems: 'center' }}>
-          <span className="logo-mark" style={{
-            width: '26px', height: '26px', borderRadius: '6px',
-            background: 'var(--accent)', color: 'var(--on-accent)',
-            fontSize: '.65rem', fontWeight: 700,
-            display: 'flex', alignItems: 'center', justifyContent: 'center'
-          }}>ET</span>
+          <img src={logo} alt="Edison Taimu" style={{
+            width: '26px', height: '26px', borderRadius: '6px', objectFit: 'cover',
+          }} />
           <span style={{ fontSize: '.875rem', color: 'var(--text-muted)' }}>Edison Taimu</span>
         </Link>
       </div>

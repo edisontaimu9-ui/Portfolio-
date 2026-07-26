@@ -7,7 +7,7 @@ const sections = [
     code: 'AB',
     to: '/about',
     title: 'About',
-    summary: 'A BSc Nutrition & Dietetics graduate turned self-taught developer, building the clinical tools I wished existed on the ward.',
+    summary: "I'm a BSc Nutrition & Dietetics graduate turned self-taught developer, building the clinical tools I wished existed on the ward.",
   },
   {
     code: 'PR',

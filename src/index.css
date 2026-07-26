@@ -225,6 +225,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   justify-content: center;
   letter-spacing: .03em;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .nav-links {
@@ -485,6 +486,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 /* Hero heading */
