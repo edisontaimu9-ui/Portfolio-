@@ -9,7 +9,7 @@ import Reveal from './Reveal'
  * PAYCHANGU_SECRET_KEY and forwards requests to PayChangu's Standard
  * Checkout API. Set WORKER_URL below to your deployed worker's URL.
  */
-const WORKER_URL = 'https://paychangu-support-worker.<your-subdomain>.workers.dev'
+const WORKER_URL = 'https://paychangu-payment-gateway.edisontaimu9.workers.dev'
 
 const PRESET_AMOUNTS = [2000, 5000, 10000] // MWK
 
