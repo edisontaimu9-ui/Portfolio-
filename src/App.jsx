@@ -8,6 +8,7 @@ import Projects     from './components/Projects'
 import NutritionFoundations from './components/NutritionFoundations'
 import NutritionSnapshot from './components/NutritionSnapshot'
 import Opportunities from './components/Opportunities'
+import Support       from './components/Support'
 import Contact       from './components/Contact'
 import Footer        from './components/Footer'
 
@@ -24,6 +25,7 @@ export default function App() {
         <Skills />
         <Experience />
         <Opportunities />
+        <Support />
         <Contact />
       </main>
       <Footer />

@@ -7,6 +7,7 @@ const links = [
   { href: '#skills',     label: 'Skills',       id: 'skills'     },
   { href: '#experience', label: 'Experience',   id: 'experience' },
   { href: '#internship', label: 'Opportunities',id: 'internship' },
+  { href: '#support',    label: 'Support',      id: 'support'    },
 ]
 
 export default function Nav() {
