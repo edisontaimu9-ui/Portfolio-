@@ -1,51 +1,47 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 
 const links = [
-  { href: '#about',      label: 'About',       id: 'about'      },
-  { href: '#projects',   label: 'Work',         id: 'projects'   },
-  { href: '#skills',     label: 'Skills',       id: 'skills'     },
-  { href: '#experience', label: 'Experience',   id: 'experience' },
-  { href: '#internship', label: 'Opportunities',id: 'internship' },
-  { href: '#support',    label: 'Support',      id: 'support'    },
+  { to: '/about',         label: 'About'        },
+  { to: '/projects',      label: 'Work'          },
+  { to: '/skills',        label: 'Skills'        },
+  { to: '/experience',    label: 'Experience'    },
+  { to: '/impact',        label: 'Impact'        },
+  { to: '/opportunities', label: 'Opportunities' },
+  { to: '/support',       label: 'Support'       },
 ]
 
 export default function Nav() {
-  const [scrolled,       setScrolled]       = useState(false)
-  const [menuOpen,       setMenuOpen]       = useState(false)
-  const [activeSection,  setActiveSection]  = useState('')
-  const [scrollPct,      setScrollPct]      = useState(0)
+  const location = useLocation()
+  const [scrolled,  setScrolled]  = useState(false)
+  const [menuOpen,  setMenuOpen]  = useState(false)
+  const [scrollPct, setScrollPct] = useState(0)
 
-  /* scroll state */
+  /* scroll state — recomputed per page since each route has its own length */
   useEffect(() => {
     function onScroll() {
       setScrolled(window.scrollY > 8)
-      const docH   = document.documentElement.scrollHeight - window.innerHeight
+      const docH = document.documentElement.scrollHeight - window.innerHeight
       setScrollPct(docH > 0 ? (window.scrollY / docH) * 100 : 0)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  /* active section */
-  useEffect(() => {
-    const ids  = ['home', ...links.map(l => l.id), 'contact']
-    const els  = ids.map(id => document.getElementById(id)).filter(Boolean)
-
-    const obs = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) setActiveSection(e.target.id) }),
-      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
-    )
-    els.forEach(el => obs.observe(el))
-    return () => obs.disconnect()
-  }, [])
+  }, [location.pathname])
 
   /* lock body scroll when mobile menu is open */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
+
+  /* close the mobile menu automatically on navigation */
+  useEffect(() => { setMenuOpen(false) }, [location.pathname])
+
+  function isActive(to) {
+    return location.pathname === to
+  }
 
   return (
     <>
@@ -58,27 +54,27 @@ export default function Nav() {
 
       <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
         <div className="container nav-inner">
-          <a href="#home" className="logo">
+          <Link to="/" className="logo">
             <span className="logo-mark">ET</span>
             Edison Taimu
-          </a>
+          </Link>
 
           <ul className="nav-links" role="list">
-            {links.map(({ href, label, id }) => (
-              <li key={id}>
-                <a
-                  href={href}
-                  className={`nav-link${activeSection === id ? ' active' : ''}`}
+            {links.map(({ to, label }) => (
+              <li key={to}>
+                <Link
+                  to={to}
+                  className={`nav-link${isActive(to) ? ' active' : ''}`}
                 >
                   {label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
 
-          <a href="#contact" className="btn btn-primary btn-sm nav-cta">
+          <Link to="/contact" className="btn btn-primary btn-sm nav-cta">
             Get in touch
-          </a>
+          </Link>
 
           <ThemeToggle className="nav-theme-toggle" />
 
@@ -116,24 +112,14 @@ export default function Nav() {
         </button>
 
         <span className="menu-section-label">Navigate</span>
-        {links.map(({ href, label }) => (
-          <a
-            key={href}
-            href={href}
-            className="mobile-link"
-            onClick={() => setMenuOpen(false)}
-          >
+        {links.map(({ to, label }) => (
+          <Link key={to} to={to} className="mobile-link">
             {label}
-          </a>
+          </Link>
         ))}
-        <a
-          href="#contact"
-          className="mobile-link"
-          style={{ color: 'var(--accent)' }}
-          onClick={() => setMenuOpen(false)}
-        >
+        <Link to="/contact" className="mobile-link" style={{ color: 'var(--accent)' }}>
           Get in touch →
-        </a>
+        </Link>
 
         <span className="menu-section-label menu-section-label-spaced">Elsewhere</span>
         <div className="menu-elsewhere">

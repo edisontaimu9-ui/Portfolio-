@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Hero() {
   return (
     <section id="home" className="hero">
@@ -34,14 +36,14 @@ export default function Hero() {
           </p>
 
           <div className="cta-row hero-enter hero-enter-4">
-            <a href="#contact" className="btn btn-primary">
+            <Link to="/contact" className="btn btn-primary">
               Get in touch
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
               </svg>
-            </a>
-            <a href="#projects" className="btn btn-ghost">View my work</a>
+            </Link>
+            <Link to="/projects" className="btn btn-ghost">View my work</Link>
           </div>
 
           <dl className="hero-stats hero-enter hero-enter-5">

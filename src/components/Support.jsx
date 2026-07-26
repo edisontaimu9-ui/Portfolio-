@@ -63,7 +63,7 @@ export default function Support() {
       .finally(() => {
         params.delete('tx_ref')
         params.delete('status')
-        const clean = window.location.pathname + (params.toString() ? `?${params}` : '') + '#support'
+        const clean = window.location.pathname + (params.toString() ? `?${params}` : '')
         window.history.replaceState({}, '', clean)
       })
   }, [])

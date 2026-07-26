@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 
 const interests = [
@@ -111,13 +112,13 @@ export default function Opportunities() {
                 </div>
               </div>
 
-              <a href="#contact" className="btn btn-primary">
+              <Link to="/contact" className="btn btn-primary">
                 Let's talk
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
                 </svg>
-              </a>
+              </Link>
             </div>
           </Reveal>
 
