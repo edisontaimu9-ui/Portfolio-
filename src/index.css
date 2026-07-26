@@ -421,6 +421,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   overflow: hidden;
 }
 
+/* Ambient glow — gives the hero depth instead of a flat background */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 60%;
+  height: 70%;
+  background: radial-gradient(circle at 30% 20%, var(--accent-glow), transparent 65%);
+  opacity: .5;
+  pointer-events: none;
+}
+
 /* ECG signature element */
 .hero-ecg {
   position: absolute;
@@ -499,27 +512,39 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 /* Hero stat counters — real, specific numbers instead of generic claims */
 .hero-stats {
   display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  align-items: flex-start;
+  gap: 0;
   margin: 56px 0 0;
   padding-top: 32px;
   border-top: 1px solid var(--border);
 }
-.hero-stat { margin: 0; }
+.hero-stat {
+  margin: 0;
+  padding-right: 32px;
+}
+.hero-stat + .hero-stat {
+  padding-left: 32px;
+  border-left: 1px solid var(--border);
+}
 .hero-stat-value {
   font-family: var(--font-display);
-  font-size: 2.1rem;
+  font-size: clamp(1.9rem, 6vw, 2.4rem);
   font-weight: 700;
   color: var(--text);
   line-height: 1;
+  background: linear-gradient(135deg, var(--text) 40%, var(--accent) 140%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .hero-stat-label {
-  margin: 8px 0 0;
-  font-size: .74rem;
+  margin: 10px 0 0;
+  font-size: .72rem;
   font-weight: 600;
-  letter-spacing: .08em;
+  letter-spacing: .07em;
   text-transform: uppercase;
   color: var(--text-subtle);
+  line-height: 1.4;
 }
 
 /* Hero entrance */

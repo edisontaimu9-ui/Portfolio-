@@ -53,10 +53,6 @@ export default function Hero() {
               <dt className="hero-stat-value">57+</dt>
               <dd className="hero-stat-label">Clinical docs ingested</dd>
             </div>
-            <div className="hero-stat">
-              <dt className="hero-stat-value">0</dt>
-              <dd className="hero-stat-label">Laptops used</dd>
-            </div>
           </dl>
         </div>
       </div>
