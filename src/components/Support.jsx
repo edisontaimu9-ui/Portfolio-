@@ -1,26 +1,33 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Reveal from './Reveal'
 
 /*
- * PayChangu "Support me" button.
+ * PayChangu "Support" section.
  *
  * The secret key never lives here — this component only talks to a small
- * Cloudflare Worker (see /paychangu-worker in the project root) that holds
+ * Cloudflare Worker (see the Paychangu-payment-gateway- repo) that holds
  * PAYCHANGU_SECRET_KEY and forwards requests to PayChangu's Standard
  * Checkout API. Set WORKER_URL below to your deployed worker's URL.
  */
 const WORKER_URL = 'https://paychangu-payment-gateway.edisontaimu9.workers.dev'
 
-const PRESET_AMOUNTS = [2000, 5000, 10000] // MWK
+const MIN_AMOUNT = 500
+const MAX_AMOUNT = 20000
+const STOPS = [2000, 5000, 10000]
+
+function pct(value) {
+  return ((value - MIN_AMOUNT) / (MAX_AMOUNT - MIN_AMOUNT)) * 100
+}
 
 export default function Support() {
-  const [amount, setAmount]   = useState(5000)
-  const [custom, setCustom]   = useState('')
-  const [name, setName]       = useState('')
-  const [email, setEmail]     = useState('')
-  const [status, setStatus]   = useState('idle') // idle | redirecting | error
-  const [error, setError]     = useState('')
+  const [amount, setAmount]     = useState(5000)
+  const [name, setName]         = useState('')
+  const [email, setEmail]       = useState('')
+  const [status, setStatus]     = useState('idle') // idle | redirecting | error
+  const [error, setError]       = useState('')
   const [verified, setVerified] = useState(null) // null | 'success' | 'failed'
+
+  const fillPct = useMemo(() => pct(Math.min(Math.max(amount, MIN_AMOUNT), MAX_AMOUNT)), [amount])
 
   // On return from PayChangu, verify the transaction via the worker.
   useEffect(() => {
@@ -45,8 +52,7 @@ export default function Support() {
 
   async function handleSupport(e) {
     e.preventDefault()
-    const finalAmount = custom ? Number(custom) : amount
-    if (!finalAmount || finalAmount <= 0) {
+    if (!amount || amount <= 0) {
       setError('Enter a valid amount.')
       return
     }
@@ -59,7 +65,7 @@ export default function Support() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: finalAmount,
+          amount,
           currency: 'MWK',
           first_name: name || undefined,
           email: email || undefined,
@@ -76,103 +82,133 @@ export default function Support() {
       }
     } catch (err) {
       console.error('PayChangu initiate error:', err)
-      setError('Network error — please try again.')
+      setError('Network error. Please try again.')
       setStatus('idle')
     }
   }
 
   return (
-    <section id="support" className="section">
-      <div className="container">
+    <section id="support" className="section support-section">
+      <div className="container support-grid">
 
+        {/* Left: the case */}
         <Reveal>
-          <div className="section-head">
+          <div className="support-copy">
             <span className="eyebrow">Support</span>
-            <h2 className="display">Support the work.</h2>
+            <h2 className="display support-heading">
+              Help nutrition care in Malawi reach further.
+            </h2>
+            <p className="support-body">
+              I build free clinical nutrition tools for Malawi, from hospital
+              dietetics software to a public food database, one line of code
+              at a time. Whether or not you've used them, if the work
+              resonates, a small gift helps it reach more people.
+            </p>
+            <div className="support-channels">
+              <span>Mobile money</span>
+              <span className="support-channels-dot">·</span>
+              <span>Bank transfer</span>
+              <span className="support-channels-dot">·</span>
+              <span>Card</span>
+            </div>
           </div>
         </Reveal>
 
-        <Reveal delay={80}>
-          {verified === 'success' && (
-            <div style={{
-              padding: '16px 20px', marginBottom: '24px',
-              background: 'rgba(34,197,94,.08)', border: '1px solid rgba(34,197,94,.25)',
-              borderRadius: 'var(--radius-sm)', color: '#22c55e', fontSize: '.9rem',
-            }}>
-              ✓ Payment received — thank you so much for the support!
-            </div>
-          )}
-          {verified === 'failed' && (
-            <div style={{
-              padding: '16px 20px', marginBottom: '24px',
-              background: 'rgba(239,68,68,.08)', border: '1px solid rgba(239,68,68,.2)',
-              borderRadius: 'var(--radius-sm)', color: '#f87171', fontSize: '.9rem',
-            }}>
-              We couldn't confirm that payment. If money left your account, email{' '}
-              <a href="mailto:edisontaimu9@gmail.com" style={{ color: 'inherit', textDecoration: 'underline' }}>
-                edisontaimu9@gmail.com
-              </a>.
-            </div>
-          )}
+        {/* Right: the requisition card */}
+        <Reveal delay={120}>
+          <div className="support-card">
 
-          <form onSubmit={handleSupport} noValidate className="contact-form" style={{ maxWidth: 420 }}>
-            <p style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>
-              If Oasis CNST, Chakudya API, or Thanzi has been useful to you, a small
-              contribution helps keep them running. Payments are processed securely by
-              PayChangu (mobile money, bank transfer, or card).
-            </p>
-
-            <div className="field">
-              <label>Amount (MWK)</label>
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '6px' }}>
-                {PRESET_AMOUNTS.map(a => (
-                  <button
-                    type="button" key={a}
-                    onClick={() => { setAmount(a); setCustom('') }}
-                    className="btn"
-                    style={{
-                      border: '1px solid var(--border)',
-                      background: amount === a && !custom ? 'var(--accent)' : 'transparent',
-                      color: amount === a && !custom ? '#fff' : 'inherit',
-                    }}
-                  >
-                    {a.toLocaleString()}
-                  </button>
-                ))}
+            {verified === 'success' && (
+              <div className="support-banner support-banner-success">
+                <span className="support-banner-mark">✓</span>
+                Payment received. Thank you for the support.
               </div>
-              <input
-                type="number" min="100" placeholder="Or enter a custom amount"
-                value={custom}
-                onChange={e => setCustom(e.target.value)}
-                style={{ marginTop: '10px' }}
-              />
-            </div>
-
-            <div className="field">
-              <label htmlFor="support-name">Name (optional)</label>
-              <input id="support-name" type="text" placeholder="Your name"
-                value={name} onChange={e => setName(e.target.value)} />
-            </div>
-
-            <div className="field">
-              <label htmlFor="support-email">Email (optional)</label>
-              <input id="support-email" type="email" placeholder="you@example.com"
-                value={email} onChange={e => setEmail(e.target.value)} />
-            </div>
-
-            {error && (
-              <div style={{ color: '#f87171', fontSize: '.85rem', marginBottom: '12px' }}>
-                {error}
+            )}
+            {verified === 'failed' && (
+              <div className="support-banner support-banner-failed">
+                <span className="support-banner-mark">!</span>
+                We couldn't confirm that payment. If money left your account,
+                email{' '}
+                <a href="mailto:edisontaimu9@gmail.com">edisontaimu9@gmail.com</a>.
               </div>
             )}
 
-            <div className="form-foot">
-              <button type="submit" className="btn btn-primary" disabled={status === 'redirecting'}>
-                {status === 'redirecting' ? 'Redirecting…' : 'Support with PayChangu'}
+            <form onSubmit={handleSupport} noValidate>
+              <div className="support-card-head">
+                <span className="support-card-icon" aria-hidden="true">+</span>
+                <span className="support-card-label">Contribution</span>
+              </div>
+
+              <div className="support-amount-row">
+                <span className="support-amount-currency">MWK</span>
+                <input
+                  type="number"
+                  className="support-amount-input"
+                  min={MIN_AMOUNT}
+                  max={MAX_AMOUNT}
+                  step={100}
+                  value={amount}
+                  onChange={e => setAmount(Number(e.target.value) || 0)}
+                  aria-label="Amount in Malawi Kwacha"
+                />
+              </div>
+
+              <div className="support-scale-wrap">
+                <input
+                  type="range"
+                  className="support-scale"
+                  min={MIN_AMOUNT}
+                  max={MAX_AMOUNT}
+                  step={100}
+                  value={Math.min(Math.max(amount, MIN_AMOUNT), MAX_AMOUNT)}
+                  onChange={e => setAmount(Number(e.target.value))}
+                  style={{ '--support-fill': `${fillPct}%` }}
+                />
+                <div className="support-scale-stops">
+                  {STOPS.map(stop => (
+                    <button
+                      type="button"
+                      key={stop}
+                      className={`support-stop${amount === stop ? ' is-active' : ''}`}
+                      style={{ left: `${pct(stop)}%` }}
+                      onClick={() => setAmount(stop)}
+                    >
+                      <span className="support-stop-tick" />
+                      <span className="support-stop-label">{stop.toLocaleString()}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="support-fields">
+                <label className="support-line-field">
+                  <span>Name</span>
+                  <input
+                    type="text" placeholder="Optional"
+                    value={name} onChange={e => setName(e.target.value)}
+                  />
+                </label>
+                <label className="support-line-field">
+                  <span>Email</span>
+                  <input
+                    type="email" placeholder="Optional"
+                    value={email} onChange={e => setEmail(e.target.value)}
+                  />
+                </label>
+              </div>
+
+              {error && <div className="support-error">{error}</div>}
+
+              <button type="submit" className="support-submit" disabled={status === 'redirecting'}>
+                {status === 'redirecting' ? 'Redirecting…' : 'Support this work'}
               </button>
-            </div>
-          </form>
+              <p className="support-trust">
+                Secured by PayChangu. Mobile money, bank transfer, or card.
+              </p>
+            </form>
+          </div>
         </Reveal>
+
       </div>
     </section>
   )
