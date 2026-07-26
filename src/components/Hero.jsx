@@ -48,14 +48,14 @@ export default function Hero() {
           </div>
 
           <dl className="hero-stats hero-enter hero-enter-5">
-            <div className="hero-stat">
+            <Link to="/projects" className="hero-stat">
               <dt className="hero-stat-value">4</dt>
               <dd className="hero-stat-label">Projects shipped</dd>
-            </div>
-            <div className="hero-stat">
+            </Link>
+            <Link to="/projects" className="hero-stat">
               <dt className="hero-stat-value">57+</dt>
               <dd className="hero-stat-label">Clinical docs ingested</dd>
-            </div>
+            </Link>
           </dl>
         </div>
       </div>

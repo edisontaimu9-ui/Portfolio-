@@ -521,9 +521,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border-top: 1px solid var(--border);
 }
 .hero-stat {
+  display: block;
   margin: 0;
   padding-right: 32px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity .2s;
 }
+.hero-stat:hover { opacity: .75; }
 .hero-stat + .hero-stat {
   padding-left: 32px;
   border-left: 1px solid var(--border);

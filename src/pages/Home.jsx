@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
 import Reveal from '../components/Reveal'
@@ -54,6 +55,10 @@ const sections = [
 ]
 
 export default function Home() {
+  useEffect(() => {
+    document.title = 'Edison Taimu — Clinical Nutrition Software Builder'
+  }, [])
+
   return (
     <>
       <Hero />

@@ -23,14 +23,14 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<PageLayout><About /></PageLayout>} />
-          <Route path="/projects" element={<PageLayout><Projects /></PageLayout>} />
-          <Route path="/skills" element={<PageLayout><Skills /></PageLayout>} />
-          <Route path="/experience" element={<PageLayout><Experience /></PageLayout>} />
-          <Route path="/impact" element={<PageLayout><NutritionSnapshot /><NutritionFoundations /></PageLayout>} />
-          <Route path="/opportunities" element={<PageLayout><Opportunities /></PageLayout>} />
-          <Route path="/support" element={<PageLayout><Support /></PageLayout>} />
-          <Route path="/contact" element={<PageLayout><Contact /></PageLayout>} />
+          <Route path="/about" element={<PageLayout title="About"><About /></PageLayout>} />
+          <Route path="/projects" element={<PageLayout title="Projects"><Projects /></PageLayout>} />
+          <Route path="/skills" element={<PageLayout title="Skills"><Skills /></PageLayout>} />
+          <Route path="/experience" element={<PageLayout title="Experience"><Experience /></PageLayout>} />
+          <Route path="/impact" element={<PageLayout title="Impact"><NutritionSnapshot /><NutritionFoundations /></PageLayout>} />
+          <Route path="/opportunities" element={<PageLayout title="Opportunities"><Opportunities /></PageLayout>} />
+          <Route path="/support" element={<PageLayout title="Support"><Support /></PageLayout>} />
+          <Route path="/contact" element={<PageLayout title="Contact"><Contact /></PageLayout>} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
