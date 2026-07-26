@@ -646,7 +646,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 .page-back-row {
-  padding-top: 40px;
+  padding-top: calc(var(--nav-h) + 32px);
 }
 
 .page-back-link {

@@ -18,9 +18,9 @@ export default function About() {
           <Reveal delay={100}>
             <div className="about-text">
               <p>
-                A BSc Nutrition & Dietetics graduate (Pioneer Cohort) from
+                I'm a BSc Nutrition & Dietetics graduate (Pioneer Cohort) from
                 <strong> Kamuzu University of Health Sciences (KUHeS)</strong> in Blantyre,
-                Malawi, I work across both <strong>clinical dietetics</strong> and
+                Malawi. I work across both <strong>clinical dietetics</strong> and
                 <strong> public health nutrition</strong>, from bedside care plans to
                 population-level nutrition data. I built clinical nutrition software out of a
                 need that existed long before I knew how to write a line of code: the gap
