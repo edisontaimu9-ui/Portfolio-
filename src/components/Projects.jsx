@@ -94,6 +94,8 @@ function ScreenshotCarousel({ shots, label }) {
           key={src}
           src={src}
           alt={`${label} screenshot ${i + 1}`}
+          loading="lazy"
+          decoding="async"
           style={{
             position: 'absolute',
             inset: 0,
@@ -145,6 +147,8 @@ function ChakudyaVisual() {
       <img
         src={chakudyaIllustration}
         alt="Chakudya Nutrition Registry (CNR): open food and nutrition data infrastructure"
+        loading="lazy"
+        decoding="async"
         style={{ width: '100%', height: '100%', objectFit: 'contain' }}
       />
     </div>
@@ -347,7 +351,7 @@ export default function Projects() {
                   {highlight && (
                     <div className="media-highlight">
                       <div className="media-highlight-img">
-                        <img src={highlight.img} alt="" />
+                        <img src={highlight.img} alt="" loading="lazy" decoding="async" />
                       </div>
                       <span>{highlight.text}</span>
                     </div>

@@ -52,7 +52,7 @@ export default function NutritionFoundations() {
           </Reveal>
           <Reveal delay={140}>
             <div className="foundations-visual">
-              <img src={clinicalImg} alt="Fresh fruits, vegetables and a stethoscope" />
+              <img src={clinicalImg} alt="Fresh fruits, vegetables and a stethoscope" loading="lazy" decoding="async" />
             </div>
           </Reveal>
         </div>
@@ -62,7 +62,7 @@ export default function NutritionFoundations() {
             <Reveal delay={100 + i * 60} key={title}>
               <div className="pillar-card">
                 <div className="pillar-card-img">
-                  <img src={img} alt={title} />
+                  <img src={img} alt={title} loading="lazy" decoding="async" />
                 </div>
                 <h3>{title}</h3>
                 <p>{text}</p>

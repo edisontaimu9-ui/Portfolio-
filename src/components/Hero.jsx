@@ -26,7 +26,7 @@ export default function Hero() {
             <span className="eyebrow">Aspiring Clinical & Public Health Dietitian &bull; Zomba, Malawi</span>
           </div>
 
-          <h1 className="hero-heading hero-enter hero-enter-2">
+          <h1 className="hero-heading hero-enter-2-noop">
             Why is eating healthy so difficult for so many people?
           </h1>
 

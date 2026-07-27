@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
-
 /* ── Design tokens ───────────────────────────────────────────── */
 :root {
   --bg:           #09090b;
@@ -561,6 +559,12 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .hero-enter-3 { animation: hero-up .5s ease forwards .35s; }
 .hero-enter-4 { animation: hero-up .5s ease forwards .5s; }
 .hero-enter-5 { animation: hero-up .5s ease forwards .65s; }
+/* LCP element: stays visible immediately, only slides — never hidden behind opacity:0 */
+.hero-enter-2-noop { animation: hero-up-slide-only .5s ease forwards .05s; }
+@keyframes hero-up-slide-only {
+  from { transform: translateY(20px); }
+  to   { transform: none; }
+}
 @keyframes hero-up {
   to { opacity: 1; transform: none; }
 }
