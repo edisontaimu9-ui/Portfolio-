@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="footer container">
       <div className="footer-lead">
         <Link to="/" className="logo" style={{ display: 'inline-flex', gap: '10px', alignItems: 'center' }}>
-          <img src={logo} alt="Edison Taimu" style={{
+          <img src={logo} alt="" style={{
             width: '26px', height: '26px', borderRadius: '6px', objectFit: 'cover',
           }} />
           <span style={{ fontSize: '.875rem', color: 'var(--text-muted)' }}>Edison Taimu</span>

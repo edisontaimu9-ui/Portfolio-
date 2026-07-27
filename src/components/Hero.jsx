@@ -47,16 +47,16 @@ export default function Hero() {
             <Link to="/projects" className="btn btn-ghost">View my work</Link>
           </div>
 
-          <dl className="hero-stats hero-enter hero-enter-5">
+          <div className="hero-stats hero-enter hero-enter-5">
             <Link to="/projects" className="hero-stat">
-              <dt className="hero-stat-value">4</dt>
-              <dd className="hero-stat-label">Projects shipped</dd>
+              <span className="hero-stat-value">4</span>
+              <span className="hero-stat-label">Projects shipped</span>
             </Link>
             <Link to="/projects" className="hero-stat">
-              <dt className="hero-stat-value">57+</dt>
-              <dd className="hero-stat-label">Clinical docs ingested</dd>
+              <span className="hero-stat-value">57+</span>
+              <span className="hero-stat-label">Clinical docs ingested</span>
             </Link>
-          </dl>
+          </div>
         </div>
       </div>
     </section>

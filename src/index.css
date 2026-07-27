@@ -448,12 +448,12 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   height: 120px;
 }
 .ecg-path {
-  stroke-dasharray: 3000;
-  stroke-dashoffset: 3000;
+  transform-origin: left center;
   animation: ecg-draw 4s ease-out forwards 0.5s;
 }
 @keyframes ecg-draw {
-  to { stroke-dashoffset: 0; }
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
 .hero-inner {
@@ -532,6 +532,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border-left: 1px solid var(--border);
 }
 .hero-stat-value {
+  display: block;
   font-family: var(--font-display);
   font-size: clamp(1.9rem, 6vw, 2.4rem);
   font-weight: 700;
@@ -543,6 +544,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   -webkit-text-fill-color: transparent;
 }
 .hero-stat-label {
+  display: block;
   margin: 10px 0 0;
   font-size: .72rem;
   font-weight: 600;
@@ -1700,7 +1702,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .footer-copy {
   font-size: .78rem;
-  color: var(--text-subtle);
+  color: var(--text-muted);
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
@@ -1748,7 +1750,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .ecg-path { animation: none; stroke-dashoffset: 0; }
+  .ecg-path { animation: none; transform: scaleX(1); }
   .marquee-track { animation: none; }
   .hero-enter { opacity: 1; transform: none; animation: none; }
   .btn-spinner { animation: none; }

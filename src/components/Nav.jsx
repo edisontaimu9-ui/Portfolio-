@@ -56,7 +56,7 @@ export default function Nav() {
       <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
         <div className="container nav-inner">
           <Link to="/" className="logo">
-            <img src={logo} alt="Edison Taimu" className="logo-mark" />
+            <img src={logo} alt="" className="logo-mark" />
             Edison Taimu
           </Link>
 
