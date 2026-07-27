@@ -1365,11 +1365,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   gap: 10px;
   font-size: .9rem;
   font-weight: 600;
+  font-family: inherit;
   color: var(--text);
   padding: 12px 18px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
+  cursor: pointer;
   transition: border-color .2s, color .2s;
   margin-bottom: 24px;
 }

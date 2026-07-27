@@ -45,6 +45,14 @@ function XIcon() {
   )
 }
 
+/* Split so the address never appears as plain text in markup/source */
+const EMAIL_USER   = 'edisontaimu9'
+const EMAIL_DOMAIN = 'gmail.com'
+
+function openEmail() {
+  window.location.href = `mailto:${EMAIL_USER}@${EMAIL_DOMAIN}`
+}
+
 export default function Contact() {
   const [form, setForm]     = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
@@ -123,14 +131,14 @@ export default function Contact() {
                 form or email me directly below.
               </p>
 
-              <a href="mailto:edisontaimu9@gmail.com" className="contact-email">
+              <button type="button" onClick={openEmail} className="contact-email">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect width="20" height="16" x="2" y="4" rx="2"/>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                 </svg>
-                edisontaimu9@gmail.com
-              </a>
+                Email me
+              </button>
 
               <div className="contact-links">
                 <a href="https://github.com/edisontaimu9-ui" target="_blank"
@@ -181,11 +189,15 @@ export default function Contact() {
                       fontSize: '.85rem',
                       color: '#f87171',
                     }}>
-                      Something went wrong. Try emailing me directly at{' '}
-                      <a href="mailto:edisontaimu9@gmail.com"
-                        style={{ color: 'inherit', textDecoration: 'underline' }}>
-                        edisontaimu9@gmail.com
-                      </a>
+                      Something went wrong. Try{' '}
+                      <button type="button" onClick={openEmail}
+                        style={{
+                          color: 'inherit', textDecoration: 'underline',
+                          background: 'none', border: 'none', padding: 0,
+                          font: 'inherit', cursor: 'pointer',
+                        }}>
+                        emailing me directly
+                      </button>
                     </div>
                   )}
                   <div className="field">

@@ -11,6 +11,14 @@ import Reveal from './Reveal'
  */
 const WORKER_URL = 'https://paychangu-payment-gateway.edisontaimu9.workers.dev'
 
+/* Split so the address never appears as plain text in markup/source */
+const EMAIL_USER   = 'edisontaimu9'
+const EMAIL_DOMAIN = 'gmail.com'
+
+function openEmail() {
+  window.location.href = `mailto:${EMAIL_USER}@${EMAIL_DOMAIN}`
+}
+
 const MIN_AMOUNT = 500
 const MAX_AMOUNT = 100000        // slider ceiling — typed amounts below have no hard cap
 const STOPS = [2000, 5000, 10000]
@@ -145,9 +153,15 @@ export default function Support() {
             {verified === 'failed' && (
               <div className="support-banner support-banner-failed">
                 <span className="support-banner-mark">!</span>
-                We couldn't confirm that payment. If money left your account,
-                email{' '}
-                <a href="mailto:edisontaimu9@gmail.com">edisontaimu9@gmail.com</a>.
+                We couldn't confirm that payment. If money left your account,{' '}
+                <button type="button" onClick={openEmail}
+                  style={{
+                    color: 'inherit', textDecoration: 'underline',
+                    background: 'none', border: 'none', padding: 0,
+                    font: 'inherit', cursor: 'pointer',
+                  }}>
+                  email me
+                </button>.
               </div>
             )}
 

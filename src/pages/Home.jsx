@@ -26,7 +26,7 @@ const sections = [
     code: 'EX',
     to: '/experience',
     title: 'Experience',
-    summary: 'From ward rotations to shipping production software, entirely from an Android phone.',
+    summary: 'From ward rotations to shipping production software used in real clinical settings.',
   },
   {
     code: 'IM',
