@@ -1,0 +1,17 @@
+name = "portfolio-cms-api"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "portfolio_cms"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+FIREBASE_PROJECT_ID = "REPLACE_WITH_FIREBASE_PROJECT_ID"
+ALLOWED_ORIGIN = "https://edisontaimu9-ui.github.io"
+
+# Set these as encrypted secrets in the Cloudflare dashboard
+# (Worker > Settings > Variables and Secrets) — never commit them:
+#   ADMIN_UID   -> the Firebase UID of your one admin account
