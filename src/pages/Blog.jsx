@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Reveal from '../components/Reveal'
 import { getPosts } from '../lib/api'
+
+function ArrowRight() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+    </svg>
+  )
+}
 
 export default function Blog() {
   const [posts, setPosts] = useState([])
@@ -14,33 +24,62 @@ export default function Blog() {
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <p style={{ padding: '2rem' }}>Loading…</p>
-  if (error) return <p style={{ padding: '2rem', color: 'crimson' }}>{error}</p>
-
   return (
-    <div style={{ maxWidth: 800, margin: '2rem auto', padding: '0 1rem' }}>
-      <h1>Blog</h1>
-      {posts.length === 0 && <p>No posts yet — check back soon.</p>}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        {posts.map((post) => (
-          <article key={post.id}>
-            {post.cover_image && (
-              <img
-                src={post.cover_image}
-                alt={post.title}
-                style={{ width: '100%', maxHeight: 260, objectFit: 'cover', borderRadius: 8 }}
-              />
-            )}
-            <h2>
-              <Link to={`/blog/${post.slug}`}>{post.title}</Link>
-            </h2>
-            <p style={{ opacity: 0.7, fontSize: '0.85em' }}>
-              {new Date(post.published_at).toLocaleDateString()}
-            </p>
-            {post.excerpt && <p>{post.excerpt}</p>}
-          </article>
-        ))}
-      </div>
-    </div>
+    <>
+      <section className="section" style={{ borderTop: 'none' }}>
+        <div className="container">
+          <Reveal>
+            <div className="section-head">
+              <span className="eyebrow">Writing</span>
+              <h2 className="display">Notes on nutrition <br />and building software.</h2>
+            </div>
+          </Reveal>
+
+          {loading && <p className="lead">Loading posts…</p>}
+          {error && <p className="lead" style={{ color: '#e5484d' }}>{error}</p>}
+
+          {!loading && !error && posts.length === 0 && (
+            <Reveal delay={80}>
+              <div className="blog-empty">
+                <p className="lead">No posts yet — check back soon.</p>
+              </div>
+            </Reveal>
+          )}
+
+          <div className="blog-list">
+            {posts.map((post, i) => (
+              <Reveal key={post.id} delay={80 + i * 60}>
+                <Link to={`/blog/${post.slug}`} className="blog-card">
+                  {post.cover_image && (
+                    <div className="blog-card-media">
+                      <img src={post.cover_image} alt="" loading="lazy" decoding="async" />
+                    </div>
+                  )}
+                  <div className="blog-card-body">
+                    <span className="blog-card-date">
+                      {new Date(post.published_at).toLocaleDateString(undefined, {
+                        year: 'numeric', month: 'long', day: 'numeric',
+                      })}
+                    </span>
+                    <h3 className="blog-card-title">{post.title}</h3>
+                    {post.excerpt && <p className="blog-card-excerpt">{post.excerpt}</p>}
+                    {post.tags && (
+                      <div className="chip-row">
+                        {post.tags.split(',').filter(Boolean).map((tag) => (
+                          <span className="chip" key={tag}>{tag.trim()}</span>
+                        ))}
+                      </div>
+                    )}
+                    <span className="text-link blog-card-cta">
+                      Read post <ArrowRight/>
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

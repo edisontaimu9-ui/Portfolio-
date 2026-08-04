@@ -45,7 +45,7 @@ export default function App() {
               <Route path="/contact" element={<PageLayout title="Contact"><Contact /></PageLayout>} />
 
               {/* Public blog */}
-              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog" element={<PageLayout title="Blog"><Blog /></PageLayout>} />
               <Route path="/blog/:slug" element={<BlogPost />} />
 
               {/* Admin (protected) */}
