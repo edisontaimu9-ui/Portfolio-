@@ -6,10 +6,10 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "DB"
 database_name = "portfolio_cms"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "bcda2dec-b081-4d32-8b42-143445f2db60"
 
 [vars]
-FIREBASE_PROJECT_ID = "REPLACE_WITH_FIREBASE_PROJECT_ID"
+FIREBASE_PROJECT_ID = "portfolio-1178a"
 ALLOWED_ORIGIN = "https://edisontaimu9-ui.github.io"
 
 # Set these as encrypted secrets in the Cloudflare dashboard
