@@ -1953,3 +1953,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 @media (max-width: 640px) {
   .blog-preview-head { flex-direction: column; align-items: flex-start; }
 }
+
+/* ── Profile photo (Hero avatar) ────────────────────────────────── */
+.avatar-photo {
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface-2);
+  border: 1px solid var(--border-hi);
+}

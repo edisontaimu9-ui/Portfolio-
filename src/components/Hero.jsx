@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import logo from '../assets/logo.png'
+import profilePhoto from '../assets/profile-photo.jpg'
 
 export default function Hero() {
   return (
@@ -22,7 +22,11 @@ export default function Hero() {
       <div className="container hero-inner">
         <div className="hero-content">
           <div className="hero-top hero-enter hero-enter-1">
-            <img src={logo} alt="" className="avatar" aria-hidden="true" />
+            <img
+              src={profilePhoto}
+              alt="Edison Taimu"
+              className="avatar avatar-photo"
+            />
             <span className="eyebrow">Aspiring Clinical & Public Health Dietitian &bull; Zomba, Malawi</span>
           </div>
 
