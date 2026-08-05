@@ -4,7 +4,7 @@ import Hero from '../components/Hero'
 import Reveal from '../components/Reveal'
 import BlogPreview from '../components/BlogPreview'
 
-const sections = [
+const sectionsBeforeBlog = [
   {
     code: 'AB',
     to: '/about',
@@ -23,6 +23,9 @@ const sections = [
     title: 'Skills',
     summary: 'Clinical dietetics and full-stack development, applied together rather than kept apart.',
   },
+]
+
+const sectionsAfterBlog = [
   {
     code: 'EX',
     to: '/experience',
@@ -55,6 +58,29 @@ const sections = [
   },
 ]
 
+function TileGrid({ sections, startDelay = 0 }) {
+  return (
+    <div className="tiles-grid">
+      {sections.map((s, i) => (
+        <Reveal key={s.to} delay={startDelay + i * 50}>
+          <Link to={s.to} className="tile">
+            <div className="tile-top">
+              <span className="tile-code">{s.code}</span>
+              <svg className="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </div>
+            <h3 className="tile-title">{s.title}</h3>
+            <p className="tile-summary">{s.summary}</p>
+            <span className="tile-cta">Learn more</span>
+          </Link>
+        </Reveal>
+      ))}
+    </div>
+  )
+}
+
 export default function Home() {
   useEffect(() => {
     document.title = 'Edison Taimu — Clinical Nutrition Software Builder'
@@ -73,27 +99,17 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <div className="tiles-grid">
-            {sections.map((s, i) => (
-              <Reveal key={s.to} delay={i * 50}>
-                <Link to={s.to} className="tile">
-                  <div className="tile-top">
-                    <span className="tile-code">{s.code}</span>
-                    <svg className="tile-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-                    </svg>
-                  </div>
-                  <h3 className="tile-title">{s.title}</h3>
-                  <p className="tile-summary">{s.summary}</p>
-                  <span className="tile-cta">Learn more</span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <TileGrid sections={sectionsBeforeBlog} />
         </div>
       </section>
+
       <BlogPreview />
+
+      <section className="section tiles-section">
+        <div className="container">
+          <TileGrid sections={sectionsAfterBlog} startDelay={sectionsBeforeBlog.length * 50} />
+        </div>
+      </section>
     </>
   )
 }
