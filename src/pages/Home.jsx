@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
 import Reveal from '../components/Reveal'
+import BlogPreview from '../components/BlogPreview'
 
 const sections = [
   {
@@ -92,6 +93,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <BlogPreview />
     </>
   )
 }
