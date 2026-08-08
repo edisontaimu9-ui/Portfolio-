@@ -13,6 +13,11 @@ import thanziProgress from '../assets/thanzi-progress.webp'
 import thanziAiAssistant from '../assets/thanzi-ai-assistant.webp'
 import chakudyaIllustration from '../assets/chakudya-illustration.png'
 import nutritionLabelImg from '../assets/nutrition-facts-label.jpg'
+import ncrsDashboard from '../assets/ncrs-dashboard.webp'
+import ncrsPatients from '../assets/ncrs-patients.webp'
+import ncrsNewPatient from '../assets/ncrs-new-patient.webp'
+import ncrsReports from '../assets/ncrs-reports.webp'
+import dietitianosDashboard from '../assets/dietitianos-dashboard.webp'
 
 function ArrowRight() {
   return (
@@ -128,6 +133,8 @@ function OnePhone({ shots, label }) {
 
 const oasisShots  = [oasisHome, oasisFoodSearch, oasisNutritionNews, oasisAiAssistant]
 const thanziShots = [thanziHome, thanziDiary, thanziProgress, thanziAiAssistant]
+const ncrsShots   = [ncrsDashboard, ncrsPatients, ncrsNewPatient, ncrsReports]
+const dietitianosShots = [dietitianosDashboard]
 
 function OasisVisual() {
   return <OnePhone label="Oasis CNST" shots={oasisShots} />
@@ -212,25 +219,11 @@ function RegistryIcon() {
 }
 
 function DietitianOsVisual() {
-  return (
-    <AppVisual
-      title="DietitianOS"
-      subtitle="Practice management for dietitians"
-      icon={<ClipboardIcon />}
-      accent="#2f6fbf"
-    />
-  )
+  return <OnePhone label="DietitianOS" shots={dietitianosShots} />
 }
 
 function NcrsVisual() {
-  return (
-    <AppVisual
-      title="NCRS"
-      subtitle="Nutrition Care Registry System"
-      icon={<RegistryIcon />}
-      accent="#178a75"
-    />
-  )
+  return <OnePhone label="NCRS" shots={ncrsShots} />
 }
 
 const projects = [
