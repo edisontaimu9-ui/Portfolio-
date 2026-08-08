@@ -487,6 +487,61 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   object-fit: cover;
 }
 
+/* Day/night widget */
+.daynight-widget {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 128px;
+  margin-bottom: 28px;
+  border: 1px solid var(--border-hi);
+  background: linear-gradient(180deg, #bcdcf2 0%, #8fbdd9 55%, #6fa0c2 100%);
+  transition: background 0.8s ease;
+}
+.daynight-widget.is-night {
+  background: linear-gradient(180deg, #0d1730 0%, #131c3a 55%, #1a2547 100%);
+}
+
+.daynight-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.daynight-arc {
+  stroke: rgba(255,255,255,.55);
+}
+.is-night .daynight-arc {
+  stroke: rgba(255,255,255,.28);
+}
+.daynight-orb {
+  fill: #f7b733;
+  filter: drop-shadow(0 0 6px rgba(247,183,51,.8));
+  transition: fill .8s ease;
+}
+.is-night .daynight-orb {
+  fill: #e7ecf7;
+  filter: drop-shadow(0 0 5px rgba(231,236,247,.7));
+}
+
+.daynight-info {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: linear-gradient(0deg, rgba(0,0,0,.38), transparent);
+  font-family: var(--font-display);
+  font-size: .78rem;
+  letter-spacing: .02em;
+  color: #fff;
+}
+.daynight-clock {
+  font-variant-numeric: tabular-nums;
+  opacity: .9;
+}
+
 /* Hero heading */
 .hero-heading {
   font-family: var(--font-display);

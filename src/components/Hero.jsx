@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import profilePhoto from '../assets/profile-photo.jpg'
+import DayNightWidget from './DayNightWidget'
 
 export default function Hero() {
   return (
@@ -28,6 +29,10 @@ export default function Hero() {
               className="avatar avatar-photo"
             />
             <span className="eyebrow">Aspiring Clinical & Public Health Dietitian &bull; Zomba, Malawi</span>
+          </div>
+
+          <div className="hero-enter hero-enter-2">
+            <DayNightWidget />
           </div>
 
           <h1 className="hero-heading hero-enter-2-noop">
