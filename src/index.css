@@ -487,19 +487,39 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   object-fit: cover;
 }
 
-/* Day/night widget */
+/* Day/night atmosphere widget — satellite-view sky band */
 .daynight-widget {
   position: relative;
   border-radius: var(--radius);
   overflow: hidden;
-  height: 128px;
+  height: 150px;
   margin-bottom: 28px;
   border: 1px solid var(--border-hi);
-  background: linear-gradient(180deg, #bcdcf2 0%, #8fbdd9 55%, #6fa0c2 100%);
-  transition: background 0.8s ease;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset;
+  background-color: #030a1a; /* fallback while first paint computes */
+  transition: background-image 1.4s ease;
+  isolation: isolate;
 }
-.daynight-widget.is-night {
-  background: linear-gradient(180deg, #0d1730 0%, #131c3a 55%, #1a2547 100%);
+
+/* faint atmospheric curvature vignette, like a satellite limb shot */
+.daynight-widget::after {
+  content: '';
+  position: absolute;
+  inset: -40% -10% -55%;
+  border-radius: 50%;
+  box-shadow: 0 0 60px 40px rgba(0,0,0,.35) inset;
+  pointer-events: none;
+}
+
+.daynight-horizon-glow {
+  position: absolute;
+  bottom: -10%;
+  width: 220px;
+  height: 140px;
+  transform: translateX(-50%);
+  filter: blur(2px);
+  transition: left .6s linear;
+  pointer-events: none;
 }
 
 .daynight-svg {
@@ -508,20 +528,22 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   width: 100%;
   height: 100%;
 }
+
 .daynight-arc {
-  stroke: rgba(255,255,255,.55);
+  stroke: rgba(255,255,255,.38);
 }
-.is-night .daynight-arc {
-  stroke: rgba(255,255,255,.28);
+
+.daynight-orb-halo {
+  fill: rgba(255,255,255,.18);
 }
 .daynight-orb {
-  fill: #f7b733;
-  filter: drop-shadow(0 0 6px rgba(247,183,51,.8));
+  fill: #ffd873;
+  filter: drop-shadow(0 0 6px rgba(255,216,115,.85));
   transition: fill .8s ease;
 }
-.is-night .daynight-orb {
-  fill: #e7ecf7;
-  filter: drop-shadow(0 0 5px rgba(231,236,247,.7));
+
+.daynight-ridge {
+  fill: rgba(4, 10, 22, .55);
 }
 
 .daynight-info {
@@ -530,16 +552,28 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
-  background: linear-gradient(0deg, rgba(0,0,0,.38), transparent);
+  padding: 10px 14px;
+  background: linear-gradient(0deg, rgba(0,0,0,.5), transparent);
   font-family: var(--font-display);
-  font-size: .78rem;
-  letter-spacing: .02em;
+  font-size: .74rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
   color: #fff;
+}
+.daynight-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.daynight-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #ffd873;
+  box-shadow: 0 0 5px rgba(255,216,115,.9);
 }
 .daynight-clock {
   font-variant-numeric: tabular-nums;
-  opacity: .9;
+  opacity: .85;
 }
 
 /* Hero heading */
