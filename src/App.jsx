@@ -5,6 +5,7 @@ import { AuthProvider } from './context/AuthContext'
 import Nav          from './components/Nav'
 import Footer        from './components/Footer'
 import ScrollToTop   from './pages/ScrollToTop'
+import AnalyticsTracker from './pages/AnalyticsTracker'
 import PageLayout    from './pages/PageLayout'
 import Home          from './pages/Home'
 import Blog          from './pages/Blog'
@@ -30,6 +31,7 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <ScrollToTop />
+        <AnalyticsTracker />
         <Nav />
         <main>
           <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
