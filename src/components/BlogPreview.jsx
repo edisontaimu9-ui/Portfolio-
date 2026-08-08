@@ -44,7 +44,7 @@ export default function BlogPreview() {
               <Link to={`/blog/${post.slug}`} className="blog-preview-card">
                 {post.cover_image && (
                   <div className="blog-preview-media">
-                    <img src={post.cover_image} alt="" loading="lazy" decoding="async" />
+                    <img src={post.cover_image} alt={post.title} loading="lazy" decoding="async" />
                   </div>
                 )}
                 <span className="blog-card-date">

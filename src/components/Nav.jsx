@@ -1,24 +1,32 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 import logo from '../assets/logo.png'
 
-const links = [
-  { to: '/about',         label: 'About'        },
-  { to: '/projects',      label: 'Work'          },
-  { to: '/skills',        label: 'Skills'        },
-  { to: '/experience',    label: 'Experience'    },
+// Primary links stay visible at all times. The rest live under "More" on
+// desktop to keep the bar from feeling crowded — the mobile drawer still
+// lists everything flat, since that's not a space-constrained layout.
+const primaryLinks = [
+  { to: '/about',      label: 'About'      },
+  { to: '/projects',   label: 'Work'       },
+  { to: '/skills',     label: 'Skills'     },
+  { to: '/experience', label: 'Experience' },
+]
+const moreLinks = [
   { to: '/impact',        label: 'Impact'        },
-  { to: '/blog', label: 'Blog' },
+  { to: '/blog',           label: 'Blog'          },
   { to: '/opportunities', label: 'Opportunities' },
   { to: '/support',       label: 'Support'       },
 ]
+const links = [...primaryLinks, ...moreLinks]
 
 export default function Nav() {
   const location = useLocation()
   const [scrolled,  setScrolled]  = useState(false)
   const [menuOpen,  setMenuOpen]  = useState(false)
+  const [moreOpen,  setMoreOpen]  = useState(false)
   const [scrollPct, setScrollPct] = useState(0)
+  const moreRef = useRef(null)
 
   /* scroll state — recomputed per page since each route has its own length */
   useEffect(() => {
@@ -39,11 +47,29 @@ export default function Nav() {
   }, [menuOpen])
 
   /* close the mobile menu automatically on navigation */
-  useEffect(() => { setMenuOpen(false) }, [location.pathname])
+  useEffect(() => { setMenuOpen(false); setMoreOpen(false) }, [location.pathname])
+
+  /* close the "More" dropdown on outside click or Escape */
+  useEffect(() => {
+    if (!moreOpen) return
+    function onClick(e) {
+      if (moreRef.current && !moreRef.current.contains(e.target)) setMoreOpen(false)
+    }
+    function onKey(e) {
+      if (e.key === 'Escape') setMoreOpen(false)
+    }
+    document.addEventListener('mousedown', onClick)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onClick)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [moreOpen])
 
   function isActive(to) {
     return location.pathname === to
   }
+  const moreActive = moreLinks.some(l => isActive(l.to))
 
   return (
     <>
@@ -62,7 +88,7 @@ export default function Nav() {
           </Link>
 
           <ul className="nav-links" role="list">
-            {links.map(({ to, label }) => (
+            {primaryLinks.map(({ to, label }) => (
               <li key={to}>
                 <Link
                   to={to}
@@ -72,6 +98,36 @@ export default function Nav() {
                 </Link>
               </li>
             ))}
+
+            <li className="nav-more" ref={moreRef}>
+              <button
+                type="button"
+                className={`nav-link nav-more-trigger${moreActive ? ' active' : ''}`}
+                aria-haspopup="true"
+                aria-expanded={moreOpen}
+                onClick={() => setMoreOpen(o => !o)}
+              >
+                More
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                  className="nav-more-chevron">
+                  <path d="m6 9 6 6 6-6"/>
+                </svg>
+              </button>
+
+              <div className={`nav-more-menu${moreOpen ? ' open' : ''}`} role="menu">
+                {moreLinks.map(({ to, label }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    role="menuitem"
+                    className={`nav-more-item${isActive(to) ? ' active' : ''}`}
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </li>
           </ul>
 
           <Link to="/contact" className="btn btn-primary btn-sm nav-cta">

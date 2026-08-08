@@ -76,7 +76,7 @@ export default function BlogPost() {
         {post.cover_image && (
           <Reveal delay={60}>
             <div className="blog-post-cover">
-              <img src={post.cover_image} alt="" loading="lazy" decoding="async" />
+              <img src={post.cover_image} alt={post.title} loading="lazy" decoding="async" />
             </div>
           </Reveal>
         )}

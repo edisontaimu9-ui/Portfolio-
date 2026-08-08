@@ -3,14 +3,14 @@ import Reveal from './Reveal'
 import { SiJavascript, SiAppwrite, SiGithubpages, SiReact } from 'react-icons/si'
 import { TbApi } from 'react-icons/tb'
 import { HiOutlineDevicePhoneMobile } from 'react-icons/hi2'
-import oasisHome from '../assets/oasis-home.jpg'
-import oasisFoodSearch from '../assets/oasis-food-search.jpg'
-import oasisNutritionNews from '../assets/oasis-nutrition-news.jpg'
-import oasisAiAssistant from '../assets/oasis-ai-assistant.jpg'
-import thanziHome from '../assets/thanzi-home.jpg'
-import thanziDiary from '../assets/thanzi-diary.jpg'
-import thanziProgress from '../assets/thanzi-progress.jpg'
-import thanziAiAssistant from '../assets/thanzi-ai-assistant.jpg'
+import oasisHome from '../assets/oasis-home.webp'
+import oasisFoodSearch from '../assets/oasis-food-search.webp'
+import oasisNutritionNews from '../assets/oasis-nutrition-news.webp'
+import oasisAiAssistant from '../assets/oasis-ai-assistant.webp'
+import thanziHome from '../assets/thanzi-home.webp'
+import thanziDiary from '../assets/thanzi-diary.webp'
+import thanziProgress from '../assets/thanzi-progress.webp'
+import thanziAiAssistant from '../assets/thanzi-ai-assistant.webp'
 import chakudyaIllustration from '../assets/chakudya-illustration.png'
 import nutritionLabelImg from '../assets/nutrition-facts-label.jpg'
 
@@ -351,7 +351,7 @@ export default function Projects() {
                   {highlight && (
                     <div className="media-highlight">
                       <div className="media-highlight-img">
-                        <img src={highlight.img} alt="" loading="lazy" decoding="async" />
+                        <img src={highlight.img} alt="Nutrition facts label showing serving size, macros and micronutrients" loading="lazy" decoding="async" />
                       </div>
                       <span>{highlight.text}</span>
                     </div>
