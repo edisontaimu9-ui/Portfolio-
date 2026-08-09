@@ -21,13 +21,9 @@ export default function Hero() {
       </div>
 
       <div className="container hero-inner">
+        <div className="hero-grid">
         <div className="hero-content">
           <div className="hero-top hero-enter hero-enter-1">
-            <img
-              src={profilePhoto}
-              alt="Edison Taimu"
-              className="avatar avatar-photo"
-            />
             <span className="eyebrow">Aspiring Clinical & Public Health Dietitian &bull; Zomba, Malawi</span>
           </div>
 
@@ -66,6 +62,13 @@ export default function Hero() {
               <span className="hero-stat-label">Clinical docs ingested</span>
             </Link>
           </div>
+        </div>
+
+        <div className="hero-visual hero-enter hero-enter-1">
+          <div className="ring-portrait">
+            <img src={profilePhoto} alt="Edison Taimu" className="ring-portrait-img" />
+          </div>
+        </div>
         </div>
       </div>
     </section>

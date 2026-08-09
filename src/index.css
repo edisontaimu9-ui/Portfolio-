@@ -508,6 +508,57 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   max-width: 650px;
 }
 
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: 48px;
+  align-items: center;
+}
+
+/* Large ringed portrait — concentric circles radiating out from the
+   photo, echoing the ripple/pulse motif used elsewhere on the site. */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.ring-portrait {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-portrait::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle at center,
+    transparent 0,
+    transparent 26px,
+    var(--accent) 27px,
+    var(--accent) 28px
+  );
+  opacity: .16;
+  mask-image: radial-gradient(circle at center, transparent 30%, black 55%);
+  -webkit-mask-image: radial-gradient(circle at center, transparent 30%, black 55%);
+}
+
+.ring-portrait-img {
+  position: relative;
+  width: 62%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 20px 48px -12px rgba(0,0,0,.35);
+  border: 3px solid var(--surface);
+}
+
 .hero-top {
   display: flex;
   align-items: center;
@@ -1841,6 +1892,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 @media (max-width: 900px) {
   .hero-inner { padding-top: 40px; padding-bottom: 64px; }
   .hero-content { max-width: 100%; }
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-visual { order: -1; }
+  .ring-portrait { max-width: 260px; }
   .hero-stats { margin-top: 40px; padding-top: 24px; }
   .hero-stat { padding-right: 24px; }
   .hero-stat + .hero-stat { padding-left: 24px; }
