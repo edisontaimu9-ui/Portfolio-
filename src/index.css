@@ -2093,3 +2093,24 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   background: var(--surface-2);
   border: 1px solid var(--border-hi);
 }
+
+/* ── Content protection ──────────────────────────────────────── */
+/* Deters casual copy/save of text and images. Not real security —
+   just removes the easy right-click / select-all path. Form fields
+   stay selectable/typeable so Contact and admin still work fine. */
+.content-protected {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+.content-protected input,
+.content-protected textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+.content-protected img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}

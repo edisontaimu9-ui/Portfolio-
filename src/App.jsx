@@ -6,6 +6,7 @@ import Nav          from './components/Nav'
 import Footer        from './components/Footer'
 import ScrollToTop   from './pages/ScrollToTop'
 import AnalyticsTracker from './pages/AnalyticsTracker'
+import ContentProtection from './components/ContentProtection'
 import PageLayout    from './pages/PageLayout'
 import Home          from './pages/Home'
 import Blog          from './pages/Blog'
@@ -32,6 +33,7 @@ export default function App() {
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <ScrollToTop />
         <AnalyticsTracker />
+        <ContentProtection />
         <Nav />
         <main>
           <Suspense fallback={<div style={{ minHeight: '60vh' }} />}>
