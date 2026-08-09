@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import profilePhoto from '../assets/profile-photo.jpg'
 import DayNightWidget from './DayNightWidget'
+import Typewriter from './Typewriter'
 
 export default function Hero() {
   return (
@@ -32,7 +33,7 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-heading hero-enter-2-noop">
-            Why is eating healthy so difficult for so many people?
+            <Typewriter text="Why is eating healthy so difficult for so many people?" />
           </h1>
 
           <p className="lead hero-enter hero-enter-3">

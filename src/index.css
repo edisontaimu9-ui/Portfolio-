@@ -2148,6 +2148,31 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border: 1px solid var(--border-hi);
 }
 
+/* ── Typewriter effect (hero heading) ────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: .85em;
+  margin-left: 2px;
+  background: var(--accent);
+  vertical-align: -0.1em;
+  animation: typewriter-blink 0.9s step-end infinite;
+}
+@keyframes typewriter-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* ── Content protection ──────────────────────────────────────── */
 /* Deters casual copy/save of text and images. Not real security —
    just removes the easy right-click / select-all path. Form fields
