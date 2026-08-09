@@ -49,7 +49,7 @@ export default function BlogPost() {
     <section className="section" style={{ borderTop: 'none' }}>
       <div className="container container-narrow">
         <Reveal>
-          <Link to="/blog" className="page-back-link" style={{ marginBottom: 32, display: 'inline-flex' }}>
+          <Link to="/blog" className="page-back-link" style={{ marginBottom: 32, display: 'flex' }}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>
