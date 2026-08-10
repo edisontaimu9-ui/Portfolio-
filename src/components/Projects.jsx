@@ -377,8 +377,8 @@ const projects = [
   {
     id:     'thanzi',
     title:  'Thanzi',
-    status: 'In development',
-    live:   false,
+    status: 'Live · edisontaimu9-ui.github.io/thanzi',
+    live:   true,
     desc: `A consumer nutrition tracking progressive web application (PWA) built on the 
     Chakudya Nutrition Registry (CNR). It enables daily meal logging, nutrient and macronutrient tracking, BMI, 
     BMR, and TDEE assessments, recipe nutrition analysis, personalized dashboards, user 
@@ -391,6 +391,7 @@ const projects = [
       { label: 'GitHub Pages',  Icon: SiGithubpages,             color: '#FFFFFF' },
       { label: 'PWA',           Icon: HiOutlineDevicePhoneMobile, color: '#8B8B8B' },
     ],
+    demo:   'https://edisontaimu9-ui.github.io/thanzi/',
     repo:   'https://github.com/edisontaimu9-ui',
     visual: <ThanziVisual />,
   },
