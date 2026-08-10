@@ -2188,6 +2188,87 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   50% { opacity: 0; }
 }
 
+/* ── Terminal visual (Chakudya API live demo) ───────────────────── */
+.terminal-visual {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #0a0c0c;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  overflow: hidden;
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,.04);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  flex-shrink: 0;
+}
+.terminal-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.terminal-dot-red    { background: #ff5f56; }
+.terminal-dot-yellow { background: #ffbd2e; }
+.terminal-dot-green  { background: #27c93f; }
+.terminal-title {
+  margin-left: 8px;
+  font-size: .72rem;
+  color: rgba(255,255,255,.45);
+}
+.terminal-endpoint-tag {
+  margin-left: auto;
+  font-size: .68rem;
+  font-weight: 600;
+  color: #2fbfa4;
+  background: rgba(47,191,164,.12);
+  border: 1px solid rgba(47,191,164,.25);
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.terminal-body {
+  flex: 1;
+  padding: 18px 16px;
+  overflow: auto;
+}
+.terminal-line {
+  font-size: .78rem;
+  line-height: 1.6;
+  color: #e6e6e6;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.terminal-prompt {
+  color: #2fbfa4;
+  font-weight: 700;
+}
+.terminal-command {
+  color: #7ee787;
+}
+.terminal-response {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 8px;
+  font-size: .72rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,.8);
+  white-space: pre-wrap;
+  word-break: break-word;
+  animation: terminal-fade-in .4s ease both;
+}
+@keyframes terminal-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ── Content protection ──────────────────────────────────────── */
 /* Deters casual copy/save of text and images. Not real security —
    just removes the easy right-click / select-all path. Form fields

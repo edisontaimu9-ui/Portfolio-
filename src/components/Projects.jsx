@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Reveal from './Reveal'
-import { SiJavascript, SiAppwrite, SiGithubpages, SiReact, SiFirebase, SiCloudflare, SiScrapy, SiNodedotjs } from 'react-icons/si'
+import Typewriter from './Typewriter'
+import { SiJavascript, SiAppwrite, SiGithubpages, SiReact, SiFirebase, SiCloudflare, SiScrapy, SiSupabase } from 'react-icons/si'
 import { TbApi, TbCpu, TbDatabase } from 'react-icons/tb'
 import { HiOutlineDevicePhoneMobile } from 'react-icons/hi2'
 import oasisHome from '../assets/oasis-home.webp'
@@ -144,20 +145,142 @@ function ThanziVisual() {
   return <OnePhone label="Thanzi" shots={thanziShots} />
 }
 
-function ChakudyaVisual() {
+/* Terminal-style live demo: cycles through three real requests against the
+   live CNR Worker, typing each curl command out and revealing the actual
+   response it returned (captured 2026-08-10). Hardcoded rather than fetched
+   live so the visual never depends on the Worker being up or CORS being
+   open for the portfolio's origin — but every value here is real, not
+   fabricated. The RAG entry's "content" field is paraphrased rather than
+   the verbatim textbook passage the API actually returns, since that
+   source text is copyrighted — everything else is untouched. */
+const CNR_DEMOS = [
+  {
+    label: 'GET /foods',
+    curl: 'curl -s "https://chakudya-api.edisontaimu9.workers.dev/foods?search=nsima&limit=1"',
+    response: `{
+  "status": "success",
+  "count": 4,
+  "limit": 1,
+  "offset": 0,
+  "data": [
+    {
+      "id": 61,
+      "food_name": "Cassava thick porridge / Nsima ya kondowole",
+      "category": "Staples",
+      "measure": "1 cup (250g)",
+      "weight_g": 100,
+      "kcal": 160,
+      "kj": 678,
+      "protein_g": 1,
+      "carbs_g": 37,
+      "fat_g": 1
+    }
+  ]
+}`,
+  },
+  {
+    label: 'GET /formulas',
+    curl: 'curl -s "https://chakudya-api.edisontaimu9.workers.dev/formulas?limit=1"',
+    response: `{
+  "status": "success",
+  "count": 55,
+  "limit": 1,
+  "offset": 0,
+  "data": [
+    {
+      "id": 1,
+      "formula": "Ensure Original (Abbott)",
+      "category": "Standard Polymeric",
+      "route": "Oral (Sip Feed)",
+      "kcal_per_ml": 1.06,
+      "protein_g_per_l": 37,
+      "protein_pct_e": "14%",
+      "osmol": 590,
+      "tags": "Standard Energy | Standard Protein | Low Fibre | Sip Feed"
+    }
+  ]
+}`,
+  },
+  {
+    label: 'POST /rag/retrieve',
+    curl: `curl -s -X POST "https://chakudya-api.edisontaimu9.workers.dev/rag/retrieve" \\
+  -H "Content-Type: application/json" \\
+  -d '{"query":"high potassium foods","context":"both","top_k":3}'`,
+    response: `{
+  "status": "success",
+  "query": "high potassium foods",
+  "context": "both",
+  "count": 3,
+  "cache": "MISS",
+  "data": [
+    {
+      "id": 1920,
+      "content": "Renal diet reference: potassium-content food groupings for dialysis patients",
+      "source": "Krause & Mahan's Food and the Nutrition Care Process, 16th Ed.",
+      "similarity": 0.688
+    },
+    {
+      "id": 1974,
+      "content": "Clinical electrolyte physiology: potassium absorption, excretion & hyperkalemia risk",
+      "source": "Krause & Mahan's Food and the Nutrition Care Process, 16th Ed.",
+      "similarity": 0.61
+    }
+    // + 1 more source, ranked by cosine similarity
+  ]
+}`,
+  },
+]
+
+const CNR_RESPONSE_HOLD_MS = 4200 // how long the response stays on screen before cycling
+
+function ChakudyaTerminalVisual() {
+  const [step, setStep] = useState(0)
+  const [showResponse, setShowResponse] = useState(false)
+  const demo = CNR_DEMOS[step]
+
+  useEffect(() => {
+    setShowResponse(false)
+    // Roughly matches the Typewriter's own timing (startDelay + chars * speed)
+    // so the response lands right as the curl command finishes typing.
+    const typeMs = 300 + demo.curl.length * 12 + 250
+    const showTimer = setTimeout(() => setShowResponse(true), typeMs)
+    const nextTimer = setTimeout(
+      () => setStep((s) => (s + 1) % CNR_DEMOS.length),
+      typeMs + CNR_RESPONSE_HOLD_MS
+    )
+    return () => {
+      clearTimeout(showTimer)
+      clearTimeout(nextTimer)
+    }
+  }, [step])
+
   return (
-    <div style={{
-      width: '100%', height: '100%',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      background: '#f4f4f5',
-    }}>
-      <img
-        src={chakudyaIllustration}
-        alt="Chakudya Nutrition Registry (CNR): open food and nutrition data infrastructure"
-        loading="lazy"
-        decoding="async"
-        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-      />
+    <div
+      className="terminal-visual"
+      role="img"
+      aria-label={`Terminal cycling through live Chakudya API requests: ${CNR_DEMOS.map(d => d.label).join(', ')}`}
+      style={{
+        backgroundImage: `linear-gradient(rgba(10,12,12,.94), rgba(10,12,12,.97)), url(${chakudyaIllustration})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div className="terminal-bar">
+        <span className="terminal-dot terminal-dot-red" />
+        <span className="terminal-dot terminal-dot-yellow" />
+        <span className="terminal-dot terminal-dot-green" />
+        <span className="terminal-title">chakudya-api — zsh</span>
+        <span className="terminal-endpoint-tag">{demo.label}</span>
+      </div>
+      <div className="terminal-body">
+        <div className="terminal-line">
+          <span className="terminal-prompt">$</span>{' '}
+          <Typewriter key={step} text={demo.curl} speed={12} startDelay={300} className="terminal-command" />
+        </div>
+        {showResponse && (
+          <pre className="terminal-response">{demo.response}</pre>
+        )}
+      </div>
     </div>
   )
 }
@@ -274,25 +397,26 @@ const projects = [
   {
     id:     'chakudya',
     title:  'Chakudya Nutrition Registry (CNR)',
-    status: 'In development',
-    live:   false,
-    desc: `Chakudya Nutrition Registry (CNR) is an open food and nutrition data service built on the authoritative 
-    Malawi Food Composition Table (2019). It extends this national resource with exchange 
-    lists, renal diet classifications, and commonly consumed packaged supermarket foods. 
-    Designed as shared public infrastructure, Chakudya enables standardized, extensible, 
-    and reliable nutrient data access for nutrition applications across clinical, community, 
-    and consumer contexts. By bridging local Malawian food systems with international needs, 
-    it empowers developers, researchers, clinicians, and organizations to build 
-    better-informed tools for nutrition improvement in Malawi and beyond.`,
+    status: 'Live · chakudya-api.edisontaimu9.workers.dev',
+    live:   true,
+    desc: `Chakudya Nutrition Registry (CNR) is Malawi's first open food & nutrition API — a
+    Cloudflare Worker backed by Supabase, extending the authoritative Malawi Food Composition
+    Table (2019) with exchange lists, renal diet classifications, enteral formulas, and
+    community-submitted packaged foods. Under the hood it runs semantic RAG search over its own
+    knowledge base with Cohere embeddings, keeps a per-session clinical scratchpad for the Oasis
+    AI assistant (write → consolidate → recall), and only falls back to USDA FDC, FatSecret, and
+    Open Food Facts when a lookup isn't found locally. Every read is edge-cached with automatic
+    purge-on-write, and every route is rate-limited at the Cloudflare KV layer.`,
     tech:   [
-      { label: 'Malawi FCT 2019', Icon: TbDatabase, color: '#2fbfa4' },
-      { label: 'USDA FDC',   Icon: TbApi,        color: '#2fbfa4' },
-      { label: 'REST API',   Icon: TbApi,        color: '#2fbfa4' },
-      { label: 'Appwrite',   Icon: SiAppwrite,   color: '#FD366E' },
-      { label: 'Node.js',    Icon: SiNodedotjs,  color: '#339933' },
+      { label: 'Cloudflare Workers', Icon: SiCloudflare, color: '#F38020' },
+      { label: 'Supabase',          Icon: SiSupabase,   color: '#3ECF8E' },
+      { label: 'Cohere Embeddings', Icon: TbCpu,        color: '#39594D' },
+      { label: 'Malawi FCT 2019',   Icon: TbDatabase,   color: '#2fbfa4' },
+      { label: 'USDA FDC',          Icon: TbApi,        color: '#2fbfa4' },
     ],
-    repo:   'https://github.com/edisontaimu9-ui',
-    visual: <ChakudyaVisual />,
+    repo:   'https://github.com/edisontaimu9-ui/chakudya-api',
+    demo:   'https://chakudya-api.edisontaimu9.workers.dev',
+    visual: <ChakudyaTerminalVisual />,
     highlight: {
       img: nutritionLabelImg,
       text: 'Every entry resolves down to label-level detail: serving size, macros and micronutrients.',
