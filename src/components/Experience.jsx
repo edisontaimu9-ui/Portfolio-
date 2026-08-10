@@ -4,7 +4,7 @@ const entries = [
   {
     year:  '2021 – 2026',
     title: 'BSc Nutrition & Dietetics (Pioneer Cohort)',
-    org:   'Kamuzu University of Health Sciences (KUHeS) · Blantyre, Malawi',
+    org:   'Kamuzu University of Health Sciences (KUHeS), formerly University of Malawi College of Medicine · Blantyre, Malawi',
     desc: `Member of the inaugural BSc Nutrition & Dietetics cohort at KUHeS, Malawi's first 
     degree-level dietetics programme. Curriculum covered food science, medical nutrition 
     therapy, community nutrition, and research methods, complemented by clinical placement.`,

@@ -19,7 +19,8 @@ export default function About() {
             <div className="about-text">
               <p>
                 I'm a BSc Nutrition & Dietetics graduate (Pioneer Cohort) from
-                <strong> Kamuzu University of Health Sciences (KUHeS)</strong> in Blantyre,
+                <strong> Kamuzu University of Health Sciences (KUHeS)</strong> — formerly the
+                University of Malawi College of Medicine — in Blantyre,
                 Malawi. I work across both <strong>clinical dietetics</strong> and
                 <strong> public health nutrition</strong>, from bedside care plans to
                 population-level nutrition data. I built clinical nutrition software out of a
@@ -97,7 +98,7 @@ export default function About() {
               <div className="fact-row">
                 <span className="fact-label">Education</span>
                 <span className="fact-value">BSc Nutrition & Dietetics — KUHeS</span>
-                <span className="fact-sub">Pioneer Cohort · Blantyre, Malawi</span>
+                <span className="fact-sub">Pioneer Cohort · Blantyre, Malawi · formerly University of Malawi College of Medicine</span>
               </div>
               <div className="fact-row">
                 <span className="fact-label">Focus areas</span>
