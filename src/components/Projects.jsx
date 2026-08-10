@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Reveal from './Reveal'
 import Typewriter from './Typewriter'
-import { SiJavascript, SiAppwrite, SiGithubpages, SiReact, SiFirebase, SiCloudflare, SiScrapy, SiSupabase } from 'react-icons/si'
+import { SiJavascript, SiAppwrite, SiGithubpages, SiReact, SiFirebase, SiCloudflare, SiScrapy, SiPostgresql } from 'react-icons/si'
 import { TbApi, TbCpu, TbDatabase } from 'react-icons/tb'
 import { HiOutlineDevicePhoneMobile } from 'react-icons/hi2'
 import oasisHome from '../assets/oasis-home.webp'
@@ -405,7 +405,7 @@ const projects = [
       It extends the Malawi Food Composition Table (2019) with structured nutrition data
       covering local foods, exchange lists, renal diet classifications, enteral formulas,
       and community-submitted packaged foods.`,
-      `Built on Cloudflare Workers backed by Supabase (PostgreSQL), CNR provides structured
+      `Built on Cloudflare, backed by PostgreSQL, CNR provides structured
       food and nutrition data through a production-ready API. Its semantic search and RAG
       capabilities allow AI applications and chatbots to retrieve relevant, Malawi-specific
       nutrition knowledge from the registry.`,
@@ -424,11 +424,11 @@ const projects = [
       '🌍 External food-data fallbacks',
     ],
     tech:   [
-      { label: 'Cloudflare Workers',   Icon: SiCloudflare, color: '#F38020' },
-      { label: 'Supabase (PostgreSQL)', Icon: SiSupabase,   color: '#3ECF8E' },
-      { label: 'REST API',             Icon: TbApi,        color: '#2fbfa4' },
-      { label: 'RAG',                  Icon: TbCpu,        color: '#39594D' },
-      { label: 'Cohere Embeddings',    Icon: TbCpu,        color: '#39594D' },
+      { label: 'Cloudflare',        Icon: SiCloudflare,  color: '#F38020' },
+      { label: 'PostgreSQL',        Icon: SiPostgresql,  color: '#4169E1' },
+      { label: 'REST API',          Icon: TbApi,         color: '#2fbfa4' },
+      { label: 'RAG',               Icon: TbCpu,         color: '#39594D' },
+      { label: 'Cohere Embeddings', Icon: TbCpu,         color: '#39594D' },
     ],
     repo:   'https://github.com/edisontaimu9-ui/chakudya-api',
     visual: <ChakudyaTerminalVisual />,
