@@ -156,7 +156,7 @@ function ThanziVisual() {
 const CNR_DEMOS = [
   {
     label: 'GET /foods',
-    curl: 'curl -s "https://chakudya-api.edisontaimu9.workers.dev/foods?search=nsima&limit=1"',
+    curl: 'curl -s "https://chakudya-api.•••••••••.workers.dev/foods?search=nsima&limit=1"',
     response: `{
   "status": "success",
   "count": 4,
@@ -180,7 +180,7 @@ const CNR_DEMOS = [
   },
   {
     label: 'GET /formulas',
-    curl: 'curl -s "https://chakudya-api.edisontaimu9.workers.dev/formulas?limit=1"',
+    curl: 'curl -s "https://chakudya-api.•••••••••.workers.dev/formulas?limit=1"',
     response: `{
   "status": "success",
   "count": 55,
@@ -203,7 +203,7 @@ const CNR_DEMOS = [
   },
   {
     label: 'POST /rag/retrieve',
-    curl: `curl -s -X POST "https://chakudya-api.edisontaimu9.workers.dev/rag/retrieve" \\
+    curl: `curl -s -X POST "https://chakudya-api.•••••••••.workers.dev/rag/retrieve" \\
   -H "Content-Type: application/json" \\
   -d '{"query":"high potassium foods","context":"both","top_k":3}'`,
     response: `{
@@ -231,7 +231,7 @@ const CNR_DEMOS = [
   },
 ]
 
-const CNR_RESPONSE_HOLD_MS = 4200 // how long the response stays on screen before cycling
+const CNR_RESPONSE_HOLD_MS = 7000 // how long the response stays on screen before cycling
 
 function ChakudyaTerminalVisual() {
   const [step, setStep] = useState(0)
@@ -242,7 +242,7 @@ function ChakudyaTerminalVisual() {
     setShowResponse(false)
     // Roughly matches the Typewriter's own timing (startDelay + chars * speed)
     // so the response lands right as the curl command finishes typing.
-    const typeMs = 300 + demo.curl.length * 12 + 250
+    const typeMs = 400 + demo.curl.length * 24 + 400
     const showTimer = setTimeout(() => setShowResponse(true), typeMs)
     const nextTimer = setTimeout(
       () => setStep((s) => (s + 1) % CNR_DEMOS.length),
@@ -275,7 +275,7 @@ function ChakudyaTerminalVisual() {
       <div className="terminal-body">
         <div className="terminal-line">
           <span className="terminal-prompt">$</span>{' '}
-          <Typewriter key={step} text={demo.curl} speed={12} startDelay={300} className="terminal-command" />
+          <Typewriter key={step} text={demo.curl} speed={24} startDelay={400} className="terminal-command" />
         </div>
         {showResponse && (
           <pre className="terminal-response">{demo.response}</pre>
@@ -397,7 +397,7 @@ const projects = [
   {
     id:     'chakudya',
     title:  'Chakudya Nutrition Registry (CNR)',
-    status: 'Live · chakudya-api.edisontaimu9.workers.dev',
+    status: 'Live · chakudya-api.•••••••••.workers.dev',
     live:   true,
     desc: `Chakudya Nutrition Registry (CNR) is Malawi's first open food & nutrition API — a
     Cloudflare Worker backed by Supabase, extending the authoritative Malawi Food Composition
