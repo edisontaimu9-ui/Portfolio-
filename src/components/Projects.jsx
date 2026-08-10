@@ -416,7 +416,6 @@ const projects = [
       { label: 'USDA FDC',          Icon: TbApi,        color: '#2fbfa4' },
     ],
     repo:   'https://github.com/edisontaimu9-ui/chakudya-api',
-    demo:   'https://chakudya-api.edisontaimu9.workers.dev',
     visual: <ChakudyaTerminalVisual />,
     highlight: {
       img: nutritionLabelImg,
