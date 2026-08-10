@@ -68,6 +68,7 @@ export default function Hero() {
         <div className="hero-visual hero-enter hero-enter-1">
           <div className="ring-portrait">
             <img src={profilePhoto} alt="Edison Taimu" className="ring-portrait-img" />
+            <span className="handwritten-note">I'm learning Dart &amp; Flutter 😀</span>
           </div>
         </div>
         </div>
