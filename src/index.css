@@ -858,7 +858,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 /* ── Progressive-disclosure tiles (Home) ─────────────────────────── */
-.tiles-section { padding-top: 0; }
+/* Zeroes top padding on sections that directly follow another section,
+   so consecutive homepage blocks keep one consistent 96px gap instead
+   of doubling up (this section's top + the previous section's bottom). */
+.tiles-section,
+.blog-preview-section {
+  padding-top: 0;
+}
 
 .tiles-grid {
   display: grid;
@@ -2205,6 +2211,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+  margin-top: 40px;
 }
 
 .blog-preview-card {

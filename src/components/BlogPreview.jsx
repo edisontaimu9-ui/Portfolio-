@@ -24,7 +24,7 @@ export default function BlogPreview() {
   if (posts.length === 0) return null
 
   return (
-    <section className="section">
+    <section className="section blog-preview-section">
       <div className="container">
         <Reveal>
           <div className="section-head blog-preview-head">
