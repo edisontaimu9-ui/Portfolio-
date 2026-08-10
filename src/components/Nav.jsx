@@ -171,11 +171,15 @@ export default function Nav() {
 
         <span className="menu-section-label">Navigate</span>
         {links.map(({ to, label }) => (
-          <Link key={to} to={to} className="mobile-link">
+          <Link
+            key={to}
+            to={to}
+            className={`mobile-link${isActive(to) ? ' active' : ''}`}
+          >
             {label}
           </Link>
         ))}
-        <Link to="/contact" className="mobile-link" style={{ color: 'var(--accent)' }}>
+        <Link to="/contact" className="mobile-link mobile-cta">
           Get in touch →
         </Link>
 
