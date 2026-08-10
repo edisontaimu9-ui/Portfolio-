@@ -518,7 +518,7 @@ export default function Projects() {
           <div className="project-cta">
             <div>
               <h3>More coming soon</h3>
-              <p>Web Crawler case study and portfolio site source in progress.</p>
+              <p>A human metabolism simulator, a Web Crawler case study, and the portfolio site source, in progress.</p>
             </div>
             <a href="https://github.com/edisontaimu9-ui"
                target="_blank" rel="noopener noreferrer"
