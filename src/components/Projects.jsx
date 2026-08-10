@@ -519,7 +519,7 @@ export default function Projects() {
           <div className="project-cta">
             <div>
               <h3>More coming soon</h3>
-              <p>A human metabolism simulator, a Web Crawler case study, and the portfolio site source, in progress.</p>
+              <p>A human metabolism simulator and Thanzi Guide — a digital health and nutrition education platform for Malawians, offering interactive articles, courses, quizzes, health tools, and a database of common Malawian foods, in progress.</p>
             </div>
             <a href="https://github.com/edisontaimu9-ui"
                target="_blank" rel="noopener noreferrer"
