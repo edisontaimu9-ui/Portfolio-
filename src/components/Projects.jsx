@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Reveal from './Reveal'
 import { SiJavascript, SiAppwrite, SiGithubpages, SiReact, SiFirebase, SiCloudflare, SiScrapy, SiNodedotjs } from 'react-icons/si'
-import { TbApi } from 'react-icons/tb'
+import { TbApi, TbCpu, TbDatabase } from 'react-icons/tb'
 import { HiOutlineDevicePhoneMobile } from 'react-icons/hi2'
 import oasisHome from '../assets/oasis-home.webp'
 import oasisFoodSearch from '../assets/oasis-food-search.webp'
@@ -241,7 +241,7 @@ const projects = [
     tech:   [
       { label: 'Firebase',          Icon: SiFirebase,   color: '#FFCA28' },
       { label: 'Appwrite',          Icon: SiAppwrite,   color: '#FD366E' },
-      'Groq LLaMA 3.3',
+      { label: 'Groq LLaMA 3.3', Icon: TbCpu, color: '#F55036' },
       { label: 'FatSecret API',     Icon: TbApi,        color: '#2fbfa4' },
       { label: 'USDA FDC',          Icon: TbApi,        color: '#2fbfa4' },
       { label: 'Cloudflare Workers', Icon: SiCloudflare, color: '#F38020' },
@@ -285,7 +285,7 @@ const projects = [
     it empowers developers, researchers, clinicians, and organizations to build 
     better-informed tools for nutrition improvement in Malawi and beyond.`,
     tech:   [
-      'Malawi FCT 2019',
+      { label: 'Malawi FCT 2019', Icon: TbDatabase, color: '#2fbfa4' },
       { label: 'USDA FDC',   Icon: TbApi,        color: '#2fbfa4' },
       { label: 'REST API',   Icon: TbApi,        color: '#2fbfa4' },
       { label: 'Appwrite',   Icon: SiAppwrite,   color: '#FD366E' },
@@ -364,20 +364,13 @@ export default function Projects() {
                     </div>
                   )}
                   <div className="chip-row">
-                    {tech.map(t => {
-                      const label = typeof t === 'string' ? t : t.label
-                      const Icon  = typeof t === 'string' ? null : t.Icon
-                      const color = typeof t === 'string' ? undefined : t.color
-                      return (
-                        <span className="chip" key={label}>
-                          {Icon && (
-                            <Icon size={14} color={color}
-                              style={{ marginRight: 6, verticalAlign: '-2px' }} />
-                          )}
-                          {label}
+                    {tech
+                      .filter(t => typeof t !== 'string')
+                      .map(({ label, Icon, color }) => (
+                        <span className="chip chip-icon-only" key={label} title={label} aria-label={label}>
+                          <Icon size={16} color={color} />
                         </span>
-                      )
-                    })}
+                      ))}
                   </div>
                   <div className="project-links">
                     {demo && (
