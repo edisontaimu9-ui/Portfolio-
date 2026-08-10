@@ -86,7 +86,7 @@ export default function Opportunities() {
                 I'm actively seeking internships and fellowships at the intersection of
                 clinical and public health nutrition and health technology: global health
                 innovation programmes, digital health research roles, and clinical informatics
-                positions where the work has direct patient and population impact in
+                positions where the work has direct patient, client, and population impact in
                 low-resource settings.
               </p>
               <p className="internship-lead">

@@ -39,7 +39,7 @@ export default function Hero() {
           <p className="lead hero-enter hero-enter-3">
             I'm Edison Taimu. I build clinical nutrition software that makes
             good nutrition practical, affordable, and easier to access, for
-            patients and the people who care for them.
+            patients and clients, and the people who care for them.
           </p>
 
           <div className="cta-row hero-enter hero-enter-4">

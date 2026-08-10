@@ -113,7 +113,7 @@ export default function About() {
               <div className="fact-row">
                 <span className="fact-label">Currently</span>
                 <span className="fact-value">Oasis CNST & Chakudya Nutrition Registry (CNR)</span>
-                <span className="fact-sub">Seeking global health innovation internship</span>
+                <span className="fact-sub">Open to internships, fellowships & collaborations in global health innovation</span>
               </div>
             </div>
           </Reveal>

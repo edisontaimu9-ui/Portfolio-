@@ -42,7 +42,7 @@ const sectionsAfterBlog = [
     code: 'OP',
     to: '/opportunities',
     title: 'Opportunities',
-    summary: 'Open to global health innovation internships and collaborations that put this work in front of more patients.',
+    summary: 'Open to global health innovation internships and collaborations that put this work in front of more patients and clients.',
   },
   {
     code: 'SU',

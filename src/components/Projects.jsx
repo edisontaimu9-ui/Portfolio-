@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Reveal from './Reveal'
-import { SiJavascript, SiAppwrite, SiGithubpages, SiReact } from 'react-icons/si'
+import { SiJavascript, SiAppwrite, SiGithubpages, SiReact, SiFirebase, SiCloudflare, SiScrapy, SiNodedotjs } from 'react-icons/si'
 import { TbApi } from 'react-icons/tb'
 import { HiOutlineDevicePhoneMobile } from 'react-icons/hi2'
 import oasisHome from '../assets/oasis-home.webp'
@@ -238,7 +238,15 @@ const projects = [
     nutrition, burn management, malnutrition screening (NRS-2002, MNA, MUST, PG-SGA), 
     drug–nutrient interactions, NFPE, growth charts, food database 
     (Malawi FCT 2019 + USDA FDC + Open Food Facts barcode), and AI-assisted NCP generation.`,
-    tech:   ['Firebase','Appwrite','Groq LLaMA 3.3','FatSecret API','USDA FDC','Cloudflare Workers','Scrapy'],
+    tech:   [
+      { label: 'Firebase',          Icon: SiFirebase,   color: '#FFCA28' },
+      { label: 'Appwrite',          Icon: SiAppwrite,   color: '#FD366E' },
+      'Groq LLaMA 3.3',
+      { label: 'FatSecret API',     Icon: TbApi,        color: '#2fbfa4' },
+      { label: 'USDA FDC',          Icon: TbApi,        color: '#2fbfa4' },
+      { label: 'Cloudflare Workers', Icon: SiCloudflare, color: '#F38020' },
+      { label: 'Scrapy',            Icon: SiScrapy,     color: '#60A839' },
+    ],
     demo:   'https://oasiscnst.app',
     repo:   'https://github.com/edisontaimu9-ui/MiNutriQ-',
     visual: <OasisVisual />,
@@ -276,7 +284,13 @@ const projects = [
     and consumer contexts. By bridging local Malawian food systems with international needs, 
     it empowers developers, researchers, clinicians, and organizations to build 
     better-informed tools for nutrition improvement in Malawi and beyond.`,
-    tech:   ['Malawi FCT 2019','USDA FDC','REST API','Appwrite','Node.js'],
+    tech:   [
+      'Malawi FCT 2019',
+      { label: 'USDA FDC',   Icon: TbApi,        color: '#2fbfa4' },
+      { label: 'REST API',   Icon: TbApi,        color: '#2fbfa4' },
+      { label: 'Appwrite',   Icon: SiAppwrite,   color: '#FD366E' },
+      { label: 'Node.js',    Icon: SiNodedotjs,  color: '#339933' },
+    ],
     repo:   'https://github.com/edisontaimu9-ui',
     visual: <ChakudyaVisual />,
     highlight: {
@@ -294,7 +308,7 @@ const projects = [
     single dashboard, with dark mode for long shifts.`,
     tech:   [
       { label: 'React', Icon: SiReact, color: '#61DAFB' },
-      'REST APIs',
+      { label: 'REST APIs', Icon: TbApi, color: '#2fbfa4' },
     ],
     demo:   'https://edisontaimu9-ui.github.io/dietitianos/',
     repo:   'https://github.com/edisontaimu9-ui/dietitianos',
@@ -310,7 +324,7 @@ const projects = [
     record-keeping.`,
     tech:   [
       { label: 'React', Icon: SiReact, color: '#61DAFB' },
-      'REST APIs',
+      { label: 'REST APIs', Icon: TbApi, color: '#2fbfa4' },
     ],
     repo:   'https://github.com/edisontaimu9-ui/ncrs-frontend',
     visual: <NcrsVisual />,
