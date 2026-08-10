@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { getArcProgress } from '../lib/sunTimes'
-import { getSkyPalette } from '../lib/skyColors'
+import { getSkyPalette, getTerrainPalette } from '../lib/skyColors'
 
 // ─── Work location ────────────────────────────────────────────────────────
 // Update CURRENT_LOCATION when your work area changes (e.g. moving between
@@ -33,6 +33,28 @@ const RIDGE = `M0,${VIEW_H} L0,128 L22,118 L48,124 L70,108 L96,120 L120,112
   L150,122 L182,104 L210,118 L240,110 L268,120 L300,113 L330,123 L358,112
   L${VIEW_W},121 L${VIEW_W},${VIEW_H} Z`
 
+// Vegetation & farmland patches making up the ground texture, clipped to
+// the ridge silhouette — a stylised satellite-imagery mosaic rather than a
+// flat silhouette fill. [cx, cy, rx, ry, color]
+const TERRAIN_PATCHES = [
+  [30, 132, 34, 17, '#3f6b3a'], [95, 141, 46, 15, '#557a3d'],
+  [150, 129, 30, 15, '#6b8f45'], [193, 145, 52, 13, '#8a7a44'],
+  [250, 133, 38, 16, '#3f6b3a'], [300, 143, 46, 14, '#6b8f45'],
+  [346, 129, 34, 15, '#557a3d'], [378, 146, 32, 11, '#8a7a44'],
+  [60, 146, 40, 10, '#6b8f45'], [225, 122, 26, 12, '#557a3d'],
+]
+const TERRAIN_BASE = '#33502f'
+
+// A river/road line winding through the ground.
+const RIVER_PATH = 'M0,138 C60,131 90,148 140,140 C190,132 222,150 270,142 C320,134 352,148 400,140'
+
+// Settlement points — glow warm at night (town lights), read as faint
+// rooftops by day. [x, y, r]
+const SETTLEMENTS = [
+  [70, 134, 1.1], [128, 143, 0.9], [172, 130, 1], [216, 147, 0.8],
+  [263, 136, 1.2], [308, 145, 0.9], [352, 132, 1], [44, 141, 0.8],
+]
+
 export default function DayNightWidget() {
   const location = LOCATIONS[CURRENT_LOCATION]
   const [now, setNow] = useState(() => new Date())
@@ -46,6 +68,7 @@ export default function DayNightWidget() {
 
   const { isDay, fraction } = getArcProgress(now, location.lat, location.lon)
   const sky = useMemo(() => getSkyPalette(isDay, fraction), [isDay, fraction])
+  const terrain = useMemo(() => getTerrainPalette(isDay, fraction), [isDay, fraction])
 
   useEffect(() => {
     const path = pathRef.current
@@ -83,6 +106,12 @@ export default function DayNightWidget() {
         preserveAspectRatio="none"
         aria-hidden="true"
       >
+        <defs>
+          <clipPath id="groundClip">
+            <path d={RIDGE} />
+          </clipPath>
+        </defs>
+
         {/* stars */}
         <g style={{ opacity: sky.starOpacity, transition: 'opacity 1s ease' }}>
           {STARS.map(([x, y, r], i) => (
@@ -112,7 +141,33 @@ export default function DayNightWidget() {
         <circle cx={point.x} cy={point.y} r={isDay ? 15 : 11} className="daynight-orb-halo" />
         <circle cx={point.x} cy={point.y} r={isDay ? 7 : 5.5} className="daynight-orb" />
 
-        {/* horizon ridge (plateau silhouette) */}
+        {/* satellite-map ground: vegetation/farmland mosaic, river, and
+            settlement lights, clipped to the ridge silhouette */}
+        <g clipPath="url(#groundClip)" style={{ opacity: terrain.terrainOpacity, transition: 'opacity 1.2s ease' }}>
+          <rect x="0" y="100" width={VIEW_W} height="50" fill={TERRAIN_BASE} />
+          {TERRAIN_PATCHES.map(([cx, cy, rx, ry, color], i) => (
+            <ellipse key={i} cx={cx} cy={cy} rx={rx} ry={ry} fill={color} opacity="0.85" />
+          ))}
+          <path d={RIVER_PATH} stroke="#bcd7e0" strokeWidth="1.2" fill="none" opacity="0.55" />
+        </g>
+        <g clipPath="url(#groundClip)">
+          {SETTLEMENTS.map(([x, y, r], i) => (
+            <circle
+              key={i} cx={x} cy={y} r={r}
+              fill={isDay ? '#fff' : '#ffd873'}
+              opacity={terrain.settlementOpacity}
+              style={{ transition: 'opacity 1s ease' }}
+            />
+          ))}
+        </g>
+        <rect
+          x="0" y="100" width={VIEW_W} height="50"
+          clipPath="url(#groundClip)"
+          fill={terrain.tint}
+          style={{ transition: 'fill 1.2s ease' }}
+        />
+
+        {/* horizon ridge outline (plateau silhouette) */}
         <path d={RIDGE} className="daynight-ridge" />
       </svg>
 

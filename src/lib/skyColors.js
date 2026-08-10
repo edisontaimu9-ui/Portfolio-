@@ -26,6 +26,23 @@ const NIGHT_DEEP   = [[2, 4, 16],   [6, 13, 34],   [11, 21, 46]]
 const NIGHT_GOLDEN = [[9, 12, 34],  [72, 48, 88],  [255, 154, 110]]
 
 /**
+ * Ground/terrain palette for the satellite-map base layer — vivid,
+ * sunlit vegetation & farmland colors by day; dark, low-visibility
+ * terrain with glowing settlement lights by night (mirrors how real
+ * low-light satellite imagery looks, e.g. NASA Black Marble).
+ */
+export function getTerrainPalette(isDay, fraction) {
+  const EDGE = 0.18
+  const glow = clamp01(Math.max(1 - fraction / EDGE, 1 - (1 - fraction) / EDGE))
+  const terrainOpacity = isDay ? lerp(0.72, 1, 1 - glow) : 0.14
+  const settlementOpacity = isDay ? 0.14 : clamp01(1 - glow * 1.3)
+  const tint = isDay
+    ? `rgba(255,178,108,${(glow * 0.32).toFixed(2)})`
+    : `rgba(3,8,22,${(0.6 + (1 - glow) * 0.12).toFixed(2)})`
+  return { terrainOpacity, settlementOpacity, tint }
+}
+
+/**
  * @param isDay boolean from getArcProgress
  * @param fraction 0→1 position within the current day/night phase
  * @returns { gradient, horizonRgb, starOpacity, hazeOpacity }

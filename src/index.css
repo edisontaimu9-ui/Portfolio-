@@ -696,6 +696,18 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   pointer-events: none;
 }
 
+/* subtle sensor grain, like a low-light satellite camera texture */
+.daynight-widget::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: .05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
 .daynight-horizon-glow {
   position: absolute;
   bottom: -10%;
@@ -728,7 +740,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 .daynight-ridge {
-  fill: rgba(4, 10, 22, .55);
+  fill: rgba(4, 10, 22, .12);
 }
 
 .daynight-info {

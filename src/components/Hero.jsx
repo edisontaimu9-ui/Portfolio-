@@ -59,7 +59,7 @@ export default function Hero() {
               <span className="hero-stat-label">Projects shipped</span>
             </Link>
             <Link to="/projects" className="hero-stat">
-              <span className="hero-stat-value">57+</span>
+              <span className="hero-stat-value">1000+</span>
               <span className="hero-stat-label">Clinical docs ingested</span>
             </Link>
           </div>
