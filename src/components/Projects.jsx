@@ -400,26 +400,41 @@ const projects = [
     title:  'Chakudya Nutrition Registry (CNR)',
     status: 'Live · chakudya-api.•••••••••.workers.dev',
     live:   true,
-    desc: `Chakudya Nutrition Registry (CNR) is Malawi's first open food & nutrition API — a
-    Cloudflare Worker backed by Supabase, extending the authoritative Malawi Food Composition
-    Table (2019) with exchange lists, renal diet classifications, enteral formulas, and
-    community-submitted packaged foods. Under the hood it runs semantic RAG search over its own
-    knowledge base with Cohere embeddings, keeps a per-session clinical scratchpad for the Oasis
-    AI assistant (write → consolidate → recall), and only falls back to USDA FDC, FatSecret, and
-    Open Food Facts when a lookup isn't found locally. Every read is edge-cached with automatic
-    purge-on-write, and every route is rate-limited at the Cloudflare KV layer.`,
+    desc: [
+      `Chakudya Nutrition Registry (CNR) is an open food and nutrition API built for Malawi.
+      It extends the Malawi Food Composition Table (2019) with structured nutrition data
+      covering local foods, exchange lists, renal diet classifications, enteral formulas,
+      and community-submitted packaged foods.`,
+      `Built on Cloudflare Workers backed by Supabase (PostgreSQL), CNR provides structured
+      food and nutrition data through a production-ready API. Its semantic search and RAG
+      capabilities allow AI applications and chatbots to retrieve relevant, Malawi-specific
+      nutrition knowledge from the registry.`,
+    ],
+    features: [
+      '🇲🇼 Malawi-specific food composition data',
+      '🥗 Nutrition and exchange-list data',
+      '🩺 Renal diet classifications',
+      '🥛 Enteral formulas',
+      '📦 Packaged food database',
+      '🤖 Semantic search & RAG',
+      '🧠 AI-ready knowledge retrieval',
+      '⚡ API caching',
+      '🔐 API rate limiting',
+      '🔄 Automatic cache invalidation',
+      '🌍 External food-data fallbacks',
+    ],
     tech:   [
-      { label: 'Cloudflare Workers', Icon: SiCloudflare, color: '#F38020' },
-      { label: 'Supabase',          Icon: SiSupabase,   color: '#3ECF8E' },
-      { label: 'Cohere Embeddings', Icon: TbCpu,        color: '#39594D' },
-      { label: 'Malawi FCT 2019',   Icon: TbDatabase,   color: '#2fbfa4' },
-      { label: 'USDA FDC',          Icon: TbApi,        color: '#2fbfa4' },
+      { label: 'Cloudflare Workers',   Icon: SiCloudflare, color: '#F38020' },
+      { label: 'Supabase (PostgreSQL)', Icon: SiSupabase,   color: '#3ECF8E' },
+      { label: 'REST API',             Icon: TbApi,        color: '#2fbfa4' },
+      { label: 'RAG',                  Icon: TbCpu,        color: '#39594D' },
+      { label: 'Cohere Embeddings',    Icon: TbCpu,        color: '#39594D' },
     ],
     repo:   'https://github.com/edisontaimu9-ui/chakudya-api',
     visual: <ChakudyaTerminalVisual />,
     highlight: {
       img: nutritionLabelImg,
-      text: 'Every entry resolves down to label-level detail: serving size, macros and micronutrients.',
+      text: 'Every food entry resolves to label-level detail, including serving size, macronutrients, and micronutrients.',
     },
   },
   {
@@ -468,7 +483,7 @@ export default function Projects() {
         </Reveal>
 
         <div className="projects-list">
-          {projects.map(({ id, title, status, live, desc, tech, demo, repo, visual, highlight }) => (
+          {projects.map(({ id, title, status, live, desc, features, tech, demo, repo, visual, highlight }) => (
             <Reveal key={id} delay={100}>
               <div className="project-card">
                 <div className="project-visual">{visual}</div>
@@ -478,7 +493,14 @@ export default function Projects() {
                     {status}
                   </span>
                   <h3 className="project-title">{title}</h3>
-                  <p className="project-desc">{desc}</p>
+                  {Array.isArray(desc)
+                    ? desc.map((para, i) => <p className="project-desc" key={i}>{para}</p>)
+                    : <p className="project-desc">{desc}</p>}
+                  {features && (
+                    <ul className="project-features">
+                      {features.map((f) => <li key={f}>{f}</li>)}
+                    </ul>
+                  )}
                   {highlight && (
                     <div className="media-highlight">
                       <div className="media-highlight-img">
