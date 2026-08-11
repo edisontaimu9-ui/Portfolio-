@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
+import MobileTabBar from './MobileTabBar'
 import logo from '../assets/logo.png'
 
 // Primary links stay visible at all times. The rest live under "More" on
@@ -197,6 +198,8 @@ export default function Nav() {
           <span>Zomba, Malawi</span>
         </div>
       </div>
+
+      <MobileTabBar />
     </>
   )
 }

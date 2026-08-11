@@ -398,6 +398,74 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .theme-toggle-float { top: auto; bottom: 20px; right: 16px; width: 50px; height: 50px; }
 }
 
+/* ── Mobile floating tab bar ─────────────────────────────────── */
+.mobile-tabbar {
+  display: none;
+  position: fixed;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 140;
+  align-items: center;
+  gap: 2px;
+  padding: 6px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid var(--border-hi);
+  border-radius: 999px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.32), 0 0 0 1px var(--border) inset;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.mobile-tabbar-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  color: var(--text-subtle);
+  background: transparent;
+  overflow: hidden;
+  transition: width .35s cubic-bezier(.25,1,.5,1), background .25s ease, color .25s ease, padding .35s ease;
+}
+.mobile-tabbar-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+}
+.mobile-tabbar-label {
+  font-size: .82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 0;
+  transition: max-width .35s cubic-bezier(.25,1,.5,1), opacity .2s ease;
+}
+.mobile-tabbar-item:hover { color: var(--text); }
+.mobile-tabbar-item.active {
+  width: auto;
+  padding-right: 16px;
+  color: var(--on-accent);
+  background: var(--accent);
+}
+.mobile-tabbar-item.active .mobile-tabbar-label {
+  max-width: 80px;
+  opacity: 1;
+}
+.mobile-tabbar-theme.active,
+.mobile-tabbar-theme { color: var(--text-subtle); }
+
+@media (max-width: 900px) {
+  .mobile-tabbar { display: flex; }
+  body { padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px)); }
+  .theme-toggle-float { display: none; }
+}
+
 /* ── Mobile menu ─────────────────────────────────────────────── */
 .mobile-menu {
   position: fixed;
