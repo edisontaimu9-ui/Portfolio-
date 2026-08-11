@@ -464,6 +464,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .mobile-tabbar { display: flex; }
   body { padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px)); }
   .theme-toggle-float { display: none; }
+  .nav-theme-toggle { display: none; }
 }
 
 /* ── Mobile menu ─────────────────────────────────────────────── */
