@@ -5,12 +5,12 @@
 // everything else is a custom icon from `../components/icons/MarqueeIcons`.
 
 import {
-  SiFlutter, SiPython, SiGithub, SiDart, SiOpenai, SiReact, SiTypescript,
+  SiFlutter, SiPython, SiGithub, SiDart, SiReact, SiTypescript,
   SiDocker, SiCloudflare, SiJavascript, SiGit,
 } from 'react-icons/si'
 import {
   HiOutlineDevicePhoneMobile, HiOutlineCircleStack, HiOutlineCommandLine,
-  HiOutlineGlobeAlt,
+  HiOutlineGlobeAlt, HiOutlineSparkles,
 } from 'react-icons/hi2'
 import {
   StethoscopeIcon, HeartPulseIcon, BrainIcon, DnaIcon, KidneyIcon,
@@ -31,7 +31,7 @@ export const marqueeItems = [
   { Icon: LakeWavesIcon, label: 'Lake Malawi' },
   { Icon: SiDart },
   { Icon: NutritionLabelIcon },
-  { Icon: SiOpenai, label: 'AI' },
+  { Icon: HiOutlineSparkles, label: 'AI' },
   { Icon: MaizeIcon },
   { Icon: HeartPulseIcon },
   { Icon: SiReact, label: 'React' },
