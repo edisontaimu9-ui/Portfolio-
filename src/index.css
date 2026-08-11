@@ -1137,91 +1137,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--accent);
 }
 
-/* ── HealthTechMarquee: border-edge identity strip (Home) ───────────
-   An animated track that travels along a section's top edge — clinical,
-   nutrition, tech and Malawi icons in one mixed sequence. Sits flush
-   against the section's existing border-top so it reads as a signature
-   detail, not a carousel dropped into the content. Icons carry their
-   real brand/thematic color (same pattern as the tool icons in
-   Skills.jsx) inside a soft chip, with a label underneath. */
-.htm-marquee {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-.htm-marquee--top { margin-top: -1px; } /* sits on the .section's border-top */
-
-.htm-track {
-  display: flex;
-  align-items: flex-start;
-  gap: 26px;
-  width: max-content;
-  padding: 18px 24px;
-  animation: htm-scroll 60s linear infinite;
-}
-.htm-marquee:hover .htm-track { animation-play-state: paused; }
-
-@keyframes htm-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-.htm-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 7px;
-  flex-shrink: 0;
-  width: 68px;
-}
-
-.htm-chip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  transition: transform .2s, border-color .2s;
-}
-.htm-item:hover .htm-chip { transform: translateY(-2px); border-color: var(--border-hi); }
-
-.htm-icon { width: 22px; height: 22px; flex-shrink: 0; }
-
-.htm-label {
-  font-family: var(--font-display);
-  font-size: .64rem;
-  font-weight: 600;
-  letter-spacing: .01em;
-  white-space: nowrap;
-  color: var(--text-muted);
-  text-align: center;
-}
-
-.htm-fade {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 72px;
-  z-index: 1;
-  pointer-events: none;
-}
-.htm-fade--left  { left: 0;  background: linear-gradient(90deg, var(--surface), transparent); }
-.htm-fade--right { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
-
-@media (max-width: 640px) {
-  .htm-track { gap: 16px; padding: 14px 16px; animation-duration: 44s; }
-  .htm-item { width: 56px; gap: 5px; }
-  .htm-chip { width: 34px; height: 34px; border-radius: 10px; }
-  .htm-icon { width: 18px; height: 18px; }
-  .htm-label { font-size: .58rem; }
-  .htm-fade { width: 40px; }
-}
-
 /* ── Dedicated detail pages ──────────────────────────────────────── */
 .page-enter {
   animation: page-fade-up .4s ease both;
@@ -1479,11 +1394,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   line-height: 1.65;
 }
 
-/* Marquee / tech strip */
+/* Marquee / tech strip — bordered card with continuously scrolling
+   icons, edges fading to transparent so the loop feels seamless. */
 .marquee-section {
   margin-top: 48px;
-  padding-top: 48px;
-  border-top: 1px solid var(--border);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 28px 0 28px 28px;
   overflow: hidden;
 }
 .marquee-label {
@@ -1493,12 +1411,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   text-transform: uppercase;
   color: var(--text-subtle);
   margin-bottom: 20px;
+  padding-right: 28px;
+}
+.marquee-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 .marquee-track {
   display: flex;
   gap: 32px;
   width: max-content;
-  animation: marquee 28s linear infinite;
+  animation: marquee 32s linear infinite;
+  padding-right: 32px;
 }
 .marquee-track:hover { animation-play-state: paused; }
 @keyframes marquee {
@@ -1515,6 +1440,12 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   flex-shrink: 0;
 }
 .marquee-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+@media (max-width: 640px) {
+  .marquee-section { padding: 22px 0 22px 20px; border-radius: var(--radius-sm); }
+  .marquee-label { padding-right: 20px; }
+  .marquee-track { gap: 24px; }
+}
 
 /* ── Media highlight (small photo + caption, used in Skills & Projects) ── */
 .media-highlight {
@@ -2348,7 +2279,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .ecg-path { animation: none; transform: scaleX(1); }
   .marquee-track { animation: none; }
-  .htm-track { animation: none; }
   .hero-enter { opacity: 1; transform: none; animation: none; }
   .btn-spinner { animation: none; }
 }
