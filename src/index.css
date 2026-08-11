@@ -1137,6 +1137,75 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--accent);
 }
 
+/* ── HealthTechMarquee: border-edge identity strip (Home) ───────────
+   A thin animated track that travels along a section's top edge —
+   clinical, nutrition, tech and Malawi icons in one mixed sequence.
+   Sits flush against the section's existing border-top so it reads
+   as the border itself, not a carousel dropped into the content. */
+.htm-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.htm-marquee--top { margin-top: -1px; } /* sits on the .section's border-top */
+
+.htm-track {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: max-content;
+  padding: 12px 24px;
+  animation: htm-scroll 52s linear infinite;
+}
+.htm-marquee:hover .htm-track { animation-play-state: paused; }
+
+@keyframes htm-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.htm-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  color: var(--text-subtle);
+  opacity: .8;
+}
+.htm-item--accent { color: var(--accent); opacity: .9; }
+
+.htm-icon { width: 17px; height: 17px; flex-shrink: 0; }
+
+.htm-label {
+  font-family: var(--font-display);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+.htm-item--accent .htm-label { color: var(--accent); }
+
+.htm-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  z-index: 1;
+  pointer-events: none;
+}
+.htm-fade--left  { left: 0;  background: linear-gradient(90deg, var(--surface), transparent); }
+.htm-fade--right { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
+
+@media (max-width: 640px) {
+  .htm-track { gap: 20px; padding: 9px 16px; animation-duration: 40s; }
+  .htm-icon { width: 15px; height: 15px; }
+  .htm-label { font-size: .64rem; }
+  .htm-fade { width: 36px; }
+}
+
 /* ── Dedicated detail pages ──────────────────────────────────────── */
 .page-enter {
   animation: page-fade-up .4s ease both;
@@ -2263,6 +2332,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .ecg-path { animation: none; transform: scaleX(1); }
   .marquee-track { animation: none; }
+  .htm-track { animation: none; }
   .hero-enter { opacity: 1; transform: none; animation: none; }
   .btn-spinner { animation: none; }
 }

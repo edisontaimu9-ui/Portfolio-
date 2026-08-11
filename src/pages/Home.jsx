@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Hero from '../components/Hero'
 import Reveal from '../components/Reveal'
 import BlogPreview from '../components/BlogPreview'
+import HealthTechMarquee from '../components/HealthTechMarquee'
 
 const sectionsBeforeBlog = [
   {
@@ -91,6 +92,7 @@ export default function Home() {
       <Hero />
 
       <section className="section tiles-section">
+        <HealthTechMarquee />
         <div className="container">
           <Reveal>
             <div className="section-head">
