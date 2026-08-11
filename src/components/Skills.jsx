@@ -5,31 +5,6 @@ import {
   SiNodedotjs, SiPython, SiGithub, SiPostgresql,
 } from 'react-icons/si'
 import { HiOutlineSparkles, HiOutlineGlobeAlt } from 'react-icons/hi2'
-import {
-  FaStethoscope, FaHeartPulse, FaAppleWhole, FaUserDoctor,
-} from 'react-icons/fa6'
-
-// Small hand-drawn-ish Malawi flag — no icon library ships this, so it's
-// a plain inline SVG: three stripes plus the rising-sun emblem.
-function MalawiFlag({ size = 16 }) {
-  return (
-    <svg width={size} height={size * 0.7} viewBox="0 0 30 21" aria-hidden="true">
-      <rect width="30" height="7"  y="0"  fill="#000" />
-      <rect width="30" height="7"  y="7"  fill="#CE1126" />
-      <rect width="30" height="7"  y="14" fill="#339E35" />
-      <circle cx="15" cy="7" r="4.2" fill="#CE1126" />
-      {Array.from({ length: 15 }).map((_, i) => {
-        const angle = (i / 15) * 2 * Math.PI
-        const x2 = 15 + Math.cos(angle) * 7.4
-        const y2 = 7 + Math.sin(angle) * 7.4
-        return (
-          <line key={i} x1="15" y1="7" x2={x2} y2={y2}
-            stroke="#CE1126" strokeWidth="1.1" />
-        )
-      })}
-    </svg>
-  )
-}
 
 const tools = [
   { label: 'Firebase',    Icon: SiFirebase,   color: '#FFCA28' },
@@ -43,11 +18,6 @@ const tools = [
   { label: 'GitHub',      Icon: SiGithub,     color: '#FFFFFF' },
   { label: 'REST APIs',   Icon: HiOutlineGlobeAlt, color: '#8B8B8B' },
   { label: 'AI / LLMs',   Icon: HiOutlineSparkles,  color: '#A78BFA' },
-  { label: 'Clinical Assessment', Icon: FaStethoscope, color: '#2fbfa4' },
-  { label: 'Vitals & Monitoring', Icon: FaHeartPulse,  color: '#e5484d' },
-  { label: 'Nutrition Care',      Icon: FaAppleWhole,  color: '#7fb547' },
-  { label: 'Patient Care',        Icon: FaUserDoctor,  color: '#5b9bd5' },
-  { label: 'Malawi',              Icon: MalawiFlag,    color: null },
 ]
 
 const doubled = [...tools, ...tools] // infinite scroll
@@ -202,15 +172,13 @@ export default function Skills() {
         {/* Tech marquee */}
         <Reveal delay={300}>
           <div className="marquee-section">
-            <p className="marquee-label">Tools, technologies &amp; clinical skills</p>
-            <div className="marquee-viewport">
-              <div className="marquee-track" aria-hidden="true">
-                {doubled.map(({ label, Icon, color }, i) => (
-                  <span className="marquee-item" key={`${label}-${i}`}>
-                    <Icon size={16} color={color} /> {label}
-                  </span>
-                ))}
-              </div>
+            <p className="marquee-label">Tools &amp; technologies</p>
+            <div className="marquee-track" aria-hidden="true">
+              {doubled.map(({ label, Icon, color }, i) => (
+                <span className="marquee-item" key={`${label}-${i}`}>
+                  <Icon size={16} color={color} /> {label}
+                </span>
+              ))}
             </div>
           </div>
         </Reveal>
