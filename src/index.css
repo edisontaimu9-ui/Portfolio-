@@ -1191,6 +1191,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .htm-item:hover .htm-chip { transform: translateY(-2px); border-color: var(--border-hi); }
 
 .htm-icon { width: 22px; height: 22px; flex-shrink: 0; }
+/* Academicons are a CSS icon font, not an SVG — they scale via
+   font-size, not width/height, and need centering inside the chip. */
+.htm-icon-font {
+  font-size: 20px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+}
 
 .htm-label {
   font-family: var(--font-display);
@@ -1218,6 +1228,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .htm-item { width: 56px; gap: 5px; }
   .htm-chip { width: 34px; height: 34px; border-radius: 10px; }
   .htm-icon { width: 18px; height: 18px; }
+  .htm-icon-font { font-size: 16px; }
   .htm-label { font-size: .58rem; }
   .htm-fade { width: 40px; }
 }
