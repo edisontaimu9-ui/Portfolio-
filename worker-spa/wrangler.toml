@@ -1,0 +1,12 @@
+name = "minutriq-spa-fallback"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+
+# Binding this route directly here means `wrangler deploy` creates/updates
+# it automatically on every deploy — no manual "add a route" step in the
+# dashboard needed. Requires the deploying API token to have "Workers
+# Routes: Edit" permission on the minutriq.me zone (see note in the
+# deploy workflow if this step fails).
+[[routes]]
+pattern = "minutriq.me/*"
+zone_name = "minutriq.me"
