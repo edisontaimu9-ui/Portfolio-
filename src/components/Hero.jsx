@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import profilePhoto from '../assets/profile-photo.jpg'
 import DayNightWidget from './DayNightWidget'
 import Typewriter from './Typewriter'
+import PortraitDoodles from './PortraitDoodles'
 
 export default function Hero() {
   return (
@@ -66,9 +67,12 @@ export default function Hero() {
         </div>
 
         <div className="hero-visual hero-enter hero-enter-1">
-          <div className="ring-portrait">
-            <img src={profilePhoto} alt="Edison Taimu" className="ring-portrait-img" />
-            <span className="handwritten-note">I'm learning Dart &amp; Flutter 😀</span>
+          <div className="portrait-scene">
+            <div className="ring-portrait">
+              <img src={profilePhoto} alt="Edison Taimu" className="ring-portrait-img" />
+              <span className="handwritten-note">I'm learning Dart &amp; Flutter 😀</span>
+            </div>
+            <PortraitDoodles />
           </div>
         </div>
         </div>

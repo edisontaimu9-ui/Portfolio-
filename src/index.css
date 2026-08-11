@@ -654,10 +654,23 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   justify-content: center;
 }
 
+/* Wraps the portrait + the ring of hand-lettered personality words
+   around it. Sized wider than the photo itself so the doodle labels
+   have room to sit just outside the ring; children are centered via
+   flex, with the doodle layer absolutely overlaid on top. */
+.portrait-scene {
+  position: relative;
+  width: clamp(320px, 34vw, 460px);
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .ring-portrait {
   position: relative;
-  width: 100%;
-  max-width: 380px;
+  width: 70%;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
@@ -717,6 +730,120 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
     padding: 6px 12px;
     right: 4px;
   }
+}
+
+/* Doodle ring — hand-lettered personality words orbiting the portrait,
+   each with a small line-icon and a thin curved arrow pointing back at
+   the photo. Desktop/tablet: positioned radially with absolute top/left
+   (computed in JS from an angle around the circle). Phone: collapses
+   into a wrapped row of chips below the photo — see breakpoint below. */
+.doodle-ring-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.doodle-ring {
+  position: absolute;
+  inset: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.doodle-item {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: doodle-fade-in .5s ease forwards;
+  max-width: 128px;
+}
+
+.doodle-item-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.doodle-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  opacity: .75;
+}
+.doodle-icon svg { width: 100%; height: 100%; }
+
+.doodle-label {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: clamp(.95rem, 1.7vw, 1.2rem);
+  line-height: 1;
+  color: var(--text-muted);
+}
+
+.doodle-item-accent .doodle-label,
+.doodle-item-accent .doodle-icon {
+  color: var(--accent);
+}
+
+.doodle-arrow {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  color: var(--text-subtle);
+  opacity: 0;
+  animation: doodle-fade-in-arrow .5s ease forwards;
+}
+
+@keyframes doodle-fade-in {
+  to { opacity: 1; }
+}
+@keyframes doodle-fade-in-arrow {
+  to { opacity: .45; }
+}
+
+/* Phone: swap the radial burst for a simple wrapped row of chips
+   beneath the photo so nothing overlaps the portrait or gets cramped. */
+@media (max-width: 640px) {
+  .portrait-scene {
+    display: block;
+    width: 100%;
+    max-width: 260px;
+    aspect-ratio: auto;
+    margin: 0 auto;
+  }
+  .ring-portrait { width: 100%; }
+  .doodle-ring-wrap {
+    position: static;
+    margin-top: 20px;
+  }
+  .doodle-ring {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 10px;
+  }
+  .doodle-arrow { display: none; }
+  .doodle-item {
+    position: static;
+    max-width: none;
+    transform: none;
+  }
+  .doodle-item-inner {
+    background: var(--surface-2);
+    border: 1px solid var(--border-hi);
+    border-radius: 999px;
+    padding: 5px 12px;
+    transform: none !important;
+  }
+  .doodle-label { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doodle-item, .doodle-arrow { opacity: 1; animation: none; }
 }
 
 .hero-top {
