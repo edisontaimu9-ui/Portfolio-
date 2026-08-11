@@ -62,7 +62,7 @@ async function fetchAllPublishedPosts() {
 }
 
 function renderForPost(template, post) {
-  const url = `${SITE}/blog/${post.slug}`
+  const url = `${SITE}/blog/${post.slug}/`
   const title = `${post.title} — Edison Taimu`
   const description = xmlEscape(descriptionFor(post))
   const image = post.cover_image || DEFAULT_IMAGE

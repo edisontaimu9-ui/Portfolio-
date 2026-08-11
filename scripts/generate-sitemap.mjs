@@ -11,15 +11,15 @@ const API_BASE = process.env.VITE_CMS_API_URL
 
 const STATIC_PAGES = [
   { path: '/',              priority: '1.0' },
-  { path: '/about',          priority: '0.8' },
-  { path: '/projects',       priority: '0.8' },
-  { path: '/skills',         priority: '0.6' },
-  { path: '/experience',     priority: '0.6' },
-  { path: '/impact',         priority: '0.7' },
-  { path: '/opportunities', priority: '0.6' },
-  { path: '/support',       priority: '0.5' },
-  { path: '/contact',       priority: '0.7' },
-  { path: '/blog',           priority: '0.7' },
+  { path: '/about/',          priority: '0.8' },
+  { path: '/projects/',       priority: '0.8' },
+  { path: '/skills/',         priority: '0.6' },
+  { path: '/experience/',     priority: '0.6' },
+  { path: '/impact/',         priority: '0.7' },
+  { path: '/opportunities/', priority: '0.6' },
+  { path: '/support/',       priority: '0.5' },
+  { path: '/contact/',       priority: '0.7' },
+  { path: '/blog/',           priority: '0.7' },
 ]
 
 function xmlEscape(str) {
@@ -69,7 +69,7 @@ async function main() {
   const entries = [
     ...STATIC_PAGES.map((p) => urlEntry({ loc: `${SITE}${p.path}`, priority: p.priority })),
     ...posts.map((post) => urlEntry({
-      loc: `${SITE}/blog/${post.slug}`,
+      loc: `${SITE}/blog/${post.slug}/`,
       priority: '0.6',
       lastmod: (post.updated_at || post.published_at || '').slice(0, 10) || undefined,
     })),

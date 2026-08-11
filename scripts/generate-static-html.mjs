@@ -75,7 +75,7 @@ function xmlEscape(str) {
 }
 
 function renderForPage(template, page) {
-  const url = `${SITE}${page.path}`
+  const url = `${SITE}${page.path}/`
   const title = xmlEscape(page.title)
   const description = xmlEscape(page.description)
 
