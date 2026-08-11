@@ -13,12 +13,11 @@ export default function HealthTechMarquee({ edge = 'top' }) {
       <div className="htm-fade htm-fade--left" />
       <div className="htm-fade htm-fade--right" />
       <div className="htm-track">
-        {doubled.map(({ Icon, label }, i) => (
-          <span
-            className={`htm-item${label ? ' htm-item--labeled' : ''}${i % 7 === 0 ? ' htm-item--accent' : ''}`}
-            key={i}
-          >
-            <Icon className="htm-icon" />
+        {doubled.map(({ Icon, label, color }, i) => (
+          <span className="htm-item" key={i}>
+            <span className="htm-chip">
+              <Icon className="htm-icon" style={{ color }} />
+            </span>
             {label && <span className="htm-label">{label}</span>}
           </span>
         ))}

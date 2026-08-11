@@ -1138,10 +1138,12 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 /* ── HealthTechMarquee: border-edge identity strip (Home) ───────────
-   A thin animated track that travels along a section's top edge —
-   clinical, nutrition, tech and Malawi icons in one mixed sequence.
-   Sits flush against the section's existing border-top so it reads
-   as the border itself, not a carousel dropped into the content. */
+   An animated track that travels along a section's top edge — clinical,
+   nutrition, tech and Malawi icons in one mixed sequence. Sits flush
+   against the section's existing border-top so it reads as a signature
+   detail, not a carousel dropped into the content. Icons carry their
+   real brand/thematic color (same pattern as the tool icons in
+   Skills.jsx) inside a soft chip, with a label underneath. */
 .htm-marquee {
   position: relative;
   width: 100%;
@@ -1153,11 +1155,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 .htm-track {
   display: flex;
-  align-items: center;
-  gap: 30px;
+  align-items: flex-start;
+  gap: 26px;
   width: max-content;
-  padding: 12px 24px;
-  animation: htm-scroll 52s linear infinite;
+  padding: 18px 24px;
+  animation: htm-scroll 60s linear infinite;
 }
 .htm-marquee:hover .htm-track { animation-play-state: paused; }
 
@@ -1167,32 +1169,44 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 .htm-item {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 7px;
   flex-shrink: 0;
-  color: var(--text-subtle);
-  opacity: .8;
+  width: 68px;
 }
-.htm-item--accent { color: var(--accent); opacity: .9; }
 
-.htm-icon { width: 17px; height: 17px; flex-shrink: 0; }
+.htm-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: transform .2s, border-color .2s;
+}
+.htm-item:hover .htm-chip { transform: translateY(-2px); border-color: var(--border-hi); }
+
+.htm-icon { width: 22px; height: 22px; flex-shrink: 0; }
 
 .htm-label {
   font-family: var(--font-display);
-  font-size: .68rem;
+  font-size: .64rem;
   font-weight: 600;
-  letter-spacing: .02em;
+  letter-spacing: .01em;
   white-space: nowrap;
   color: var(--text-muted);
+  text-align: center;
 }
-.htm-item--accent .htm-label { color: var(--accent); }
 
 .htm-fade {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 64px;
+  width: 72px;
   z-index: 1;
   pointer-events: none;
 }
@@ -1200,10 +1214,12 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .htm-fade--right { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
 
 @media (max-width: 640px) {
-  .htm-track { gap: 20px; padding: 9px 16px; animation-duration: 40s; }
-  .htm-icon { width: 15px; height: 15px; }
-  .htm-label { font-size: .64rem; }
-  .htm-fade { width: 36px; }
+  .htm-track { gap: 16px; padding: 14px 16px; animation-duration: 44s; }
+  .htm-item { width: 56px; gap: 5px; }
+  .htm-chip { width: 34px; height: 34px; border-radius: 10px; }
+  .htm-icon { width: 18px; height: 18px; }
+  .htm-label { font-size: .58rem; }
+  .htm-fade { width: 40px; }
 }
 
 /* ── Dedicated detail pages ──────────────────────────────────────── */
