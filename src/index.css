@@ -1260,6 +1260,46 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .page-back-link:hover { color: var(--accent); gap: 12px; }
 
 /* ── About ───────────────────────────────────────────────────── */
+.about-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative watermark — Aesculapius and Telesphorus, etching by
+   Nicolas Dorigny, Wellcome Collection (CC BY 4.0). Sits behind the
+   section content, faded and edge-masked so it reads as a quiet
+   texture rather than a photo dropped on the page. Grayscale +
+   luminosity blend keeps it theme-adaptive: it reads as a faint
+   glow on dark backgrounds and a soft tint on light ones, without
+   needing separate light/dark assets. */
+.about-watermark {
+  position: absolute;
+  top: -4%;
+  right: -2%;
+  height: 108%;
+  width: auto;
+  max-width: 480px;
+  object-fit: contain;
+  opacity: .1;
+  filter: grayscale(1) contrast(1.05);
+  mix-blend-mode: luminosity;
+  -webkit-mask-image: linear-gradient(to left, black 35%, transparent 82%);
+  mask-image: linear-gradient(to left, black 35%, transparent 82%);
+  pointer-events: none;
+  user-select: none;
+}
+[data-theme="light"] .about-watermark {
+  opacity: .07;
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 900px) {
+  .about-watermark { max-width: 320px; opacity: .07; }
+}
+@media (max-width: 640px) {
+  .about-watermark { display: none; } /* not enough room to read as intentional at this width */
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

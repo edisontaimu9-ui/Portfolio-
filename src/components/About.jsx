@@ -1,10 +1,17 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
+import aesculapiusEngraving from '../assets/aesculapius-dorigny.webp'
 
 export default function About() {
   const [expanded, setExpanded] = useState(false)
   return (
-    <section id="about" className="section">
+    <section id="about" className="section about-section">
+      <img
+        src={aesculapiusEngraving}
+        alt=""
+        aria-hidden="true"
+        className="about-watermark"
+      />
       <div className="container">
 
         <Reveal>
