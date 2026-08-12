@@ -1280,7 +1280,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   width: auto;
   max-width: 480px;
   object-fit: contain;
-  opacity: .1;
+  opacity: .16;
   filter: grayscale(1) contrast(1.05);
   mix-blend-mode: luminosity;
   -webkit-mask-image: linear-gradient(to left, black 35%, transparent 82%);
@@ -1289,15 +1289,27 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   user-select: none;
 }
 [data-theme="light"] .about-watermark {
-  opacity: .07;
+  opacity: .12;
   mix-blend-mode: multiply;
 }
 
 @media (max-width: 900px) {
-  .about-watermark { max-width: 320px; opacity: .07; }
+  .about-watermark { max-width: 280px; opacity: .13; }
 }
 @media (max-width: 640px) {
-  .about-watermark { display: none; } /* not enough room to read as intentional at this width */
+  /* Section stacks to one column here, so there's no wide gutter for a
+     tall bleed image — shrink it into a quiet corner flourish instead
+     of hiding it outright. */
+  .about-watermark {
+    max-width: 150px;
+    height: 60%;
+    top: 0;
+    right: -6%;
+    opacity: .12;
+    -webkit-mask-image: linear-gradient(to bottom left, black 20%, transparent 75%);
+    mask-image: linear-gradient(to bottom left, black 20%, transparent 75%);
+  }
+  [data-theme="light"] .about-watermark { opacity: .09; }
 }
 
 .about-grid {
