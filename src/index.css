@@ -1260,58 +1260,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .page-back-link:hover { color: var(--accent); gap: 12px; }
 
 /* ── About ───────────────────────────────────────────────────── */
-.about-section {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Decorative watermark — Aesculapius and Telesphorus, etching by
-   Nicolas Dorigny, Wellcome Collection (CC BY 4.0). Sits behind the
-   section content, faded and edge-masked so it reads as a quiet
-   texture rather than a photo dropped on the page. Grayscale +
-   luminosity blend keeps it theme-adaptive: it reads as a faint
-   glow on dark backgrounds and a soft tint on light ones, without
-   needing separate light/dark assets. */
-.about-watermark {
-  position: absolute;
-  top: -4%;
-  right: -2%;
-  height: 108%;
-  width: auto;
-  max-width: 480px;
-  object-fit: contain;
-  opacity: .16;
-  filter: grayscale(1) contrast(1.05);
-  mix-blend-mode: luminosity;
-  -webkit-mask-image: linear-gradient(to left, black 35%, transparent 82%);
-  mask-image: linear-gradient(to left, black 35%, transparent 82%);
-  pointer-events: none;
-  user-select: none;
-}
-[data-theme="light"] .about-watermark {
-  opacity: .12;
-  mix-blend-mode: multiply;
-}
-
-@media (max-width: 900px) {
-  .about-watermark { max-width: 280px; opacity: .13; }
-}
-@media (max-width: 640px) {
-  /* Section stacks to one column here, so there's no wide gutter for a
-     tall bleed image — shrink it into a quiet corner flourish instead
-     of hiding it outright. */
-  .about-watermark {
-    max-width: 150px;
-    height: 60%;
-    top: 0;
-    right: -6%;
-    opacity: .12;
-    -webkit-mask-image: linear-gradient(to bottom left, black 20%, transparent 75%);
-    mask-image: linear-gradient(to bottom left, black 20%, transparent 75%);
-  }
-  [data-theme="light"] .about-watermark { opacity: .09; }
-}
-
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

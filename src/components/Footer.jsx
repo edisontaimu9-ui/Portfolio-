@@ -17,19 +17,6 @@ export default function Footer() {
       <p className="footer-copy">
         © {year} · All rights reserved
       </p>
-      <p className="footer-copy" style={{ fontSize: '.75rem', opacity: .7 }}>
-        Illustration: <em>Aesculapius and Telesphorus</em>, etching by Nicolas Dorigny —{' '}
-        <a
-          href="https://commons.wikimedia.org/wiki/File:Aesculapius._Etching_by_N._Dorigny._Wellcome_V0035844.jpg"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Wellcome Collection
-        </a>, licensed under{' '}
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">
-          CC BY 4.0
-        </a>.
-      </p>
     </footer>
   )
 }
