@@ -2704,3 +2704,129 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   -webkit-user-drag: none;
   user-drag: none;
 }
+
+/* ── Admin dashboard ─────────────────────────────────────────── */
+.admin-page {
+  min-height: 100vh;
+  padding-top: calc(var(--nav-h) + 40px);
+  padding-bottom: 96px;
+}
+
+.admin-utility-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.admin-utility-link {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text-subtle);
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: color .15s ease;
+  touch-action: manipulation;
+}
+.admin-utility-link:hover { color: var(--text-muted); }
+.admin-signout:hover { color: var(--accent); }
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.admin-title { font-size: 2rem; margin: 0; }
+.admin-subtitle {
+  color: var(--text-subtle);
+  font-size: .85rem;
+  margin-top: 6px;
+}
+
+.admin-new-post {
+  touch-action: manipulation;
+  flex-shrink: 0;
+}
+
+.admin-error {
+  color: #e5484d;
+  font-size: .9rem;
+  margin-bottom: 20px;
+}
+
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  transition: border-color .2s ease;
+}
+.admin-card:hover { border-color: var(--border-hi); }
+
+.admin-card-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.admin-card-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-status-chip {
+  flex-shrink: 0;
+  text-transform: capitalize;
+}
+.admin-status-chip.is-draft {
+  background: var(--surface-3);
+  color: var(--text-subtle);
+  border-color: var(--border-hi);
+}
+
+.admin-card-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.admin-delete-btn:hover { border-color: #e5484d; color: #e5484d; }
+
+.admin-empty {
+  text-align: center;
+  padding: 64px 0;
+  color: var(--text-muted);
+}
+
+.admin-skeleton {
+  height: 58px;
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: admin-shimmer 1.4s ease infinite;
+  border: 1px solid var(--border);
+}
+@keyframes admin-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
