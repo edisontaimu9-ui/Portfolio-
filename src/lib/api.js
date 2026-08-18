@@ -29,6 +29,8 @@ export const getPosts = (params = {}) => {
   return request(`/api/posts${qs ? `?${qs}` : ''}`)
 }
 export const getPost = (slug) => request(`/api/posts/${slug}`)
+export const trackView = (slug) => request(`/api/posts/${slug}/view`, { method: 'POST' })
+export const likePost = (slug) => request(`/api/posts/${slug}/like`, { method: 'POST' })
 
 // Admin
 export const adminGetPosts = () => request('/api/admin/posts', { auth: true })

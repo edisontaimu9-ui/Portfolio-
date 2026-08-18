@@ -2,27 +2,67 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { marked } from 'marked'
 import Reveal from '../components/Reveal'
-import { getPost } from '../lib/api'
+import { getPost, trackView, likePost } from '../lib/api'
+import { readingTime } from '../lib/readingTime'
+
+function HeartIcon({ filled }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'}
+      stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/>
+    </svg>
+  )
+}
 
 export default function BlogPost() {
   const { slug } = useParams()
   const [post, setPost] = useState(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
+  const [liked, setLiked] = useState(false)
+  const [likeCount, setLikeCount] = useState(0)
 
   useEffect(() => {
     setLoading(true)
     getPost(slug)
-      .then((data) => setPost(data.post))
+      .then((data) => {
+        setPost(data.post)
+        setLikeCount(data.post.likes || 0)
+        setLiked(localStorage.getItem(`liked:${slug}`) === '1')
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false))
   }, [slug])
+
+  // Track a view once per browser session per post — avoids inflating
+  // the count on refresh or when the reader navigates back and forth.
+  useEffect(() => {
+    if (!post) return
+    const key = `viewed:${slug}`
+    if (sessionStorage.getItem(key)) return
+    sessionStorage.setItem(key, '1')
+    trackView(slug).catch(() => {}) // best-effort, never block the reader on this
+  }, [post, slug])
 
   useEffect(() => {
     const prev = document.title
     if (post) document.title = `${post.title} — Edison Taimu`
     return () => { document.title = prev }
   }, [post])
+
+  async function handleLike() {
+    if (liked) return
+    setLiked(true)
+    setLikeCount((n) => n + 1)
+    localStorage.setItem(`liked:${slug}`, '1')
+    try {
+      const data = await likePost(slug)
+      setLikeCount(data.likes)
+    } catch {
+      // keep the optimistic UI even if the request failed — worst case
+      // the count is off by one until the reader's next visit
+    }
+  }
 
   if (loading) {
     return (
@@ -57,11 +97,16 @@ export default function BlogPost() {
             Back to blog
           </Link>
 
-          <span className="blog-card-date">
-            {new Date(post.published_at).toLocaleDateString(undefined, {
-              year: 'numeric', month: 'long', day: 'numeric',
-            })}
-          </span>
+          <div className="blog-post-meta">
+            <span className="blog-card-date">
+              {new Date(post.published_at).toLocaleDateString(undefined, {
+                year: 'numeric', month: 'long', day: 'numeric',
+              })}
+            </span>
+            <span className="blog-post-meta-dot">·</span>
+            <span className="blog-card-date">{readingTime(post.content)} min read</span>
+          </div>
+
           <h1 className="display" style={{ marginTop: 8, marginBottom: 24 }}>{post.title}</h1>
 
           {post.tags && (
@@ -86,6 +131,20 @@ export default function BlogPost() {
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: marked.parse(post.content) }}
           />
+        </Reveal>
+
+        <Reveal delay={120}>
+          <div className="blog-post-footer">
+            <button
+              className={`like-btn ${liked ? 'is-liked' : ''}`}
+              onClick={handleLike}
+              disabled={liked}
+              aria-pressed={liked}
+            >
+              <HeartIcon filled={liked} />
+              {likeCount > 0 ? likeCount : ''} {liked ? 'Liked' : 'Like this post'}
+            </button>
+          </div>
         </Reveal>
       </div>
     </section>

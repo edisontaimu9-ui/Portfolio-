@@ -23,10 +23,12 @@ jobs:
 
       - run: npm install
 
-      # Applies schema.sql to the remote D1 database. Safe to run on every
-      # deploy since all statements use IF NOT EXISTS.
+      # Applies any not-yet-applied files in worker/migrations/, in order.
+      # Wrangler tracks what's already been applied (in a d1_migrations
+      # table on the remote DB), so this is safe to run on every deploy —
+      # already-applied migrations are skipped automatically.
       - name: Run D1 migrations
-        run: npx wrangler d1 execute portfolio_cms --remote --file=./schema.sql
+        run: npx wrangler d1 migrations apply portfolio_cms --remote
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

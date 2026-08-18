@@ -1,7 +1,7 @@
 import { json } from './cors.js'
 
 const PUBLIC_COLUMNS =
-  'id, slug, title, excerpt, content, cover_image, tags, status, published_at, created_at, updated_at'
+  'id, slug, title, excerpt, content, cover_image, tags, status, published_at, created_at, updated_at, views, likes'
 
 function slugify(str) {
   return str
@@ -41,6 +41,32 @@ export async function getPublishedPost(request, env, slug) {
 
   if (!post) return json({ error: 'Not found' }, env, 404)
   return json({ post }, env)
+}
+
+export async function trackPostView(request, env, slug) {
+  const result = await env.DB.prepare(
+    `UPDATE posts SET views = views + 1 WHERE slug = ? AND status = 'published'`
+  )
+    .bind(slug)
+    .run()
+
+  if (result.meta.changes === 0) return json({ error: 'Not found' }, env, 404)
+
+  const row = await env.DB.prepare('SELECT views FROM posts WHERE slug = ?').bind(slug).first()
+  return json({ views: row.views }, env)
+}
+
+export async function likePost(request, env, slug) {
+  const result = await env.DB.prepare(
+    `UPDATE posts SET likes = likes + 1 WHERE slug = ? AND status = 'published'`
+  )
+    .bind(slug)
+    .run()
+
+  if (result.meta.changes === 0) return json({ error: 'Not found' }, env, 404)
+
+  const row = await env.DB.prepare('SELECT likes FROM posts WHERE slug = ?').bind(slug).first()
+  return json({ likes: row.likes }, env)
 }
 
 // ---------- Admin ----------

@@ -90,6 +90,10 @@ export default function Dashboard() {
                     {post.status}
                   </span>
                   <strong className="admin-card-title">{post.title}</strong>
+                  <span className="admin-card-stats">
+                    <span title="Views">👁 {post.views || 0}</span>
+                    <span title="Likes">♥ {post.likes || 0}</span>
+                  </span>
                 </div>
                 <div className="admin-card-actions">
                   <Link to={`/admin/edit/${post.id}`} className="btn btn-ghost btn-sm">

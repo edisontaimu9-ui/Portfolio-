@@ -3,6 +3,8 @@ import { requireAdmin, AuthError } from './auth.js'
 import {
   listPublishedPosts,
   getPublishedPost,
+  trackPostView,
+  likePost,
   adminListPosts,
   adminGetPost,
   adminCreatePost,
@@ -28,6 +30,14 @@ export default {
       const slugMatch = path.match(/^\/api\/posts\/([^/]+)$/)
       if (slugMatch && method === 'GET') {
         return await getPublishedPost(request, env, slugMatch[1])
+      }
+      const viewMatch = path.match(/^\/api\/posts\/([^/]+)\/view$/)
+      if (viewMatch && method === 'POST') {
+        return await trackPostView(request, env, viewMatch[1])
+      }
+      const likeMatch = path.match(/^\/api\/posts\/([^/]+)\/like$/)
+      if (likeMatch && method === 'POST') {
+        return await likePost(request, env, likeMatch[1])
       }
 
       // ---- Admin endpoints (Firebase-authenticated) ----

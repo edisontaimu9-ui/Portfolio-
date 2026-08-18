@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import { getPosts } from '../lib/api'
+import { readingTime } from '../lib/readingTime'
 
 function ArrowRight() {
   return (
@@ -60,6 +61,7 @@ export default function Blog() {
                       {new Date(post.published_at).toLocaleDateString(undefined, {
                         year: 'numeric', month: 'long', day: 'numeric',
                       })}
+                      {' · '}{readingTime(post.content)} min read
                     </span>
                     <h3 className="blog-card-title">{post.title}</h3>
                     {post.excerpt && <p className="blog-card-excerpt">{post.excerpt}</p>}
