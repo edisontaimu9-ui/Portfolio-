@@ -2468,12 +2468,17 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .blog-post-content h1 { font-size: 1.75rem; }
 .blog-post-content h2 { font-size: 1.45rem; }
 .blog-post-content h3 { font-size: 1.2rem; }
-.blog-post-content ul,
-.blog-post-content ol {
+.blog-post-content ul {
+  list-style: disc outside;
   margin: 0 0 22px 1.4em;
   color: var(--text-muted);
 }
-.blog-post-content li { margin-bottom: 8px; list-style: revert; }
+.blog-post-content ol {
+  list-style: decimal outside;
+  margin: 0 0 22px 1.4em;
+  color: var(--text-muted);
+}
+.blog-post-content li { margin-bottom: 8px; }
 .blog-post-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .blog-post-content code {
   background: var(--surface-2);
