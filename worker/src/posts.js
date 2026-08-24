@@ -1,7 +1,7 @@
 import { json } from './cors.js'
 
 const PUBLIC_COLUMNS =
-  'id, slug, title, excerpt, content, cover_image, tags, status, published_at, created_at, updated_at, views, likes'
+  'id, slug, title, excerpt, content, cover_image, tags, status, published_at, created_at, updated_at, views, likes, author, category, featured, drop_cap'
 
 function slugify(str) {
   return str
@@ -88,7 +88,10 @@ export async function adminGetPost(request, env, id) {
 
 export async function adminCreatePost(request, env) {
   const body = await request.json()
-  const { title, excerpt = '', content, cover_image = '', tags = '', status = 'draft' } = body
+  const {
+    title, excerpt = '', content, cover_image = '', tags = '', status = 'draft',
+    author = '', category = '', featured = false, drop_cap = false,
+  } = body
 
   if (!title || !content) {
     return json({ error: 'title and content are required' }, env, 400)
@@ -100,10 +103,13 @@ export async function adminCreatePost(request, env) {
 
   try {
     const result = await env.DB.prepare(
-      `INSERT INTO posts (slug, title, excerpt, content, cover_image, tags, status, published_at, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO posts (slug, title, excerpt, content, cover_image, tags, status, published_at, created_at, updated_at, author, category, featured, drop_cap)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
-      .bind(slug, title, excerpt, content, cover_image, tags, status, published_at, now, now)
+      .bind(
+        slug, title, excerpt, content, cover_image, tags, status, published_at, now, now,
+        author, category, featured ? 1 : 0, drop_cap ? 1 : 0,
+      )
       .run()
 
     const post = await env.DB.prepare(`SELECT ${PUBLIC_COLUMNS} FROM posts WHERE id = ?`)
@@ -130,6 +136,10 @@ export async function adminUpdatePost(request, env, id) {
   const tags = body.tags ?? existing.tags
   const status = body.status ?? existing.status
   const slug = body.slug ? slugify(body.slug) : existing.slug
+  const author = body.author ?? existing.author
+  const category = body.category ?? existing.category
+  const featured = body.featured !== undefined ? (body.featured ? 1 : 0) : existing.featured
+  const drop_cap = body.drop_cap !== undefined ? (body.drop_cap ? 1 : 0) : existing.drop_cap
 
   const now = new Date().toISOString()
   let published_at = existing.published_at
@@ -141,10 +151,10 @@ export async function adminUpdatePost(request, env, id) {
 
   try {
     await env.DB.prepare(
-      `UPDATE posts SET slug=?, title=?, excerpt=?, content=?, cover_image=?, tags=?, status=?, published_at=?, updated_at=?
+      `UPDATE posts SET slug=?, title=?, excerpt=?, content=?, cover_image=?, tags=?, status=?, published_at=?, updated_at=?, author=?, category=?, featured=?, drop_cap=?
        WHERE id = ?`
     )
-      .bind(slug, title, excerpt, content, cover_image, tags, status, published_at, now, id)
+      .bind(slug, title, excerpt, content, cover_image, tags, status, published_at, now, author, category, featured, drop_cap, id)
       .run()
 
     const post = await env.DB.prepare(`SELECT ${PUBLIC_COLUMNS} FROM posts WHERE id = ?`)

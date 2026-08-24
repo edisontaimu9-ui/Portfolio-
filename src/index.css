@@ -2456,6 +2456,39 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--text);
 }
 .blog-post-content p { margin-bottom: 22px; color: var(--text-muted); }
+
+/* Opening-paragraph treatment — gives the article a stronger editorial
+   entrance regardless of whether Drop Cap is enabled for this post. */
+.blog-post-content > p:first-of-type {
+  font-size: 1.18em;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* ── Drop Cap ────────────────────────────────────────────────────
+   Opt-in per article via the `drop_cap` field. Pure CSS, applied to
+   the first paragraph's first letter via ::first-letter — no glyph
+   is inserted into the content, so screen readers read the paragraph
+   exactly as authored and the feature can be toggled per post without
+   touching the stored markdown. */
+.blog-post-content.has-drop-cap > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 4.2rem;
+  line-height: 0.82;
+  font-weight: 700;
+  color: var(--accent);
+  padding-right: 0.09em;
+  padding-top: 0.05em;
+  margin-bottom: -0.06em;
+}
+
+@media (max-width: 640px) {
+  .blog-post-content.has-drop-cap > p:first-of-type::first-letter {
+    font-size: 3.1rem;
+    padding-right: 0.07em;
+  }
+}
 .blog-post-content h1,
 .blog-post-content h2,
 .blog-post-content h3 {
@@ -2849,6 +2882,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .blog-post-meta {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
 }
 .blog-post-meta-dot { color: var(--text-subtle); }

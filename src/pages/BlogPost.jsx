@@ -97,7 +97,15 @@ export default function BlogPost() {
             Back to blog
           </Link>
 
+          {post.category && <span className="eyebrow">{post.category}</span>}
+
           <div className="blog-post-meta">
+            {post.author && (
+              <>
+                <span className="blog-card-date">{post.author}</span>
+                <span className="blog-post-meta-dot">·</span>
+              </>
+            )}
             <span className="blog-card-date">
               {new Date(post.published_at).toLocaleDateString(undefined, {
                 year: 'numeric', month: 'long', day: 'numeric',
@@ -128,7 +136,7 @@ export default function BlogPost() {
 
         <Reveal delay={100}>
           <div
-            className="blog-post-content"
+            className={`blog-post-content${post.drop_cap ? ' has-drop-cap' : ''}`}
             dangerouslySetInnerHTML={{ __html: marked.parse(post.content) }}
           />
         </Reveal>

@@ -10,6 +10,10 @@ const EMPTY = {
   cover_image: '',
   tags: '',
   status: 'draft',
+  author: '',
+  category: '',
+  featured: false,
+  drop_cap: false,
 }
 
 export default function PostEditor() {
@@ -30,6 +34,10 @@ export default function PostEditor() {
 
   function update(field) {
     return (e) => setForm((f) => ({ ...f, [field]: e.target.value }))
+  }
+
+  function updateChecked(field) {
+    return (e) => setForm((f) => ({ ...f, [field]: e.target.checked }))
   }
 
   async function handleSubmit(e) {
@@ -85,6 +93,22 @@ export default function PostEditor() {
         <label>
           Tags (comma-separated)
           <input value={form.tags || ''} onChange={update('tags')} style={{ display: 'block', width: '100%' }} />
+        </label>
+        <label>
+          Author (leave blank to use the site default)
+          <input value={form.author || ''} onChange={update('author')} style={{ display: 'block', width: '100%' }} />
+        </label>
+        <label>
+          Category
+          <input value={form.category || ''} onChange={update('category')} style={{ display: 'block', width: '100%' }} />
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" checked={!!form.featured} onChange={updateChecked('featured')} />
+          Featured
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input type="checkbox" checked={!!form.drop_cap} onChange={updateChecked('drop_cap')} />
+          Drop cap on opening paragraph
         </label>
         <label>
           Status
