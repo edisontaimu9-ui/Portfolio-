@@ -2919,6 +2919,82 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .like-btn:disabled { opacity: 1; }
 
+/* ── Blog subtitle, category filter, adjacent nav (Phase 2) ───── */
+.blog-post-subtitle {
+  max-width: none;
+}
+
+.blog-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0 4px;
+}
+.blog-filter-chip {
+  padding: 7px 16px;
+  border-radius: 99px;
+  font-size: .82rem;
+  font-weight: 500;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-hi);
+  cursor: pointer;
+  transition: all .15s ease;
+  touch-action: manipulation;
+}
+.blog-filter-chip:hover { border-color: var(--accent); color: var(--accent); }
+.blog-filter-chip.is-active {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: rgba(47,191,164,.2);
+}
+
+.blog-card-featured {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.blog-post-adjacent-nav {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.blog-post-adjacent-link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color .2s ease;
+}
+.blog-post-adjacent-link:hover { border-color: var(--border-hi); }
+.blog-post-adjacent-link.is-older { text-align: right; align-items: flex-end; }
+.blog-post-adjacent-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.blog-post-adjacent-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.blog-related-section { border-top: 1px solid var(--border); }
+
+@media (max-width: 640px) {
+  .blog-post-adjacent-nav { grid-template-columns: 1fr; }
+  .blog-post-adjacent-link.is-older { text-align: left; align-items: flex-start; }
+}
+
 /* ── Admin post stats ────────────────────────────────────────── */
 .admin-card-stats {
   display: flex;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import { getPosts } from '../lib/api'
@@ -17,13 +17,26 @@ export default function Blog() {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [activeCategory, setActiveCategory] = useState('All')
 
   useEffect(() => {
-    getPosts()
+    // A slightly larger limit than the homepage preview so the category
+    // filter below has the full recent set to work with client-side.
+    getPosts({ limit: 50 })
       .then((data) => setPosts(data.posts))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false))
   }, [])
+
+  const categories = useMemo(() => {
+    const set = new Set(posts.map((p) => p.category).filter(Boolean))
+    return ['All', ...Array.from(set)]
+  }, [posts])
+
+  const visiblePosts = useMemo(() => {
+    if (activeCategory === 'All') return posts
+    return posts.filter((p) => p.category === activeCategory)
+  }, [posts, activeCategory])
 
   return (
     <>
@@ -47,8 +60,27 @@ export default function Blog() {
             </Reveal>
           )}
 
+          {!loading && !error && categories.length > 2 && (
+            <Reveal delay={40}>
+              <div className="blog-filter-row" role="tablist" aria-label="Filter posts by category">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeCategory === cat}
+                    className={`blog-filter-chip${activeCategory === cat ? ' is-active' : ''}`}
+                    onClick={() => setActiveCategory(cat)}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </Reveal>
+          )}
+
           <div className="blog-list">
-            {posts.map((post, i) => (
+            {visiblePosts.map((post, i) => (
               <Reveal key={post.id} delay={80 + i * 60}>
                 <Link to={`/blog/${post.slug}`} className="blog-card">
                   {post.cover_image && (
@@ -58,6 +90,8 @@ export default function Blog() {
                   )}
                   <div className="blog-card-body">
                     <span className="blog-card-date">
+                      {post.featured && <span className="blog-card-featured">Featured</span>}
+                      {post.category && <>{post.featured ? ' · ' : ''}{post.category}{' · '}</>}
                       {new Date(post.published_at).toLocaleDateString(undefined, {
                         year: 'numeric', month: 'long', day: 'numeric',
                       })}
@@ -80,6 +114,14 @@ export default function Blog() {
               </Reveal>
             ))}
           </div>
+
+          {!loading && !error && posts.length > 0 && visiblePosts.length === 0 && (
+            <Reveal delay={80}>
+              <div className="blog-empty">
+                <p className="lead">No posts in this category yet.</p>
+              </div>
+            </Reveal>
+          )}
         </div>
       </section>
     </>

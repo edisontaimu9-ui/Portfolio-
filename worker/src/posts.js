@@ -16,6 +16,7 @@ function slugify(str) {
 export async function listPublishedPosts(request, env) {
   const url = new URL(request.url)
   const tag = url.searchParams.get('tag')
+  const category = url.searchParams.get('category')
   const limit = Math.min(Number(url.searchParams.get('limit')) || 20, 50)
   const offset = Number(url.searchParams.get('offset')) || 0
 
@@ -24,6 +25,10 @@ export async function listPublishedPosts(request, env) {
   if (tag) {
     query += ` AND (',' || tags || ',') LIKE ?`
     params.push(`%,${tag},%`)
+  }
+  if (category) {
+    query += ` AND category = ?`
+    params.push(category)
   }
   query += ' ORDER BY published_at DESC LIMIT ? OFFSET ?'
   params.push(limit, offset)
