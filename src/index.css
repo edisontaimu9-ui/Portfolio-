@@ -3090,6 +3090,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 .blog-related-section { border-top: 1px solid var(--border); }
 
+.blog-rss-link { display: inline-flex; margin-top: 12px; }
+
 /* ── Keyboard focus visibility (Phase 5) — the elements below are
    custom-styled links/buttons where the browser's default focus ring
    can be easy to miss against the dark surface, so give them an

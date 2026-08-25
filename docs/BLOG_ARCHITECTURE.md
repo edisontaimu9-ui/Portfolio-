@@ -121,3 +121,18 @@ Phase 6 also added a Write/Preview toggle to the admin content field
 CSS the live article page uses, so callouts, pull quotes, captions,
 and drop cap can all be checked before publishing instead of only
 after.
+
+## Update — Phase 7: RSS feed
+
+Added `scripts/generate-rss.mjs`, wired into the same `postbuild`
+chain as `generate-sitemap.mjs` and `generate-blog-html.mjs` (all
+three run after `vite build`, since GitHub Pages can't generate
+anything per-request). It writes `dist/rss.xml`, a standard RSS 2.0
+feed capped at the 30 most recent published posts, with a full
+`<content:encoded>` body per item rendered through the same `marked`
+instance (and the same callout/pull-quote/caption extensions) as the
+live article page and the admin preview — one renderer, three
+surfaces, so they can't drift out of sync with each other.
+`index.html` links it via `<link rel="alternate" type="application/rss+xml">`
+so feed readers and browsers can auto-discover it, and `/blog` has a
+small "RSS feed" link pointing at `/rss.xml` directly.

@@ -46,6 +46,7 @@ export default function Blog() {
             <div className="section-head">
               <span className="eyebrow">Writing</span>
               <h2 className="display">Notes on nutrition <br />and building software.</h2>
+              <a href="/rss.xml" className="text-link blog-rss-link">RSS feed</a>
             </div>
           </Reveal>
 
