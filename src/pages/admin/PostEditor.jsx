@@ -85,6 +85,9 @@ export default function PostEditor() {
             required
             style={{ display: 'block', width: '100%', fontFamily: 'monospace' }}
           />
+          <span style={{ display: 'block', fontSize: '0.8rem', opacity: 0.7, marginTop: 4 }}>
+            Also supports {'`:::callout note|tip|warning`'} … {'`:::`'} and {'`:::pullquote`'} … {'`:::`'} blocks.
+          </span>
         </label>
         <label>
           Cover image URL

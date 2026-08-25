@@ -71,6 +71,35 @@ When a block editor is introduced, the plan is:
   rich-text/editor dependency unless a strong need appears, to keep
   the project's existing "minimal dependencies" convention.
 
-None of the above is implemented yet. It's recorded here so Phase 2+
-doesn't have to re-derive it, and so any interim change to `posts`
-schema stays compatible with this direction.
+None of the above is implemented yet. It's recorded here so later
+phases don't have to re-derive it, and so any interim change to
+`posts` schema stays compatible with this direction.
+
+## Update — Phase 3: callouts & pull quotes shipped without a block editor
+
+Phase 3 added the first two real content blocks — **callout** and
+**pull quote** — but deliberately without touching the schema or
+building a block editor. They're implemented as a small `marked`
+extension (`src/lib/markdown.js`) that recognizes a fence syntax
+inside the existing `content` markdown string:
+
+```
+:::callout tip
+Body text — markdown allowed inside.
+:::
+
+:::pullquote
+Standout quote text.
+:::
+```
+
+This works because both block types are essentially "styled prose" —
+they don't need structured fields (no image URL, no embed ID, nothing
+a plain textarea can't hold), so the markdown-string model was
+sufficient. It does **not** replace the `content_blocks` JSON plan
+above — blocks with real structured data (image + caption, gallery,
+video/audio embed, table) still need that, since a fence syntax
+can't cleanly hold multiple named fields or ordered sub-items. Treat
+markdown-fence syntax as the right tool for "a styled paragraph
+variant," and the future `content_blocks` JSON model as the right
+tool for anything with its own fields.

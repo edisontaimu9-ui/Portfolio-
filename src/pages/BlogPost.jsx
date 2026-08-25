@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { marked } from 'marked'
+import { marked } from '../lib/markdown'
 import Reveal from '../components/Reveal'
 import { getPost, getPosts, trackView, likePost } from '../lib/api'
 import { readingTime } from '../lib/readingTime'

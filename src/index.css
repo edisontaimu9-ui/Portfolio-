@@ -2546,6 +2546,50 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   margin-bottom: 22px;
 }
 
+/* ── Callouts & pull quotes (Phase 3) ───────────────────────────
+   Authored inline in the post's markdown via a `:::callout <variant>`
+   / `:::pullquote` fence — see src/lib/markdown.js. */
+.blog-post-content .callout {
+  margin: 28px 0;
+  padding: 18px 22px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: var(--surface-2);
+}
+.blog-post-content .callout p:last-child { margin-bottom: 0; }
+.blog-post-content .callout-label {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px !important;
+}
+.blog-post-content .callout-tip { border-left-color: var(--gold); }
+.blog-post-content .callout-tip .callout-label { color: var(--gold); }
+.blog-post-content .callout-warning { border-left-color: #e5484d; }
+.blog-post-content .callout-warning .callout-label { color: #e5484d; }
+
+.blog-post-content .pull-quote {
+  border-left: none;
+  margin: 40px 0;
+  padding: 0;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  line-height: 1.4;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--text);
+  text-align: center;
+}
+.blog-post-content .pull-quote p { color: inherit; margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .blog-post-content .pull-quote { font-size: 1.28rem; }
+}
+
 @media (max-width: 640px) {
   .blog-card { grid-template-columns: 1fr; }
   .blog-card-media { min-height: 180px; }
