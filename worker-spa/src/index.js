@@ -23,16 +23,38 @@
 // It does NOT touch the CMS API worker (portfolio-cms-api) — that lives
 // on its own URL (VITE_CMS_API_URL), never on the minutriq.me zone this
 // Worker is bound to, so there's no route collision to worry about.
+//
+// Cache-Control: Vite gives every JS/CSS file a content hash in its
+// filename, so those are safe to cache aggressively — a changed file is
+// a new URL. The HTML shell (index.html, and the prerendered per-post
+// pages) is the opposite: same URL, different content every deploy. If
+// a browser or Cloudflare's edge cache holds onto an old copy of the
+// HTML shell, it still points at JS/CSS filenames from that old build —
+// which no longer exist after the next deploy — so the page loads with
+// a 200 but React never mounts (a blank page with only the static
+// index.html <title>, until a reload fetches the current HTML). Every
+// HTML-ish response below gets an explicit `no-cache` so browsers/edges
+// always revalidate with origin instead of ever serving a stale shell.
 
 const ASSET_EXTENSION = /\.[a-zA-Z0-9]+$/
+
+function noCache(response) {
+  const headers = new Headers(response.headers)
+  headers.set('Cache-Control', 'no-cache, must-revalidate')
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  })
+}
 
 export default {
   async fetch(request) {
     const url = new URL(request.url)
 
     // Let real files (has a file extension) go straight to GitHub Pages,
-    // unmodified. This covers JS/CSS bundles, images, sitemap.xml,
-    // robots.txt, favicon, etc. — anything the build actually produced.
+    // unmodified — including their original long-lived Cache-Control.
+    // This covers JS/CSS bundles, images, sitemap.xml, robots.txt, etc.
     if (ASSET_EXTENSION.test(url.pathname)) {
       return fetch(request)
     }
@@ -42,7 +64,7 @@ export default {
     // resolve normally.
     const originResponse = await fetch(request)
     if (originResponse.status !== 404) {
-      return originResponse
+      return noCache(originResponse)
     }
 
     // No file at this path — it's a client-side route. Fetch "/" from the
@@ -57,6 +79,7 @@ export default {
 
     const headers = new Headers(indexResponse.headers)
     headers.set('X-SPA-Fallback', 'true')
+    headers.set('Cache-Control', 'no-cache, must-revalidate')
 
     return new Response(indexResponse.body, {
       status: 200,
