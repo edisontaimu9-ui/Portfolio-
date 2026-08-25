@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import Reveal from '../components/Reveal'
 import { getPosts } from '../lib/api'
 import { readingTime } from '../lib/readingTime'
@@ -17,7 +17,18 @@ export default function Blog() {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-  const [activeCategory, setActiveCategory] = useState('All')
+  const [searchParams, setSearchParams] = useSearchParams()
+  // Filter state lives in the URL (?category=…) rather than component
+  // state, so a filtered view can be shared, bookmarked, or reached via
+  // the browser back/forward buttons — not just reachable by clicking.
+  const activeCategory = searchParams.get('category') || 'All'
+
+  function setActiveCategory(cat) {
+    const next = new URLSearchParams(searchParams)
+    if (cat === 'All') next.delete('category')
+    else next.set('category', cat)
+    setSearchParams(next)
+  }
 
   useEffect(() => {
     // A slightly larger limit than the homepage preview so the category

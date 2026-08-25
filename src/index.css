@@ -3092,6 +3092,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 .blog-rss-link { display: inline-flex; margin-top: 12px; }
 
+a.eyebrow:hover, a.eyebrow:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+
 /* ── Keyboard focus visibility (Phase 5) — the elements below are
    custom-styled links/buttons where the browser's default focus ring
    can be easy to miss against the dark surface, so give them an

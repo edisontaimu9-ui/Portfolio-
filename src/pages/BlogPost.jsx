@@ -146,7 +146,11 @@ export default function BlogPost() {
               Back to blog
             </Link>
 
-            {post.category && <span className="eyebrow">{post.category}</span>}
+            {post.category && (
+              <Link to={`/blog?category=${encodeURIComponent(post.category)}`} className="eyebrow">
+                {post.category}
+              </Link>
+            )}
 
             <div className="blog-post-meta">
               {post.author && (
