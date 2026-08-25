@@ -2942,6 +2942,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--text-subtle);
   border-color: var(--border-hi);
 }
+.admin-featured-chip {
+  flex-shrink: 0;
+  background: rgba(201,168,76,.12);
+  color: var(--gold);
+  border-color: rgba(201,168,76,.25);
+}
+.admin-category-chip {
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
 
 .admin-card-actions {
   display: flex;

@@ -89,10 +89,13 @@ export default function Dashboard() {
                   <span className={`chip admin-status-chip ${post.status === 'published' ? '' : 'is-draft'}`}>
                     {post.status}
                   </span>
+                  {post.featured && <span className="chip admin-featured-chip">Featured</span>}
+                  {post.category && <span className="chip admin-category-chip">{post.category}</span>}
                   <strong className="admin-card-title">{post.title}</strong>
                   <span className="admin-card-stats">
                     <span title="Views">👁 {post.views || 0}</span>
                     <span title="Likes">♥ {post.likes || 0}</span>
+                    {!!post.drop_cap && <span title="Drop cap enabled">🔤</span>}
                   </span>
                 </div>
                 <div className="admin-card-actions">
