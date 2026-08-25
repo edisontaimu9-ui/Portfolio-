@@ -14,6 +14,8 @@ const EMPTY = {
   category: '',
   featured: false,
   drop_cap: false,
+  seo_title: '',
+  seo_description: '',
 }
 
 export default function PostEditor() {
@@ -120,6 +122,25 @@ export default function PostEditor() {
             <option value="published">Published</option>
           </select>
         </label>
+
+        <fieldset style={{ border: '1px solid var(--border)', borderRadius: 8, padding: '12px 16px', marginTop: 8 }}>
+          <legend style={{ padding: '0 6px', fontSize: '0.85rem', opacity: 0.8 }}>
+            SEO overrides (optional — leave blank to use the title/excerpt above)
+          </legend>
+          <label>
+            SEO title
+            <input value={form.seo_title || ''} onChange={update('seo_title')} style={{ display: 'block', width: '100%' }} />
+          </label>
+          <label>
+            SEO description
+            <textarea
+              value={form.seo_description || ''}
+              onChange={update('seo_description')}
+              rows={2}
+              style={{ display: 'block', width: '100%' }}
+            />
+          </label>
+        </fieldset>
 
         {error && <p style={{ color: 'crimson' }}>{error}</p>}
 

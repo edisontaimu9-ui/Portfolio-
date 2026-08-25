@@ -15,7 +15,9 @@ CREATE TABLE IF NOT EXISTS posts (
   author        TEXT,            -- display name; falls back to site owner in the UI
   category      TEXT,            -- single primary category, e.g. "Nutrition"
   featured      INTEGER NOT NULL DEFAULT 0,  -- 0/1 — reserved for future "featured" placement
-  drop_cap      INTEGER NOT NULL DEFAULT 0   -- 0/1 — enables the editorial drop cap on paragraph 1
+  drop_cap      INTEGER NOT NULL DEFAULT 0,  -- 0/1 — enables the editorial drop cap on paragraph 1
+  seo_title     TEXT,            -- optional <title>/og:title override
+  seo_description TEXT           -- optional meta-description override
 );
 
 CREATE INDEX IF NOT EXISTS idx_posts_status ON posts (status, published_at DESC);

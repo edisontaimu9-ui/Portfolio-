@@ -162,6 +162,17 @@ export default function BlogPost() {
               </span>
               <span className="blog-post-meta-dot">·</span>
               <span className="blog-card-date">{readingTime(post.content)} min read</span>
+              {post.updated_at && post.published_at &&
+                post.updated_at.slice(0, 10) !== post.published_at.slice(0, 10) && (
+                <>
+                  <span className="blog-post-meta-dot">·</span>
+                  <span className="blog-card-date blog-post-updated">
+                    Updated {new Date(post.updated_at).toLocaleDateString(undefined, {
+                      year: 'numeric', month: 'long', day: 'numeric',
+                    })}
+                  </span>
+                </>
+              )}
             </div>
 
             <h1 className="display" style={{ marginTop: 8, marginBottom: post.excerpt ? 12 : 24 }}>{post.title}</h1>

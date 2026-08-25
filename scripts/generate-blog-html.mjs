@@ -27,10 +27,10 @@ function stripHtml(str) {
   return String(str).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
 }
 
-// Build a plain-text description from the post's excerpt, falling back
-// to the start of its content if no excerpt was set.
+// Build a plain-text description from an SEO override, falling back to
+// the excerpt, and finally to the start of the post's content.
 function descriptionFor(post) {
-  const raw = post.excerpt || stripHtml(post.content || '')
+  const raw = post.seo_description || post.excerpt || stripHtml(post.content || '')
   const text = raw.trim()
   if (text.length <= 160) return text
   return `${text.slice(0, 157).trim()}…`
@@ -63,21 +63,23 @@ async function fetchAllPublishedPosts() {
 
 function renderForPost(template, post) {
   const url = `${SITE}/blog/${post.slug}/`
-  const title = `${post.title} — Edison Taimu`
+  const displayTitle = post.seo_title || post.title
+  const title = `${displayTitle} — Edison Taimu`
   const description = xmlEscape(descriptionFor(post))
   const image = post.cover_image || DEFAULT_IMAGE
-  const escapedTitle = xmlEscape(post.title)
+  const escapedTitle = xmlEscape(displayTitle)
+  const authorName = post.author || 'Edison Taimu'
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: post.title,
+    headline: displayTitle,
     description: descriptionFor(post),
     image,
     url,
     datePublished: post.published_at || undefined,
     dateModified: post.updated_at || post.published_at || undefined,
-    author: { '@type': 'Person', name: 'Edison Taimu', url: SITE },
+    author: { '@type': 'Person', name: authorName, url: SITE },
   }
 
   let html = template

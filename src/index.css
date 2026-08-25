@@ -2545,6 +2545,29 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border-radius: var(--radius-sm);
   margin-bottom: 22px;
 }
+.blog-post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 22px;
+  font-size: .95em;
+  display: block;
+  overflow-x: auto;
+}
+.blog-post-content th,
+.blog-post-content td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+}
+.blog-post-content th {
+  background: var(--surface-2);
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text);
+}
+.blog-post-content td { color: var(--text-muted); }
+
+.blog-post-updated { font-style: italic; }
 
 /* ── Callouts & pull quotes (Phase 3) ───────────────────────────
    Authored inline in the post's markdown via a `:::callout <variant>`
