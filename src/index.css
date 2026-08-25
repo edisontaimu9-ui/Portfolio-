@@ -2545,6 +2545,30 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   border-radius: var(--radius-sm);
   margin-bottom: 22px;
 }
+.blog-post-content .blog-figure {
+  margin: 0 0 28px;
+}
+.blog-post-content .blog-figure img {
+  margin-bottom: 10px;
+}
+.blog-post-content .blog-figure figcaption {
+  font-size: .85rem;
+  font-style: italic;
+  color: var(--text-subtle);
+  text-align: center;
+}
+.blog-post-content hr {
+  border: none;
+  text-align: center;
+  margin: 44px 0;
+  color: var(--text-subtle);
+}
+.blog-post-content hr::after {
+  content: '···';
+  font-size: 1.2rem;
+  letter-spacing: .5em;
+  padding-left: .5em; /* re-centers the mark against the trailing letter-spacing */
+}
 .blog-post-content table {
   width: 100%;
   border-collapse: collapse;
@@ -2931,6 +2955,15 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   text-align: center;
   padding: 64px 0;
   color: var(--text-muted);
+}
+
+.admin-preview-box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 22px;
+  max-height: 480px;
+  overflow-y: auto;
+  background: var(--surface);
 }
 
 .admin-skeleton {

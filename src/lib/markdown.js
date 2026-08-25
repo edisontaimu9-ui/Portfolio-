@@ -13,7 +13,25 @@
 //   :::
 //
 // Callout variants: note (default), tip, warning.
+//
+// Image captions use plain Markdown's existing "title" syntax — no new
+// fence needed. Authors just add a quoted title after the URL:
+//
+//   ![Alt text](https://example.com/photo.jpg "Caption shown under the image")
+//
+// Normally that title only shows as a browser tooltip; the renderer below
+// turns it into a visible <figure>/<figcaption> instead. Images without a
+// title render exactly as before (plain <img>), so nothing already
+// published changes.
 import { marked } from 'marked'
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
 
 const FENCE_RE = /^:::(callout|pullquote)(?:[ \t]+(\w+))?\n([\s\S]*?)\n:::(?:\n|$)/
 
@@ -51,6 +69,16 @@ const editorialBlockExtension = {
   },
 }
 
-marked.use({ extensions: [editorialBlockExtension] })
+marked.use({
+  extensions: [editorialBlockExtension],
+  renderer: {
+    image({ href, title, text }) {
+      const altAttr = text ? ` alt="${escapeHtml(text)}"` : ' alt=""'
+      const img = `<img src="${escapeHtml(href)}"${altAttr} loading="lazy" decoding="async" />`
+      if (!title) return img
+      return `<figure class="blog-figure">${img}<figcaption>${escapeHtml(title)}</figcaption></figure>`
+    },
+  },
+})
 
 export { marked }

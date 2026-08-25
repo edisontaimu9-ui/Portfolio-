@@ -97,9 +97,27 @@ This works because both block types are essentially "styled prose" —
 they don't need structured fields (no image URL, no embed ID, nothing
 a plain textarea can't hold), so the markdown-string model was
 sufficient. It does **not** replace the `content_blocks` JSON plan
-above — blocks with real structured data (image + caption, gallery,
-video/audio embed, table) still need that, since a fence syntax
-can't cleanly hold multiple named fields or ordered sub-items. Treat
-markdown-fence syntax as the right tool for "a styled paragraph
-variant," and the future `content_blocks` JSON model as the right
-tool for anything with its own fields.
+above — blocks with real structured data (gallery, video/audio embed)
+still need that, since a fence syntax can't cleanly hold multiple
+named fields or ordered sub-items. Treat markdown-fence syntax as the
+right tool for "a styled paragraph variant," and the future
+`content_blocks` JSON model as the right tool for anything with its
+own fields.
+
+## Update — Phase 6: image captions, dividers, and an admin preview
+
+Phase 6 closed out two more items from the original block list —
+**image captions** and **dividers** — without adding any new syntax
+at all. Standard Markdown already supports `![alt](url "title")`
+(the title normally only shows as a browser tooltip) and `---`
+(a thematic break); the renderer in `src/lib/markdown.js` now turns a
+titled image into a `<figure>`/`<figcaption>`, and CSS styles the
+existing `<hr>` as a centered "···" divider. Existing posts are
+unaffected either way — an image with no title still renders as a
+plain `<img>`.
+
+Phase 6 also added a Write/Preview toggle to the admin content field
+(`PostEditor.jsx`), reusing the same `blog-post-content` renderer and
+CSS the live article page uses, so callouts, pull quotes, captions,
+and drop cap can all be checked before publishing instead of only
+after.

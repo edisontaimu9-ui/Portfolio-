@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { adminGetPost, adminCreatePost, adminUpdatePost } from '../../lib/api'
+import { marked } from '../../lib/markdown'
 
 const EMPTY = {
   title: '',
@@ -25,6 +26,7 @@ export default function PostEditor() {
   const [loading, setLoading] = useState(!!id)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  const [showPreview, setShowPreview] = useState(false)
 
   useEffect(() => {
     if (!id) return
@@ -80,15 +82,30 @@ export default function PostEditor() {
         </label>
         <label>
           Content (Markdown)
-          <textarea
-            value={form.content}
-            onChange={update('content')}
-            rows={16}
-            required
-            style={{ display: 'block', width: '100%', fontFamily: 'monospace' }}
-          />
+          <div style={{ display: 'flex', gap: 8, margin: '4px 0 6px' }}>
+            <button type="button" onClick={() => setShowPreview(false)} aria-pressed={!showPreview}>
+              Write
+            </button>
+            <button type="button" onClick={() => setShowPreview(true)} aria-pressed={showPreview}>
+              Preview
+            </button>
+          </div>
+          {showPreview ? (
+            <div className={`blog-post-content admin-preview-box${form.drop_cap ? ' has-drop-cap' : ''}`}
+              dangerouslySetInnerHTML={{ __html: form.content ? marked.parse(form.content) : '<p><em>Nothing to preview yet.</em></p>' }}
+            />
+          ) : (
+            <textarea
+              value={form.content}
+              onChange={update('content')}
+              rows={16}
+              required
+              style={{ display: 'block', width: '100%', fontFamily: 'monospace' }}
+            />
+          )}
           <span style={{ display: 'block', fontSize: '0.8rem', opacity: 0.7, marginTop: 4 }}>
-            Also supports {'`:::callout note|tip|warning`'} … {'`:::`'} and {'`:::pullquote`'} … {'`:::`'} blocks.
+            Also supports {'`:::callout note|tip|warning`'} … {'`:::`'} and {'`:::pullquote`'} … {'`:::`'} blocks,
+            and {'`![alt](url "caption")`'} for a captioned image.
           </span>
         </label>
         <label>
