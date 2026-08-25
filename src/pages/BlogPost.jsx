@@ -259,6 +259,8 @@ export default function BlogPost() {
                       </div>
                     )}
                     <span className="blog-card-date">
+                      {rp.featured && <span className="blog-card-featured">Featured</span>}
+                      {rp.category && <>{rp.featured ? ' · ' : ''}{rp.category}{' · '}</>}
                       {new Date(rp.published_at).toLocaleDateString(undefined, {
                         year: 'numeric', month: 'long', day: 'numeric',
                       })}

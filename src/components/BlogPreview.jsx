@@ -48,6 +48,8 @@ export default function BlogPreview() {
                   </div>
                 )}
                 <span className="blog-card-date">
+                  {post.featured && <span className="blog-card-featured">Featured</span>}
+                  {post.category && <>{post.featured ? ' · ' : ''}{post.category}{' · '}</>}
                   {new Date(post.published_at).toLocaleDateString(undefined, {
                     year: 'numeric', month: 'long', day: 'numeric',
                   })}

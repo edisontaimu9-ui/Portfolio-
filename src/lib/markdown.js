@@ -47,7 +47,7 @@ const editorialBlockExtension = {
     }
     const variant = CALLOUT_VARIANTS.includes(token.variant) ? token.variant : 'note'
     const label = variant.charAt(0).toUpperCase() + variant.slice(1)
-    return `<div class="callout callout-${variant}"><p class="callout-label">${label}</p>${inner}</div>\n`
+    return `<div class="callout callout-${variant}" role="note"><p class="callout-label">${label}</p>${inner}</div>\n`
   },
 }
 

@@ -62,13 +62,12 @@ export default function Blog() {
 
           {!loading && !error && categories.length > 2 && (
             <Reveal delay={40}>
-              <div className="blog-filter-row" role="tablist" aria-label="Filter posts by category">
+              <div className="blog-filter-row" role="group" aria-label="Filter posts by category">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     type="button"
-                    role="tab"
-                    aria-selected={activeCategory === cat}
+                    aria-pressed={activeCategory === cat}
                     className={`blog-filter-chip${activeCategory === cat ? ' is-active' : ''}`}
                     onClick={() => setActiveCategory(cat)}
                   >

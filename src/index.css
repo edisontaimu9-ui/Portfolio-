@@ -3057,6 +3057,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 .blog-related-section { border-top: 1px solid var(--border); }
 
+/* ── Keyboard focus visibility (Phase 5) — the elements below are
+   custom-styled links/buttons where the browser's default focus ring
+   can be easy to miss against the dark surface, so give them an
+   explicit one on keyboard focus (not on mouse click). */
+.blog-card:focus-visible,
+.blog-preview-card:focus-visible,
+.blog-filter-chip:focus-visible,
+.like-btn:focus-visible,
+.blog-post-adjacent-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 @media (max-width: 640px) {
   .blog-post-adjacent-nav { grid-template-columns: 1fr; }
   .blog-post-adjacent-link.is-older { text-align: left; align-items: flex-start; }
