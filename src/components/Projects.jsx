@@ -13,6 +13,7 @@ import thanziDiary from '../assets/thanzi-diary.webp'
 import thanziProgress from '../assets/thanzi-progress.webp'
 import thanziAiAssistant from '../assets/thanzi-ai-assistant.webp'
 import chakudyaIllustration from '../assets/chakudya-illustration.png'
+import AskCNR from './AskCNR'
 import nutritionLabelImg from '../assets/nutrition-facts-label.jpg'
 import ncrsDashboard from '../assets/ncrs-dashboard.webp'
 import ncrsPatients from '../assets/ncrs-patients.webp'
@@ -401,6 +402,7 @@ const projects = [
     status: 'Live · chakudya-api.•••••••••.workers.dev',
     live:   true,
     accolade: 'Accepted for exhibition — 5th Research Dissemination Conference, KUHeS',
+    askDemo: true,
     desc: [
       `Chakudya Nutrition Registry (CNR) is an open food and nutrition API built for Malawi.
       It extends the Malawi Food Composition Table (2019) with structured nutrition data
@@ -484,7 +486,7 @@ export default function Projects() {
         </Reveal>
 
         <div className="projects-list">
-          {projects.map(({ id, title, status, live, accolade, desc, features, tech, demo, repo, visual, highlight }) => (
+          {projects.map(({ id, title, status, live, accolade, askDemo, desc, features, tech, demo, repo, visual, highlight }) => (
             <Reveal key={id} delay={100}>
               <div className="project-card">
                 <div className="project-visual">{visual}</div>
@@ -511,6 +513,7 @@ export default function Projects() {
                       <span>{highlight.text}</span>
                     </div>
                   )}
+                  {askDemo && <AskCNR />}
                   <div className="chip-row">
                     {tech
                       .filter(t => typeof t !== 'string')
