@@ -1678,6 +1678,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--text);
   margin-bottom: 10px;
 }
+.project-accolade {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 999px;
+  padding: 4px 12px;
+  margin-bottom: 14px;
+}
 .project-desc {
   font-size: .875rem;
   color: var(--text-muted);

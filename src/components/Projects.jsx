@@ -400,6 +400,7 @@ const projects = [
     title:  'Chakudya Nutrition Registry (CNR)',
     status: 'Live · chakudya-api.•••••••••.workers.dev',
     live:   true,
+    accolade: 'Accepted for exhibition — 5th Research Dissemination Conference, KUHeS',
     desc: [
       `Chakudya Nutrition Registry (CNR) is an open food and nutrition API built for Malawi.
       It extends the Malawi Food Composition Table (2019) with structured nutrition data
@@ -483,7 +484,7 @@ export default function Projects() {
         </Reveal>
 
         <div className="projects-list">
-          {projects.map(({ id, title, status, live, desc, features, tech, demo, repo, visual, highlight }) => (
+          {projects.map(({ id, title, status, live, accolade, desc, features, tech, demo, repo, visual, highlight }) => (
             <Reveal key={id} delay={100}>
               <div className="project-card">
                 <div className="project-visual">{visual}</div>
@@ -493,6 +494,7 @@ export default function Projects() {
                     {status}
                   </span>
                   <h3 className="project-title">{title}</h3>
+                  {accolade && <span className="project-accolade">🏅 {accolade}</span>}
                   {Array.isArray(desc)
                     ? desc.map((para, i) => <p className="project-desc" key={i}>{para}</p>)
                     : <p className="project-desc">{desc}</p>}
