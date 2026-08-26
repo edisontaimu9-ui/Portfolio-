@@ -29,6 +29,16 @@ const STARS = [
 
 // A low ridge line — a stand-in for the Zomba Plateau escarpment — so the
 // sun/moon rises and sets behind a horizon rather than a flat edge.
+// Bird silhouettes drifting across the daytime sky. [startY, duration, delay]
+const BIRDS = [
+  [28, 13, 0], [46, 16, 4], [20, 15, 8],
+]
+
+// Shooting-star streaks, night only. [x, y, duration, delay]
+const SHOOTING_STARS = [
+  [60, 18, 9, 1], [300, 10, 11, 5.5],
+]
+
 const RIDGE = `M0,${VIEW_H} L0,128 L22,118 L48,124 L70,108 L96,120 L120,112
   L150,122 L182,104 L210,118 L240,110 L268,120 L300,113 L330,123 L358,112
   L${VIEW_W},121 L${VIEW_W},${VIEW_H} Z`
@@ -144,6 +154,15 @@ export default function DayNightWidget() {
           {STARS.map(([x, y, r], i) => (
             <circle key={i} cx={x} cy={y} r={r} fill="#fff" />
           ))}
+          {SHOOTING_STARS.map(([x, y, duration, delay], i) => (
+            <line
+              key={i}
+              x1={x} y1={y} x2={x + 14} y2={y + 5}
+              className="daynight-shootingstar"
+              style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
+              stroke="#fff" strokeWidth="1.2" strokeLinecap="round"
+            />
+          ))}
         </g>
 
         {/* haze / cloud bands, daytime only */}
@@ -151,6 +170,20 @@ export default function DayNightWidget() {
           <ellipse cx="90" cy="46" rx="70" ry="7" fill="#fff" opacity="0.16" />
           <ellipse cx="270" cy="30" rx="90" ry="6" fill="#fff" opacity="0.12" />
           <ellipse cx="200" cy="66" rx="110" ry="5" fill="#fff" opacity="0.08" />
+        </g>
+
+        {/* birds, daytime only */}
+        <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
+          {BIRDS.map(([y, duration, delay], i) => (
+            <g key={i} transform={`translate(0, ${y})`}>
+              <path
+                d="M-5,0 Q-2.5,-4 0,0 Q2.5,-4 5,0"
+                className="daynight-bird"
+                style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
+                stroke="rgba(20,24,20,.55)" strokeWidth="1" fill="none" strokeLinecap="round"
+              />
+            </g>
+          ))}
         </g>
 
         {/* orbit arc */}

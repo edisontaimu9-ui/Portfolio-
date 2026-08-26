@@ -946,6 +946,31 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   fill: rgba(4, 10, 22, .12);
 }
 
+/* birds drifting left-to-right across the daytime sky */
+.daynight-bird {
+  animation-name: daynight-fly;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes daynight-fly {
+  0%   { transform: translateX(-20px); }
+  100% { transform: translateX(420px); }
+}
+
+/* brief diagonal streaks at night, mostly invisible, flashing occasionally */
+.daynight-shootingstar {
+  opacity: 0;
+  animation-name: daynight-shoot;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+@keyframes daynight-shoot {
+  0%, 90%   { opacity: 0; transform: translate(0, 0); }
+  91%       { opacity: 1; transform: translate(0, 0); }
+  97%       { opacity: 0; transform: translate(55px, 20px); }
+  100%      { opacity: 0; transform: translate(55px, 20px); }
+}
+
 /* slow horizontal drift so the daytime cloud bands read as sky, not a
    frozen overlay */
 .daynight-haze {
