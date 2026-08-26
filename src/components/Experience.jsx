@@ -11,7 +11,7 @@ const entries = [
   },
   {
     year:  '2025 – 2026',
-    title: 'Clinical Nutrition Student',
+    title: 'Clinical Nutrition Rotations',
     org:   'Queen Elizabeth Central Hospital',
     desc: `Clinical rotations spanning critical care, paediatrics, renal, diabetes, and general 
     medicine, alongside food service management and community nutrition. Conducted nutrition 
