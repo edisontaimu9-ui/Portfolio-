@@ -89,6 +89,16 @@ export default function DayNightWidget() {
   const glowX = (point.x / VIEW_W) * 100
   const [hr, hg, hb] = sky.horizonRgb
 
+  // Lens-flare artifacts: a few faint circles strung along the line from the
+  // sun, through the frame center, to the far side — classic flare rig.
+  // Fades in once past golden hour (sky.glow low) and only during the day.
+  const flareOpacity = isDay ? Math.max(0, Math.min(1, 1 - sky.glow * 1.6)) : 0
+  const centerX = VIEW_W / 2, centerY = 60
+  const dx = centerX - point.x, dy = centerY - point.y
+  const FLARE_ARTIFACTS = [
+    { t: 0.45, r: 3, o: 0.5 }, { t: 0.75, r: 5, o: 0.35 }, { t: 1.25, r: 2, o: 0.4 },
+  ]
+
   return (
     <div className="daynight-widget" style={{ backgroundImage: sky.gradient }}>
       {/* atmospheric glow around the sun/moon's position on the horizon */}
@@ -110,6 +120,10 @@ export default function DayNightWidget() {
           <clipPath id="groundClip">
             <path d={RIDGE} />
           </clipPath>
+          <radialGradient id="sunBloom">
+            <stop offset="0%" stopColor="#fff6de" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#fff6de" stopOpacity="0" />
+          </radialGradient>
         </defs>
 
         {/* stars */}
@@ -138,8 +152,23 @@ export default function DayNightWidget() {
         />
 
         {/* sun / moon */}
+        {isDay && (
+          <circle
+            cx={point.x} cy={point.y} r="26"
+            fill="url(#sunBloom)"
+            opacity={flareOpacity}
+          />
+        )}
         <circle cx={point.x} cy={point.y} r={isDay ? 15 : 11} className="daynight-orb-halo" />
         <circle cx={point.x} cy={point.y} r={isDay ? 7 : 5.5} className="daynight-orb" />
+        {isDay && FLARE_ARTIFACTS.map(({ t, r, o }, i) => (
+          <circle
+            key={i}
+            cx={point.x + dx * t} cy={point.y + dy * t}
+            r={r} fill="#ffe9c2"
+            opacity={flareOpacity * o}
+          />
+        ))}
 
         {/* satellite-map ground: vegetation/farmland mosaic, river, and
             settlement lights, clipped to the ridge silhouette */}

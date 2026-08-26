@@ -939,6 +939,17 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   fill: rgba(4, 10, 22, .12);
 }
 
+/* slow horizontal drift so the daytime cloud bands read as sky, not a
+   frozen overlay */
+.daynight-haze {
+  animation: daynight-drift 70s linear infinite alternate;
+  transform-box: fill-box;
+}
+@keyframes daynight-drift {
+  from { transform: translateX(-3%); }
+  to   { transform: translateX(3%); }
+}
+
 .daynight-info {
   position: absolute;
   left: 0; right: 0; bottom: 0;
