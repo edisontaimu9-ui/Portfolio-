@@ -924,6 +924,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 .daynight-arc {
   stroke: rgba(255,255,255,.38);
+  opacity: .55;
+  transition: opacity 1s ease;
+}
+.daynight-widget[data-phase="night"] .daynight-arc {
+  opacity: 1;
 }
 
 .daynight-orb-halo {
