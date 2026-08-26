@@ -38,9 +38,11 @@ export default function Hero() {
           </h1>
 
           <p className="lead hero-enter hero-enter-3">
-            I'm Edison Taimu. I build clinical nutrition software that makes
-            good nutrition practical, affordable, and easier to access, for
-            patients and clients, and the people who care for them.
+            Good nutrition shouldn't be a luxury. I'm Edison Taimu, a Malawian
+            dietitian and self-taught developer building Chakudya — Malawi's
+            open nutrition registry — alongside Oasis CNST and Thanzi, to make
+            clinical nutrition practical for the people delivering it and the
+            people who need it.
           </p>
 
           <div className="cta-row hero-enter hero-enter-4">
