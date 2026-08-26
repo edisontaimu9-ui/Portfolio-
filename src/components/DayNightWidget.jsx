@@ -100,7 +100,7 @@ export default function DayNightWidget() {
   ]
 
   return (
-    <div className="daynight-widget" style={{ backgroundImage: sky.gradient }}>
+    <div className="daynight-widget" data-phase={isDay ? 'day' : 'night'} style={{ backgroundImage: sky.gradient }}>
       {/* atmospheric glow around the sun/moon's position on the horizon */}
       <div
         className="daynight-horizon-glow"
@@ -120,9 +120,22 @@ export default function DayNightWidget() {
           <clipPath id="groundClip">
             <path d={RIDGE} />
           </clipPath>
+          <clipPath id="moonClip">
+            <circle cx={point.x} cy={point.y} r="5.5" />
+          </clipPath>
           <radialGradient id="sunBloom">
             <stop offset="0%" stopColor="#fff6de" stopOpacity="0.9" />
             <stop offset="100%" stopColor="#fff6de" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="sunOrb" cx="35%" cy="35%">
+            <stop offset="0%" stopColor="#fffbe8" />
+            <stop offset="55%" stopColor="#ffd873" />
+            <stop offset="100%" stopColor="#ffb44d" />
+          </radialGradient>
+          <radialGradient id="moonOrb" cx="38%" cy="35%">
+            <stop offset="0%" stopColor="#fdfdfa" />
+            <stop offset="60%" stopColor="#e4e4de" />
+            <stop offset="100%" stopColor="#b9bab6" />
           </radialGradient>
         </defs>
 
@@ -160,7 +173,20 @@ export default function DayNightWidget() {
           />
         )}
         <circle cx={point.x} cy={point.y} r={isDay ? 15 : 11} className="daynight-orb-halo" />
-        <circle cx={point.x} cy={point.y} r={isDay ? 7 : 5.5} className="daynight-orb" />
+        <circle
+          cx={point.x} cy={point.y} r={isDay ? 7 : 5.5}
+          fill={isDay ? 'url(#sunOrb)' : 'url(#moonOrb)'}
+          className="daynight-orb"
+        />
+        {!isDay && (
+          /* subtle craters, clipped to the moon disc so they never spill over the edge */
+          <g clipPath="url(#moonClip)" opacity="0.5">
+            <circle cx={point.x - 1.6} cy={point.y - 1.2} r="1.3" fill="#9a9b96" />
+            <circle cx={point.x + 1.8} cy={point.y + 0.6} r="1.7" fill="#a7a8a2" />
+            <circle cx={point.x + 0.3} cy={point.y + 2.1} r="0.9" fill="#9a9b96" />
+            <circle cx={point.x - 2} cy={point.y + 1.6} r="0.6" fill="#a7a8a2" />
+          </g>
+        )}
         {isDay && FLARE_ARTIFACTS.map(({ t, r, o }, i) => (
           <circle
             key={i}

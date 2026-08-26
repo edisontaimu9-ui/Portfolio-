@@ -930,9 +930,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   fill: rgba(255,255,255,.18);
 }
 .daynight-orb {
-  fill: #ffd873;
+  transition: filter .8s ease;
   filter: drop-shadow(0 0 6px rgba(255,216,115,.85));
-  transition: fill .8s ease;
+}
+.daynight-widget[data-phase="night"] .daynight-orb {
+  filter: drop-shadow(0 0 4px rgba(214,220,230,.55));
 }
 
 .daynight-ridge {
