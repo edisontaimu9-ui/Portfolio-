@@ -26,7 +26,7 @@ export default function Hero() {
         <div className="hero-grid">
         <div className="hero-content">
           <div className="hero-top hero-enter hero-enter-1">
-            <span className="eyebrow">Aspiring Clinical & Public Health Dietitian &bull; Zomba, Malawi</span>
+            <span className="eyebrow">Clinical & Public Health Dietitian &bull; Zomba, Malawi</span>
           </div>
 
           <div className="hero-enter hero-enter-2">
