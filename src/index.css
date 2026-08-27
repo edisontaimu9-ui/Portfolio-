@@ -1700,7 +1700,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   position: fixed;
   right: 20px;
   bottom: 20px;
-  z-index: 40;
+  z-index: 130;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1722,11 +1722,25 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-weight: 700;
   padding-right: 4px;
 }
+
+/* The site's mobile tab bar (Home/Work/Blog/Theme) sits fixed at the
+   bottom with its own ~78px reserved band and a much higher z-index —
+   push the fab and panel above it there instead of overlapping. */
+@media (max-width: 900px) {
+  .ask-cnr-fab {
+    right: 16px;
+    bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  }
+  .ask-cnr-panel {
+    right: 16px;
+    bottom: calc(150px + env(safe-area-inset-bottom, 0px));
+  }
+}
 .ask-cnr-panel {
   position: fixed;
   right: 20px;
   bottom: 84px;
-  z-index: 41;
+  z-index: 131;
   width: min(340px, calc(100vw - 40px));
   max-height: min(70vh, 520px);
   display: flex;
