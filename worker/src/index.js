@@ -11,6 +11,7 @@ import {
   adminUpdatePost,
   adminDeletePost,
 } from './posts.js'
+import { getLocationSetting, updateLocationSetting } from './settings.js'
 
 export default {
   async fetch(request, env) {
@@ -39,6 +40,9 @@ export default {
       if (likeMatch && method === 'POST') {
         return await likePost(request, env, likeMatch[1])
       }
+      if (path === '/api/settings/location' && method === 'GET') {
+        return await getLocationSetting(request, env)
+      }
 
       // ---- Admin endpoints (Firebase-authenticated) ----
       if (path.startsWith('/api/admin/')) {
@@ -59,6 +63,9 @@ export default {
         }
         if (idMatch && method === 'DELETE') {
           return await adminDeletePost(request, env, idMatch[1])
+        }
+        if (path === '/api/admin/settings/location' && method === 'PUT') {
+          return await updateLocationSetting(request, env)
         }
       }
 

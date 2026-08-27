@@ -31,6 +31,7 @@ export const getPosts = (params = {}) => {
 export const getPost = (slug) => request(`/api/posts/${slug}`)
 export const trackView = (slug) => request(`/api/posts/${slug}/view`, { method: 'POST' })
 export const likePost = (slug) => request(`/api/posts/${slug}/like`, { method: 'POST' })
+export const getLocationSetting = () => request('/api/settings/location')
 
 // Admin
 export const adminGetPosts = () => request('/api/admin/posts', { auth: true })
@@ -41,3 +42,5 @@ export const adminUpdatePost = (id, post) =>
   request(`/api/admin/posts/${id}`, { method: 'PUT', body: post, auth: true })
 export const adminDeletePost = (id) =>
   request(`/api/admin/posts/${id}`, { method: 'DELETE', auth: true })
+export const adminUpdateLocationSetting = (location) =>
+  request('/api/admin/settings/location', { method: 'PUT', body: location, auth: true })

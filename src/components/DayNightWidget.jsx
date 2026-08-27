@@ -1,17 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { getArcProgress } from '../lib/sunTimes'
 import { getSkyPalette, getTerrainPalette } from '../lib/skyColors'
+import { getLocationSetting } from '../lib/api'
 
 // ─── Work location ────────────────────────────────────────────────────────
-// Update CURRENT_LOCATION when your work area changes (e.g. moving between
-// campus in Zomba and clinical rotations at QECH in Blantyre). Everything
-// else — sun position, day/night state, the live clock — recalculates
-// automatically from this.
-const LOCATIONS = {
-  zomba: { city: 'Zomba', lat: -15.386, lon: 35.319, timeZone: 'Africa/Blantyre' },
-  blantyre: { city: 'Blantyre', lat: -15.7861, lon: 35.0058, timeZone: 'Africa/Blantyre' },
-}
-const CURRENT_LOCATION = 'zomba'
+// Used until the real location loads from the CMS API (or if that fetch
+// fails) — everything else (sun position, day/night state, live clock,
+// weather) recalculates automatically once the real one arrives. Change
+// where this points to from the admin dashboard's Location field instead
+// of editing this file.
+const FALLBACK_LOCATION = { city: 'Zomba', lat: -15.386, lon: 35.319, timeZone: 'Africa/Blantyre' }
 // ────────────────────────────────────────────────────────────────────────
 
 const VIEW_W = 400
@@ -101,10 +99,16 @@ const RAIN_STREAKS = [
 ]
 
 export default function DayNightWidget() {
-  const location = LOCATIONS[CURRENT_LOCATION]
+  const [location, setLocation] = useState(FALLBACK_LOCATION)
   const [now, setNow] = useState(() => new Date())
   const pathRef = useRef(null)
   const [point, setPoint] = useState({ x: 16, y: 104 })
+
+  useEffect(() => {
+    getLocationSetting()
+      .then((data) => { if (data.location) setLocation(data.location) })
+      .catch(() => { /* stay on FALLBACK_LOCATION — the widget still works fine */ })
+  }, [])
 
   // Real weather from Open-Meteo (no API key, CORS-open). Falls back to a
   // neutral "partly cloudy, no rain" look if the fetch fails or hasn't
