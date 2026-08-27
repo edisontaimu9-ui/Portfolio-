@@ -70,11 +70,55 @@ const SETTLEMENTS = [
   [263, 136, 1.2], [308, 145, 0.9], [352, 132, 1], [44, 141, 0.8],
 ]
 
+// WMO weather codes (from Open-Meteo) that mean "it's raining" in some form —
+// drizzle, rain, freezing rain, showers, or thunderstorms.
+const RAIN_CODES = new Set([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 95, 96, 99])
+const WEATHER_REFRESH_MS = 15 * 60 * 1000 // Open-Meteo data doesn't change fast enough to justify more
+
+// A handful of rain streaks with staggered timing/x-position so the fall
+// doesn't look mechanical. [x, duration, delay]
+const RAIN_STREAKS = [
+  [20, 0.7, 0], [55, 0.6, 0.15], [90, 0.8, 0.3], [125, 0.65, 0.05], [160, 0.75, 0.4],
+  [195, 0.6, 0.2], [230, 0.7, 0.5], [265, 0.65, 0.1], [300, 0.8, 0.35], [335, 0.7, 0.25],
+  [370, 0.6, 0.45], [10, 0.75, 0.55],
+]
+
 export default function DayNightWidget() {
   const location = LOCATIONS[CURRENT_LOCATION]
   const [now, setNow] = useState(() => new Date())
   const pathRef = useRef(null)
   const [point, setPoint] = useState({ x: 16, y: 104 })
+
+  // Real weather from Open-Meteo (no API key, CORS-open). Falls back to a
+  // neutral "partly cloudy, no rain" look if the fetch fails or hasn't
+  // resolved yet, so the widget never depends on this to render something
+  // reasonable.
+  const [weather, setWeather] = useState({ cloudCover: null, precipitation: 0, weatherCode: null, loaded: false })
+
+  useEffect(() => {
+    let cancelled = false
+    async function fetchWeather() {
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&current=cloud_cover,precipitation,weather_code`
+        const res = await fetch(url)
+        const json = await res.json()
+        if (!cancelled && json.current) {
+          setWeather({
+            cloudCover: json.current.cloud_cover,
+            precipitation: json.current.precipitation,
+            weatherCode: json.current.weather_code,
+            loaded: true,
+          })
+        }
+      } catch {
+        // Network hiccup or offline — keep whatever we last had (or the
+        // neutral default) rather than breaking the widget.
+      }
+    }
+    fetchWeather()
+    const id = setInterval(fetchWeather, WEATHER_REFRESH_MS)
+    return () => { cancelled = true; clearInterval(id) }
+  }, [location.lat, location.lon])
 
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000)
@@ -104,10 +148,20 @@ export default function DayNightWidget() {
   const glowX = (point.x / VIEW_W) * 100
   const [hr, hg, hb] = sky.horizonRgb
 
+  // Cloud density: real cloud_cover% when we have it, otherwise a neutral
+  // default so the sky isn't empty while the first fetch is in flight.
+  const cloudDensity = weather.loaded ? Math.max(0, Math.min(1, weather.cloudCover / 100)) : 0.4
+  const cloudOpacityScale = 0.15 + cloudDensity * 0.65
+  const isRaining = weather.loaded && (weather.precipitation > 0.1 || RAIN_CODES.has(weather.weatherCode))
+  // Overcast skies dim and grey the daytime gradient a bit rather than
+  // always showing a clean blue sky regardless of what's actually outside.
+  const overcastTint = isDay ? Math.max(0, cloudDensity - 0.35) * 0.5 : 0
+
   // Lens-flare artifacts: a few faint circles strung along the line from the
   // sun, through the frame center, to the far side — classic flare rig.
   // Fades in once past golden hour (sky.glow low) and only during the day.
-  const flareOpacity = isDay ? Math.max(0, Math.min(1, 1 - sky.glow * 1.6)) : 0
+  // Heavy cloud cover mutes it too — a socked-in sun doesn't flare.
+  const flareOpacity = isDay ? Math.max(0, Math.min(1, 1 - sky.glow * 1.6)) * (1 - cloudDensity * 0.7) : 0
   const centerX = VIEW_W / 2, centerY = 60
   const dx = centerX - point.x, dy = centerY - point.y
   const FLARE_ARTIFACTS = [
@@ -177,14 +231,14 @@ export default function DayNightWidget() {
           <ellipse cx="200" cy="66" rx="110" ry="5" fill="#fff" opacity="0.08" />
         </g>
 
-        {/* actual clouds drifting fully across, daytime only */}
+        {/* actual clouds drifting fully across, daytime only — density from real cloud cover */}
         <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
           {CLOUDS.map(([y, scale, duration, delay], i) => (
             <g key={i} transform={`translate(0, ${y}) scale(${scale})`}>
               <g
                 className="daynight-cloud"
                 style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
-                fill="#fff" opacity="0.5"
+                fill="#fff" opacity={cloudOpacityScale}
               >
                 <ellipse cx="0" cy="0" rx="14" ry="7" />
                 <ellipse cx="-9" cy="2" rx="9" ry="5.5" />
@@ -194,6 +248,25 @@ export default function DayNightWidget() {
             </g>
           ))}
         </g>
+
+        {/* overcast tint — greys the daytime sky when real cloud cover is heavy */}
+        {isDay && overcastTint > 0 && (
+          <rect x="0" y="0" width={VIEW_W} height={VIEW_H} fill="#7c828c" opacity={overcastTint} />
+        )}
+
+        {/* rain, when it's actually raining at the location right now */}
+        {isRaining && (
+          <g stroke="#cfe0ea" strokeWidth="1" strokeLinecap="round" opacity="0.55">
+            {RAIN_STREAKS.map(([x, duration, delay], i) => (
+              <line
+                key={i}
+                x1={x} y1="-10" x2={x - 4} y2="4"
+                className="daynight-rain-streak"
+                style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
+              />
+            ))}
+          </g>
+        )}
 
         {/* birds, daytime only */}
         <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>

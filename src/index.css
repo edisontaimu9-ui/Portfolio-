@@ -965,6 +965,18 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   100% { transform: translateX(460px); }
 }
 
+/* rain streaks, shown when Open-Meteo reports it's actually raining */
+.daynight-rain-streak {
+  animation-name: daynight-rain;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes daynight-rain {
+  0%   { transform: translateY(-10px); opacity: 0; }
+  15%  { opacity: 1; }
+  100% { transform: translateY(170px); opacity: .2; }
+}
+
 /* brief diagonal streaks at night, mostly invisible, flashing occasionally */
 .daynight-shootingstar {
   opacity: 0;
