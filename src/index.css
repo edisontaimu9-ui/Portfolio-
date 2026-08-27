@@ -958,6 +958,20 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   100% { transform: translateX(420px); }
 }
 
+/* wing flap — separate element from the drift above so both transforms
+   animate independently instead of one overwriting the other */
+.daynight-bird-wings {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation-name: daynight-flap;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes daynight-flap {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.35); }
+}
+
 /* actual clouds, slower and drifting fully off-screen and back */
 .daynight-cloud {
   animation-name: daynight-cloud-drift;

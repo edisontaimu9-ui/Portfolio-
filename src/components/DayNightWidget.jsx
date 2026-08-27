@@ -27,12 +27,13 @@ const STARS = [
 
 // A low ridge line — a stand-in for the Zomba Plateau escarpment — so the
 // sun/moon rises and sets behind a horizon rather than a flat edge.
-// Bird silhouettes drifting across the daytime sky. [startY, duration, delay, reverse?]
+// Bird silhouettes drifting across the daytime sky. [startY, duration, delay, reverse?, flapDuration]
 // Mixed directions read as natural (a flock isn't all heading the same way);
 // same symmetric "v" shape works fine flipped since it looks the same from
-// either side.
+// either side. flapDuration varies slightly per bird so they don't all beat
+// their wings in perfect unison.
 const BIRDS = [
-  [28, 13, 0, false], [46, 16, 4, true], [20, 15, 8, false], [36, 18, 20, true],
+  [28, 13, 0, false, 0.42], [46, 16, 4, true, 0.5], [20, 15, 8, false, 0.46], [36, 18, 20, true, 0.55],
 ]
 
 // Shooting-star streaks, night only. [x, y, duration, delay]
@@ -272,23 +273,6 @@ export default function DayNightWidget() {
           <ellipse cx="200" cy="66" rx="110" ry="5" fill="#fff" opacity="0.08" className="daynight-haze-band" style={{ animationDuration: '160s', animationDelay: '-90s' }} />
         </g>
 
-        {/* actual clouds drifting fully across, daytime only — density from real cloud cover */}
-        <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
-          {CLOUDS.map(([y, scale, duration, delay, shapeIndex], i) => (
-            <g key={i} transform={`translate(0, ${y}) scale(${scale})`}>
-              <g
-                className="daynight-cloud"
-                style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
-                fill="#fff" opacity={cloudOpacityScale}
-              >
-                {CLOUD_SHAPES[shapeIndex].map(([cx, cy, rx, ry], j) => (
-                  <ellipse key={j} cx={cx} cy={cy} rx={rx} ry={ry} />
-                ))}
-              </g>
-            </g>
-          ))}
-        </g>
-
         {/* overcast tint — greys the daytime sky when real cloud cover is heavy */}
         {isDay && overcastTint > 0 && (
           <rect x="0" y="0" width={VIEW_W} height={VIEW_H} fill="#7c828c" opacity={overcastTint} />
@@ -308,20 +292,25 @@ export default function DayNightWidget() {
           </g>
         )}
 
-        {/* birds, daytime only */}
+        {/* birds, daytime only — wings flap independently of the horizontal drift */}
         <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
-          {BIRDS.map(([y, duration, delay, reverse], i) => (
+          {BIRDS.map(([y, duration, delay, reverse, flapDuration], i) => (
             <g key={i} transform={`translate(0, ${y})`}>
-              <path
-                d="M-5,0 Q-2.5,-4 0,0 Q2.5,-4 5,0"
+              <g
                 className="daynight-bird"
                 style={{
                   animationDuration: `${duration}s`,
                   animationDelay: `${delay}s`,
                   animationDirection: reverse ? 'reverse' : 'normal',
                 }}
-                stroke="rgba(20,24,20,.55)" strokeWidth="1" fill="none" strokeLinecap="round"
-              />
+              >
+                <path
+                  d="M-5,0 Q-2.5,-4 0,0 Q2.5,-4 5,0"
+                  className="daynight-bird-wings"
+                  style={{ animationDuration: `${flapDuration}s` }}
+                  stroke="rgba(20,24,20,.55)" strokeWidth="1" fill="none" strokeLinecap="round"
+                />
+              </g>
             </g>
           ))}
         </g>
@@ -368,6 +357,26 @@ export default function DayNightWidget() {
             opacity={flareOpacity * o}
           />
         ))}
+
+        {/* actual clouds drifting fully across, daytime only — density from real
+            cloud cover. Rendered after the sun/moon (not before) so a cloud
+            passing directly over it actually dims/occludes it, the way real
+            clouds do, instead of always painting behind. */}
+        <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
+          {CLOUDS.map(([y, scale, duration, delay, shapeIndex], i) => (
+            <g key={i} transform={`translate(0, ${y}) scale(${scale})`}>
+              <g
+                className="daynight-cloud"
+                style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
+                fill="#fff" opacity={cloudOpacityScale}
+              >
+                {CLOUD_SHAPES[shapeIndex].map(([cx, cy, rx, ry], j) => (
+                  <ellipse key={j} cx={cx} cy={cy} rx={rx} ry={ry} />
+                ))}
+              </g>
+            </g>
+          ))}
+        </g>
 
         {/* satellite-map ground: vegetation/farmland mosaic, river, and
             settlement lights, clipped to the ridge silhouette */}
