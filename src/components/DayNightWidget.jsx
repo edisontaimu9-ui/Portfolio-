@@ -265,6 +265,41 @@ export default function DayNightWidget() {
           ))}
         </g>
 
+        {/* sun / moon — rendered right after the stars, before everything else in
+            the sky (haze, rain, birds, clouds), so it's the farthest-back object
+            and anything drifting past — birds, clouds — passes in front of it,
+            not behind it. */}
+        {isDay && (
+          <circle
+            cx={point.x} cy={point.y} r="26"
+            fill="url(#sunBloom)"
+            opacity={flareOpacity}
+          />
+        )}
+        <circle cx={point.x} cy={point.y} r={isDay ? 15 : 11} className="daynight-orb-halo" />
+        <circle
+          cx={point.x} cy={point.y} r={isDay ? 7 : 5.5}
+          fill={isDay ? 'url(#sunOrb)' : 'url(#moonOrb)'}
+          className="daynight-orb"
+        />
+        {!isDay && (
+          /* subtle craters, clipped to the moon disc so they never spill over the edge */
+          <g clipPath="url(#moonClip)" opacity="0.5">
+            <circle cx={point.x - 1.6} cy={point.y - 1.2} r="1.3" fill="#9a9b96" />
+            <circle cx={point.x + 1.8} cy={point.y + 0.6} r="1.7" fill="#a7a8a2" />
+            <circle cx={point.x + 0.3} cy={point.y + 2.1} r="0.9" fill="#9a9b96" />
+            <circle cx={point.x - 2} cy={point.y + 1.6} r="0.6" fill="#a7a8a2" />
+          </g>
+        )}
+        {isDay && FLARE_ARTIFACTS.map(({ t, r, o }, i) => (
+          <circle
+            key={i}
+            cx={point.x + dx * t} cy={point.y + dy * t}
+            r={r} fill="#ffe9c2"
+            opacity={flareOpacity * o}
+          />
+        ))}
+
         {/* haze / cloud bands, daytime only — faint distant clouds, each drifting
             at its own speed so it reads as depth rather than a static overlay */}
         <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
@@ -325,38 +360,6 @@ export default function DayNightWidget() {
           strokeDasharray="1 8"
           strokeLinecap="round"
         />
-
-        {/* sun / moon */}
-        {isDay && (
-          <circle
-            cx={point.x} cy={point.y} r="26"
-            fill="url(#sunBloom)"
-            opacity={flareOpacity}
-          />
-        )}
-        <circle cx={point.x} cy={point.y} r={isDay ? 15 : 11} className="daynight-orb-halo" />
-        <circle
-          cx={point.x} cy={point.y} r={isDay ? 7 : 5.5}
-          fill={isDay ? 'url(#sunOrb)' : 'url(#moonOrb)'}
-          className="daynight-orb"
-        />
-        {!isDay && (
-          /* subtle craters, clipped to the moon disc so they never spill over the edge */
-          <g clipPath="url(#moonClip)" opacity="0.5">
-            <circle cx={point.x - 1.6} cy={point.y - 1.2} r="1.3" fill="#9a9b96" />
-            <circle cx={point.x + 1.8} cy={point.y + 0.6} r="1.7" fill="#a7a8a2" />
-            <circle cx={point.x + 0.3} cy={point.y + 2.1} r="0.9" fill="#9a9b96" />
-            <circle cx={point.x - 2} cy={point.y + 1.6} r="0.6" fill="#a7a8a2" />
-          </g>
-        )}
-        {isDay && FLARE_ARTIFACTS.map(({ t, r, o }, i) => (
-          <circle
-            key={i}
-            cx={point.x + dx * t} cy={point.y + dy * t}
-            r={r} fill="#ffe9c2"
-            opacity={flareOpacity * o}
-          />
-        ))}
 
         {/* actual clouds drifting fully across, daytime only — density from real
             cloud cover. Rendered after the sun/moon (not before) so a cloud
