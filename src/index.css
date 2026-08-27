@@ -972,6 +972,19 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   50%      { transform: scaleY(0.35); }
 }
 
+/* jets — wider off-screen bounds than birds since the contrail trails ~50
+   units behind the plane and needs to fully clear the frame too */
+.daynight-plane {
+  animation-name: daynight-plane-fly;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+}
+@keyframes daynight-plane-fly {
+  0%   { transform: translateX(-80px); }
+  100% { transform: translateX(480px); }
+}
+
 /* actual clouds, slower and drifting fully off-screen and back */
 .daynight-cloud {
   animation-name: daynight-cloud-drift;

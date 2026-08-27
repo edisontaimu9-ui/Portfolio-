@@ -57,6 +57,12 @@ const CLOUD_SHAPES = [
   [[0, 0, 9, 5.5], [-6, 1.5, 6, 4], [6, 1.5, 6.5, 4.2]],
 ]
 
+// High-altitude jets with contrails, daytime only. [y, duration, delay, reverse?]
+// Sit above the clouds (lower y) and cross much more slowly than birds.
+const PLANES = [
+  [8, 50, 5, false], [13, 62, 32, true],
+]
+
 const RIDGE = `M0,${VIEW_H} L0,128 L22,118 L48,124 L70,108 L96,120 L120,112
   L150,122 L182,104 L210,118 L240,110 L268,120 L300,113 L330,123 L358,112
   L${VIEW_W},121 L${VIEW_W},${VIEW_H} Z`
@@ -247,6 +253,12 @@ export default function DayNightWidget() {
             <stop offset="60%" stopColor="#e4e4de" />
             <stop offset="100%" stopColor="#b9bab6" />
           </radialGradient>
+          {/* Fades along the line's bounding box regardless of which end is
+              x1/x2 — offset 0% lands at the tail (far), 100% at the plane. */}
+          <linearGradient id="planeTrail">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0" />
+            <stop offset="100%" stopColor="#fff" stopOpacity="0.65" />
+          </linearGradient>
         </defs>
 
         {/* stars */}
@@ -345,6 +357,30 @@ export default function DayNightWidget() {
                   style={{ animationDuration: `${flapDuration}s` }}
                   stroke="rgba(20,24,20,.55)" strokeWidth="1" fill="none" strokeLinecap="round"
                 />
+              </g>
+            </g>
+          ))}
+        </g>
+
+        {/* jets with contrails, daytime only — high altitude, slow, mixed
+            directions. The dart shape and trail are drawn facing +x (right);
+            reversed ones get a static horizontal flip so the trail correctly
+            ends up trailing behind whichever way the jet is actually moving. */}
+        <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
+          {PLANES.map(([y, duration, delay, reverse], i) => (
+            <g key={i} transform={`translate(0, ${y})`}>
+              <g
+                className="daynight-plane"
+                style={{
+                  animationDuration: `${duration}s`,
+                  animationDelay: `${delay}s`,
+                  animationDirection: reverse ? 'reverse' : 'normal',
+                }}
+              >
+                <g transform={reverse ? 'scale(-1,1)' : undefined}>
+                  <line x1="-4" y1="0" x2="-50" y2="0" stroke="url(#planeTrail)" strokeWidth="1.3" strokeLinecap="round" />
+                  <path d="M6,0 L-3,-2.1 L-1,0 L-3,2.1 Z" fill="#d8dce0" />
+                </g>
               </g>
             </g>
           ))}
