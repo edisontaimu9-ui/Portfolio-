@@ -954,6 +954,17 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   100% { transform: translateX(420px); }
 }
 
+/* actual clouds, slower and drifting fully off-screen and back */
+.daynight-cloud {
+  animation-name: daynight-cloud-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes daynight-cloud-drift {
+  0%   { transform: translateX(-60px); }
+  100% { transform: translateX(460px); }
+}
+
 /* brief diagonal streaks at night, mostly invisible, flashing occasionally */
 .daynight-shootingstar {
   opacity: 0;

@@ -39,6 +39,11 @@ const SHOOTING_STARS = [
   [60, 18, 9, 1], [300, 10, 11, 5.5],
 ]
 
+// Fluffy cloud shapes drifting across the daytime sky. [startY, scale, duration, delay]
+const CLOUDS = [
+  [22, 1.1, 55, 0], [40, 0.75, 70, 12], [14, 0.9, 62, 30],
+]
+
 const RIDGE = `M0,${VIEW_H} L0,128 L22,118 L48,124 L70,108 L96,120 L120,112
   L150,122 L182,104 L210,118 L240,110 L268,120 L300,113 L330,123 L358,112
   L${VIEW_W},121 L${VIEW_W},${VIEW_H} Z`
@@ -165,11 +170,29 @@ export default function DayNightWidget() {
           ))}
         </g>
 
-        {/* haze / cloud bands, daytime only */}
+        {/* haze / cloud bands, daytime only — faint atmospheric tint */}
         <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }} className="daynight-haze">
           <ellipse cx="90" cy="46" rx="70" ry="7" fill="#fff" opacity="0.16" />
           <ellipse cx="270" cy="30" rx="90" ry="6" fill="#fff" opacity="0.12" />
           <ellipse cx="200" cy="66" rx="110" ry="5" fill="#fff" opacity="0.08" />
+        </g>
+
+        {/* actual clouds drifting fully across, daytime only */}
+        <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
+          {CLOUDS.map(([y, scale, duration, delay], i) => (
+            <g key={i} transform={`translate(0, ${y}) scale(${scale})`}>
+              <g
+                className="daynight-cloud"
+                style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
+                fill="#fff" opacity="0.5"
+              >
+                <ellipse cx="0" cy="0" rx="14" ry="7" />
+                <ellipse cx="-9" cy="2" rx="9" ry="5.5" />
+                <ellipse cx="10" cy="2" rx="10" ry="6" />
+                <ellipse cx="2" cy="-4" rx="9" ry="6" />
+              </g>
+            </g>
+          ))}
         </g>
 
         {/* birds, daytime only */}
