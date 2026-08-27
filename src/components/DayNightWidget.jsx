@@ -27,9 +27,12 @@ const STARS = [
 
 // A low ridge line — a stand-in for the Zomba Plateau escarpment — so the
 // sun/moon rises and sets behind a horizon rather than a flat edge.
-// Bird silhouettes drifting across the daytime sky. [startY, duration, delay]
+// Bird silhouettes drifting across the daytime sky. [startY, duration, delay, reverse?]
+// Mixed directions read as natural (a flock isn't all heading the same way);
+// same symmetric "v" shape works fine flipped since it looks the same from
+// either side.
 const BIRDS = [
-  [28, 13, 0], [46, 16, 4], [20, 15, 8],
+  [28, 13, 0, false], [46, 16, 4, true], [20, 15, 8, false], [36, 18, 20, true],
 ]
 
 // Shooting-star streaks, night only. [x, y, duration, delay]
@@ -306,12 +309,16 @@ export default function DayNightWidget() {
 
         {/* birds, daytime only */}
         <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
-          {BIRDS.map(([y, duration, delay], i) => (
+          {BIRDS.map(([y, duration, delay, reverse], i) => (
             <g key={i} transform={`translate(0, ${y})`}>
               <path
                 d="M-5,0 Q-2.5,-4 0,0 Q2.5,-4 5,0"
                 className="daynight-bird"
-                style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
+                style={{
+                  animationDuration: `${duration}s`,
+                  animationDelay: `${delay}s`,
+                  animationDirection: reverse ? 'reverse' : 'normal',
+                }}
                 stroke="rgba(20,24,20,.55)" strokeWidth="1" fill="none" strokeLinecap="round"
               />
             </g>
