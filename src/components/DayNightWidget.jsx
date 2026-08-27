@@ -37,9 +37,20 @@ const SHOOTING_STARS = [
   [60, 18, 9, 1], [300, 10, 11, 5.5],
 ]
 
-// Fluffy cloud shapes drifting across the daytime sky. [startY, scale, duration, delay]
+// Fluffy cloud shapes drifting across the daytime sky. [startY, scale, duration, delay, shapeIndex]
 const CLOUDS = [
-  [22, 1.1, 55, 0], [40, 0.75, 70, 12], [14, 0.9, 62, 30],
+  [22, 1.1, 55, 0, 0], [40, 0.75, 70, 12, 1], [14, 0.9, 62, 30, 2],
+]
+
+// A few distinct cloud silhouettes (each a list of [cx, cy, rx, ry] ellipses)
+// so the drifting clouds don't all look like the same shape at different sizes.
+const CLOUD_SHAPES = [
+  // broad, fluffy cumulus
+  [[0, 0, 14, 7], [-9, 2, 9, 5.5], [10, 2, 10, 6], [2, -4, 9, 6]],
+  // flatter, elongated streak
+  [[0, 0, 18, 5], [-14, 1, 10, 4], [14, 1, 11, 4.2], [-2, -2, 9, 4]],
+  // small, compact puff
+  [[0, 0, 9, 5.5], [-6, 1.5, 6, 4], [6, 1.5, 6.5, 4.2]],
 ]
 
 const RIDGE = `M0,${VIEW_H} L0,128 L22,118 L48,124 L70,108 L96,120 L120,112
@@ -259,17 +270,16 @@ export default function DayNightWidget() {
 
         {/* actual clouds drifting fully across, daytime only — density from real cloud cover */}
         <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
-          {CLOUDS.map(([y, scale, duration, delay], i) => (
+          {CLOUDS.map(([y, scale, duration, delay, shapeIndex], i) => (
             <g key={i} transform={`translate(0, ${y}) scale(${scale})`}>
               <g
                 className="daynight-cloud"
                 style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
                 fill="#fff" opacity={cloudOpacityScale}
               >
-                <ellipse cx="0" cy="0" rx="14" ry="7" />
-                <ellipse cx="-9" cy="2" rx="9" ry="5.5" />
-                <ellipse cx="10" cy="2" rx="10" ry="6" />
-                <ellipse cx="2" cy="-4" rx="9" ry="6" />
+                {CLOUD_SHAPES[shapeIndex].map(([cx, cy, rx, ry], j) => (
+                  <ellipse key={j} cx={cx} cy={cy} rx={rx} ry={ry} />
+                ))}
               </g>
             </g>
           ))}

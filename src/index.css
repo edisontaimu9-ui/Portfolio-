@@ -948,6 +948,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   animation-name: daynight-fly;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  /* Without this, the animation-delay period renders the element at its
+     default (untransformed) position instead of the 0% keyframe — looks
+     like it's frozen in place until the delay ends, then jumps. */
+  animation-fill-mode: backwards;
 }
 @keyframes daynight-fly {
   0%   { transform: translateX(-20px); }
@@ -959,6 +963,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   animation-name: daynight-cloud-drift;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
 }
 @keyframes daynight-cloud-drift {
   0%   { transform: translateX(-60px); }
@@ -970,6 +975,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   animation-name: daynight-rain;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
 }
 @keyframes daynight-rain {
   0%   { transform: translateY(-10px); opacity: 0; }
