@@ -75,6 +75,23 @@ const SETTLEMENTS = [
 const RAIN_CODES = new Set([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82, 95, 96, 99])
 const WEATHER_REFRESH_MS = 15 * 60 * 1000 // Open-Meteo data doesn't change fast enough to justify more
 
+// Short human-readable label for a WMO weather code.
+const WEATHER_LABELS = {
+  0: 'Clear', 1: 'Mostly clear', 2: 'Partly cloudy', 3: 'Overcast',
+  45: 'Fog', 48: 'Fog',
+  51: 'Light drizzle', 53: 'Drizzle', 55: 'Heavy drizzle',
+  56: 'Freezing drizzle', 57: 'Freezing drizzle',
+  61: 'Light rain', 63: 'Rain', 65: 'Heavy rain',
+  66: 'Freezing rain', 67: 'Freezing rain',
+  71: 'Light snow', 73: 'Snow', 75: 'Heavy snow', 77: 'Snow grains',
+  80: 'Rain showers', 81: 'Rain showers', 82: 'Heavy showers',
+  85: 'Snow showers', 86: 'Snow showers',
+  95: 'Thunderstorm', 96: 'Thunderstorm', 99: 'Severe thunderstorm',
+}
+function weatherLabel(code) {
+  return WEATHER_LABELS[code] ?? 'Cloudy'
+}
+
 // A handful of rain streaks with staggered timing/x-position so the fall
 // doesn't look mechanical. [x, duration, delay]
 const RAIN_STREAKS = [
@@ -93,13 +110,16 @@ export default function DayNightWidget() {
   // neutral "partly cloudy, no rain" look if the fetch fails or hasn't
   // resolved yet, so the widget never depends on this to render something
   // reasonable.
-  const [weather, setWeather] = useState({ cloudCover: null, precipitation: 0, weatherCode: null, loaded: false })
+  const [weather, setWeather] = useState({
+    cloudCover: null, precipitation: 0, weatherCode: null,
+    temperature: null, windSpeed: null, loaded: false,
+  })
 
   useEffect(() => {
     let cancelled = false
     async function fetchWeather() {
       try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&current=cloud_cover,precipitation,weather_code`
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${location.lat}&longitude=${location.lon}&current=cloud_cover,precipitation,weather_code,temperature_2m,wind_speed_10m`
         const res = await fetch(url)
         const json = await res.json()
         if (!cancelled && json.current) {
@@ -107,6 +127,8 @@ export default function DayNightWidget() {
             cloudCover: json.current.cloud_cover,
             precipitation: json.current.precipitation,
             weatherCode: json.current.weather_code,
+            temperature: json.current.temperature_2m,
+            windSpeed: json.current.wind_speed_10m,
             loaded: true,
           })
         }
@@ -356,10 +378,17 @@ export default function DayNightWidget() {
       </svg>
 
       <div className="daynight-info">
-        <span className="daynight-label">
-          <span className="daynight-dot" />
-          {isDay ? 'Daytime' : 'Nighttime'} in {location.city}
-        </span>
+        <div className="daynight-info-left">
+          <span className="daynight-label">
+            <span className="daynight-dot" />
+            {isDay ? 'Daytime' : 'Nighttime'} in {location.city}
+          </span>
+          {weather.loaded && (
+            <span className="daynight-weather">
+              {weatherLabel(weather.weatherCode)} · {Math.round(weather.temperature)}°C · {Math.round(weather.windSpeed)} km/h wind
+            </span>
+          )}
+        </div>
         <span className="daynight-clock">{timeLabel}</span>
       </div>
     </div>

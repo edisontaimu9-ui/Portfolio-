@@ -1016,10 +1016,22 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   text-transform: uppercase;
   color: #fff;
 }
+.daynight-info-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
 .daynight-label {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+.daynight-weather {
+  font-size: .64rem;
+  letter-spacing: .02em;
+  text-transform: none;
+  opacity: .75;
+  padding-left: 11px;
 }
 .daynight-dot {
   width: 5px; height: 5px;
