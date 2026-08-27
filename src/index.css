@@ -999,13 +999,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 /* slow horizontal drift so the daytime cloud bands read as sky, not a
    frozen overlay */
-.daynight-haze {
-  animation: daynight-drift 70s linear infinite alternate;
+.daynight-haze-band {
+  animation-name: daynight-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
   transform-box: fill-box;
 }
 @keyframes daynight-drift {
-  from { transform: translateX(-3%); }
-  to   { transform: translateX(3%); }
+  from { transform: translateX(-18%); }
+  to   { transform: translateX(18%); }
 }
 
 .daynight-info {

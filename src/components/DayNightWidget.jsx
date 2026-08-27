@@ -264,11 +264,12 @@ export default function DayNightWidget() {
           ))}
         </g>
 
-        {/* haze / cloud bands, daytime only — faint atmospheric tint */}
-        <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }} className="daynight-haze">
-          <ellipse cx="90" cy="46" rx="70" ry="7" fill="#fff" opacity="0.16" />
-          <ellipse cx="270" cy="30" rx="90" ry="6" fill="#fff" opacity="0.12" />
-          <ellipse cx="200" cy="66" rx="110" ry="5" fill="#fff" opacity="0.08" />
+        {/* haze / cloud bands, daytime only — faint distant clouds, each drifting
+            at its own speed so it reads as depth rather than a static overlay */}
+        <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
+          <ellipse cx="90" cy="46" rx="70" ry="7" fill="#fff" opacity="0.16" className="daynight-haze-band" style={{ animationDuration: '95s' }} />
+          <ellipse cx="270" cy="30" rx="90" ry="6" fill="#fff" opacity="0.12" className="daynight-haze-band" style={{ animationDuration: '130s', animationDelay: '-40s' }} />
+          <ellipse cx="200" cy="66" rx="110" ry="5" fill="#fff" opacity="0.08" className="daynight-haze-band" style={{ animationDuration: '160s', animationDelay: '-90s' }} />
         </g>
 
         {/* actual clouds drifting fully across, daytime only — density from real cloud cover */}
