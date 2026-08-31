@@ -11,10 +11,10 @@ database_id = "bcda2dec-b081-4d32-8b42-143445f2db60"
 [vars]
 FIREBASE_PROJECT_ID = "portfolio-1178a"
 ALLOWED_ORIGIN = "https://minutriq.me"
-CLOUDINARY_CLOUD_NAME = "dctmvrg5f"
-CLOUDINARY_API_KEY = "725429511854161"
+IMAGEKIT_PUBLIC_KEY = "public_QMt/w2SZ480FT40FONmZW73IZzE="
+IMAGEKIT_URL_ENDPOINT = "https://ik.imagekit.io/8kattn2dg"
 
 # Set these as encrypted secrets in the Cloudflare dashboard
 # (Worker > Settings > Variables and Secrets) — never commit them:
-#   ADMIN_UID              -> the Firebase UID of your one admin account
-#   CLOUDINARY_API_SECRET  -> from Cloudinary dashboard > Settings > Security
+#   ADMIN_UID           -> the Firebase UID of your one admin account
+#   IMAGEKIT_PRIVATE_KEY -> from ImageKit dashboard > Developer options > API keys
