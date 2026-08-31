@@ -14,7 +14,7 @@ export async function getCloudinarySignature(request, env) {
   // (except file, api_key, cloud_name, resource_type, signature) to be
   // included here, sorted alphabetically as key=value pairs.
   const paramsToSign = `folder=${folder}&timestamp=${timestamp}${env.CLOUDINARY_API_SECRET}`
-  const signature = await sha1Hex(paramsToSign)
+  const signature = await sha256Hex(paramsToSign)
 
   return json(
     {
@@ -28,8 +28,8 @@ export async function getCloudinarySignature(request, env) {
   )
 }
 
-async function sha1Hex(message) {
+async function sha256Hex(message) {
   const data = new TextEncoder().encode(message)
-  const hashBuffer = await crypto.subtle.digest('SHA-1', data)
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data)
   return [...new Uint8Array(hashBuffer)].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
