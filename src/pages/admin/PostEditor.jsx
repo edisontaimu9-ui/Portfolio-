@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { adminGetPost, adminCreatePost, adminUpdatePost } from '../../lib/api'
+import { uploadToCloudinary } from '../../lib/cloudinary'
 import { marked } from '../../lib/markdown'
 
 const EMPTY = {
@@ -27,6 +28,7 @@ export default function PostEditor() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [showPreview, setShowPreview] = useState(false)
+  const [uploading, setUploading] = useState(false)
 
   useEffect(() => {
     if (!id) return
@@ -42,6 +44,22 @@ export default function PostEditor() {
 
   function updateChecked(field) {
     return (e) => setForm((f) => ({ ...f, [field]: e.target.checked }))
+  }
+
+  async function handleCoverImageUpload(e) {
+    const file = e.target.files?.[0]
+    e.target.value = '' // allow re-selecting the same file later
+    if (!file) return
+    setUploading(true)
+    setError('')
+    try {
+      const url = await uploadToCloudinary(file, 'blog')
+      setForm((f) => ({ ...f, cover_image: url }))
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setUploading(false)
+    }
   }
 
   async function handleSubmit(e) {
@@ -112,6 +130,17 @@ export default function PostEditor() {
           Cover image URL
           <input value={form.cover_image || ''} onChange={update('cover_image')} style={{ display: 'block', width: '100%' }} />
         </label>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <input type="file" accept="image/*" onChange={handleCoverImageUpload} disabled={uploading} />
+          {uploading && <span style={{ fontSize: '0.85rem', opacity: 0.7 }}>Uploading…</span>}
+          {form.cover_image && (
+            <img
+              src={form.cover_image}
+              alt="Cover preview"
+              style={{ height: 48, borderRadius: 4, objectFit: 'cover' }}
+            />
+          )}
+        </div>
         <label>
           Tags (comma-separated)
           <input value={form.tags || ''} onChange={update('tags')} style={{ display: 'block', width: '100%' }} />
