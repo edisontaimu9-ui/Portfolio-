@@ -1,22 +1,23 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   getProfilePhotoSetting,
   adminUpdateProfilePhotoSetting,
   adminDeleteProfilePhotoSetting,
 } from '../../lib/api'
 import { uploadImage } from '../../lib/upload'
+import ImageCropper from '../../components/ImageCropper'
 
-// Lets the site owner swap the hero profile photo from the admin UI
-// instead of replacing src/assets/profile-photo.jpg and redeploying.
-// Selecting a file only previews it locally — nothing is uploaded or
-// saved until "Save" is pressed.
+// Lets the site owner swap the hero profile photo from the admin UI.
+// Selecting a file opens a WhatsApp-style crop/zoom/pan step; the result
+// is only previewed until "Save" is pressed — nothing uploads until then.
 export default function ProfilePhotoSettings() {
   const [saved, setSaved] = useState(null) // currently live on the site
-  const [file, setFile] = useState(null) // pending selection, not yet saved
+  const [originalFile, setOriginalFile] = useState(null) // kept so "Adjust" can re-open the cropper
+  const [croppedBlob, setCroppedBlob] = useState(null)
   const [previewUrl, setPreviewUrl] = useState(null)
+  const [showCropper, setShowCropper] = useState(false)
   const [status, setStatus] = useState('idle') // idle | saving | removing
   const [error, setError] = useState('')
-  const fileInputRef = useRef(null)
 
   useEffect(() => {
     getProfilePhotoSetting()
@@ -24,7 +25,6 @@ export default function ProfilePhotoSettings() {
       .catch(() => { /* non-fatal — falls back to the bundled default photo */ })
   }, [])
 
-  // Clean up the object URL when it's replaced or the component unmounts.
   useEffect(() => {
     return () => { if (previewUrl) URL.revokeObjectURL(previewUrl) }
   }, [previewUrl])
@@ -34,26 +34,42 @@ export default function ProfilePhotoSettings() {
     e.target.value = ''
     if (!picked) return
     setError('')
-    setFile(picked)
-    setPreviewUrl(URL.createObjectURL(picked))
+    setOriginalFile(picked)
+    setShowCropper(true)
   }
 
-  function handleCancel() {
-    setFile(null)
+  function handleCropCancel() {
+    setShowCropper(false)
+    // Only clear the pending selection if this was the first crop —
+    // re-opening via "Adjust" should leave the existing preview intact.
+    if (!croppedBlob) setOriginalFile(null)
+  }
+
+  function handleCropConfirm(blob) {
+    if (previewUrl) URL.revokeObjectURL(previewUrl)
+    setCroppedBlob(blob)
+    setPreviewUrl(URL.createObjectURL(blob))
+    setShowCropper(false)
+  }
+
+  function handleDiscardPending() {
+    if (previewUrl) URL.revokeObjectURL(previewUrl)
+    setOriginalFile(null)
+    setCroppedBlob(null)
     setPreviewUrl(null)
     setError('')
   }
 
   async function handleSave() {
-    if (!file) return
+    if (!croppedBlob) return
     setStatus('saving')
     setError('')
     try {
+      const file = new File([croppedBlob], `profile-${Date.now()}.jpg`, { type: 'image/jpeg' })
       const url = await uploadImage(file, 'profile')
       await adminUpdateProfilePhotoSetting(url)
       setSaved(url)
-      setFile(null)
-      setPreviewUrl(null)
+      handleDiscardPending()
     } catch (err) {
       setError(err.message || 'Something went wrong saving the photo.')
     } finally {
@@ -96,7 +112,7 @@ export default function ProfilePhotoSettings() {
               alt="Profile"
               style={{
                 height: 72, width: 72, borderRadius: '50%', objectFit: 'cover',
-                border: previewUrl ? '2px solid var(--accent, #4a90d9)' : 'none',
+                border: previewUrl ? '2px solid var(--accent)' : 'none',
               }}
             />
           ) : (
@@ -111,26 +127,24 @@ export default function ProfilePhotoSettings() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {!file ? (
+          {!previewUrl ? (
             <>
-              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleSelect} disabled={busy} />
+              <input type="file" accept="image/*" onChange={handleSelect} disabled={busy} />
               {saved && (
-                <button
-                  type="button"
-                  className="btn btn-sm"
-                  onClick={handleRemove}
-                  disabled={busy}
-                >
+                <button type="button" className="btn btn-sm" onClick={handleRemove} disabled={busy}>
                   {status === 'removing' ? 'Removing…' : 'Remove (use default)'}
                 </button>
               )}
             </>
           ) : (
-            <div style={{ display: 'flex', gap: 8 }}>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <button type="button" className="btn btn-primary btn-sm" onClick={handleSave} disabled={busy}>
                 {status === 'saving' ? 'Saving…' : 'Save'}
               </button>
-              <button type="button" className="btn btn-sm" onClick={handleCancel} disabled={busy}>
+              <button type="button" className="btn btn-sm" onClick={() => setShowCropper(true)} disabled={busy}>
+                Adjust
+              </button>
+              <button type="button" className="btn btn-sm" onClick={handleDiscardPending} disabled={busy}>
                 Cancel
               </button>
             </div>
@@ -139,6 +153,10 @@ export default function ProfilePhotoSettings() {
       </div>
 
       {error && <p className="admin-error" style={{ marginTop: 10 }}>{error}</p>}
+
+      {showCropper && originalFile && (
+        <ImageCropper file={originalFile} onCancel={handleCropCancel} onConfirm={handleCropConfirm} />
+      )}
     </div>
   )
 }
