@@ -11,7 +11,12 @@ import {
   adminUpdatePost,
   adminDeletePost,
 } from './posts.js'
-import { getLocationSetting, updateLocationSetting } from './settings.js'
+import {
+  getLocationSetting,
+  updateLocationSetting,
+  getProfilePhotoSetting,
+  updateProfilePhotoSetting,
+} from './settings.js'
 import { getImageKitAuth } from './upload.js'
 
 export default {
@@ -44,6 +49,9 @@ export default {
       if (path === '/api/settings/location' && method === 'GET') {
         return await getLocationSetting(request, env)
       }
+      if (path === '/api/settings/profile-photo' && method === 'GET') {
+        return await getProfilePhotoSetting(request, env)
+      }
 
       // ---- Admin endpoints (Firebase-authenticated) ----
       if (path.startsWith('/api/admin/')) {
@@ -67,6 +75,9 @@ export default {
         }
         if (path === '/api/admin/settings/location' && method === 'PUT') {
           return await updateLocationSetting(request, env)
+        }
+        if (path === '/api/admin/settings/profile-photo' && method === 'PUT') {
+          return await updateProfilePhotoSetting(request, env)
         }
         if (path === '/api/admin/imagekit-auth' && method === 'POST') {
           return await getImageKitAuth(request, env)

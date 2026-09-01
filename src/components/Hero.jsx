@@ -1,10 +1,22 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import profilePhoto from '../assets/profile-photo.jpg'
+import defaultProfilePhoto from '../assets/profile-photo.jpg'
 import DayNightWidget from './DayNightWidget'
 import Typewriter from './Typewriter'
 import PortraitDoodles from './PortraitDoodles'
+import { getProfilePhotoSetting } from '../lib/api'
 
 export default function Hero() {
+  const [profilePhoto, setProfilePhoto] = useState(defaultProfilePhoto)
+
+  useEffect(() => {
+    getProfilePhotoSetting()
+      .then((data) => {
+        if (data.url) setProfilePhoto(data.url)
+      })
+      .catch(() => { /* non-fatal — keeps the bundled default photo */ })
+  }, [])
+
   return (
     <section id="home" className="hero">
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { adminGetPosts, adminDeletePost } from '../../lib/api'
 import { useAuth } from '../../context/AuthContext'
 import LocationSettings from './LocationSettings'
+import ProfilePhotoSettings from './ProfilePhotoSettings'
 
 export default function Dashboard() {
   const { logout } = useAuth()
@@ -50,6 +51,7 @@ export default function Dashboard() {
         </div>
 
         <LocationSettings />
+        <ProfilePhotoSettings />
 
         <div className="admin-header">
           <div>

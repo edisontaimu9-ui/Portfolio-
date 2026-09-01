@@ -43,3 +43,32 @@ export async function updateLocationSetting(request, env) {
 
   return json({ location: JSON.parse(value) }, env)
 }
+
+// ---------- Profile photo ----------
+// Same generic `settings` table, key 'profile_photo', value is just the
+// image URL (from ImageKit) as a plain string.
+
+export async function getProfilePhotoSetting(request, env) {
+  const row = await env.DB.prepare('SELECT value FROM settings WHERE key = ?')
+    .bind('profile_photo')
+    .first()
+
+  return json({ url: row ? row.value : null }, env)
+}
+
+export async function updateProfilePhotoSetting(request, env) {
+  const body = await request.json().catch(() => ({}))
+  const { url } = body
+
+  if (typeof url !== 'string' || !url.trim()) {
+    return json({ error: 'url (string) is required' }, env, 400)
+  }
+
+  const trimmed = url.trim()
+  await env.DB.prepare(
+    `INSERT INTO settings (key, value, updated_at) VALUES ('profile_photo', ?, datetime('now'))
+     ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at`
+  ).bind(trimmed).run()
+
+  return json({ url: trimmed }, env)
+}
