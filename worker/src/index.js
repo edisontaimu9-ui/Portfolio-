@@ -12,7 +12,7 @@ import {
   adminDeletePost,
 } from './posts.js'
 import { getLocationSetting, updateLocationSetting } from './settings.js'
-import { getCloudinarySignature } from './upload.js'
+import { getImageKitAuth } from './upload.js'
 
 export default {
   async fetch(request, env) {
@@ -68,8 +68,8 @@ export default {
         if (path === '/api/admin/settings/location' && method === 'PUT') {
           return await updateLocationSetting(request, env)
         }
-        if (path === '/api/admin/cloudinary-signature' && method === 'POST') {
-          return await getCloudinarySignature(request, env)
+        if (path === '/api/admin/imagekit-auth' && method === 'POST') {
+          return await getImageKitAuth(request, env)
         }
       }
 

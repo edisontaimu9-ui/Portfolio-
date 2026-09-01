@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { adminGetPost, adminCreatePost, adminUpdatePost } from '../../lib/api'
-import { uploadToCloudinary } from '../../lib/cloudinary'
+import { uploadImage } from '../../lib/upload'
 import { marked } from '../../lib/markdown'
 
 const EMPTY = {
@@ -53,7 +53,7 @@ export default function PostEditor() {
     setUploading(true)
     setError('')
     try {
-      const url = await uploadToCloudinary(file, 'blog')
+      const url = await uploadImage(file, 'blog')
       setForm((f) => ({ ...f, cover_image: url }))
     } catch (err) {
       setError(err.message)
