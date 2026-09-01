@@ -8,7 +8,11 @@ const OUTPUT_SIZE = 600 // px, the exported square image resolution
 // circular preview mask. No image-processing library — just canvas math.
 export default function ImageCropper({ file, onCancel, onConfirm }) {
   const [imgEl, setImgEl] = useState(null)
-  const [zoom, setZoom] = useState(1) // 1 = just covers the viewport
+  // Start slightly zoomed in past the exact-cover minimum so there's
+  // immediately room to drag — at exactly 1x an image with matching
+  // aspect ratio has zero slack in one or both axes and panning does
+  // nothing until the user finds the zoom slider first.
+  const [zoom, setZoom] = useState(1.25)
   const [offset, setOffset] = useState({ x: 0, y: 0 })
   const dragRef = useRef(null) // { startX, startY, startOffsetX, startOffsetY }
   const containerRef = useRef(null)
@@ -44,12 +48,14 @@ export default function ImageCropper({ file, onCancel, onConfirm }) {
   }
 
   function handlePointerDown(e) {
+    e.preventDefault()
     e.currentTarget.setPointerCapture(e.pointerId)
     dragRef.current = { startX: e.clientX, startY: e.clientY, startOffsetX: offset.x, startOffsetY: offset.y }
   }
 
   function handlePointerMove(e) {
     if (!dragRef.current) return
+    e.preventDefault()
     const dx = e.clientX - dragRef.current.startX
     const dy = e.clientY - dragRef.current.startY
     setOffset({
