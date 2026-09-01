@@ -47,3 +47,5 @@ export const adminUpdateLocationSetting = (location) =>
   request('/api/admin/settings/location', { method: 'PUT', body: location, auth: true })
 export const adminUpdateProfilePhotoSetting = (url) =>
   request('/api/admin/settings/profile-photo', { method: 'PUT', body: { url }, auth: true })
+export const adminDeleteProfilePhotoSetting = () =>
+  request('/api/admin/settings/profile-photo', { method: 'DELETE', auth: true })

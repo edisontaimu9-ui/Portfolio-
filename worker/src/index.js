@@ -16,6 +16,7 @@ import {
   updateLocationSetting,
   getProfilePhotoSetting,
   updateProfilePhotoSetting,
+  deleteProfilePhotoSetting,
 } from './settings.js'
 import { getImageKitAuth } from './upload.js'
 
@@ -78,6 +79,9 @@ export default {
         }
         if (path === '/api/admin/settings/profile-photo' && method === 'PUT') {
           return await updateProfilePhotoSetting(request, env)
+        }
+        if (path === '/api/admin/settings/profile-photo' && method === 'DELETE') {
+          return await deleteProfilePhotoSetting(request, env)
         }
         if (path === '/api/admin/imagekit-auth' && method === 'POST') {
           return await getImageKitAuth(request, env)

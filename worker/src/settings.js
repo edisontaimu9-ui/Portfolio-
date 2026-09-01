@@ -72,3 +72,8 @@ export async function updateProfilePhotoSetting(request, env) {
 
   return json({ url: trimmed }, env)
 }
+
+export async function deleteProfilePhotoSetting(request, env) {
+  await env.DB.prepare('DELETE FROM settings WHERE key = ?').bind('profile_photo').run()
+  return json({ url: null }, env)
+}
