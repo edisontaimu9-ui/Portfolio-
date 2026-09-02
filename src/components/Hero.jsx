@@ -7,14 +7,16 @@ import PortraitDoodles from './PortraitDoodles'
 import { getProfilePhotoSetting } from '../lib/api'
 
 export default function Hero() {
-  const [profilePhoto, setProfilePhoto] = useState(defaultProfilePhoto)
+  const [profilePhoto, setProfilePhoto] = useState(null)
 
   useEffect(() => {
     getProfilePhotoSetting()
       .then((data) => {
-        if (data.url) setProfilePhoto(data.url)
+        setProfilePhoto(data.url || defaultProfilePhoto)
       })
-      .catch(() => { /* non-fatal — keeps the bundled default photo */ })
+      .catch(() => {
+        setProfilePhoto(defaultProfilePhoto)
+      })
   }, [])
 
   return (
@@ -83,7 +85,9 @@ export default function Hero() {
         <div className="hero-visual hero-enter hero-enter-1">
           <div className="portrait-scene">
             <div className="ring-portrait">
-              <img src={profilePhoto} alt="Edison Taimu" className="ring-portrait-img" />
+              {profilePhoto && (
+                <img src={profilePhoto} alt="Edison Taimu" className="ring-portrait-img" />
+              )}
               <span className="handwritten-note">I'm learning Dart &amp; Flutter 😀</span>
             </div>
             <PortraitDoodles />
