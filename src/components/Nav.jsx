@@ -24,17 +24,32 @@ const links = [...primaryLinks, ...moreLinks]
 export default function Nav() {
   const location = useLocation()
   const [scrolled,  setScrolled]  = useState(false)
+  const [hidden,    setHidden]    = useState(false)
   const [menuOpen,  setMenuOpen]  = useState(false)
   const [moreOpen,  setMoreOpen]  = useState(false)
   const [scrollPct, setScrollPct] = useState(0)
   const moreRef = useRef(null)
+  const lastY = useRef(0)
 
-  /* scroll state — recomputed per page since each route has its own length */
+  /* scroll state — recomputed per page since each route has its own length.
+     Nav hides on scroll-down past the top of the page and reappears on any
+     scroll-up, so it's out of the way while reading but always one swipe
+     away. A 4px slop avoids flicker from trackpad/momentum jitter. */
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 8)
+      const y = window.scrollY
+      setScrolled(y > 8)
       const docH = document.documentElement.scrollHeight - window.innerHeight
-      setScrollPct(docH > 0 ? (window.scrollY / docH) * 100 : 0)
+      setScrollPct(docH > 0 ? (y / docH) * 100 : 0)
+
+      if (y < 80) {
+        setHidden(false)
+      } else if (y > lastY.current + 4) {
+        setHidden(true)
+      } else if (y < lastY.current - 4) {
+        setHidden(false)
+      }
+      lastY.current = y
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
@@ -49,6 +64,12 @@ export default function Nav() {
 
   /* close the mobile menu automatically on navigation */
   useEffect(() => { setMenuOpen(false); setMoreOpen(false) }, [location.pathname])
+
+  /* never hide the nav while the drawer or "More" dropdown is open —
+     the hamburger/trigger that closes them lives inside it */
+  useEffect(() => {
+    if (menuOpen || moreOpen) setHidden(false)
+  }, [menuOpen, moreOpen])
 
   /* close the "More" dropdown on outside click or Escape */
   useEffect(() => {
@@ -81,7 +102,7 @@ export default function Nav() {
         aria-hidden="true"
       />
 
-      <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
+      <nav className={`nav${scrolled ? ' scrolled' : ''}${hidden ? ' nav-hidden' : ''}`}>
         <div className="container nav-inner">
           <Link to="/" className="logo">
             <img src={logo} alt="" className="logo-mark" />
