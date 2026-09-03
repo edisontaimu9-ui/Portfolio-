@@ -160,7 +160,7 @@ export default function BlogPost() {
                 </>
               )}
               <span className="blog-card-date">
-                {new Date(post.published_at).toLocaleDateString(undefined, {
+                {new Date(post.published_at).toLocaleDateString('en-GB', {
                   year: 'numeric', month: 'long', day: 'numeric',
                 })}
               </span>
@@ -171,7 +171,7 @@ export default function BlogPost() {
                 <>
                   <span className="blog-post-meta-dot">·</span>
                   <span className="blog-card-date blog-post-updated">
-                    Updated {new Date(post.updated_at).toLocaleDateString(undefined, {
+                    Updated {new Date(post.updated_at).toLocaleDateString('en-GB', {
                       year: 'numeric', month: 'long', day: 'numeric',
                     })}
                   </span>
@@ -265,7 +265,7 @@ export default function BlogPost() {
                     <span className="blog-card-date">
                       {rp.featured && <span className="blog-card-featured">Featured</span>}
                       {rp.category && <>{rp.featured ? ' · ' : ''}{rp.category}{' · '}</>}
-                      {new Date(rp.published_at).toLocaleDateString(undefined, {
+                      {new Date(rp.published_at).toLocaleDateString('en-GB', {
                         year: 'numeric', month: 'long', day: 'numeric',
                       })}
                     </span>

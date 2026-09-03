@@ -50,7 +50,7 @@ export default function BlogPreview() {
                 <span className="blog-card-date">
                   {post.featured && <span className="blog-card-featured">Featured</span>}
                   {post.category && <>{post.featured ? ' · ' : ''}{post.category}{' · '}</>}
-                  {new Date(post.published_at).toLocaleDateString(undefined, {
+                  {new Date(post.published_at).toLocaleDateString('en-GB', {
                     year: 'numeric', month: 'long', day: 'numeric',
                   })}
                 </span>
