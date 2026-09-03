@@ -462,11 +462,12 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 @media (max-width: 900px) {
   .mobile-tabbar { display: flex; }
-  /* Tab bar now sits below the nav instead of floating over the bottom
-     of the page, so bump --nav-h to reserve room for it (nav + gap +
-     tabbar height + gap). Every padding-top: var(--nav-h) rule across
-     the site picks this up automatically. */
-  :root { --nav-h: 148px; }
+  /* Tab bar floats below the nav. Give page content extra top clearance
+     via body padding (additive on top of each page's own padding-top:
+     var(--nav-h)) rather than inflating --nav-h itself — the tab bar's
+     own position also depends on --nav-h, so inflating it would just
+     push the tab bar down by the same amount instead of clearing it. */
+  body { padding-top: 84px; }
   .theme-toggle-float { display: none; }
   .nav-theme-toggle { display: none; }
 }
