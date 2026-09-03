@@ -200,11 +200,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   top: 0; left: 0; right: 0;
   height: var(--nav-h);
   z-index: 100;
-  transition: transform .3s ease, background .3s, border-color .3s, backdrop-filter .3s;
+  transition: background .3s, border-color .3s, backdrop-filter .3s;
   border-bottom: 1px solid transparent;
-}
-.nav.nav-hidden {
-  transform: translateY(-100%);
 }
 .nav.scrolled {
   background: var(--nav-bg-scroll);
@@ -418,6 +415,12 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   box-shadow: 0 12px 32px rgba(0,0,0,.32), 0 0 0 1px var(--border) inset;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  transition: transform .3s ease, opacity .3s ease;
+}
+.mobile-tabbar.tabbar-hidden {
+  transform: translateX(-50%) translateY(-140%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .mobile-tabbar-item {

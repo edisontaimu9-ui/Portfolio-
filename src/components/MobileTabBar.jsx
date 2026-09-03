@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 
@@ -43,13 +44,35 @@ const tabs = [
 export default function MobileTabBar() {
   const location = useLocation()
   const { theme, toggleTheme } = useTheme()
+  const [hidden, setHidden] = useState(false)
+  const lastY = useRef(0)
+
+  /* Hides on scroll-down past the top of the page, reappears on any
+     scroll-up — same pattern as the nav bar, so it's out of the way
+     while reading but always one swipe away. */
+  useEffect(() => {
+    function onScroll() {
+      const y = window.scrollY
+      if (y < 80) {
+        setHidden(false)
+      } else if (y > lastY.current + 4) {
+        setHidden(true)
+      } else if (y < lastY.current - 4) {
+        setHidden(false)
+      }
+      lastY.current = y
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [location.pathname])
 
   function isActive(to) {
     return to === '/' ? location.pathname === '/' : location.pathname.startsWith(to)
   }
 
   return (
-    <nav className="mobile-tabbar" aria-label="Quick navigation">
+    <nav className={`mobile-tabbar${hidden ? ' tabbar-hidden' : ''}`} aria-label="Quick navigation">
       {tabs.map(({ to, label, icon }) => (
         <Link
           key={to}
