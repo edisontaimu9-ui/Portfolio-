@@ -14,7 +14,6 @@ import Home          from './pages/Home'
 import Blog          from './pages/Blog'
 import BlogPost      from './pages/BlogPost'
 import ProtectedRoute from './pages/admin/ProtectedRoute'
-import AskCNR from './components/AskCNR'
 
 const About                 = lazy(() => import('./components/About'))
 const Experience             = lazy(() => import('./components/Experience'))
@@ -66,15 +65,6 @@ function AnimatedRoutes() {
   )
 }
 
-// AskCNR uses position:fixed to float above the page. PageTransition wraps
-// routed content in a motion.div with a CSS transform, which creates a new
-// containing block and would anchor "fixed" to that div instead of the
-// viewport. So this stays outside AnimatedRoutes entirely, gated to Home.
-function HomeFab() {
-  const location = useLocation()
-  return location.pathname === '/' ? <AskCNR /> : null
-}
-
 export default function App() {
   return (
     <AuthProvider>
@@ -89,7 +79,6 @@ export default function App() {
           </Suspense>
         </main>
         <Footer />
-        <HomeFab />
       </BrowserRouter>
     </AuthProvider>
   )
