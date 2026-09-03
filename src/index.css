@@ -403,9 +403,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: none;
   position: fixed;
   left: 50%;
-  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  top: calc(var(--nav-h) + 12px);
   transform: translateX(-50%);
-  z-index: 140;
+  z-index: 90;
   align-items: center;
   gap: 2px;
   padding: 6px;
@@ -462,7 +462,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 
 @media (max-width: 900px) {
   .mobile-tabbar { display: flex; }
-  body { padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px)); }
+  /* Tab bar now sits below the nav instead of floating over the bottom
+     of the page, so bump --nav-h to reserve room for it (nav + gap +
+     tabbar height + gap). Every padding-top: var(--nav-h) rule across
+     the site picks this up automatically. */
+  :root { --nav-h: 148px; }
   .theme-toggle-float { display: none; }
   .nav-theme-toggle { display: none; }
 }
