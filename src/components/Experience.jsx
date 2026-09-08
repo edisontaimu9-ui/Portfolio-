@@ -20,12 +20,12 @@ const entries = [
   },
   {
     year:  '2025 – Present',
-    title: 'Self-taught Software Developer',
+    title: 'Nutrition Software, Built to Support the Work',
     org:   'Independent',
-    desc: `Building Oasis CNST, a clinical nutrition PWA with 11+ modules, evolved from an 
-    initial dietary recall tool into a comprehensive clinical decision support platform. Also 
-    developed Thanzi, a consumer nutrition tracking application, and Chakudya Nutrition Registry (CNR), Malawi's 
-    first open food composition database.`,
+    desc: `Alongside clinical training, developed Oasis CNST, a clinical nutrition tool that 
+    grew from a simple dietary recall calculator, and Chakudya Nutrition Registry (CNR), 
+    Malawi's first open food composition database, to support the dietetics work itself 
+    rather than as a separate track.`,
   },
 ]
 
@@ -37,7 +37,7 @@ export default function Experience() {
         <Reveal>
           <div className="section-head">
             <span className="eyebrow">Experience</span>
-            <h2 className="display">The timeline of <br />a problem-solver.</h2>
+            <h2 className="display">Clinical training, <br />step by step.</h2>
           </div>
         </Reveal>
 
