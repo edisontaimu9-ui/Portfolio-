@@ -10,7 +10,7 @@ export default function About() {
         <Reveal>
           <div className="section-head">
             <span className="eyebrow">About me</span>
-            <h2 className="display">Nutrition science meets <br />code.</h2>
+            <h2 className="display">Dietetics first, <br />technology in support.</h2>
           </div>
         </Reveal>
 
@@ -18,21 +18,22 @@ export default function About() {
           <Reveal delay={100}>
             <div className="about-text">
               <p>
-                I'm a BSc Nutrition & Dietetics graduate (Pioneer Cohort) from
+                I'm a BSc Nutrition & Dietetics (Hons) graduate (Pioneer Cohort) from
                 <strong> Kamuzu University of Health Sciences (KUHeS)</strong> — formerly the
-                University of Malawi College of Medicine — in Blantyre,
-                Malawi. I work across both <strong>clinical dietetics</strong> and
-                <strong> public health nutrition</strong>, from bedside care plans to
-                population-level nutrition data. I built clinical nutrition software out of a
-                need that existed long before I knew how to write a line of code: the gap
-                between what evidence-based nutrition care demands and what the ward actually has.
+                University of Malawi College of Medicine — in Blantyre, Malawi, having
+                completed my degree on 26 August 2026. I work across both
+                <strong> clinical dietetics</strong> and <strong> public health nutrition</strong>,
+                from bedside care plans to population-level nutrition data, and I'm currently
+                seeking dietetic internship opportunities to build on that foundation and grow
+                toward becoming a Registered Dietitian.
               </p>
               <p>
                 During clinical rotations I found myself manually computing dietary recalls,
                 cross-referencing Malawian food composition tables, and writing nutrition care
-                plans by hand. I automated the tedious parts first, then kept going. What started
-                as a 24-hour recall calculator is now <strong>Oasis CNST</strong>, a full clinical
-                nutrition software suite.
+                plans by hand. To support that work, I also build nutrition software on the side —
+                what started as a simple 24-hour recall calculator has grown into
+                <strong> Oasis CNST</strong>, a clinical nutrition tool I keep developing alongside
+                my dietetics practice.
               </p>
 
               {expanded && (
@@ -106,14 +107,14 @@ export default function About() {
                 <span className="fact-sub">Critical care, Paediatrics, Renal, Diabetes & Community Nutrition</span>
               </div>
               <div className="fact-row">
-                <span className="fact-label">Dev stack</span>
-                <span className="fact-value">Full-Stack Development</span>
-                <span className="fact-sub">React, Node.js & cloud infrastructure</span>
+                <span className="fact-label">Status</span>
+                <span className="fact-value">Seeking Dietetic Internship</span>
+                <span className="fact-sub">Graduate, ready to grow clinical practice under supervision</span>
               </div>
               <div className="fact-row">
-                <span className="fact-label">Currently</span>
+                <span className="fact-label">Also building</span>
                 <span className="fact-value">Oasis CNST & Chakudya Nutrition Registry (CNR)</span>
-                <span className="fact-sub">Open to internships, fellowships & collaborations in global health innovation</span>
+                <span className="fact-sub">Software in support of dietetics, not a separate career track</span>
               </div>
             </div>
           </Reveal>

@@ -40,7 +40,7 @@ export default function Hero() {
         <div className="hero-grid">
         <div className="hero-content">
           <div className="hero-top hero-enter hero-enter-1">
-            <span className="eyebrow">Clinical & Public Health Dietitian &bull; Zomba, Malawi</span>
+            <span className="eyebrow">Registered Dietitian in Training &bull; Zomba, Malawi</span>
           </div>
 
           <div className="hero-enter hero-enter-2">
@@ -53,10 +53,11 @@ export default function Hero() {
 
           <p className="lead hero-enter hero-enter-3">
             Good nutrition shouldn't be a luxury. I'm Edison Taimu, a Malawian
-            dietitian and self-taught developer building Chakudya — Malawi's
-            open nutrition registry — alongside Oasis CNST and Thanzi, to make
-            clinical nutrition practical for the people delivering it and the
-            people who need it.
+            dietitian with a BSc in Nutrition & Dietetics (Hons) from KUHeS,
+            currently seeking dietetic internship opportunities to grow my
+            clinical practice. Alongside my dietetics work, I build
+            nutrition-focused tools like Chakudya to support the field I'm
+            training in.
           </p>
 
           <div className="cta-row hero-enter hero-enter-4">
