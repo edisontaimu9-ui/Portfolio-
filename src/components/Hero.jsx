@@ -48,7 +48,7 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-heading hero-enter-2-noop">
-            <Typewriter text="Why is eating healthy so difficult for so many people?" />
+            <Typewriter text="Good nutrition starts with the right guidance." />
           </h1>
 
           <p className="lead hero-enter hero-enter-3">
