@@ -74,7 +74,7 @@ export default function BlogPost() {
 
   useEffect(() => {
     const prev = document.title
-    if (post) document.title = `${post.title} — Edison Taimu`
+    if (post) document.title = `${post.title} | Edison Taimu`
     return () => { document.title = prev }
   }, [post])
 

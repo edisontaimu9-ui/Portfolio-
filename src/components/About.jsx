@@ -19,8 +19,8 @@ export default function About() {
             <div className="about-text">
               <p>
                 I'm a BSc Nutrition & Dietetics (Hons) graduate (Pioneer Cohort) from
-                <strong> Kamuzu University of Health Sciences (KUHeS)</strong> — formerly the
-                University of Malawi College of Medicine — in Blantyre, Malawi, having
+                <strong> Kamuzu University of Health Sciences (KUHeS)</strong>, formerly the
+                University of Malawi College of Medicine, in Blantyre, Malawi, having
                 completed my degree on 26 August 2026. I work across both
                 <strong> clinical dietetics</strong> and <strong> public health nutrition</strong>,
                 from bedside care plans to population-level nutrition data, and I'm currently
@@ -30,7 +30,7 @@ export default function About() {
               <p>
                 During clinical rotations I found myself manually computing dietary recalls,
                 cross-referencing Malawian food composition tables, and writing nutrition care
-                plans by hand. To support that work, I also build nutrition software on the side —
+                plans by hand. To support that work, I also build nutrition software on the side;
                 what started as a simple 24-hour recall calculator has grown into
                 <strong> Oasis CNST</strong>, a clinical nutrition tool I keep developing alongside
                 my dietetics practice.
@@ -98,7 +98,7 @@ export default function About() {
               </div>
               <div className="fact-row">
                 <span className="fact-label">Education</span>
-                <span className="fact-value">BSc Nutrition & Dietetics — KUHeS</span>
+                <span className="fact-value">BSc Nutrition & Dietetics, KUHeS</span>
                 <span className="fact-sub">Pioneer Cohort · Blantyre, Malawi · formerly University of Malawi College of Medicine</span>
               </div>
               <div className="fact-row">

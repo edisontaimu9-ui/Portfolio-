@@ -269,7 +269,7 @@ function ChakudyaTerminalVisual() {
         <span className="terminal-dot terminal-dot-red" />
         <span className="terminal-dot terminal-dot-yellow" />
         <span className="terminal-dot terminal-dot-green" />
-        <span className="terminal-title">chakudya-api — zsh</span>
+        <span className="terminal-title">chakudya-api (zsh)</span>
         <span className="terminal-endpoint-tag">{demo.label}</span>
       </div>
       <div className="terminal-body">
@@ -400,7 +400,7 @@ const projects = [
     title:  'Chakudya Nutrition Registry (CNR)',
     status: 'Live · chakudya-api.•••••••••.workers.dev',
     live:   true,
-    accolade: 'Accepted for exhibition — 5th Research Dissemination Conference, KUHeS',
+    accolade: 'Accepted for exhibition, 5th Research Dissemination Conference, KUHeS',
     desc: [
       `Chakudya Nutrition Registry (CNR) is an open food and nutrition API built for Malawi.
       It extends the Malawi Food Composition Table (2019) with structured nutrition data
@@ -542,7 +542,7 @@ export default function Projects() {
           <div className="project-cta">
             <div>
               <h3>More coming soon</h3>
-              <p>A human metabolism simulator and Thanzi Guide — a digital health and nutrition education platform for Malawians, offering interactive articles, courses, quizzes, health tools, and a database of common Malawian foods, in progress.</p>
+              <p>A human metabolism simulator and Thanzi Guide, a digital health and nutrition education platform for Malawians, offering interactive articles, courses, quizzes, health tools, and a database of common Malawian foods, in progress.</p>
             </div>
             <a href="https://github.com/edisontaimu9-ui"
                target="_blank" rel="noopener noreferrer"

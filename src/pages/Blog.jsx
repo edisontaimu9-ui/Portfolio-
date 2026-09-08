@@ -67,7 +67,7 @@ export default function Blog() {
           {!loading && !error && posts.length === 0 && (
             <Reveal delay={80}>
               <div className="blog-empty">
-                <p className="lead">No posts yet — check back soon.</p>
+                <p className="lead">No posts yet, check back soon.</p>
               </div>
             </Reveal>
           )}

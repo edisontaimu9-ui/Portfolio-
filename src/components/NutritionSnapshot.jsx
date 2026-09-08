@@ -48,10 +48,10 @@ const miycn = [
 ]
 
 const ncd = [
-  { value: '11.0%', label: 'Obesity — women', note: 'vs 20.8% Africa average' },
-  { value: '2.7%',  label: 'Obesity — men',   note: 'vs 9.2% Africa average' },
-  { value: '6.9%',  label: 'Diabetes — women', note: 'adults 18 and over' },
-  { value: '7.9%',  label: 'Diabetes — men',   note: 'adults 18 and over' },
+  { value: '11.0%', label: 'Obesity, women', note: 'vs 20.8% Africa average' },
+  { value: '2.7%',  label: 'Obesity, men',   note: 'vs 9.2% Africa average' },
+  { value: '6.9%',  label: 'Diabetes, women', note: 'adults 18 and over' },
+  { value: '7.9%',  label: 'Diabetes, men',   note: 'adults 18 and over' },
 ]
 
 export default function NutritionSnapshot() {

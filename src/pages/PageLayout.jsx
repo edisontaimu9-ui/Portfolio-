@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function PageLayout({ title, children }) {
   useEffect(() => {
     const prev = document.title
-    if (title) document.title = `${title} — Edison Taimu`
+    if (title) document.title = `${title} | Edison Taimu`
     return () => { document.title = prev }
   }, [title])
 
