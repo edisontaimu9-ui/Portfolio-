@@ -1,5 +1,4 @@
 import Reveal from './Reveal'
-import parenteralImg from '../assets/parenteral-nutrition.jpg'
 import {
   SiFirebase, SiAppwrite, SiReact, SiVite, SiCloudflare,
   SiNodedotjs, SiPython, SiGithub, SiPostgresql,
@@ -60,12 +59,6 @@ export default function Skills() {
                       'Parenteral Nutrition','Community Nutrition','Malnutrition Screening'].map(c => (
                       <span className="chip" key={c}>{c}</span>
                     ))}
-                  </div>
-                  <div className="media-highlight">
-                    <div className="media-highlight-img">
-                      <img src={parenteralImg} alt="Parenteral nutrition infusion bag on a drip stand" loading="lazy" decoding="async" />
-                    </div>
-                    <span>Hands-on with enteral & parenteral nutrition delivery during critical-care rotations.</span>
                   </div>
                 </div>
                 <div>
