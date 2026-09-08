@@ -38,7 +38,7 @@ export default function Skills() {
           {/* Wide card: clinical */}
           <Reveal delay={80}>
             <div className="skill-card">
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+              <div className="skill-card-split">
                 <div>
                   <span className="skill-card-icon">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none"

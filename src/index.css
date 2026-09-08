@@ -1539,6 +1539,16 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   line-height: 1.7;
 }
 
+.skill-card-split {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 32px;
+}
+.skill-card-split > div + div {
+  padding-left: 32px;
+  border-left: 1px solid var(--border);
+}
+
 /* ── Nutrition Foundations ──────────────────────────────────── */
 .foundations-intro {
   display: grid;
@@ -2462,6 +2472,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .about-grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
   .skill-card:first-child { grid-column: 1; }
+  .skill-card-split { grid-template-columns: 1fr; gap: 28px; }
+  .skill-card-split > div + div {
+    padding-left: 0;
+    padding-top: 28px;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
 
   .foundations-intro { grid-template-columns: 1fr; gap: 24px; }
   .foundations-visual { aspect-ratio: 16 / 9; }
