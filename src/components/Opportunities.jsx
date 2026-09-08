@@ -9,38 +9,7 @@ const interests = [
         <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
       </svg>
     ),
-    label: 'Digital health for LMICs',
-  },
-  {
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-        <path d="M2 12h20"/>
-      </svg>
-    ),
-    label: 'Global health innovation',
-  },
-  {
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/>
-        <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/>
-      </svg>
-    ),
-    label: 'Clinical AI & decision support',
-  },
-  {
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-      </svg>
-    ),
-    label: 'Nutrition informatics',
+    label: 'Clinical dietetics',
   },
   {
     icon: (
@@ -58,11 +27,41 @@ const interests = [
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+    ),
+    label: 'Clinical nutrition education',
+  },
+  {
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+        <path d="M2 12h20"/>
+      </svg>
+    ),
+    label: 'Global health & nutrition programmes',
+  },
+  {
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+      </svg>
+    ),
+    label: 'Malnutrition screening & treatment',
+  },
+  {
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 18 22 12 16 6"/>
         <polyline points="8 6 2 12 8 18"/>
       </svg>
     ),
-    label: 'Open-source health tools',
+    label: 'Nutrition informatics',
   },
 ]
 
@@ -74,7 +73,7 @@ export default function Opportunities() {
         <Reveal>
           <div className="section-head">
             <span className="eyebrow">Opportunities</span>
-            <h2 className="display">Looking for a team <br />worth building with.</h2>
+            <h2 className="display">Open to dietetic <br />internship placements.</h2>
           </div>
         </Reveal>
 
@@ -83,22 +82,20 @@ export default function Opportunities() {
           <Reveal delay={100}>
             <div>
               <p className="internship-lead">
-                I'm actively seeking internships and fellowships at the intersection of
-                clinical and public health nutrition and health technology: global health
-                innovation programmes, digital health research roles, and clinical informatics
-                positions where the work has direct patient, client, and population impact in
-                low-resource settings.
+                I'm actively seeking dietetic internship opportunities in clinical and
+                public health nutrition: hospital and ward-based placements, community
+                nutrition programmes, and roles where I can build supervised clinical
+                practice toward becoming a Registered Dietitian.
               </p>
               <p className="internship-lead">
-                I bring a rare dual profile: clinical dietetics training grounded in
-                Malawi-specific protocols, and a working software portfolio built entirely
-                from that clinical need. I'm not transitioning into tech. I'm already in
-                both. I apply ASPEN and write Firebase rules in the same afternoon.
+                My training is grounded in Malawi-specific clinical protocols and the
+                Nutrition Care Process, from bedside assessment to community-level
+                screening. Alongside that clinical foundation, I also build nutrition
+                software to support the field I'm training in.
               </p>
               <p className="internship-lead">
-                If you're building health tools for underserved populations and need
-                someone who understands the problem from the inside, I'd like to hear
-                from you.
+                If you're offering an internship, placement, or supervised practice
+                opportunity in clinical or community nutrition, I'd like to hear from you.
               </p>
 
               <div className="internship-availability">
@@ -106,8 +103,8 @@ export default function Opportunities() {
                 <div>
                   <span className="avail-label">Availability</span>
                   <span className="avail-value">
-                    Open to internships, fellowships, and collaborative projects.
-                    In-person, hybrid, or remote; based in Zomba, Malawi.
+                    Open to dietetic internships and supervised practice placements.
+                    In-person or hybrid; based in Zomba, Malawi.
                   </span>
                 </div>
               </div>

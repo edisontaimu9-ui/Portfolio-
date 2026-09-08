@@ -30,7 +30,7 @@ export default function Skills() {
         <Reveal>
           <div className="section-head">
             <span className="eyebrow">Skills</span>
-            <h2 className="display">Two disciplines, <br />one practice.</h2>
+            <h2 className="display">Clinical training, <br />with tools to match.</h2>
           </div>
         </Reveal>
 
