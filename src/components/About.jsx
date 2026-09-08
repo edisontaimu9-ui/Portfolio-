@@ -106,7 +106,7 @@ export default function About() {
                 <span className="fact-value">Clinical & Public Health Nutrition</span>
                 <span className="fact-sub">Critical care, Paediatrics, Renal, Diabetes & Community Nutrition</span>
               </div>
-              <div className="fact-row">
+              <div className="fact-row fact-row-highlight">
                 <span className="fact-label">Status</span>
                 <span className="fact-value">Seeking Dietetic Internship</span>
                 <span className="fact-sub">Graduate, ready to grow clinical practice under supervision</span>

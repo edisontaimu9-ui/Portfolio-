@@ -1281,7 +1281,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   gap: 26px;
   width: max-content;
   padding: 18px 24px;
-  animation: htm-scroll 60s linear infinite;
+  animation: htm-scroll 40s linear infinite;
   will-change: transform;
 }
 .htm-marquee:hover .htm-track { animation-play-state: paused; }
@@ -1348,7 +1348,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .htm-fade--right { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
 
 @media (max-width: 640px) {
-  .htm-track { gap: 16px; padding: 14px 16px; animation-duration: 44s; }
+  .htm-track { gap: 16px; padding: 14px 16px; animation-duration: 28s; }
   .htm-item { width: 56px; gap: 5px; }
   .htm-chip { width: 34px; height: 34px; border-radius: 10px; }
   .htm-icon { width: 18px; height: 18px; }
@@ -1426,6 +1426,18 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   font-size: .78rem;
   color: var(--text-muted);
 }
+.fact-row-highlight {
+  background: var(--accent-dim);
+  position: relative;
+}
+.fact-row-highlight::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+}
+.fact-row-highlight .fact-value { color: var(--accent); font-weight: 600; }
 
 /* ── About: "what does a dietitian do" explainer ────────────────── */
 .ncp-explainer {
