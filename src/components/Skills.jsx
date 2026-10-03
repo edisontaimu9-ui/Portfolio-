@@ -174,10 +174,10 @@ export default function Skills() {
               <p>
                 Deepening my Python skills for data analysis and applied machine learning,
                 extending the AI and food-data work already running across my clinical
-                nutrition projects.
+                nutrition projects. Also learning Dart and Flutter to build mobile apps.
               </p>
               <div className="chip-row">
-                {['Python','Data Analysis','Machine Learning','NumPy & Pandas'].map(c => (
+                {['Python','Data Analysis','Machine Learning','NumPy & Pandas','Flutter','Dart'].map(c => (
                   <span className="chip" key={c}>{c}</span>
                 ))}
               </div>
