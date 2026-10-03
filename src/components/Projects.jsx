@@ -400,7 +400,7 @@ const projects = [
     title:  'Chakudya Nutrition Registry (CNR)',
     status: 'Live · chakudya-api.•••••••••.workers.dev',
     live:   true,
-    accolade: 'Accepted for exhibition, 5th Research Dissemination Conference, KUHeS',
+    accolade: '2nd Best Innovation, 5th Research Dissemination Conference, KUHeS',
     desc: [
       `Chakudya Nutrition Registry (CNR) is an open food and nutrition API built for Malawi.
       It extends the Malawi Food Composition Table (2019) with structured nutrition data
