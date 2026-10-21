@@ -8,6 +8,7 @@
 
 const SITE = 'https://minutriq.me'
 const API_BASE = process.env.VITE_CMS_API_URL
+const BUILD_DATE = new Date().toISOString().slice(0, 10)
 
 const STATIC_PAGES = [
   { path: '/',              priority: '1.0' },
@@ -67,7 +68,7 @@ async function main() {
   const posts = await fetchAllPublishedPosts()
 
   const entries = [
-    ...STATIC_PAGES.map((p) => urlEntry({ loc: `${SITE}${p.path}`, priority: p.priority })),
+    ...STATIC_PAGES.map((p) => urlEntry({ loc: `${SITE}${p.path}`, priority: p.priority, lastmod: BUILD_DATE })),
     ...posts.map((post) => urlEntry({
       loc: `${SITE}/blog/${post.slug}/`,
       priority: '0.6',

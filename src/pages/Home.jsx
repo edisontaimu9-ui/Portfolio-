@@ -71,7 +71,7 @@ function TileGrid({ items }) {
 
 export default function Home() {
   useEffect(() => {
-    document.title = 'Edison Taimu | Clinical Nutrition Software Builder'
+    document.title = 'Edison Taimu | Dietitian & Clinical Nutrition Software Builder'
   }, [])
 
   return (

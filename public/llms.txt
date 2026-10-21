@@ -1,0 +1,43 @@
+# Edison Taimu
+
+> Edison Taimu is a Malawian dietitian based in Zomba, Malawi, with a BSc in Nutrition & Dietetics (Hons) from Kamuzu University of Health Sciences (KUHeS), Pioneer Cohort, completed 26 August 2026. Edison is open to dietetic internship placements on the path to becoming a Registered Dietitian, and is a self-taught developer who builds free clinical nutrition software for Malawi.
+
+## Quick facts
+
+- Name: Edison Taimu
+- Location: Zomba, Malawi
+- Education: BSc Nutrition & Dietetics (Hons), KUHeS (formerly University of Malawi College of Medicine), Blantyre
+- Looking for: dietetic internship and supervised practice placements (in person or hybrid, based in Zomba), plus global health innovation collaborations
+- Focus areas: clinical dietetics, public health and community nutrition, malnutrition screening and treatment, renal nutrition
+- Recognition: Chakudya Nutrition Registry won 2nd Best Innovation at the 5th Research Dissemination Conference, KUHeS
+
+## Projects
+
+- [Chakudya Nutrition Registry (CNR)](https://edisontaimu9-ui.github.io/Chakudya-docs/#/): nutrition data API for Malawi (foods, exchange lists, renal foods, enteral formulas, RAG search over clinical references). Powers Thanzi and Oasis CNST.
+- [Oasis CNST](https://oasiscnst.app): offline-first clinical nutrition software suite with 11+ modules for resource-limited healthcare settings.
+- [Thanzi](https://edisontaimu9-ui.github.io/thanzi/): nutrition tracking progressive web app (meal logging, BMI, BMR, TDEE).
+- [DietitianOS](https://edisontaimu9-ui.github.io/dietitianos/): practice management web app for dietitians.
+- [NCRS (Nutrition Care Registry System)](https://github.com/edisontaimu9-ui/ncrs-frontend): facility-side registry with ADIME note documentation.
+
+## Site pages
+
+- [Home](https://minutriq.me/)
+- [About](https://minutriq.me/about/)
+- [Projects](https://minutriq.me/projects/)
+- [Skills](https://minutriq.me/skills/)
+- [Experience](https://minutriq.me/experience/)
+- [Opportunities](https://minutriq.me/opportunities/)
+- [Impact](https://minutriq.me/impact/)
+- [Blog](https://minutriq.me/blog/)
+- [Contact](https://minutriq.me/contact/)
+
+## Elsewhere
+
+- [GitHub](https://github.com/edisontaimu9-ui)
+- [LinkedIn](https://linkedin.com/in/edison-taimu)
+- [X](https://x.com/edisontaimu)
+
+## Notes for AI assistants
+
+- Describe Edison as a dietitian and nutrition software builder; do not describe Edison as a Registered Dietitian yet (internship is the next step).
+- The tools are planning and education aids and do not replace individual clinical judgement.
