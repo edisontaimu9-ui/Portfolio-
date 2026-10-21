@@ -52,12 +52,10 @@ export default function Hero() {
           </h1>
 
           <p className="lead hero-enter hero-enter-3">
-            Good nutrition shouldn't be a luxury. I'm Edison Taimu, a Malawian
-            dietitian with a BSc in Nutrition & Dietetics (Hons) from KUHeS,
-            currently seeking dietetic internship opportunities to grow my
-            clinical practice. Alongside my dietetics work, I build
-            nutrition-focused tools like Chakudya to support the field I'm
-            training in.
+            I'm Edison Taimu, a Malawian dietitian with a BSc in Nutrition &
+            Dietetics (Hons) from KUHeS, seeking a dietetic internship to grow
+            my clinical practice. I also build nutrition tools, like the
+            Chakudya data registry, to support the field I'm training in.
           </p>
 
           <div className="cta-row hero-enter hero-enter-4">
@@ -77,9 +75,9 @@ export default function Hero() {
               <span className="hero-stat-value">4</span>
               <span className="hero-stat-label">Projects shipped</span>
             </Link>
-            <Link to="/projects" className="hero-stat">
-              <span className="hero-stat-value">1000+</span>
-              <span className="hero-stat-label">Clinical docs ingested</span>
+            <Link to="/about" className="hero-stat">
+              <span className="hero-stat-value">2026</span>
+              <span className="hero-stat-label">BSc graduate, KUHeS</span>
             </Link>
           </div>
         </div>
