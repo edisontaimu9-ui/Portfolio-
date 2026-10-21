@@ -23,9 +23,8 @@ export default function About() {
                 University of Malawi College of Medicine, in Blantyre, Malawi, having
                 completed my degree on 26 August 2026. I work across both
                 <strong> clinical dietetics</strong> and <strong> public health nutrition</strong>,
-                from bedside care plans to population-level nutrition data, and I'm currently
-                seeking dietetic internship opportunities to build on that foundation and grow
-                toward becoming a Registered Dietitian.
+                from bedside care plans to population-level nutrition data, and I'm building on
+                that foundation toward becoming a Registered Dietitian.
               </p>
               <p>
                 During clinical rotations I found myself manually computing dietary recalls,
@@ -108,7 +107,7 @@ export default function About() {
               </div>
               <div className="fact-row fact-row-highlight">
                 <span className="fact-label">Status</span>
-                <span className="fact-value">Seeking Dietetic Internship</span>
+                <span className="fact-value">Newly qualified graduate</span>
                 <span className="fact-sub">Graduate, ready to grow clinical practice under supervision</span>
               </div>
               <div className="fact-row">

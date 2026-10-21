@@ -105,8 +105,7 @@ export default function Opportunities() {
                 <div>
                   <span className="avail-label">Availability</span>
                   <span className="avail-value">
-                    Open to dietetic internships and supervised practice placements.
-                    In-person or hybrid; based in Zomba, Malawi.
+                    Available now. In-person or hybrid; based in Zomba, Malawi.
                   </span>
                 </div>
               </div>

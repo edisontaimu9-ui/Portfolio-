@@ -53,8 +53,7 @@ export default function Hero() {
 
           <p className="lead hero-enter hero-enter-3">
             I'm Edison Taimu, a Malawian dietitian with a BSc in Nutrition &
-            Dietetics (Hons) from KUHeS, seeking a dietetic internship to grow
-            my clinical practice. I also build nutrition tools, like the
+            Dietetics (Hons) from KUHeS. I also build nutrition tools, like the
             Chakudya data registry, to support the field I'm training in.
           </p>
 
