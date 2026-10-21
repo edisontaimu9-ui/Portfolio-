@@ -6,7 +6,8 @@ import BlogPreview from '../components/BlogPreview'
 import HealthTechMarquee from '../components/HealthTechMarquee'
 import FeaturedProjects from '../components/FeaturedProjects'
 
-const sectionsBeforeBlog = [
+// Six core sections in one grid. Impact and Support live in the footer.
+const sections = [
   {
     code: 'AB',
     to: '/about',
@@ -31,26 +32,11 @@ const sectionsBeforeBlog = [
     title: 'Skills',
     summary: 'Clinical dietetics and full-stack development, applied together rather than kept apart.',
   },
-]
-
-const sectionsAfterBlog = [
   {
     code: 'EX',
     to: '/experience',
     title: 'Experience',
     summary: 'From ward rotations to shipping production software used in real clinical settings.',
-  },
-  {
-    code: 'IM',
-    to: '/impact',
-    title: 'Impact',
-    summary: "Malawi's real nutrition indicators, and the case for why accessible nutrition care changes outcomes.",
-  },
-  {
-    code: 'SU',
-    to: '/support',
-    title: 'Support',
-    summary: 'A small contribution keeps these free clinical nutrition tools running.',
   },
   {
     code: 'CN',
@@ -60,11 +46,11 @@ const sectionsAfterBlog = [
   },
 ]
 
-function TileGrid({ sections, startDelay = 0 }) {
+function TileGrid({ items }) {
   return (
     <div className="tiles-grid">
-      {sections.map((s, i) => (
-        <Reveal key={s.to} delay={startDelay + i * 50}>
+      {items.map((s, i) => (
+        <Reveal key={s.to} delay={i * 50}>
           <Link to={s.to} className="tile">
             <div className="tile-top">
               <span className="tile-code">{s.code}</span>
@@ -104,17 +90,11 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <TileGrid sections={sectionsBeforeBlog} />
+          <TileGrid items={sections} />
         </div>
       </section>
 
       <BlogPreview />
-
-      <section className="section tiles-section">
-        <div className="container">
-          <TileGrid sections={sectionsAfterBlog} startDelay={sectionsBeforeBlog.length * 50} />
-        </div>
-      </section>
     </>
   )
 }

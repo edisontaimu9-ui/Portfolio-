@@ -14,6 +14,10 @@ export default function Footer() {
           <span style={{ fontSize: '.875rem', color: 'var(--text-muted)' }}>Edison Taimu</span>
         </Link>
       </div>
+      <nav className="footer-links" aria-label="More">
+        <Link to="/impact">Impact</Link>
+        <Link to="/support">Support</Link>
+      </nav>
       <p className="footer-copy">
         © {year} · All rights reserved
       </p>
