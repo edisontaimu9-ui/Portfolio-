@@ -4,6 +4,7 @@ import Hero from '../components/Hero'
 import Reveal from '../components/Reveal'
 import BlogPreview from '../components/BlogPreview'
 import HealthTechMarquee from '../components/HealthTechMarquee'
+import FeaturedProjects from '../components/FeaturedProjects'
 
 const sectionsBeforeBlog = [
   {
@@ -90,6 +91,8 @@ export default function Home() {
   return (
     <>
       <Hero />
+
+      <FeaturedProjects />
 
       <section className="section tiles-section">
         <HealthTechMarquee />

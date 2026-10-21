@@ -1261,6 +1261,95 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   color: var(--accent);
 }
 
+/* ── FeaturedProjects (Home): screenshot cards right under the hero ── */
+.featured-section { padding-bottom: 0; }
+.featured-section .section-head { margin-bottom: 36px; }
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.featured-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.featured-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+}
+
+.featured-shot {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.featured-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform .4s;
+}
+.featured-card:hover .featured-shot img { transform: scale(1.03); }
+.featured-shot::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 56px;
+  background: linear-gradient(to bottom, transparent, var(--surface));
+  pointer-events: none;
+}
+
+.featured-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 20px 24px 24px;
+}
+.featured-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+.featured-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.featured-summary {
+  flex-grow: 1;
+  margin-bottom: 18px;
+  font-size: .86rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.featured-all { margin-top: 28px; }
+
+@media (max-width: 900px) {
+  .featured-grid { grid-template-columns: 1fr; }
+  .featured-shot { height: 200px; }
+}
+
 /* ── HealthTechMarquee: border-edge identity strip (Home) ───────────
    An animated track that travels along a section's top edge — clinical,
    nutrition, tech and Malawi icons in one mixed sequence. Sits flush
