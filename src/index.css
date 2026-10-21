@@ -1345,9 +1345,38 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 .featured-all { margin-top: 28px; }
 
+.featured-card--lead {
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+.featured-card--lead .featured-shot {
+  flex: 0 0 38%;
+  height: auto;
+  min-height: 220px;
+}
+.featured-card--lead .featured-shot::after {
+  inset: 0 0 0 auto;
+  width: 56px;
+  height: auto;
+  background: linear-gradient(to right, transparent, var(--surface));
+}
+.featured-card--lead .featured-body {
+  justify-content: center;
+  padding: 28px 32px;
+}
+.featured-card--lead .featured-title { font-size: 1.4rem; }
+.featured-card--lead .featured-summary { flex-grow: 0; font-size: .92rem; }
+
 @media (max-width: 900px) {
   .featured-grid { grid-template-columns: 1fr; }
   .featured-shot { height: 200px; }
+  .featured-card--lead { flex-direction: column; }
+  .featured-card--lead .featured-shot { flex: none; height: 200px; min-height: 0; }
+  .featured-card--lead .featured-shot::after {
+    inset: auto 0 0 0; width: auto; height: 56px;
+    background: linear-gradient(to bottom, transparent, var(--surface));
+  }
+  .featured-card--lead .featured-body { padding: 20px 24px 24px; }
 }
 
 /* ── HealthTechMarquee: border-edge identity strip (Home) ───────────
