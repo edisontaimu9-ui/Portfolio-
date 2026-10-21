@@ -43,10 +43,6 @@ export default function Hero() {
             <span className="eyebrow">Registered Dietitian in Training &bull; Zomba, Malawi</span>
           </div>
 
-          <div className="hero-enter hero-enter-2">
-            <DayNightWidget />
-          </div>
-
           <h1 className="hero-heading hero-enter-2-noop">
             <Typewriter text="Good nutrition starts with the right guidance." />
           </h1>
@@ -78,6 +74,10 @@ export default function Hero() {
               <span className="hero-stat-value">2026</span>
               <span className="hero-stat-label">BSc graduate, KUHeS</span>
             </Link>
+          </div>
+
+          <div className="hero-widget hero-enter hero-enter-6">
+            <DayNightWidget />
           </div>
         </div>
 

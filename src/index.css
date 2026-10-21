@@ -880,6 +880,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 }
 
 /* Day/night atmosphere widget — satellite-view sky band */
+.hero-widget { margin-top: 36px; }
+.hero-widget .daynight-widget { margin-bottom: 0; }
+
 .daynight-widget {
   position: relative;
   border-radius: var(--radius);
@@ -1167,6 +1170,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .hero-enter-3 { animation: hero-up .5s ease forwards .35s; }
 .hero-enter-4 { animation: hero-up .5s ease forwards .5s; }
 .hero-enter-5 { animation: hero-up .5s ease forwards .65s; }
+.hero-enter-6 { animation: hero-up .5s ease forwards .8s; }
 /* LCP element: stays visible immediately, only slides — never hidden behind opacity:0 */
 .hero-enter-2-noop { animation: hero-up-slide-only .5s ease forwards .05s; }
 @keyframes hero-up-slide-only {
@@ -1186,6 +1190,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .blog-preview-section {
   padding-top: 0;
 }
+
+/* Alternating band: the tiles section gets a faint tint so the home page
+   reads as distinct blocks (plain, tinted, plain) rather than one long run. */
+.tiles-section {
+  background: color-mix(in srgb, var(--surface) 45%, var(--bg));
+}
+.tiles-section + .blog-preview-section { padding-top: 96px; }
 
 .tiles-grid {
   display: grid;
@@ -1222,9 +1233,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 34px;
-  height: 26px;
-  padding: 0 8px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
   border-radius: var(--radius-sm);
   background: var(--accent-dim);
   color: var(--accent);
@@ -1239,6 +1250,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   transition: transform .2s, color .2s;
 }
 .tile:hover .tile-arrow { color: var(--accent); transform: translateX(3px); }
+
+.tile .tile-summary { margin-bottom: 0; }
 
 .tile-title {
   font-family: var(--font-display);
