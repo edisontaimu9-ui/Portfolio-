@@ -10,13 +10,13 @@ import logo from '../assets/logo.png'
 const primaryLinks = [
   { to: '/about',      label: 'About'      },
   { to: '/projects',   label: 'Work'       },
+  { to: '/opportunities', label: 'Opportunities' },
   { to: '/skills',     label: 'Skills'     },
   { to: '/experience', label: 'Experience' },
 ]
 const moreLinks = [
   { to: '/impact',        label: 'Impact'        },
   { to: '/blog',           label: 'Blog'          },
-  { to: '/opportunities', label: 'Opportunities' },
   { to: '/support',       label: 'Support'       },
 ]
 const links = [...primaryLinks, ...moreLinks]

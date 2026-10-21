@@ -1109,9 +1109,11 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .cta-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
   margin-top: 40px;
 }
+.cta-row-link { margin-left: 6px; }
 
 /* Hero stat counters — real, specific numbers instead of generic claims */
 .hero-stats {

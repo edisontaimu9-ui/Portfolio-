@@ -19,6 +19,12 @@ const sectionsBeforeBlog = [
     summary: 'Four live tools, from a clinical nutrition suite to an open food database, all built to close real gaps in Malawian healthcare.',
   },
   {
+    code: 'OP',
+    to: '/opportunities',
+    title: 'Opportunities',
+    summary: 'Open to global health innovation internships and collaborations that put this work in front of more patients and clients.',
+  },
+  {
     code: 'SK',
     to: '/skills',
     title: 'Skills',
@@ -38,12 +44,6 @@ const sectionsAfterBlog = [
     to: '/impact',
     title: 'Impact',
     summary: "Malawi's real nutrition indicators, and the case for why accessible nutrition care changes outcomes.",
-  },
-  {
-    code: 'OP',
-    to: '/opportunities',
-    title: 'Opportunities',
-    summary: 'Open to global health innovation internships and collaborations that put this work in front of more patients and clients.',
   },
   {
     code: 'SU',
