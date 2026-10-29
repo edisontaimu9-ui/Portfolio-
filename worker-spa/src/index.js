@@ -9,10 +9,10 @@
 // over this for browsers *after* JS runs, but search engines record the
 // initial 404 status and drop the page from consideration for indexing —
 // which is exactly the "Not found (404)" / "Page with redirect" errors
-// Search Console reports for edisontaimu.online.
+// Search Console reports for minutriq.me.
 //
 // This Worker sits in front of GitHub Pages at the edge (bound to a Route
-// on the edisontaimu.online zone — see deploy-worker-spa.yml / dashboard setup).
+// on the minutriq.me zone — see deploy-worker-spa.yml / dashboard setup).
 // Static assets (anything with a file extension: .js, .css, .png, the
 // sitemap, robots.txt, etc.) pass straight through untouched. Anything
 // else — a client-side route with no matching file — is served the
@@ -21,7 +21,7 @@
 // in-app navigation, and search engines see a normal 200 page.
 //
 // It does NOT touch the CMS API worker (portfolio-cms-api) — that lives
-// on its own URL (VITE_CMS_API_URL), never on the edisontaimu.online zone this
+// on its own URL (VITE_CMS_API_URL), never on the minutriq.me zone this
 // Worker is bound to, so there's no route collision to worry about.
 //
 // Cache-Control: Vite gives every JS/CSS file a content hash in its

@@ -7,7 +7,7 @@
 // this for browsers after JS runs, but search engines record the
 // initial 404 status and drop the page from consideration entirely —
 // this is the exact "Not found (404)" error Search Console reports for
-// edisontaimu.online's static routes.
+// minutriq.me's static routes.
 //
 // generate-blog-html.mjs already solves this for every /blog/:slug post.
 // This script does the same for the fixed app pages: it takes the built
@@ -18,7 +18,7 @@
 // 200. React Router still mounts and takes over instantly, exactly like
 // it already does for in-app navigation.
 
-const SITE = 'https://edisontaimu.online'
+const SITE = 'https://minutriq.me'
 
 
 // ── Crawler-visible content ──────────────────────────────────────────

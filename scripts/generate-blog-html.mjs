@@ -13,7 +13,7 @@
 // this only changes what's in the initial HTML <head>, which is what
 // crawlers and link-preview bots actually read.
 
-const SITE = 'https://edisontaimu.online'
+const SITE = 'https://minutriq.me'
 const API_BASE = process.env.VITE_CMS_API_URL
 const DEFAULT_IMAGE = `${SITE}/social-preview.png`
 

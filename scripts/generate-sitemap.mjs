@@ -6,7 +6,7 @@
 // so search engines can actually discover posts instead of just the
 // homepage.
 
-const SITE = 'https://edisontaimu.online'
+const SITE = 'https://minutriq.me'
 const API_BASE = process.env.VITE_CMS_API_URL
 const BUILD_DATE = new Date().toISOString().slice(0, 10)
 
