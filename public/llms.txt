@@ -13,7 +13,7 @@
 
 ## Projects
 
-- [Chakudya Nutrition Registry (CNR)](https://edisontaimu9-ui.github.io/Chakudya-docs/#/): nutrition data API for Malawi (foods, exchange lists, renal foods, enteral formulas, RAG search over clinical references). Powers Thanzi and Oasis CNST.
+- [Chakudya Nutrition Registry (CNR)](https://chakudya.xyz/): nutrition data API for Malawi (foods, exchange lists, renal foods, enteral formulas, RAG search over clinical references). Powers Thanzi and Oasis CNST. API: https://api.chakudya.xyz. MCP server: https://mcp.chakudya.xyz.
 - [Oasis CNST](https://oasiscnst.app): offline-first clinical nutrition software suite with 11+ modules for resource-limited healthcare settings.
 - [Thanzi](https://edisontaimu9-ui.github.io/thanzi/): nutrition tracking progressive web app (meal logging, BMI, BMR, TDEE).
 - [DietitianOS](https://edisontaimu9-ui.github.io/dietitianos/): practice management web app for dietitians.

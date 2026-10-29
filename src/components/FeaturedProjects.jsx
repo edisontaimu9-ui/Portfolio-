@@ -7,7 +7,7 @@ import dietitianosDashboard from '../assets/dietitianos-dashboard.webp'
 
 // Public docs for the Chakudya Nutrition Registry. (The /admin/ingest.html page
 // is an internal noindex admin tool, so it is deliberately not linked here.)
-const CHAKUDYA_DOCS_URL = 'https://edisontaimu9-ui.github.io/Chakudya-docs/#/'
+const CHAKUDYA_DOCS_URL = 'https://chakudya.xyz/'
 
 const lead = {
   title: 'Chakudya Nutrition Registry',

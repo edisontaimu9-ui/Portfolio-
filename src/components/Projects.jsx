@@ -156,7 +156,7 @@ function ThanziVisual() {
 const CNR_DEMOS = [
   {
     label: 'GET /foods',
-    curl: 'curl -s "https://chakudya-api.•••••••••.workers.dev/foods?search=nsima&limit=1"',
+    curl: 'curl -s "https://api.chakudya.xyz/foods?search=nsima&limit=1"',
     response: `{
   "status": "success",
   "count": 4,
@@ -180,7 +180,7 @@ const CNR_DEMOS = [
   },
   {
     label: 'GET /formulas',
-    curl: 'curl -s "https://chakudya-api.•••••••••.workers.dev/formulas?limit=1"',
+    curl: 'curl -s "https://api.chakudya.xyz/formulas?limit=1"',
     response: `{
   "status": "success",
   "count": 55,
@@ -203,7 +203,7 @@ const CNR_DEMOS = [
   },
   {
     label: 'POST /rag/retrieve',
-    curl: `curl -s -X POST "https://chakudya-api.•••••••••.workers.dev/rag/retrieve" \\
+    curl: `curl -s -X POST "https://api.chakudya.xyz/rag/retrieve" \\
   -H "Content-Type: application/json" \\
   -d '{"query":"high potassium foods","context":"both","top_k":3}'`,
     response: `{
@@ -398,7 +398,7 @@ const projects = [
   {
     id:     'chakudya',
     title:  'Chakudya Nutrition Registry (CNR)',
-    status: 'Live · chakudya-api.•••••••••.workers.dev',
+    status: 'Live · api.chakudya.xyz',
     live:   true,
     accolade: '2nd Best Innovation, 5th Research Dissemination Conference, KUHeS',
     desc: [
@@ -419,6 +419,7 @@ const projects = [
       '📦 Packaged food database',
       '🤖 Semantic search & RAG',
       '🧠 AI-ready knowledge retrieval',
+      '🔌 MCP server (mcp.chakudya.xyz)',
       '⚡ API caching',
       '🔐 API rate limiting',
       '🔄 Automatic cache invalidation',
@@ -431,6 +432,7 @@ const projects = [
       { label: 'RAG',               Icon: TbCpu,         color: '#39594D' },
       { label: 'Cohere Embeddings', Icon: TbCpu,         color: '#39594D' },
     ],
+    demo:   'https://chakudya.xyz',
     repo:   'https://github.com/edisontaimu9-ui/chakudya-api',
     visual: <ChakudyaTerminalVisual />,
     highlight: {
