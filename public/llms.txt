@@ -21,15 +21,15 @@
 
 ## Site pages
 
-- [Home](https://minutriq.me/)
-- [About](https://minutriq.me/about/)
-- [Projects](https://minutriq.me/projects/)
-- [Skills](https://minutriq.me/skills/)
-- [Experience](https://minutriq.me/experience/)
-- [Opportunities](https://minutriq.me/opportunities/)
-- [Impact](https://minutriq.me/impact/)
-- [Blog](https://minutriq.me/blog/)
-- [Contact](https://minutriq.me/contact/)
+- [Home](https://edisontaimu.online/)
+- [About](https://edisontaimu.online/about/)
+- [Projects](https://edisontaimu.online/projects/)
+- [Skills](https://edisontaimu.online/skills/)
+- [Experience](https://edisontaimu.online/experience/)
+- [Opportunities](https://edisontaimu.online/opportunities/)
+- [Impact](https://edisontaimu.online/impact/)
+- [Blog](https://edisontaimu.online/blog/)
+- [Contact](https://edisontaimu.online/contact/)
 
 ## Elsewhere
 
