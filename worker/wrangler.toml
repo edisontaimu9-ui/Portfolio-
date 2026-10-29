@@ -10,7 +10,7 @@ database_id = "bcda2dec-b081-4d32-8b42-143445f2db60"
 
 [vars]
 FIREBASE_PROJECT_ID = "portfolio-1178a"
-ALLOWED_ORIGIN = "https://minutriq.me"
+ALLOWED_ORIGIN = "https://edisontaimu.online"
 IMAGEKIT_PUBLIC_KEY = "public_QMt/w2SZ480FT40FONmZW73IZzE="
 IMAGEKIT_URL_ENDPOINT = "https://ik.imagekit.io/8kattn2dg"
 

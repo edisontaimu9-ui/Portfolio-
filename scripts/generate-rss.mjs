@@ -11,7 +11,7 @@
 
 import { marked } from '../src/lib/markdown.js'
 
-const SITE = 'https://minutriq.me'
+const SITE = 'https://edisontaimu.online'
 const API_BASE = process.env.VITE_CMS_API_URL
 const FEED_TITLE = 'Edison Taimu — Notes on nutrition and building software'
 const FEED_DESCRIPTION = 'Writing on clinical nutrition, dietetics, and the health-tech tools built to support it.'

@@ -23,7 +23,7 @@ jobs:
 
       - run: npm install
 
-      - name: Deploy Worker (also creates/updates its Route on minutriq.me)
+      - name: Deploy Worker (also creates/updates its Route on edisontaimu.online)
         run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

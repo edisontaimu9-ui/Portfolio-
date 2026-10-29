@@ -27,4 +27,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/*
 
-Sitemap: https://minutriq.me/sitemap.xml
+Sitemap: https://edisontaimu.online/sitemap.xml
