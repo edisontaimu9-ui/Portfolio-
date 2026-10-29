@@ -20,7 +20,7 @@ import {
 } from './settings.js'
 import { getImageKitAuth } from './upload.js'
 
-export default {
+const handler = {
   async fetch(request, env) {
     const url = new URL(request.url)
     const path = url.pathname.replace(/\/+$/, '') || '/'
@@ -96,5 +96,25 @@ export default {
       console.error(err)
       return json({ error: 'Internal server error' }, env, 500)
     }
+  },
+}
+
+// ALLOWED_ORIGIN may be a comma-separated list (e.g. the apex and www hosts).
+// A browser accepts only ONE origin in Access-Control-Allow-Origin, so echo
+// back the caller's origin when it's on the list, and vary the cache on it.
+export default {
+  async fetch(request, env) {
+    const res = await handler.fetch(request, env)
+    const allowed = String(env.ALLOWED_ORIGIN || '')
+      .split(',')
+      .map((o) => o.trim())
+      .filter(Boolean)
+    const origin = request.headers.get('Origin')
+    const allow = allowed.includes(origin) ? origin : allowed[0]
+
+    const out = new Response(res.body, res)
+    if (allow) out.headers.set('Access-Control-Allow-Origin', allow)
+    out.headers.append('Vary', 'Origin')
+    return out
   },
 }
