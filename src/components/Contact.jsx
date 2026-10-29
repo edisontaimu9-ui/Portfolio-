@@ -46,8 +46,8 @@ function XIcon() {
 }
 
 /* Split so the address never appears as plain text in markup/source */
-const EMAIL_USER   = 'edisontaimu9'
-const EMAIL_DOMAIN = 'gmail.com'
+const EMAIL_USER   = 'contact'
+const EMAIL_DOMAIN = 'edisontaimu.online'
 
 function openEmail() {
   window.location.href = `mailto:${EMAIL_USER}@${EMAIL_DOMAIN}`
