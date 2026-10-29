@@ -18,6 +18,8 @@
 // 200. React Router still mounts and takes over instantly, exactly like
 // it already does for in-app navigation.
 
+import { PAGE_SEO } from '../src/data/seo.js'
+
 const SITE = 'https://edisontaimu.online'
 
 
@@ -50,56 +52,38 @@ const PAGES = [
   {
     path: '/about',
     body: `<h1>About Edison Taimu</h1>${BIO_HTML}<p>During clinical rotations Edison found dietary recalls, food composition lookups and nutrition care plans were being done by hand, and began building software to automate that work. What started as a 24-hour recall calculator became Oasis CNST. Edison works across clinical dietetics and public health nutrition, from bedside care plans to population-level nutrition data.</p>`,
-    title: 'About — Edison Taimu',
-    description: 'BSc Nutrition & Dietetics graduate turned self-taught developer, building the clinical tools I wished existed on the ward.',
   },
   {
     path: '/projects',
     body: `<h1>Projects by Edison Taimu</h1><p>Live clinical nutrition tools built to close real gaps in Malawian healthcare.</p>${PROJECTS_HTML}`,
-    title: 'Projects — Edison Taimu',
-    description: 'Live clinical nutrition tools I\u2019ve built, from hospital dietetics software to a public food database for Malawi.',
   },
   {
     path: '/skills',
     body: `<h1>Skills</h1><p>Clinical dietetics and full-stack development, applied together: tools and technologies used to build clinical nutrition software, from mobile apps to backend infrastructure.</p>`,
-    title: 'Skills — Edison Taimu',
-    description: 'Tools and technologies I use to build clinical nutrition software, from mobile apps to backend infrastructure.',
   },
   {
     path: '/experience',
     body: `<h1>Experience</h1><p>Background in clinical nutrition (ward rotations and the Nutrition Care Process) and independent software development of clinical nutrition tools used in real clinical settings.</p>`,
-    title: 'Experience — Edison Taimu',
-    description: 'My background in clinical nutrition and software development.',
   },
   {
     path: '/impact',
     body: `<h1>Impact</h1><p>Malawi\u2019s nutrition indicators and the case for accessible nutrition care, alongside the reach of the clinical nutrition tools built for Malawi.</p>`,
-    title: 'Impact — Edison Taimu',
-    description: 'The reach and results of the clinical nutrition tools I\u2019ve built for Malawi.',
   },
   {
     path: '/opportunities',
     body: `<h1>Open to dietetic internship placements</h1><p>Edison Taimu is seeking dietetic internship and supervised practice placements in clinical and community nutrition, in person or hybrid, based in Zomba, Malawi. Also open to global health innovation collaborations. Areas of interest: clinical dietetics, public health and community nutrition, clinical nutrition education, global health and nutrition programmes, and malnutrition screening and treatment.</p>`,
-    title: 'Opportunities — Edison Taimu',
-    description: 'Roles, collaborations, and projects I\u2019m open to.',
   },
   {
     path: '/support',
     body: `<h1>Support</h1><p>A small contribution keeps these free clinical nutrition tools running.</p>`,
-    title: 'Support — Edison Taimu',
-    description: 'Ways to support free clinical nutrition software for Malawi.',
   },
   {
     path: '/contact',
     body: `<h1>Contact Edison Taimu</h1><p>Reach out about internship enquiries, collaboration proposals, or problems worth solving in low-resource clinical settings. Also on <a href="https://github.com/edisontaimu9-ui">GitHub</a>, <a href="https://linkedin.com/in/edison-taimu">LinkedIn</a> and <a href="https://x.com/edisontaimu">X</a>.</p>`,
-    title: 'Contact — Edison Taimu',
-    description: 'Get in touch with Edison Taimu.',
   },
   {
     path: '/blog',
     body: `<h1>Blog</h1><p>Writing on clinical nutrition, software, and building for Malawi.</p>`,
-    title: 'Blog — Edison Taimu',
-    description: 'Writing on clinical nutrition, software, and building for Malawi.',
   },
 ]
 
@@ -121,6 +105,18 @@ function withFallback(html, page) {
   return html.replace('<div id="root"></div>', fallback)
 }
 
+function breadcrumbLd(page, url) {
+  const label = (NAV.find(([href]) => href === `${page.path}/`) || [])[1] || page.path.slice(1)
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name: label, item: url },
+    ],
+  }
+}
+
 function renderForPage(template, page) {
   const url = page.path === '/' ? `${SITE}/` : `${SITE}${page.path}/`
   const title = xmlEscape(page.title)
@@ -137,6 +133,9 @@ function renderForPage(template, page) {
   html = html.replace(/<meta name="twitter:title" content=".*?" \/>/, `<meta name="twitter:title" content="${title}" />`)
   html = html.replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${description}" />`)
 
+  const ld = JSON.stringify(breadcrumbLd(page, url)).replace(/</g, '\\u003c')
+  html = html.replace('</head>', () => `<script type="application/ld+json">${ld}</script>\n  </head>`)
+
   return withFallback(html, page)
 }
 
@@ -148,7 +147,7 @@ async function main() {
   for (const page of PAGES) {
     const dir = `dist${page.path}`
     await fs.mkdir(dir, { recursive: true })
-    await fs.writeFile(`${dir}/index.html`, renderForPage(template, page))
+    await fs.writeFile(`${dir}/index.html`, renderForPage(template, { ...page, ...PAGE_SEO[page.path] }))
   }
 
   // Home keeps its own title/meta from index.html; it only gains the

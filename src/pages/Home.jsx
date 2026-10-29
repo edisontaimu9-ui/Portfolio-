@@ -5,6 +5,7 @@ import Reveal from '../components/Reveal'
 import BlogPreview from '../components/BlogPreview'
 import HealthTechMarquee from '../components/HealthTechMarquee'
 import FeaturedProjects from '../components/FeaturedProjects'
+import { HOME_TITLE } from '../data/seo'
 import { TbUser, TbLayoutGrid, TbHeartHandshake, TbTools, TbTimeline, TbMail } from 'react-icons/tb'
 
 // Six core sections in one grid. Impact and Support live in the footer.
@@ -71,7 +72,7 @@ function TileGrid({ items }) {
 
 export default function Home() {
   useEffect(() => {
-    document.title = 'Edison Taimu | Dietitian & Clinical Nutrition Software Builder'
+    document.title = HOME_TITLE
   }, [])
 
   return (

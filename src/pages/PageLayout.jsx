@@ -1,12 +1,19 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { seoForPath } from '../data/seo'
 
 export default function PageLayout({ title, children }) {
+  const { pathname } = useLocation()
+  // Keyword-rich title shared with the prerendered HTML (src/data/seo.js);
+  // falls back to the plain "<title> | Edison Taimu" for unlisted pages.
+  const seoTitle = seoForPath(pathname)?.title
+
   useEffect(() => {
     const prev = document.title
-    if (title) document.title = `${title} | Edison Taimu`
+    if (seoTitle) document.title = seoTitle
+    else if (title) document.title = `${title} | Edison Taimu`
     return () => { document.title = prev }
-  }, [title])
+  }, [title, seoTitle])
 
   return (
     <div className="page-enter">

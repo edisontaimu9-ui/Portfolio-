@@ -13,6 +13,7 @@ import PageLayout    from './pages/PageLayout'
 import Home          from './pages/Home'
 import Blog          from './pages/Blog'
 import BlogPost      from './pages/BlogPost'
+import NotFound      from './pages/NotFound'
 import ProtectedRoute from './pages/admin/ProtectedRoute'
 
 const About                 = lazy(() => import('./components/About'))
@@ -59,7 +60,7 @@ function AnimatedRoutes() {
         <Route path="/admin/new" element={<ProtectedRoute><PostEditor /></ProtectedRoute>} />
         <Route path="/admin/edit/:id" element={<ProtectedRoute><PostEditor /></ProtectedRoute>} />
 
-        <Route path="*" element={page(<Home />)} />
+        <Route path="*" element={page(<NotFound />)} />
       </Routes>
     </AnimatePresence>
   )
