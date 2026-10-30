@@ -25,17 +25,6 @@ const STARS = [
   [352, 8, 1.1], [12, 42, 0.9], [390, 46, 1],
 ]
 
-// A low ridge line — a stand-in for the Zomba Plateau escarpment — so the
-// sun/moon rises and sets behind a horizon rather than a flat edge.
-// Bird silhouettes drifting across the daytime sky. [startY, duration, delay, reverse?, flapDuration]
-// Mixed directions read as natural (a flock isn't all heading the same way);
-// same symmetric "v" shape works fine flipped since it looks the same from
-// either side. flapDuration varies slightly per bird so they don't all beat
-// their wings in perfect unison.
-const BIRDS = [
-  [28, 13, 0, false, 0.42], [46, 16, 4, true, 0.5], [20, 15, 8, false, 0.46], [36, 18, 20, true, 0.55],
-]
-
 // Shooting-star streaks, night only. [x, y, duration, delay]
 const SHOOTING_STARS = [
   [60, 18, 9, 1], [300, 10, 11, 5.5],
@@ -57,12 +46,8 @@ const CLOUD_SHAPES = [
   [[0, 0, 9, 5.5], [-6, 1.5, 6, 4], [6, 1.5, 6.5, 4.2]],
 ]
 
-// High-altitude jets with contrails, daytime only. [y, duration, delay, reverse?]
-// Sit above the clouds (lower y) and cross much more slowly than birds.
-const PLANES = [
-  [8, 50, 5, false], [13, 62, 32, true],
-]
-
+// A low ridge line — a stand-in for the Zomba Plateau escarpment — so the
+// sun/moon rises and sets behind a horizon rather than a flat edge.
 const RIDGE = `M0,${VIEW_H} L0,128 L22,118 L48,124 L70,108 L96,120 L120,112
   L150,122 L182,104 L210,118 L240,110 L268,120 L300,113 L330,123 L358,112
   L${VIEW_W},121 L${VIEW_W},${VIEW_H} Z`
@@ -253,12 +238,6 @@ export default function DayNightWidget() {
             <stop offset="60%" stopColor="#e4e4de" />
             <stop offset="100%" stopColor="#b9bab6" />
           </radialGradient>
-          {/* Fades along the line's bounding box regardless of which end is
-              x1/x2 — offset 0% lands at the tail (far), 100% at the plane. */}
-          <linearGradient id="planeTrail">
-            <stop offset="0%" stopColor="#fff" stopOpacity="0" />
-            <stop offset="100%" stopColor="#fff" stopOpacity="0.65" />
-          </linearGradient>
         </defs>
 
         {/* stars */}
@@ -278,8 +257,8 @@ export default function DayNightWidget() {
         </g>
 
         {/* sun / moon — rendered right after the stars, before everything else in
-            the sky (haze, rain, birds, clouds), so it's the farthest-back object
-            and anything drifting past — birds, clouds — passes in front of it,
+            the sky (haze, rain, clouds), so it's the farthest-back object
+            and anything drifting past — clouds — passes in front of it,
             not behind it. */}
         {isDay && (
           <circle
@@ -338,53 +317,6 @@ export default function DayNightWidget() {
             ))}
           </g>
         )}
-
-        {/* birds, daytime only — wings flap independently of the horizontal drift */}
-        <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
-          {BIRDS.map(([y, duration, delay, reverse, flapDuration], i) => (
-            <g key={i} transform={`translate(0, ${y})`}>
-              <g
-                className="daynight-bird"
-                style={{
-                  animationDuration: `${duration}s`,
-                  animationDelay: `${delay}s`,
-                  animationDirection: reverse ? 'reverse' : 'normal',
-                }}
-              >
-                <path
-                  d="M-5,0 Q-2.5,-4 0,0 Q2.5,-4 5,0"
-                  className="daynight-bird-wings"
-                  style={{ animationDuration: `${flapDuration}s` }}
-                  stroke="rgba(20,24,20,.55)" strokeWidth="1" fill="none" strokeLinecap="round"
-                />
-              </g>
-            </g>
-          ))}
-        </g>
-
-        {/* jets with contrails, daytime only — high altitude, slow, mixed
-            directions. The dart shape and trail are drawn facing +x (right);
-            reversed ones get a static horizontal flip so the trail correctly
-            ends up trailing behind whichever way the jet is actually moving. */}
-        <g style={{ opacity: sky.hazeOpacity, transition: 'opacity 1s ease' }}>
-          {PLANES.map(([y, duration, delay, reverse], i) => (
-            <g key={i} transform={`translate(0, ${y})`}>
-              <g
-                className="daynight-plane"
-                style={{
-                  animationDuration: `${duration}s`,
-                  animationDelay: `${delay}s`,
-                  animationDirection: reverse ? 'reverse' : 'normal',
-                }}
-              >
-                <g transform={reverse ? 'scale(-1,1)' : undefined}>
-                  <line x1="-4" y1="0" x2="-50" y2="0" stroke="url(#planeTrail)" strokeWidth="1.3" strokeLinecap="round" />
-                  <path d="M6,0 L-3,-2.1 L-1,0 L-3,2.1 Z" fill="#d8dce0" />
-                </g>
-              </g>
-            </g>
-          ))}
-        </g>
 
         {/* orbit arc */}
         <path

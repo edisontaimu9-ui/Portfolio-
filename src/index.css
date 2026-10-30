@@ -957,48 +957,6 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   fill: rgba(4, 10, 22, .12);
 }
 
-/* birds drifting left-to-right across the daytime sky */
-.daynight-bird {
-  animation-name: daynight-fly;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  /* Without this, the animation-delay period renders the element at its
-     default (untransformed) position instead of the 0% keyframe — looks
-     like it's frozen in place until the delay ends, then jumps. */
-  animation-fill-mode: backwards;
-}
-@keyframes daynight-fly {
-  0%   { transform: translateX(-20px); }
-  100% { transform: translateX(420px); }
-}
-
-/* wing flap — separate element from the drift above so both transforms
-   animate independently instead of one overwriting the other */
-.daynight-bird-wings {
-  transform-box: fill-box;
-  transform-origin: 50% 50%;
-  animation-name: daynight-flap;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-@keyframes daynight-flap {
-  0%, 100% { transform: scaleY(1); }
-  50%      { transform: scaleY(0.35); }
-}
-
-/* jets — wider off-screen bounds than birds since the contrail trails ~50
-   units behind the plane and needs to fully clear the frame too */
-.daynight-plane {
-  animation-name: daynight-plane-fly;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-fill-mode: backwards;
-}
-@keyframes daynight-plane-fly {
-  0%   { transform: translateX(-80px); }
-  100% { transform: translateX(480px); }
-}
-
 /* actual clouds, slower and drifting fully off-screen and back */
 .daynight-cloud {
   animation-name: daynight-cloud-drift;
