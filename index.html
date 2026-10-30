@@ -176,6 +176,9 @@
             : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
           document.documentElement.setAttribute('data-theme', theme);
         } catch (e) {}
+        // Browsers that run JS get the real app, so the crawler-only
+        // fallback below is hidden (see .js .prerender) to avoid it flashing.
+        document.documentElement.classList.add('js');
       })();
     </script>
     <style>
@@ -184,6 +187,31 @@
       .prerender { max-width: 720px; margin: 0 auto; padding: 32px 24px; line-height: 1.6; color: var(--text); }
       .prerender a { color: var(--accent); }
       .prerender nav a { margin-right: 14px; }
+
+      /* Real browsers never see the fallback: it stays in the HTML for
+         crawlers that don't run JS, but is hidden the moment JS is available
+         so it can't flash for ~2s before React mounts. */
+      .js .prerender { display: none; }
+
+      /* Neutral loading indicator while the bundle loads. It disappears
+         automatically when React replaces #root's contents. */
+      .js #root:has(> .prerender)::before {
+        content: "";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 28px;
+        height: 28px;
+        margin: -14px 0 0 -14px;
+        border: 3px solid var(--border, rgba(128, 128, 128, .3));
+        border-top-color: var(--accent, #3ecf8e);
+        border-radius: 50%;
+        animation: boot-spin .7s linear infinite;
+      }
+      @keyframes boot-spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) {
+        .js #root:has(> .prerender)::before { animation-duration: 2s; }
+      }
     </style>
   </head>
   <body>
