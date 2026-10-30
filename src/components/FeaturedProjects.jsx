@@ -5,10 +5,6 @@ import oasisHome from '../assets/oasis-home.webp'
 import thanziHome from '../assets/thanzi-home.webp'
 import dietitianosDashboard from '../assets/dietitianos-dashboard.webp'
 
-// Public docs for the Chakudya Nutrition Registry. (The /admin/ingest.html page
-// is an internal noindex admin tool, so it is deliberately not linked here.)
-const CHAKUDYA_DOCS_URL = 'https://chakudya.xyz/'
-
 const lead = {
   title: 'Chakudya Nutrition Registry',
   summary: 'An open nutrition data API for Malawi: foods, exchange lists, renal foods and enteral formulas, plus RAG search over clinical references. It powers Thanzi and Oasis.',
@@ -52,8 +48,7 @@ export default function FeaturedProjects() {
         </Reveal>
 
         <Reveal>
-          <a href={CHAKUDYA_DOCS_URL} target="_blank" rel="noopener noreferrer"
-            className="featured-card featured-card--lead">
+          <Link to="/projects" className="featured-card featured-card--lead">
             <div className="featured-shot">
               <img src={lead.image} alt={lead.alt} loading="lazy" decoding="async" />
             </div>
@@ -64,9 +59,9 @@ export default function FeaturedProjects() {
               </span>
               <h3 className="featured-title">{lead.title}</h3>
               <p className="featured-summary">{lead.summary}</p>
-              <span className="tile-cta">Explore the API docs</span>
+              <span className="tile-cta">View project</span>
             </div>
-          </a>
+          </Link>
         </Reveal>
 
         <div className="featured-grid">
