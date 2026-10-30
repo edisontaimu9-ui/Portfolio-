@@ -86,7 +86,6 @@ const icons = {
 }
 
 const words = [
-  { label: 'Playful Nerd',      angle: -60, icon: 'smile',    accent: true,  tilt: -5 },
   { label: 'Curious Mind',      angle: -18, icon: 'help',     accent: false, tilt: 4 },
   { label: 'Dietitian',         angle: 24,  icon: 'utensils', accent: true,  tilt: -4 },
   { label: 'Lifelong Learner',  angle: 62,  icon: 'book',     accent: false, tilt: 5 },
