@@ -6,6 +6,7 @@ import thanziHome from '../assets/thanzi-home.webp'
 import dietitianosDashboard from '../assets/dietitianos-dashboard.webp'
 
 const lead = {
+  id: 'chakudya',
   title: 'Chakudya Nutrition Registry',
   summary: 'An open nutrition data API for Malawi: foods, exchange lists, renal foods and enteral formulas, plus RAG search over clinical references. It powers Thanzi and Oasis.',
   image: chakudyaIllustration,
@@ -48,7 +49,7 @@ export default function FeaturedProjects() {
         </Reveal>
 
         <Reveal>
-          <Link to="/projects" className="featured-card featured-card--lead">
+          <Link to={`/projects#${lead.id}`} className="featured-card featured-card--lead">
             <div className="featured-shot">
               <img src={lead.image} alt={lead.alt} loading="lazy" decoding="async" />
             </div>
@@ -67,7 +68,7 @@ export default function FeaturedProjects() {
         <div className="featured-grid">
           {featured.map((p, i) => (
             <Reveal key={p.id} delay={i * 60}>
-              <Link to="/projects" className="featured-card">
+              <Link to={`/projects#${p.id}`} className="featured-card">
                 <div className="featured-shot">
                   <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
                 </div>

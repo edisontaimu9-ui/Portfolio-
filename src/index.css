@@ -1821,6 +1821,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   transition: border-color .2s;
 }
 .project-card:hover { border-color: var(--border-hi); }
+.project-card { scroll-margin-top: calc(var(--nav-h) + 16px); }
 
 .project-visual {
   background: var(--surface-2);

@@ -488,7 +488,7 @@ export default function Projects() {
         <div className="projects-list">
           {projects.map(({ id, title, status, live, accolade, desc, features, tech, demo, repo, visual, highlight }) => (
             <Reveal key={id} delay={100}>
-              <div className="project-card">
+              <div className="project-card" id={id}>
                 <div className="project-visual">{visual}</div>
                 <div className="project-body">
                   <span className="status">
