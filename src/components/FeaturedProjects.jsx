@@ -1,16 +1,11 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
-import chakudyaIllustration from '../assets/chakudya-illustration.png'
-import oasisHome from '../assets/oasis-home.webp'
-import thanziHome from '../assets/thanzi-home.webp'
-import dietitianosDashboard from '../assets/dietitianos-dashboard.webp'
+import { TbCalculator, TbClipboardCheck, TbApple, TbAward } from 'react-icons/tb'
 
 const lead = {
   id: 'chakudya',
   title: 'Chakudya Nutrition Registry',
   summary: 'An open nutrition data API for Malawi: foods, exchange lists, renal foods and enteral formulas, plus RAG search over clinical references. It powers Thanzi and Oasis.',
-  image: chakudyaIllustration,
-  alt: 'Chakudya Nutrition Registry illustration',
 }
 
 const featured = [
@@ -18,24 +13,78 @@ const featured = [
     id: 'oasis',
     title: 'Oasis CNST',
     summary: 'Offline-first clinical nutrition suite with 11+ modules, built during clinical rotations.',
-    image: oasisHome,
-    alt: 'Oasis CNST home screen',
+    cover: {
+      tone: 'oasis',
+      Icon: TbCalculator,
+      stat: '11+',
+      caption: 'clinical modules',
+      chips: ['Offline-first', 'Enteral & parenteral', 'Malnutrition screening'],
+    },
   },
   {
     id: 'thanzi',
     title: 'Thanzi',
     summary: 'Nutrition tracking PWA for daily meal logging, BMI/BMR/TDEE and progress dashboards.',
-    image: thanziHome,
-    alt: 'Thanzi home screen',
+    cover: {
+      tone: 'thanzi',
+      Icon: TbApple,
+      stat: 'BMI · BMR · TDEE',
+      caption: 'plus daily meal logging',
+      chips: ['Meal diary', 'Progress dashboards', 'PWA'],
+    },
   },
   {
     id: 'dietitianos',
     title: 'DietitianOS',
     summary: 'Practice management app for dietitians: patient records, appointments and reporting.',
-    image: dietitianosDashboard,
-    alt: 'DietitianOS dashboard',
+    cover: {
+      tone: 'dietitianos',
+      Icon: TbClipboardCheck,
+      stat: 'One dashboard',
+      caption: 'for your whole caseload',
+      chips: ['Patients', 'Appointments', 'Reports'],
+    },
   },
 ]
+
+/* Cover for the lead card: a mini terminal using a real response from the live API
+   (same values as the terminal demo on the Projects page). */
+function ApiCover() {
+  return (
+    <div className="cover-terminal" aria-hidden="true">
+      <div className="cover-terminal-bar">
+        <span className="terminal-dot terminal-dot-red" />
+        <span className="terminal-dot terminal-dot-yellow" />
+        <span className="terminal-dot terminal-dot-green" />
+        <span className="cover-terminal-tag">GET /foods</span>
+      </div>
+      <div className="cover-terminal-body">
+        <div className="cover-terminal-cmd"><span>$</span> curl api.chakudya.xyz/foods?search=nsima</div>
+        <pre>{`{
+  "food_name": "Nsima ya kondowole",
+  "category": "Staples",
+  "kcal": 160,
+  "protein_g": 1,
+  "carbs_g": 37
+}`}</pre>
+      </div>
+      <span className="cover-award"><TbAward size={14} /> 2nd Best Innovation</span>
+    </div>
+  )
+}
+
+function TileCover({ tone, Icon, stat, caption, chips }) {
+  return (
+    <div className={`cover-tile cover-tile--${tone}`} aria-hidden="true">
+      <span className="cover-tile-icon"><Icon size={26} /></span>
+      <div className="cover-tile-stat">{stat}</div>
+      <div className="cover-tile-caption">{caption}</div>
+      <div className="cover-tile-chips">
+        {chips.map((c) => <span key={c}>{c}</span>)}
+      </div>
+    </div>
+  )
+}
 
 export default function FeaturedProjects() {
   return (
@@ -50,8 +99,8 @@ export default function FeaturedProjects() {
 
         <Reveal>
           <Link to={`/projects#${lead.id}`} className="featured-card featured-card--lead">
-            <div className="featured-shot">
-              <img src={lead.image} alt={lead.alt} loading="lazy" decoding="async" />
+            <div className="featured-shot featured-shot--cover">
+              <ApiCover />
             </div>
             <div className="featured-body">
               <span className="featured-status">
@@ -69,8 +118,8 @@ export default function FeaturedProjects() {
           {featured.map((p, i) => (
             <Reveal key={p.id} delay={i * 60}>
               <Link to={`/projects#${p.id}`} className="featured-card">
-                <div className="featured-shot">
-                  <img src={p.image} alt={p.alt} loading="lazy" decoding="async" />
+                <div className="featured-shot featured-shot--cover">
+                  <TileCover {...p.cover} />
                 </div>
                 <div className="featured-body">
                   <span className="featured-status">
