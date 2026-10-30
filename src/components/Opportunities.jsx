@@ -67,6 +67,51 @@ const interests = [
   },
 ]
 
+const researchInterests = [
+  'Public Health Nutrition',
+  'Clinical Nutrition and Dietetics',
+  'Maternal, Infant and Child Nutrition',
+  'Malnutrition and Micronutrient Deficiencies',
+  'Nutrition and Non-Communicable Diseases',
+  'Community Nutrition Interventions',
+  'Medical Nutrition Therapy',
+  'Nutrition Epidemiology and Research',
+]
+
+const researchTools = [
+  { name: 'R Programming Language', desc: 'Statistical computing, data analysis and visualization.' },
+  { name: 'Biostatistics', desc: 'Statistical methods for analysing health and nutrition data.' },
+  { name: 'Research Methodology', desc: 'Study design, data collection and interpretation.' },
+  { name: 'Scientific Writing', desc: 'Literature reviews, research reports and academic publications.' },
+]
+
+const innovationInterests = [
+  'Nutrition informatics',
+  'Open nutrition data',
+  'Digital health tools',
+  'AI-assisted dietetic practice',
+  'Offline-first design for low-resource settings',
+]
+
+const innovationWork = [
+  {
+    name: 'Chakudya Nutrition Registry (CNR)',
+    desc: 'An open food and nutrition API for Malawi. It extends the Malawi Food Composition Table (2019) with exchange lists, renal diet classifications, enteral formulas and community-submitted packaged foods.',
+  },
+  {
+    name: 'AI-ready knowledge retrieval',
+    desc: 'Semantic search and retrieval-augmented generation (RAG) over clinical references, plus an MCP server, so AI applications and chatbots can draw on Malawi-specific nutrition data.',
+  },
+  {
+    name: 'Applied clinical and public tools',
+    desc: 'Oasis CNST, an offline-first clinical nutrition suite built during clinical rotations; Thanzi, a consumer nutrition tracker built on CNR; and DietitianOS and NCRS for practice and facility record-keeping.',
+  },
+  {
+    name: 'In progress',
+    desc: 'A human metabolism simulator and Thanzi Guide, a nutrition education platform for Malawians.',
+  },
+]
+
 export default function Opportunities() {
   return (
     <section id="internship" className="section">
@@ -134,6 +179,69 @@ export default function Opportunities() {
             </div>
           </Reveal>
 
+        </div>
+
+        <div className="ri-block">
+          <Reveal>
+            <div className="section-head">
+              <span className="eyebrow">Research &amp; innovation</span>
+              <h2 className="display">Evidence and tools, <br />built side by side.</h2>
+            </div>
+          </Reveal>
+
+          <div className="ri-grid">
+            <Reveal delay={80}>
+              <div className="skill-card ri-card">
+                <span className="ri-tag">R · Research</span>
+                <h3>Public health and clinical nutrition research</h3>
+                <p>
+                  I am passionate about nutrition research, with particular interests in
+                  public health nutrition and clinical nutrition. I am interested in exploring
+                  nutrition-related challenges, investigating evidence-based interventions, and
+                  contributing to research that improves health outcomes at both individual and
+                  population levels.
+                </p>
+                <p className="ri-sub">Key research interests</p>
+                <div className="chip-row">
+                  {researchInterests.map((c) => <span className="chip" key={c}>{c}</span>)}
+                </div>
+                <p className="ri-sub">Research tools and technical skills</p>
+                <ul className="ri-list">
+                  {researchTools.map(({ name, desc }) => (
+                    <li key={name}><strong>{name}:</strong> {desc}</li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+
+            <Reveal delay={160}>
+              <div className="skill-card ri-card">
+                <span className="ri-tag">I · Innovation</span>
+                <h3>Nutrition informatics and digital health</h3>
+                <p>
+                  Alongside research, I build the digital infrastructure that clinical and
+                  public health nutrition work depends on. My focus is turning local nutrition
+                  evidence, such as Malawi-specific food composition data and clinical protocols,
+                  into open, usable tools for dietitians, researchers and developers.
+                </p>
+                <p className="ri-sub">Areas of innovation interest</p>
+                <div className="chip-row">
+                  {innovationInterests.map((c) => <span className="chip" key={c}>{c}</span>)}
+                </div>
+                <p className="ri-sub">What I have built</p>
+                <ul className="ri-list">
+                  {innovationWork.map(({ name, desc }) => (
+                    <li key={name}><strong>{name}:</strong> {desc}</li>
+                  ))}
+                </ul>
+                <p className="ri-recognition">
+                  Chakudya received 2nd Best Innovation at the 5th Research Dissemination
+                  Conference, KUHeS.{' '}
+                  <Link to="/projects#chakudya" className="text-link">See the project</Link>
+                </p>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

@@ -71,7 +71,7 @@ const PAGES = [
   },
   {
     path: '/opportunities',
-    body: `<h1>Open to dietetic internship placements</h1><p>Edison Taimu is seeking dietetic internship and supervised practice placements in clinical and community nutrition, in person or hybrid, based in Zomba, Malawi. Also open to global health innovation collaborations. Areas of interest: clinical dietetics, public health and community nutrition, clinical nutrition education, global health and nutrition programmes, and malnutrition screening and treatment.</p>`,
+    body: `<h1>Open to dietetic internship placements</h1><p>Edison Taimu is seeking dietetic internship and supervised practice placements in clinical and community nutrition, in person or hybrid, based in Zomba, Malawi. Also open to global health innovation collaborations. Areas of interest: clinical dietetics, public health and community nutrition, clinical nutrition education, global health and nutrition programmes, and malnutrition screening and treatment. Research and innovation: public health and clinical nutrition research, with R, biostatistics and scientific writing, alongside nutrition informatics work such as the open Chakudya Nutrition Registry API for Malawi.</p>`,
   },
   {
     path: '/support',
