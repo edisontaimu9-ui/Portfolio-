@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import defaultProfilePhoto from '../assets/profile-photo.jpg'
 import DayNightWidget from './DayNightWidget'
-import Typewriter from './Typewriter'
 import PortraitDoodles from './PortraitDoodles'
 import { getProfilePhotoSetting } from '../lib/api'
 
@@ -44,7 +43,7 @@ export default function Hero() {
           </div>
 
           <h1 className="hero-heading hero-enter-2-noop">
-            <Typewriter text="Good nutrition starts with the right guidance." />
+            Good nutrition starts with the right guidance.
           </h1>
 
           <p className="lead hero-enter hero-enter-3">
