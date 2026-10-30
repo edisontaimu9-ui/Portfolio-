@@ -79,7 +79,7 @@ const PAGES = [
   },
   {
     path: '/contact',
-    body: `<h1>Contact Edison Taimu</h1><p>Reach out about internship enquiries, collaboration proposals, or problems worth solving in low-resource clinical settings. Also on <a href="https://github.com/edisontaimu9-ui">GitHub</a>, <a href="https://linkedin.com/in/edison-taimu">LinkedIn</a> and <a href="https://x.com/edisontaimu">X</a>.</p>`,
+    body: `<h1>Contact Edison Taimu</h1><p>Reach out about internship enquiries, collaboration proposals, or problems worth solving in low-resource clinical settings. Also on <a href="https://github.com/edisontaimu9-ui">GitHub</a>, <a href="https://www.linkedin.com/in/edison-taimu-a37415367">LinkedIn</a> and <a href="https://x.com/edisontaimu">X</a>.</p>`,
   },
   {
     path: '/blog',

@@ -208,7 +208,7 @@ export default function Nav() {
         <span className="menu-section-label menu-section-label-spaced">Elsewhere</span>
         <div className="menu-elsewhere">
           <a href="https://github.com/edisontaimu9-ui" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://linkedin.com/in/edison-taimu" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/edison-taimu-a37415367" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="https://x.com/edisontaimu" target="_blank" rel="noopener noreferrer">X</a>
         </div>
 

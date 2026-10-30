@@ -145,7 +145,7 @@ export default function Contact() {
                   rel="noopener noreferrer" className="icon-link" aria-label="GitHub">
                   <GitHubIcon/>
                 </a>
-                <a href="https://linkedin.com/in/edison-taimu" target="_blank"
+                <a href="https://www.linkedin.com/in/edison-taimu-a37415367" target="_blank"
                   rel="noopener noreferrer" className="icon-link" aria-label="LinkedIn">
                   <LinkedInIcon/>
                 </a>
