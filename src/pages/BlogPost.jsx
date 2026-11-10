@@ -128,7 +128,7 @@ export default function BlogPost() {
       <section className="section" style={{ borderTop: 'none' }}>
         <div className="container">
           <p className="lead">Post not found.</p>
-          <Link to="/blog" className="text-link" style={{ marginTop: 16 }}>
+          <Link to="/blog/" className="text-link" style={{ marginTop: 16 }}>
             Back to blog
           </Link>
         </div>
@@ -141,13 +141,13 @@ export default function BlogPost() {
       <section className="section" style={{ borderTop: 'none' }}>
         <div className="container container-narrow">
           <Reveal>
-            <Link to="/blog" className="page-back-link" style={{ marginBottom: 32, display: 'flex' }}>
+            <Link to="/blog/" className="page-back-link" style={{ marginBottom: 32, display: 'flex' }}>
               <ArrowLeft/>
               Back to blog
             </Link>
 
             {post.category && (
-              <Link to={`/blog?category=${encodeURIComponent(post.category)}`} className="eyebrow">
+              <Link to={`/blog/?category=${encodeURIComponent(post.category)}`} className="eyebrow">
                 {post.category}
               </Link>
             )}
@@ -227,13 +227,13 @@ export default function BlogPost() {
             <Reveal delay={140}>
               <nav className="blog-post-adjacent-nav" aria-label="More posts">
                 {newerPost ? (
-                  <Link to={`/blog/${newerPost.slug}`} className="blog-post-adjacent-link is-newer">
+                  <Link to={`/blog/${newerPost.slug}/`} className="blog-post-adjacent-link is-newer">
                     <span className="blog-post-adjacent-label"><ArrowLeft/> Newer</span>
                     <span className="blog-post-adjacent-title">{newerPost.title}</span>
                   </Link>
                 ) : <span />}
                 {olderPost && (
-                  <Link to={`/blog/${olderPost.slug}`} className="blog-post-adjacent-link is-older">
+                  <Link to={`/blog/${olderPost.slug}/`} className="blog-post-adjacent-link is-older">
                     <span className="blog-post-adjacent-label">Older <ArrowRight/></span>
                     <span className="blog-post-adjacent-title">{olderPost.title}</span>
                   </Link>
@@ -256,7 +256,7 @@ export default function BlogPost() {
             <div className="blog-preview-grid">
               {relatedPosts.map((rp, i) => (
                 <Reveal key={rp.id} delay={i * 60}>
-                  <Link to={`/blog/${rp.slug}`} className="blog-preview-card">
+                  <Link to={`/blog/${rp.slug}/`} className="blog-preview-card">
                     {rp.cover_image && (
                       <div className="blog-preview-media">
                         <img src={rp.cover_image} alt={rp.title} loading="lazy" decoding="async" />

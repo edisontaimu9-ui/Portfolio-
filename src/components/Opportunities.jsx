@@ -155,7 +155,7 @@ export default function Opportunities() {
                 </div>
               </div>
 
-              <Link to="/contact" className="btn btn-primary">
+              <Link to="/contact/" className="btn btn-primary">
                 Let's talk
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -237,7 +237,7 @@ export default function Opportunities() {
                 <p className="ri-recognition">
                   Chakudya received 2nd Best Innovation at the 5th Research Dissemination
                   Conference, KUHeS.{' '}
-                  <Link to="/projects#chakudya" className="text-link">See the project</Link>
+                  <Link to="/projects/#chakudya" className="text-link">See the project</Link>
                 </p>
               </div>
             </Reveal>

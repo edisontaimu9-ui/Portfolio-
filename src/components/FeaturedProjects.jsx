@@ -98,7 +98,7 @@ export default function FeaturedProjects() {
         </Reveal>
 
         <Reveal>
-          <Link to={`/projects#${lead.id}`} className="featured-card featured-card--lead">
+          <Link to={`/projects/#${lead.id}`} className="featured-card featured-card--lead">
             <div className="featured-shot featured-shot--cover">
               <ApiCover />
             </div>
@@ -117,7 +117,7 @@ export default function FeaturedProjects() {
         <div className="featured-grid">
           {featured.map((p, i) => (
             <Reveal key={p.id} delay={i * 60}>
-              <Link to={`/projects#${p.id}`} className="featured-card">
+              <Link to={`/projects/#${p.id}`} className="featured-card">
                 <div className="featured-shot featured-shot--cover">
                   <TileCover {...p.cover} />
                 </div>
@@ -136,7 +136,7 @@ export default function FeaturedProjects() {
         </div>
 
         <Reveal delay={200}>
-          <Link to="/projects" className="text-link featured-all">See all projects</Link>
+          <Link to="/projects/" className="text-link featured-all">See all projects</Link>
         </Reveal>
       </div>
     </section>

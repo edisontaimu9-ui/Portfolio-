@@ -15,8 +15,8 @@ export default function Footer() {
         </Link>
       </div>
       <nav className="footer-links" aria-label="More">
-        <Link to="/impact">Impact</Link>
-        <Link to="/support">Support</Link>
+        <Link to="/impact/">Impact</Link>
+        <Link to="/support/">Support</Link>
       </nav>
       <p className="footer-copy">
         © {year} · All rights reserved

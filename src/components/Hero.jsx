@@ -53,23 +53,23 @@ export default function Hero() {
           </p>
 
           <div className="cta-row hero-enter hero-enter-4">
-            <Link to="/opportunities" className="btn btn-primary">
+            <Link to="/opportunities/" className="btn btn-primary">
               Open to internships
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
               </svg>
             </Link>
-            <Link to="/projects" className="btn btn-ghost">View my work</Link>
-            <Link to="/contact" className="text-link cta-row-link">Get in touch</Link>
+            <Link to="/projects/" className="btn btn-ghost">View my work</Link>
+            <Link to="/contact/" className="text-link cta-row-link">Get in touch</Link>
           </div>
 
           <div className="hero-stats hero-enter hero-enter-5">
-            <Link to="/projects" className="hero-stat">
+            <Link to="/projects/" className="hero-stat">
               <span className="hero-stat-value">4</span>
               <span className="hero-stat-label">Projects shipped</span>
             </Link>
-            <Link to="/about" className="hero-stat">
+            <Link to="/about/" className="hero-stat">
               <span className="hero-stat-value">2026</span>
               <span className="hero-stat-label">BSc graduate, KUHeS</span>
             </Link>

@@ -12,37 +12,37 @@ import { TbUser, TbLayoutGrid, TbHeartHandshake, TbTools, TbTimeline, TbMail } f
 const sections = [
   {
     Icon: TbUser,
-    to: '/about',
+    to: '/about/',
     title: 'About',
     summary: "I'm a BSc Nutrition & Dietetics graduate turned self-taught developer, building the clinical tools I wished existed on the ward.",
   },
   {
     Icon: TbLayoutGrid,
-    to: '/projects',
+    to: '/projects/',
     title: 'Projects',
     summary: 'Four live tools, from a clinical nutrition suite to an open food database, all built to close real gaps in Malawian healthcare.',
   },
   {
     Icon: TbHeartHandshake,
-    to: '/opportunities',
+    to: '/opportunities/',
     title: 'Opportunities',
     summary: 'Open to global health innovation internships and collaborations that put this work in front of more patients and clients.',
   },
   {
     Icon: TbTools,
-    to: '/skills',
+    to: '/skills/',
     title: 'Skills',
     summary: 'Clinical dietetics and full-stack development, applied together rather than kept apart.',
   },
   {
     Icon: TbTimeline,
-    to: '/experience',
+    to: '/experience/',
     title: 'Experience',
     summary: 'From ward rotations to shipping production software used in real clinical settings.',
   },
   {
     Icon: TbMail,
-    to: '/contact',
+    to: '/contact/',
     title: 'Contact',
     summary: 'Reach out about internships, collaborations, or problems worth solving in low-resource clinical settings.',
   },

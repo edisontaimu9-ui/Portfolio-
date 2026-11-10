@@ -18,7 +18,7 @@ const tabs = [
     ),
   },
   {
-    to: '/projects',
+    to: '/projects/',
     label: 'Work',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -29,7 +29,7 @@ const tabs = [
     ),
   },
   {
-    to: '/blog',
+    to: '/blog/',
     label: 'Blog',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"

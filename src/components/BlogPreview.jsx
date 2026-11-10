@@ -32,7 +32,7 @@ export default function BlogPreview() {
               <span className="eyebrow">Writing</span>
               <h2 className="display">From the blog.</h2>
             </div>
-            <Link to="/blog" className="text-link">
+            <Link to="/blog/" className="text-link">
               View all posts <ArrowRight/>
             </Link>
           </div>
@@ -41,7 +41,7 @@ export default function BlogPreview() {
         <div className="blog-preview-grid">
           {posts.map((post, i) => (
             <Reveal key={post.id} delay={i * 60}>
-              <Link to={`/blog/${post.slug}`} className="blog-preview-card">
+              <Link to={`/blog/${post.slug}/`} className="blog-preview-card">
                 {post.cover_image && (
                   <div className="blog-preview-media">
                     <img src={post.cover_image} alt={post.title} loading="lazy" decoding="async" />

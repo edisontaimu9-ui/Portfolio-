@@ -93,7 +93,7 @@ export default function Blog() {
           <div className="blog-list">
             {visiblePosts.map((post, i) => (
               <Reveal key={post.id} delay={80 + i * 60}>
-                <Link to={`/blog/${post.slug}`} className="blog-card">
+                <Link to={`/blog/${post.slug}/`} className="blog-card">
                   {post.cover_image && (
                     <div className="blog-card-media">
                       <img src={post.cover_image} alt={post.title} loading="lazy" decoding="async" />

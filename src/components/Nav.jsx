@@ -8,16 +8,16 @@ import logo from '../assets/logo.png'
 // desktop to keep the bar from feeling crowded — the mobile drawer still
 // lists everything flat, since that's not a space-constrained layout.
 const primaryLinks = [
-  { to: '/about',      label: 'About'      },
-  { to: '/projects',   label: 'Work'       },
-  { to: '/opportunities', label: 'Opportunities' },
-  { to: '/skills',     label: 'Skills'     },
-  { to: '/experience', label: 'Experience' },
+  { to: '/about/',      label: 'About'      },
+  { to: '/projects/',   label: 'Work'       },
+  { to: '/opportunities/', label: 'Opportunities' },
+  { to: '/skills/',     label: 'Skills'     },
+  { to: '/experience/', label: 'Experience' },
 ]
 const moreLinks = [
-  { to: '/impact',        label: 'Impact'        },
-  { to: '/blog',           label: 'Blog'          },
-  { to: '/support',       label: 'Support'       },
+  { to: '/impact/',        label: 'Impact'        },
+  { to: '/blog/',           label: 'Blog'          },
+  { to: '/support/',       label: 'Support'       },
 ]
 const links = [...primaryLinks, ...moreLinks]
 
@@ -89,7 +89,7 @@ export default function Nav() {
   }, [moreOpen])
 
   function isActive(to) {
-    return location.pathname === to
+    return location.pathname.replace(/\/+$/, "") === to.replace(/\/+$/, "")
   }
   const moreActive = moreLinks.some(l => isActive(l.to))
 
@@ -152,7 +152,7 @@ export default function Nav() {
             </li>
           </ul>
 
-          <Link to="/contact" className="btn btn-primary btn-sm nav-cta">
+          <Link to="/contact/" className="btn btn-primary btn-sm nav-cta">
             Get in touch
           </Link>
 
@@ -201,7 +201,7 @@ export default function Nav() {
             {label}
           </Link>
         ))}
-        <Link to="/contact" className="mobile-link mobile-cta">
+        <Link to="/contact/" className="mobile-link mobile-cta">
           Get in touch →
         </Link>
 
