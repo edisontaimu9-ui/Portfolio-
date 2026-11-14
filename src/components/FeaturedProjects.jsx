@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
+import PipBoyCover from './PipBoyCover'
 import { TbCalculator, TbClipboardCheck, TbApple, TbAward } from 'react-icons/tb'
 
 const lead = {
@@ -117,6 +118,22 @@ export default function FeaturedProjects() {
         <div className="featured-grid">
           {featured.map((p, i) => (
             <Reveal key={p.id} delay={i * 60}>
+              {p.id === 'oasis' ? (
+                <div className="featured-card featured-card--pip">
+                  <div className="featured-shot featured-shot--cover featured-shot--pip">
+                    <PipBoyCover />
+                  </div>
+                  <Link to={`/projects/#${p.id}`} className="featured-body featured-body-link">
+                    <span className="featured-status">
+                      <span className="status-dot live" />
+                      Live
+                    </span>
+                    <h3 className="featured-title">{p.title}</h3>
+                    <p className="featured-summary">{p.summary}</p>
+                    <span className="tile-cta">View project</span>
+                  </Link>
+                </div>
+              ) : (
               <Link to={`/projects/#${p.id}`} className="featured-card">
                 <div className="featured-shot featured-shot--cover">
                   <TileCover {...p.cover} />
@@ -131,6 +148,7 @@ export default function FeaturedProjects() {
                   <span className="tile-cta">View project</span>
                 </div>
               </Link>
+              )}
             </Reveal>
           ))}
         </div>
