@@ -3590,7 +3590,7 @@ a.eyebrow:hover, a.eyebrow:focus-visible { text-decoration: underline; text-unde
 
 .pip-wrapper {
   --pip-green: #1aff40;
-  --pip-glow: rgba(26, 255, 64, .6);
+  --pip-glow: rgba(var(--pip-rgb), .6);
   --pip-bg: #020a02;
   width: 100%;
   max-width: 400px;
@@ -3633,7 +3633,7 @@ a.eyebrow:hover, a.eyebrow:focus-visible { text-decoration: underline; text-unde
 }
 .pip-glass::after {
   content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 15%;
-  background: linear-gradient(to bottom, transparent, rgba(26,255,64,.1), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(var(--pip-rgb),.1), transparent);
   animation: pipScan 7s linear infinite;
 }
 .pip-scanlines {
@@ -3662,7 +3662,7 @@ a.eyebrow:hover, a.eyebrow:focus-visible { text-decoration: underline; text-unde
   padding: 4px 8px; cursor: pointer; font-weight: bold; letter-spacing: .5px;
   transition: background-color .2s;
 }
-.pip-nav:hover { background: rgba(26,255,64,.15); }
+.pip-nav:hover { background: rgba(var(--pip-rgb),.15); }
 .pip-nav:focus-visible { outline: 1px dashed var(--pip-green); outline-offset: 1px; }
 .pip-nav-on, .pip-nav-on:hover {
   background: var(--pip-green); color: var(--pip-bg); text-shadow: none;
@@ -3698,7 +3698,7 @@ a.eyebrow:hover, a.eyebrow:focus-visible { text-decoration: underline; text-unde
   list-style: none; margin: 0; padding: 0; max-height: 138px; overflow-y: auto; scrollbar-width: none;
 }
 .pip-list::-webkit-scrollbar { display: none; }
-.pip-list li { border-bottom: 1px dashed rgba(26,255,64,.3); }
+.pip-list li { border-bottom: 1px dashed rgba(var(--pip-rgb),.3); }
 .pip-row {
   display: flex; justify-content: space-between; gap: 8px; width: 100%; padding: 5px 6px;
   text-align: left; cursor: crosshair;
@@ -3711,17 +3711,17 @@ a.eyebrow:hover, a.eyebrow:focus-visible { text-decoration: underline; text-unde
 .pip-data { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .pip-radar {
   position: relative; width: 110px; height: 110px; border-radius: 50%; overflow: hidden;
-  border: 2px solid var(--pip-green); background: rgba(26,255,64,.1);
+  border: 2px solid var(--pip-green); background: rgba(var(--pip-rgb),.1);
   box-shadow: inset 0 0 18px var(--pip-glow);
 }
 .pip-radar::before {
   content: ""; position: absolute; inset: 14px; border-radius: 50%;
-  background: rgba(26,255,64,.15); border: 1px dashed rgba(26,255,64,.3);
+  background: rgba(var(--pip-rgb),.15); border: 1px dashed rgba(var(--pip-rgb),.3);
 }
 .pip-radar::after {
   content: ""; position: absolute; top: 50%; left: 50%; width: 34px; height: 34px;
   transform: translate(-50%, -50%); border-radius: 50%;
-  background: rgba(26,255,64,.25); border: 1px solid var(--pip-green);
+  background: rgba(var(--pip-rgb),.25); border: 1px solid var(--pip-green);
 }
 .pip-radar span {
   position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; z-index: 2;
@@ -3796,4 +3796,97 @@ a.eyebrow:hover, a.eyebrow:focus-visible { text-decoration: underline; text-unde
 :root[data-theme="light"] .weave-divider { --c2: #9fe0d2; opacity: .7; }
 @media (max-width: 600px) {
   .weave-divider { height: 36px; --s: 44px; }
+}
+
+/* ── Card cover variants (Thanzi · DietitianOS · Chakudya) ───────────────── */
+.featured-card--lead .featured-shot--pip { height: auto; min-height: 0; }
+
+.pip-wrapper--amber  { --pip-green: #ffb000; --pip-glow: rgba(255,176,0,.55); --pip-bg: #0a0600; --pip-rgb: 255,176,0; }
+.pip-wrapper--cyan   { --pip-green: #4dd2ff; --pip-glow: rgba(77,210,255,.55); --pip-bg: #00080d; --pip-rgb: 77,210,255; }
+.pip-wrapper--violet { --pip-green: #c9a0ff; --pip-glow: rgba(201,160,255,.55); --pip-bg: #07030d; --pip-rgb: 201,160,255; }
+
+.pip-chassis--handheld { background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(135deg, #34281a, #15100a, #2a2013); }
+.pip-chassis--tablet {
+  padding: .8rem; border-radius: .8rem; border-color: #3a4656;
+  background-image: linear-gradient(135deg, #1d2633, #0e131a, #19212c);
+}
+.pip-chassis--tablet .pip-screw { display: none; }
+.pip-chassis--tablet .pip-crt { border-radius: .45rem; border-width: 4px; }
+.pip-chassis--slab {
+  border-radius: 1.6rem .4rem 1.6rem .4rem; border-color: #4a3d5c;
+  background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(135deg, #2c2338, #120d1a, #241c30);
+}
+.pip-chassis--slab .pip-crt { border-radius: 1.2rem .25rem 1.2rem .25rem; }
+
+.pip-bottom--seg { gap: 6px; }
+.pip-bottom--seg .pip-nav { flex: 1; border: 1px solid rgba(var(--pip-rgb), .5); font-size: .62rem; padding: 4px 2px; }
+.pip-bottom--seg .pip-nav-on { border-color: var(--pip-green); }
+
+.pip-list--tall { max-height: none; }
+.pip-meter { height: 8px; margin-top: 8px; border: 1px solid var(--pip-green); }
+.pip-meter-fill { height: 100%; background: var(--pip-green); box-shadow: 0 0 8px var(--pip-glow); transition: width .35s ease; }
+.pip-meter-text { display: flex; justify-content: space-between; gap: 8px; margin-top: 5px; font-weight: bold; }
+
+/* Thanzi */
+.pip-calc { display: flex; flex-direction: column; gap: 10px; }
+.pip-calc-main { display: flex; align-items: center; justify-content: space-around; gap: 8px; }
+.pip-ring { position: relative; width: 94px; height: 94px; flex-shrink: 0; }
+.pip-ring svg { width: 100%; height: 100%; }
+.pip-ring-track { fill: none; stroke: rgba(var(--pip-rgb), .2); stroke-width: 8; }
+.pip-ring-fill { fill: none; stroke: var(--pip-green); stroke-width: 8; stroke-linecap: butt; filter: drop-shadow(0 0 4px var(--pip-glow)); transition: stroke-dasharray .5s ease; }
+.pip-ring-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.pip-ring-text b { font-size: 1.25rem; line-height: 1; }
+.pip-ring-text span { font-size: .5rem; letter-spacing: .5px; }
+.pip-kv { display: flex; flex-direction: column; gap: 6px; }
+.pip-kv div { display: flex; flex-direction: column; border-left: 2px solid var(--pip-green); padding-left: 6px; }
+.pip-kv span { font-size: .55rem; opacity: .8; }
+.pip-kv b { font-size: 1.05rem; line-height: 1.1; }
+.pip-kv small { font-size: .5rem; opacity: .8; }
+.pip-seg { display: flex; border: 1px solid var(--pip-green); }
+.pip-seg button { flex: 1; padding: 4px 0; cursor: pointer; font-weight: bold; letter-spacing: .5px; }
+.pip-seg button + button { border-left: 1px solid var(--pip-green); }
+.pip-seg-on { background: var(--pip-green); color: var(--pip-bg) !important; text-shadow: none; }
+.pip-trend { display: flex; flex-direction: column; }
+.pip-bars { display: flex; align-items: stretch; gap: 6px; height: 112px; }
+.pip-col { flex: 1; display: flex; flex-direction: column; cursor: pointer; }
+.pip-col-track { flex: 1; display: flex; align-items: flex-end; }
+.pip-col-bar {
+  width: 100%; background: rgba(var(--pip-rgb), .3); border-top: 2px solid var(--pip-green);
+  transform-origin: bottom; animation: pipGrow .6s ease-out both;
+}
+.pip-col-on .pip-col-bar { background: var(--pip-green); box-shadow: 0 0 10px var(--pip-glow); }
+.pip-col-day { margin-top: 3px; font-size: .6rem; font-weight: bold; }
+@keyframes pipGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+/* DietitianOS */
+.pip-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+.pip-detail { margin: 0; padding: 6px 8px; border: 1px solid rgba(var(--pip-rgb), .6); animation: pipGlitch .4s ease-out; }
+.pip-detail dt { font-size: .5rem; opacity: .75; margin-top: 4px; }
+.pip-detail dt:first-child { margin-top: 0; }
+.pip-detail dd { margin: 0; font-weight: bold; font-size: .75rem; }
+.pip-timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.pip-timeline::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; border-left: 1px dashed rgba(var(--pip-rgb), .5); }
+.pip-visit { display: flex; align-items: center; gap: 10px; width: 100%; padding: 4px 0; text-align: left; cursor: pointer; }
+.pip-visit span:nth-child(3) { margin-left: auto; }
+.pip-dot { width: 9px; height: 9px; border: 1px solid var(--pip-green); background: var(--pip-bg); position: relative; z-index: 1; }
+.pip-visit-done .pip-dot { background: var(--pip-green); box-shadow: 0 0 8px var(--pip-glow); }
+.pip-visit-done { opacity: .6; text-decoration: line-through; }
+.pip-hbars { display: flex; flex-direction: column; gap: 8px; }
+.pip-hbar { display: grid; grid-template-columns: 62px 1fr 30px; align-items: center; gap: 6px; }
+.pip-hbar-track { height: 8px; border: 1px solid rgba(var(--pip-rgb), .6); }
+.pip-hbar-fill { display: block; height: 100%; background: var(--pip-green); box-shadow: 0 0 6px var(--pip-glow); transform-origin: left; animation: pipGrowX .7s ease-out both; }
+.pip-hbar b { text-align: right; }
+.pip-action { margin-top: 10px; width: 100%; padding: 5px; border: 1px solid var(--pip-green); font-weight: bold; letter-spacing: .5px; cursor: pointer; }
+.pip-action:hover { background: rgba(var(--pip-rgb), .15); }
+@keyframes pipGrowX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Chakudya */
+.pip-term-cmd { font-weight: bold; word-break: break-all; min-height: 1.4em; }
+.pip-term-out { margin: 8px 0 0; font: inherit; line-height: 1.5; white-space: pre-wrap; animation: pipGlitch .4s ease-out; }
+.pip-award { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.pip-award .pip-big small { font-size: 1.1rem; margin-left: 2px; }
+.pip-award-line { display: inline-flex; align-items: center; gap: 6px; font-weight: bold; letter-spacing: 1px; }
+
+@media (max-width: 380px) {
+  .pip-ring { width: 82px; height: 82px; }
 }

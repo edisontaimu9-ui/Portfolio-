@@ -1,17 +1,20 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import PipBoyCover from './PipBoyCover'
+import { ThanziCover, DietitianCover, ChakudyaCover } from './RetroCovers'
 import { TbCalculator, TbClipboardCheck, TbApple, TbAward } from 'react-icons/tb'
 
 const lead = {
   id: 'chakudya',
   title: 'Chakudya Nutrition Registry',
   summary: 'An open nutrition data API for Malawi: foods, exchange lists, renal foods and enteral formulas, plus RAG search over clinical references. It powers Thanzi and Oasis.',
+  Pip: ChakudyaCover,
 }
 
 const featured = [
   {
     id: 'oasis',
+    Pip: PipBoyCover,
     title: 'Oasis CNST',
     summary: 'Offline-first clinical nutrition suite with 11+ modules, built during clinical rotations.',
     cover: {
@@ -24,6 +27,7 @@ const featured = [
   },
   {
     id: 'thanzi',
+    Pip: ThanziCover,
     title: 'Thanzi',
     summary: 'Nutrition tracking PWA for daily meal logging, BMI/BMR/TDEE and progress dashboards.',
     cover: {
@@ -36,6 +40,7 @@ const featured = [
   },
   {
     id: 'dietitianos',
+    Pip: DietitianCover,
     title: 'DietitianOS',
     summary: 'Practice management app for dietitians: patient records, appointments and reporting.',
     cover: {
@@ -87,6 +92,27 @@ function TileCover({ tone, Icon, stat, caption, chips }) {
   )
 }
 
+/* Card whose cover is an interactive terminal. The cover sits outside the link so its
+   tabs never navigate; the body below is the link. */
+function PipCard({ id, title, summary, Pip, lead, status }) {
+  return (
+    <div className={`featured-card featured-card--pip${lead ? ' featured-card--lead' : ''}`}>
+      <div className="featured-shot featured-shot--cover featured-shot--pip">
+        <Pip />
+      </div>
+      <Link to={`/projects/#${id}`} className="featured-body featured-body-link">
+        <span className="featured-status">
+          <span className="status-dot live" />
+          {status}
+        </span>
+        <h3 className="featured-title">{title}</h3>
+        <p className="featured-summary">{summary}</p>
+        <span className="tile-cta">View project</span>
+      </Link>
+    </div>
+  )
+}
+
 export default function FeaturedProjects() {
   return (
     <section className="section featured-section">
@@ -99,40 +125,31 @@ export default function FeaturedProjects() {
         </Reveal>
 
         <Reveal>
-          <Link to={`/projects/#${lead.id}`} className="featured-card featured-card--lead">
-            <div className="featured-shot featured-shot--cover">
-              <ApiCover />
-            </div>
-            <div className="featured-body">
-              <span className="featured-status">
-                <span className="status-dot live" />
-                Live · API
-              </span>
-              <h3 className="featured-title">{lead.title}</h3>
-              <p className="featured-summary">{lead.summary}</p>
-              <span className="tile-cta">View project</span>
-            </div>
-          </Link>
+          {lead.Pip ? (
+            <PipCard {...lead} lead status="Live · API" />
+          ) : (
+            <Link to={`/projects/#${lead.id}`} className="featured-card featured-card--lead">
+              <div className="featured-shot featured-shot--cover">
+                <ApiCover />
+              </div>
+              <div className="featured-body">
+                <span className="featured-status">
+                  <span className="status-dot live" />
+                  Live · API
+                </span>
+                <h3 className="featured-title">{lead.title}</h3>
+                <p className="featured-summary">{lead.summary}</p>
+                <span className="tile-cta">View project</span>
+              </div>
+            </Link>
+          )}
         </Reveal>
 
         <div className="featured-grid">
           {featured.map((p, i) => (
             <Reveal key={p.id} delay={i * 60}>
-              {p.id === 'oasis' ? (
-                <div className="featured-card featured-card--pip">
-                  <div className="featured-shot featured-shot--cover featured-shot--pip">
-                    <PipBoyCover />
-                  </div>
-                  <Link to={`/projects/#${p.id}`} className="featured-body featured-body-link">
-                    <span className="featured-status">
-                      <span className="status-dot live" />
-                      Live
-                    </span>
-                    <h3 className="featured-title">{p.title}</h3>
-                    <p className="featured-summary">{p.summary}</p>
-                    <span className="tile-cta">View project</span>
-                  </Link>
-                </div>
+              {p.Pip ? (
+                <PipCard {...p} status="Live" />
               ) : (
               <Link to={`/projects/#${p.id}`} className="featured-card">
                 <div className="featured-shot featured-shot--cover">
