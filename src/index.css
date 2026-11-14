@@ -3774,3 +3774,26 @@ a.eyebrow:hover, a.eyebrow:focus-visible { text-decoration: underline; text-unde
 @media (prefers-reduced-motion: reduce) {
   .pip-wrapper *, .pip-wrapper *::before, .pip-wrapper *::after { animation: none !important; }
 }
+
+/* ── Weave divider (Uiverse pattern by marcelodolza, recoloured to the site accent) ── */
+.weave-divider {
+  --s: 56px; /* stripe size */
+  --c1: var(--accent);
+  --c2: #0d3b34;
+  --_g: var(--c2) 4% 14%, var(--c1) 14% 24%, var(--c2) 22% 34%,
+    var(--c1) 34% 44%, var(--c2) 44% 56%, var(--c1) 56% 66%, var(--c2) 66% 76%,
+    var(--c1) 76% 86%, var(--c2) 86% 96%;
+  width: 100%;
+  height: 48px;
+  opacity: .85;
+  background: radial-gradient(100% 100% at 100% 0, var(--c1) 4%, var(--_g), #0008 96%, #0000),
+    radial-gradient(100% 100% at 0 100%, #0000, #0008 4%, var(--_g), var(--c1) 96%)
+    var(--c1);
+  background-size: var(--s) var(--s);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+:root[data-theme="light"] .weave-divider { --c2: #9fe0d2; opacity: .7; }
+@media (max-width: 600px) {
+  .weave-divider { height: 36px; --s: 44px; }
+}

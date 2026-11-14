@@ -5,6 +5,7 @@ import Reveal from '../components/Reveal'
 import BlogPreview from '../components/BlogPreview'
 import HealthTechMarquee from '../components/HealthTechMarquee'
 import FeaturedProjects from '../components/FeaturedProjects'
+import WeaveDivider from '../components/WeaveDivider'
 import { HOME_TITLE } from '../data/seo'
 import { TbUser, TbLayoutGrid, TbHeartHandshake, TbTools, TbTimeline, TbMail } from 'react-icons/tb'
 
@@ -79,6 +80,8 @@ export default function Home() {
     <>
       <Hero />
 
+      <WeaveDivider />
+
       <FeaturedProjects />
 
       <section className="section tiles-section">
@@ -94,6 +97,8 @@ export default function Home() {
           <TileGrid items={sections} />
         </div>
       </section>
+
+      <WeaveDivider />
 
       <BlogPreview />
     </>
