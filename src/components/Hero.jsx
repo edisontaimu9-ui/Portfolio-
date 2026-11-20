@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import defaultProfilePhoto from '../assets/profile-photo.jpg'
 import DayNightWidget from './DayNightWidget'
-import PortraitDoodles from './PortraitDoodles'
 import { getProfilePhotoSetting } from '../lib/api'
 
 export default function Hero() {
@@ -39,7 +38,7 @@ export default function Hero() {
         <div className="hero-grid">
         <div className="hero-content">
           <div className="hero-top hero-enter hero-enter-1">
-            <span className="eyebrow">Registered Dietitian in Training &bull; Zomba, Malawi</span>
+            <span className="eyebrow">AI/ML Enthusiast | Dietitian-Nutritionist | HealthTech Innovator</span>
           </div>
 
           <h1 className="hero-heading hero-enter-2-noop">
@@ -88,7 +87,6 @@ export default function Hero() {
               )}
               <span className="handwritten-note">I'm learning Python, Dart &amp; Flutter 😀</span>
             </div>
-            <PortraitDoodles />
           </div>
         </div>
         </div>
