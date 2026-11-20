@@ -29,15 +29,6 @@ function ArrowRight() {
   )
 }
 
-function ExtLink() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-    </svg>
-  )
-}
-
 /* ── Phone device frame ────────────────────────────────────────── */
 function PhoneFrame({ children, width, height }) {
   return (
@@ -370,8 +361,6 @@ const projects = [
       { label: 'Cloudflare Workers', Icon: SiCloudflare, color: '#F38020' },
       { label: 'Scrapy',            Icon: SiScrapy,     color: '#60A839' },
     ],
-    demo:   'https://oasiscnst.app',
-    repo:   'https://github.com/edisontaimu9-ui/MiNutriQ-',
     visual: <OasisVisual />,
   },
   {
@@ -391,8 +380,6 @@ const projects = [
       { label: 'GitHub Pages',  Icon: SiGithubpages,             color: '#FFFFFF' },
       { label: 'PWA',           Icon: HiOutlineDevicePhoneMobile, color: '#8B8B8B' },
     ],
-    demo:   'https://edisontaimu9-ui.github.io/thanzi/',
-    repo:   'https://github.com/edisontaimu9-ui',
     visual: <ThanziVisual />,
   },
   {
@@ -432,8 +419,6 @@ const projects = [
       { label: 'RAG',               Icon: TbCpu,         color: '#39594D' },
       { label: 'Cohere Embeddings', Icon: TbCpu,         color: '#39594D' },
     ],
-    demo:   'https://chakudya.xyz',
-    repo:   'https://github.com/edisontaimu9-ui/chakudya-api',
     visual: <ChakudyaTerminalVisual />,
     highlight: {
       img: nutritionLabelImg,
@@ -452,8 +437,6 @@ const projects = [
       { label: 'React', Icon: SiReact, color: '#61DAFB' },
       { label: 'REST APIs', Icon: TbApi, color: '#2fbfa4' },
     ],
-    demo:   'https://edisontaimu9-ui.github.io/dietitianos/',
-    repo:   'https://github.com/edisontaimu9-ui/dietitianos',
     visual: <DietitianOsVisual />,
   },
   {
@@ -468,7 +451,6 @@ const projects = [
       { label: 'React', Icon: SiReact, color: '#61DAFB' },
       { label: 'REST APIs', Icon: TbApi, color: '#2fbfa4' },
     ],
-    repo:   'https://github.com/edisontaimu9-ui/ncrs-frontend',
     visual: <NcrsVisual />,
   },
 ]
@@ -486,7 +468,7 @@ export default function Projects() {
         </Reveal>
 
         <div className="projects-list">
-          {projects.map(({ id, title, status, live, accolade, desc, features, tech, demo, repo, visual, highlight }) => (
+          {projects.map(({ id, title, status, live, accolade, desc, features, tech, visual, highlight }) => (
             <Reveal key={id} delay={100}>
               <div className="project-card" id={id}>
                 <div className="project-visual">{visual}</div>
@@ -521,18 +503,6 @@ export default function Projects() {
                           <Icon size={16} color={color} />
                         </span>
                       ))}
-                  </div>
-                  <div className="project-links">
-                    {demo && (
-                      <a href={demo} target="_blank" rel="noopener noreferrer" className="text-link">
-                        Live demo <ExtLink/>
-                      </a>
-                    )}
-                    {repo && (
-                      <a href={repo} target="_blank" rel="noopener noreferrer" className="text-link">
-                        GitHub <ExtLink/>
-                      </a>
-                    )}
                   </div>
                 </div>
               </div>
