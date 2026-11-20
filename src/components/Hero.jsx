@@ -85,9 +85,9 @@ export default function Hero() {
               {profilePhoto && (
                 <img src={profilePhoto} alt="Edison Taimu" className="ring-portrait-img" />
               )}
-              <span className="handwritten-note">I'm learning Python, Dart &amp; Flutter 😀</span>
             </div>
           </div>
+          <p className="handwritten-note">I'm learning Python, Dart &amp; Flutter 😀</p>
         </div>
         </div>
       </div>
